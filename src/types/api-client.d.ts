@@ -1,0 +1,1 @@
+declare module '@globalfishingwatch/api-client/dist/react-hook'
