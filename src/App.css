@@ -1,0 +1,23 @@
+body {
+  overflow: hidden;
+  font-size: 1.6rem;
+}
+
+#root {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "map" "timebar";
+  background: #0e2e82;
+  color: white;
+}
+
+.map {
+  grid-area: map;
+
+}
+
+.timebar {
+  grid-area: timebar;
+}
