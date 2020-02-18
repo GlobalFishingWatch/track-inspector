@@ -1,9 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import ReactMapGL from 'react-map-gl';
-import LayerComposer, {
-  sort,
-  TYPES
-} from "@globalfishingwatch/layer-composer";
+import LayerComposer, { sort } from "@globalfishingwatch/layer-composer";
 import useLayerComposer from "@globalfishingwatch/map-components/components/layer-composer-hook";
 import Timebar from "@globalfishingwatch/map-components/components/timebar";
 import './App.css';
@@ -18,34 +15,20 @@ function Map(props: any) {
     zoom,
     latitude,
     longitude,
+    generatorConfigs,
     setMapViewport
   } = props
-
-  const styleConfig = useMemo(() => {
-    let config = [
-      {
-        id: "background",
-        type: TYPES.BACKGROUND,
-      },
-      {
-        type: TYPES.BASEMAP,
-        id: "landmass"
-      }
-    ]
-    return config
-  }, [])
 
   const [style] = useLayerComposer(
     layerComposer,
     styleTransformations,
-    styleConfig
+    generatorConfigs
   );
 
   const [dates, setDates] = useState({
     start: "2019-09-01T00:00:00.000Z",
     end: "2019-10-01T00:00:00.000Z"
   });
-
 
   const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)
 
