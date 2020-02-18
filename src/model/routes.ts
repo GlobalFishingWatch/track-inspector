@@ -8,7 +8,6 @@ const preFetchThunks = [
   dataviewsThunk,
 ]
 
-
 const thunk = async (
   dispatch: Dispatch<any>,
   getState: StateGetter<any>

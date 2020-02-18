@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import ReactMapGL from 'react-map-gl';
 import LayerComposer, {
   sort,
@@ -8,21 +7,19 @@ import LayerComposer, {
 import useLayerComposer from "@globalfishingwatch/map-components/components/layer-composer-hook";
 import Timebar from "@globalfishingwatch/map-components/components/timebar";
 import './App.css';
+import './useViewport'
+import useViewport from './useViewport';
 
 const layerComposer = new LayerComposer();
 const styleTransformations = [sort];
 
-function Map() {
-
-  const dispatch = useDispatch()
-  const viewport = useSelector((state: any) => {
-    const q = state.location.query || { zoom: 3, latitude: 1, longitude: 1 }
-    return {
-      zoom: parseFloat(q.zoom),
-      latitude: parseFloat(q.latitude),
-      longitude: parseFloat(q.longitude),
-    }
-  })
+function Map(props: any) {
+  const {
+    zoom,
+    latitude,
+    longitude,
+    setMapViewport
+  } = props
 
   const styleConfig = useMemo(() => {
     let config = [
@@ -49,6 +46,9 @@ function Map() {
     end: "2019-10-01T00:00:00.000Z"
   });
 
+
+  const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)
+
   return (
     <>
       <div className="map">
@@ -56,16 +56,7 @@ function Map() {
           width="100%"
           height="100%"
           {...viewport}
-          onViewportChange={(vp) => {
-            const { latitude, longitude, zoom } = vp
-            // TODO should not update ALL query params, use custom middleware as in CP
-            dispatch({
-              type: 'HOME',
-              query: {
-                zoom, latitude, longitude
-              }
-            })
-          }}
+          onViewportChange={onViewportChange as any}
           mapStyle={style}
         />
       </div>

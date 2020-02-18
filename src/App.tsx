@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 import GFWAPI, { getLoginUrl } from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
-import Map from './Map'
+import Map from './Map.container'
 
 function App() {
   const { loading, logged } = useGFWLogin(GFWAPI)

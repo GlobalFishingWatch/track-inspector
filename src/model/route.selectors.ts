@@ -1,35 +1,21 @@
 import { createSelector } from 'reselect'
 
 export type WorkspaceParam = 
+  | 'dataviews'
   | 'zoom'
   | 'latitude'
   | 'longitude'
-  | 'dataviews'
 
 export type QueryParam =
   | WorkspaceParam
 
-// export const DEFAULT_FILTERS: DefaulQueryTypes = {
-//   eventType: EVENT_TYPES.encounter,
-//   tab: 'carriers',
-//   graph: null,
-//   after: '2017-01-01T00:00:00.000Z',
-//   before: '2018-12-31T00:00:00.000Z',
-//   vessel: null,
-//   vesselLabel: null,
-//   flag: null,
-//   rfmo: null,
-//   eez: null,
-//   port: null,
-//   timestamp: null,
-//   layer: ['cp_rfmo'],
-//   zoom: 2,
-//   lat: -3,
-//   lng: 29,
-//   dataset: null,
-//   'access-token': undefined,
-// }
-
+type DefaulQueryTypes = { [key in QueryParam]: any }
+const DEFAULT_APP_PARAMS:DefaulQueryTypes = {
+  dataviews: [],
+  zoom: 3,
+  latitude: 0,
+  longitude: 0
+}
 
 const getLocation = (state: any) => state.location
 
@@ -39,10 +25,14 @@ const getLocationQuery = createSelector([getLocation], (location) => {
 
 const getQueryParam = (param: QueryParam) =>
   createSelector([getLocationQuery], (query: any) => {
-    // if (query === undefined || query[param] === undefined) {
-    //   return DEFAULT_FILTERS[param]
-    // }
+    if (query === undefined || query[param] === undefined) {
+      return DEFAULT_APP_PARAMS[param]
+    }
     return query[param]
   })
 
-export const getDataviews = getQueryParam('dataviews')
+export const getDataviewsQuery = getQueryParam('dataviews')
+
+export const getMapZoomQuery = createSelector([getQueryParam('zoom')], (value) => parseFloat(value))
+export const getMapLatitudeQuery = createSelector([getQueryParam('latitude')], (value) => parseFloat(value))
+export const getMapLongitudeQuery = createSelector([getQueryParam('longitude')], (value) => parseFloat(value))
