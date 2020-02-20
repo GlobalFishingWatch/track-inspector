@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions'
 import { updateMapLayers } from './map.actions'
-import { Dataview } from '../types/dataviews-client'
+import { Dataview } from '@globalfishingwatch/api-client'
 
 interface MapReducer {
   generatorConfigs: Dataview[]

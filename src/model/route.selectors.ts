@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { QueryParam } from '../types/app'
+import { QueryParam } from '../types/types'
 import { DEFAULT_WORKSPACE } from '../constants'
 
 const getLocation = (state: any) => state.location

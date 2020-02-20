@@ -1,5 +1,5 @@
-export interface QueryParams {
-  [query: QueryParam]: string | number | array | null
+export interface Dictionary<T> {
+  [key: string]: T
 }
 
 export type WorkspaceParam = 
@@ -10,3 +10,7 @@ export type WorkspaceParam =
 
 export type QueryParam =
   | WorkspaceParam
+
+export type QueryParams = {
+  [query in QueryParam]?: string | number | null
+}

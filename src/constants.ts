@@ -1,4 +1,4 @@
-import { Workspace, Dataview, Dataset } from './types/dataviews-client'
+import { Workspace, Dataview, Dataset } from '@globalfishingwatch/api-client'
 import { TYPES } from "@globalfishingwatch/layer-composer";
 
 export const DEFAULT_WORKSPACE:Workspace = {
@@ -8,20 +8,37 @@ export const DEFAULT_WORKSPACE:Workspace = {
       dataview: {
         id: 'background',
         config: {
-          id: 'background',
           type: TYPES.BACKGROUND,
         }
       },
-      overrides: {}
     },
     {
       id: 'landmass',
       dataview: {
         id: 'landmass',
         config: {
-          id: 'landmass',
           type: TYPES.BASEMAP,
         }
+      }
+    },
+    {
+      id: 'carrierReeferTrack',
+      dataview: {
+        id: 'carrierReeferTrack',
+        config: {
+          type: TYPES.TRACK
+        },
+        datasetsIds: ['carrierPortalVessel']
+      }
+    },
+    {
+      id: 'carrierVesselTrack',
+      dataview: {
+        id: 'carrierVesselTrack',
+        config: {
+          type: TYPES.TRACK
+        },
+        datasetsIds: ['carrierPortalVessel']
       }
     }
   ],
@@ -31,25 +48,109 @@ export const DEFAULT_WORKSPACE:Workspace = {
 }
 
 
-const getDatasetsMock:Dataset[] = [{
+const datasetsMock:Dataset[] = [{
+  id: 'carrierPortalVessel',
   endpoints: [{
     type: 'track',
-    urlTemplate: 'track'
+    urlTemplate: 'track?vesselId={{id}}'
   }]
 }]
 
-const getDataviewsMock:Dataview[] = [
+const dataviewsMock:Dataview[] = [
+  {
+    id: 'background',
+    config: {
+      type: TYPES.BACKGROUND,
+    }
+  },
+  {
+    id: 'landmass',
+    config: {
+      type: TYPES.BASEMAP,
+    }
+  },
   {
     id: 'carrierReeferTrack',
-    config: {},
-    datasets: getDatasetsMock
+    config: {
+      type: TYPES.TRACK
+    },
+    datasets: datasetsMock
+  },
+  {
+    id: 'carrierVesselTrack',
+    config: {
+      type: TYPES.TRACK,
+      color: '#ff0000'
+    },
+    datasets: datasetsMock
   }
 ]
 
+const carrierReeferTrack = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -20.0390625,
+            34.59704151614417
+          ],
+          [
+            -10.1953125,
+            51.83577752045248
+          ]
+        ]
+      }
+    }
+  ]
+}
+
+const carrierVesselMock = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -37.265625,
+            38.54816542304656
+          ],
+          [
+            -30.322265625000004,
+            30.977609093348686
+          ],
+          [
+            -19.951171875,
+            40.111688665595956
+          ],
+          [
+            -18.28125,
+            48.516604348867475
+          ],
+          [
+            -33.486328125,
+            40.713955826286046
+          ],
+          [
+            -29.003906249999996,
+            37.3002752813443
+          ]
+        ]
+      }
+    }
+  ]
+}
+
 export const mockFetches:any = {
-  'dataviews?ids=carrierReeferTrack,carrierVesselTrack': getDataviewsMock,
-  'datasets?ids=carrierVessel': getDatasetsMock,
-  // TODO
-  'track?vesselId=1': {},
-  'track?vesselId=2': {}
+  'dataviews?ids=background,landmass,carrierReeferTrack,carrierVesselTrack': dataviewsMock,
+  'datasets?ids=carrierPortalVessel': datasetsMock,
+  'track?vesselId=1': carrierReeferTrack,
+  'track?vesselId=2': carrierVesselMock
 }
