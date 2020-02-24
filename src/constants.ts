@@ -23,6 +23,9 @@ export const DEFAULT_WORKSPACE:Workspace = {
     },
     {
       id: 'carrierReeferTrack',
+      overrides: {
+        id: '1'
+      },
       dataview: {
         id: 'carrierReeferTrack',
         config: {
@@ -33,6 +36,9 @@ export const DEFAULT_WORKSPACE:Workspace = {
     },
     {
       id: 'carrierVesselTrack',
+      overrides: {
+        id: '2'
+      },
       dataview: {
         id: 'carrierVesselTrack',
         config: {
