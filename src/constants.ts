@@ -1,5 +1,7 @@
 import { Workspace, Dataview, Dataset } from '@globalfishingwatch/api-client'
-import { TYPES } from "@globalfishingwatch/layer-composer";
+import { TYPES } from '@globalfishingwatch/layer-composer';
+import track1 from './track1.json'
+import track2 from './track2.json'
 
 export const DEFAULT_WORKSPACE:Workspace = {
   dataviewsWorkspace: [
@@ -37,7 +39,8 @@ export const DEFAULT_WORKSPACE:Workspace = {
     {
       id: 'carrierVesselTrack',
       overrides: {
-        id: '2'
+        id: '2',
+        color: '#ff00ff'
       },
       dataview: {
         id: 'carrierVesselTrack',
@@ -92,67 +95,9 @@ const dataviewsMock:Dataview[] = [
   }
 ]
 
-const carrierReeferTrack = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -20.0390625,
-            34.59704151614417
-          ],
-          [
-            -10.1953125,
-            51.83577752045248
-          ]
-        ]
-      }
-    }
-  ]
-}
+const carrierReeferTrack = track1
 
-const carrierVesselMock = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            -37.265625,
-            38.54816542304656
-          ],
-          [
-            -30.322265625000004,
-            30.977609093348686
-          ],
-          [
-            -19.951171875,
-            40.111688665595956
-          ],
-          [
-            -18.28125,
-            48.516604348867475
-          ],
-          [
-            -33.486328125,
-            40.713955826286046
-          ],
-          [
-            -29.003906249999996,
-            37.3002752813443
-          ]
-        ]
-      }
-    }
-  ]
-}
+const carrierVesselMock = track2
 
 export const mockFetches:any = {
   'dataviews?ids=background,landmass,carrierReeferTrack,carrierVesselTrack': dataviewsMock,
