@@ -40,7 +40,7 @@ export const DEFAULT_WORKSPACE:Workspace = {
       id: 'carrierVesselTrack',
       overrides: {
         id: '2',
-        color: '#ff00ff'
+        color: '#ffff00',
       },
       dataview: {
         id: 'carrierVesselTrack',
@@ -53,7 +53,9 @@ export const DEFAULT_WORKSPACE:Workspace = {
   ],
   zoom: 3,
   latitude: 0,
-  longitude: 0
+  longitude: 0,
+  start: '2019-01-01T00:00:00.000Z',
+  end: '2020-01-01T00:00:00.000Z'
 }
 
 

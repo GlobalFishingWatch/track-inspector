@@ -15,20 +15,22 @@ function Map(props: any) {
     zoom,
     latitude,
     longitude,
+    start,
+    end,
     generatorConfigs,
-    setMapViewport
+    setMapViewport,
+    setTimerange
   } = props
 
   const [style] = useLayerComposer(
     layerComposer,
     styleTransformations,
-    generatorConfigs
+    generatorConfigs,
+    {
+      start,
+      end
+    }
   );
-
-  const [dates, setDates] = useState({
-    start: "2019-09-01T00:00:00.000Z",
-    end: "2019-10-01T00:00:00.000Z"
-  });
 
   const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)
 
@@ -46,15 +48,13 @@ function Map(props: any) {
       <div className="timebar">
         <Timebar
           enablePlayback
-          start={dates.start}
-          end={dates.end}
+          start={start}
+          end={end}
           absoluteStart={"2019-01-01T00:00:00.000Z"}
           absoluteEnd={"2020-01-01T00:00:00.000Z"}
           onChange={(start:string, end: string) => {
-            setDates({
-              start,
-              end
-            });
+            // TODO needs to be debounced like viewport
+            setTimerange(start, end)
           }}
         ></Timebar>
       </div>

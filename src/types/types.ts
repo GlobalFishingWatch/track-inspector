@@ -7,6 +7,8 @@ export type WorkspaceParam =
   | 'zoom'
   | 'latitude'
   | 'longitude'
+  | 'start'
+  | 'end'
 
 export type QueryParam =
   | WorkspaceParam
