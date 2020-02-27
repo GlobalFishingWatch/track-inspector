@@ -25,9 +25,9 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
   const state = getState()
   const dataviewsQuery = getDataviewsQuery(state)
   if (dataviewsQuery) {
-    console.log('dataviews query:', dataviewsQuery)
+    // console.log('dataviews query:', dataviewsQuery)
     const dataviews = await dataviewsClient.load(dataviewsQuery)
-    console.log(dataviews)
+    // console.log(dataviews)
     if (dataviews === null) {
       console.log('no updates, dont trigger any action')
     } else {
@@ -39,7 +39,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       const loadDataPromises = dataviewsClient.loadData()
       loadDataPromises.forEach(async promise => {
         const {data, dataview} = await promise
-        console.log('Loaded endpoint data:', data, dataview)
+        // console.log('Loaded endpoint data:', data, dataview)
         if (dataview.config.type === TYPES.TRACK) {
           dispatch(setVesselTrack({ id: dataview.id, data }))
         }

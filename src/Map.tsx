@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import ReactMapGL from 'react-map-gl';
 import LayerComposer, { sort } from "@globalfishingwatch/layer-composer";
 import useLayerComposer from "@globalfishingwatch/map-components/components/layer-composer-hook";
@@ -22,14 +22,13 @@ function Map(props: any) {
     setTimerange
   } = props
 
+  const globalGeneratorConfig = useMemo(() => ({ start, end }), [start, end])
+
   const [style] = useLayerComposer(
     layerComposer,
     styleTransformations,
     generatorConfigs,
-    {
-      start,
-      end
-    }
+    globalGeneratorConfig
   );
 
   const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)
@@ -50,7 +49,7 @@ function Map(props: any) {
           enablePlayback
           start={start}
           end={end}
-          absoluteStart={"2019-01-01T00:00:00.000Z"}
+          absoluteStart={"2012-01-01T00:00:00.000Z"}
           absoluteEnd={"2020-01-01T00:00:00.000Z"}
           onChange={(start:string, end: string) => {
             // TODO needs to be debounced like viewport
