@@ -36,9 +36,6 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   setMapViewport: (zoom: number, latitude: number, longitude: number) => {
     dispatch(updateQueryParams({ zoom, latitude, longitude }))
-  },
-  setTimerange: (start: string, end:string) => {
-    dispatch(updateQueryParams({ start, end }))
   }
 })
 
