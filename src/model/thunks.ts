@@ -1,6 +1,8 @@
 import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
-import { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
+import geobuf from 'geobuf'
+import Pbf from 'pbf'
+import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
 import { TYPES } from "@globalfishingwatch/layer-composer";
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
@@ -9,11 +11,14 @@ import { setVesselTrack } from './vessels.actions'
 
 
 const mockFetch = (mockFetchUrl: string) => {
+  const mock = mockFetches[mockFetchUrl]
+  if (!mock) {
+    return GFWAPI.fetch(mockFetchUrl, { json: false })
+  }
+  console.log('For',mockFetchUrl , 'Found this mock:', mock)
   return new Promise((resolve) => {
     setTimeout(() => {
-      const mock = mockFetches[mockFetchUrl]
-      console.log('For',mockFetchUrl , 'Found this mock:', mock)
-      resolve(mock)
+      resolve(new Response(JSON.stringify(mock), { "status": 200, headers: { "Content-Type": "application/json" } }))
     }, Math.random() * 3000)
   })
 }
@@ -37,12 +42,24 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       dispatch(updateMapLayers(generatorConfigs))
 
       const loadDataPromises = dataviewsClient.loadData()
-      loadDataPromises.forEach(async promise => {
-        const {data, dataview} = await promise
-        // console.log('Loaded endpoint data:', data, dataview)
-        if (dataview.config.type === TYPES.TRACK) {
-          dispatch(setVesselTrack({ id: dataview.id, data }))
-        }
+      loadDataPromises.forEach(promise => {
+        promise.then(({data, dataview}) => {
+          console.log('Loaded endpoint data:', data, dataview)
+          if (dataview.config.type === TYPES.TRACK) {
+            promise
+              .then(({ response }) => response)
+              .then((r) => r.arrayBuffer())
+              .then((buffer) => {
+                const protobuf = new Pbf(buffer)
+                console.log(protobuf)
+                return geobuf.decode(protobuf)
+              })
+              .then((data) => {
+                console.log(data)
+                dispatch(setVesselTrack({ id: dataview.id, data }))
+              })
+          }
+        })
       })
     }
   }

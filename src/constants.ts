@@ -26,7 +26,8 @@ export const DEFAULT_WORKSPACE:Workspace = {
     {
       id: 'carrierReeferTrack',
       overrides: {
-        id: '1'
+        id: 'c91e63157-7e49-8387-e4ff-8bc6f44ede1d',
+        binary: true
       },
       dataview: {
         id: 'carrierReeferTrack',
@@ -39,7 +40,8 @@ export const DEFAULT_WORKSPACE:Workspace = {
     {
       id: 'carrierVesselTrack',
       overrides: {
-        id: '2',
+        id: 'd7b7d7901-12a5-d265-38fa-31b348928055',
+        binary: true,
         color: '#ffff00',
       },
       dataview: {
@@ -63,7 +65,7 @@ const datasetsMock:Dataset[] = [{
   id: 'carrierPortalVessel',
   endpoints: [{
     type: 'track',
-    urlTemplate: 'track?vesselId={{id}}'
+    urlTemplate: '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}'
   }]
 }]
 
