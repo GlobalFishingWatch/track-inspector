@@ -2,12 +2,21 @@ import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
+import {
+  FeatureCollection,
+  // Feature,
+  // Geometry,
+  // GeoJsonProperties,
+  // LineString,
+  // Position,
+} from 'geojson'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
 import { TYPES } from "@globalfishingwatch/layer-composer";
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
 import { setVesselTrack } from './vessels.actions'
+import { simplifyTrack } from './tracks'
 
 
 const mockFetch = (mockFetchUrl: string) => {
@@ -22,6 +31,8 @@ const mockFetch = (mockFetchUrl: string) => {
     }, Math.random() * 3000)
   })
 }
+
+
 
 // TODO use GFWAPI for real fetches
 const dataviewsClient = new DataviewsClient(/*GFWAPI.fetch*/ mockFetch, DEFAULT_WORKSPACE.dataviewsWorkspace)
@@ -54,8 +65,10 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                 return geobuf.decode(protobuf)
               })
               .then((data) => {
-                console.log(data)
-                dispatch(setVesselTrack({ id: dataview.id, data }))
+                const simplifiedTrack = simplifyTrack(data as FeatureCollection)
+                console.log(JSON.stringify(data).length, '->', JSON.stringify(simplifiedTrack).length)
+                console.log(data, simplifiedTrack)
+                dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
               })
           }
         })
