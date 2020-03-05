@@ -13,15 +13,14 @@ const urlToObjectTransformation: Dictionary<(value: string) => any> = {
 }
 
 const decodeWorkspace = (queryString: string) => {
-  const parsedUrl = qs.parse(queryString, { arrayLimit: 300 })
-  const workspace:Dictionary<any> = {}
+  const parsed = qs.parse(queryString, { arrayLimit: 300 })
   ;(['zoom', 'latitude', 'longitude'] as string[]).forEach((param: string) => {
-    const value = parsedUrl[param]
+    const value = parsed[param]
     if (value) {
-      workspace[param] = urlToObjectTransformation[param](value)
+      parsed[param] = urlToObjectTransformation[param](value)
     }
   })
-  return workspace
+  return parsed
 }
 
 const routesOptions: Options = {
