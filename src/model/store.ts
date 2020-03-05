@@ -4,15 +4,24 @@ import { connectRoutes, Options } from 'redux-first-router'
 import qs from 'qs'
 import routesMap from './routes'
 import reducers from './reducers'
+import { Dictionary } from '../types/types'
+
+const urlToObjectTransformation: Dictionary<(value: string) => any> = {
+  latitude: (s) => parseFloat(s),
+  longitude: (s) => parseFloat(s),
+  zoom: (s) => parseFloat(s),
+}
 
 const decodeWorkspace = (queryString: string) => {
-  const parsed = qs.parse(queryString, { arrayLimit: 300 })
+  const parsedUrl = qs.parse(queryString, { arrayLimit: 300 })
+  const workspace:Dictionary<any> = {}
   ;(['zoom', 'latitude', 'longitude'] as string[]).forEach((param: string) => {
-    if (parsed[param]) {
-      parsed[param] = parseFloat(parsed[param])
+    const value = parsedUrl[param]
+    if (value) {
+      workspace[param] = urlToObjectTransformation[param](value)
     }
   })
-  return parsed
+  return workspace
 }
 
 const routesOptions: Options = {

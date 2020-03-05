@@ -51,7 +51,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               .then((r) => r.arrayBuffer())
               .then((buffer) => {
                 const protobuf = new Pbf(buffer)
-                console.log(protobuf)
                 return geobuf.decode(protobuf)
               })
               .then((data) => {
