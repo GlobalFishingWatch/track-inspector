@@ -3,7 +3,8 @@ const favicons = require('favicons')
 const path = require('path')
 const fs = require('fs')
 
-const dest = '../public/icons'
+const iconsPath = 'icons'
+const dest = `../public/${iconsPath}`
 const source = './public/icon.png'
 
 const dirImages = path.resolve(__dirname, dest)
@@ -11,8 +12,11 @@ if (!fs.existsSync(dirImages)) {
   fs.mkdirSync(dirImages)
 }
 
+const PUBLIC_URL = '/track-inspector'
+const PUBLIC_REACT_APP_URL = '%PUBLIC_URL%'
+
 const configuration = {
-  path: '%PUBLIC_URL%/icons',
+  path: `${PUBLIC_URL}/${iconsPath}`,
   appName: 'Track Inspector',
   appDescription: null,
   developerName: null,
@@ -44,7 +48,8 @@ const callback = function(err, res) {
     return
   }
 
-  fs.writeFile(path.resolve(__dirname, 'head.html'), res.html.join('\n'), (err) => {
+  const html = res.html.map((h) => h.replace(PUBLIC_URL, PUBLIC_REACT_APP_URL))
+  fs.writeFile(path.resolve(__dirname, 'head.html'), html.join('\n'), (err) => {
     if (err) {
       console.log(err)
     }
