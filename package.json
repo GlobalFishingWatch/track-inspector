@@ -2,10 +2,12 @@
   "name": "track-inspector",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/track-inspector",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:manifest": "node scripts/manifest",
+    "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,7 +45,6 @@
     "@types/react-map-gl": "^5.1.1",
     "@types/react-redux": "^7.1.7",
     "@types/redux-first-router": "^2.1.5",
-    "favicons": "^6.0.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-config-react-app": "^5.0.2",
@@ -52,11 +53,20 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
+    "favicons": "^6.0.0",
+    "husky": "^4.2.3",
+    "imagemin-lint-staged": "^0.4.0",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1",
     "redux-devtools-extension": "^2.13.8",
     "stylelint": "^13.2.0",
     "stylelint-config-css-modules": "^2.0.0",
     "stylelint-config-standard": "^20.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "browserslist": {
     "production": [
