@@ -12,8 +12,8 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@globalfishingwatch/api-client": "0.0.15",
-    "@globalfishingwatch/layer-composer": "0.1.3",
+    "@globalfishingwatch/api-client": "0.0.15-dataviews",
+    "@globalfishingwatch/layer-composer": "0.1.7",
     "@globalfishingwatch/map-components": "3.0.2",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.3.2",

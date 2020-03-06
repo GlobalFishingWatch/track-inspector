@@ -983,18 +983,21 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15.tgz#8cfa73e02d70b65bc98dfcdc1a56011bdcdea40a"
-  integrity sha512-4dPXwN1gpT/a3Mss1o+P5+i7F0kCF6ccFAS93NhFnhv7V1BSYiv9nlkLCNRWUFCSqpaZym7ffYe/IuK19Jb1ow==
+"@globalfishingwatch/api-client@0.0.15-dataviews":
+  version "0.0.15-dataviews"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15-dataviews.tgz#f177cf208b758276b64d9b50a893f16637605a5e"
+  integrity sha512-79NQa0C026itk7fiMSKkB+kFyj4snx7pha48vLq9vbobzqVj+DN0I+zuiDF+qqIrIdVIu0/WSxpT2JlGh3pcrA==
+  dependencies:
+    lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.1.3.tgz#b5aeb81580d06117d50c4ec7b8758e29128a91c0"
-  integrity sha512-+QRGDmM6YaO+6fBMB/Kbu3zyvQOdj7ij7RT3pA+CTFX0zhCAClqvlUEeDpgayNkJLPUueWimaLOJVkLwh9Af3w==
+"@globalfishingwatch/layer-composer@0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.1.7.tgz#d3d1bc4c728937a21b869d496315863822d36d5c"
+  integrity sha512-qVmAIs9iTEmkxmdl45cF7fxQhdiE2dc684e3chY5aVleG836LUNM3cYuUnezbAo3/4hqCuqJqSS1oE+cqDWfGw==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
+    "@types/geojson" "^7946.0.7"
     geojson-vt "^3.2.1"
     lodash "^4.17.15"
     mapbox-gl "^1.7.0"
@@ -1858,7 +1861,7 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
-"@types/geojson@*":
+"@types/geojson@*", "@types/geojson@^7946.0.7":
   version "7946.0.7"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
   integrity sha512-wE2v81i4C4Ol09RtsWFAqg3BUitWbHSpSlIo+bNdsCJijO9sjme+zm+73ZMCa/qMC8UEERxzGbvmr1cffo2SiQ==
