@@ -6,18 +6,36 @@ import {
 } from 'geojson'
 import { Dictionary } from '../types/types'
 
-
+const POS_MAX_Δ = .005 // 500m at equator - https://www.usna.edu/Users/oceano/pguth/md_help/html/approx_equivalents.htm
 const COORD_PROPS_MAX_ΔS:Dictionary<number> = {
   times: 600000, //10mn
   speeds: 1,
   courses: 20,
 }
-const POS_MAX_Δ = .005 // 500m at equator
+
+const POS_ROUND = 4
+const COORD_PROPS_ROUND:Dictionary<number> = {
+  times: 0,
+  speeds: 2,
+  courses: 0,
+}
 
 const cheapDistance = (coordA:Position, coordB:Position) => {
   const longitudeΔ = coordA[0] - coordB[0]
   const latitudeΔ = coordA[1] - coordB[1]
   return Math.sqrt( longitudeΔ*longitudeΔ + latitudeΔ*latitudeΔ );
+}
+
+const round = (value:number, numDecimals:number) => {
+  const base = Math.pow(10, numDecimals)
+  return Math.round(value * base)/base
+}
+
+const roundPos = (pos:Position) => [round(pos[0], POS_ROUND), round(pos[1], POS_ROUND)]
+
+const TS_OFFSET = new Date(2012, 0, 1).getTime()
+const compressTimestamp = (ts:number) => {
+  return Math.round((ts - TS_OFFSET) / 1000) 
 }
   
 export const simplifyTrack = (track:FeatureCollection) => {
@@ -43,11 +61,20 @@ export const simplifyTrack = (track:FeatureCollection) => {
 
     const addFrame = (i:number) => {
       const pos = line.coordinates[i]
-      simplifiedGeometry.coordinates.push(pos)
+      simplifiedGeometry.coordinates.push(
+        // roundPos(
+          pos
+        // )
+      )
       lastPos = pos
       coordPropsKeys.forEach(key => {
         const coordProp = coordProps[key][i]
-        simplifiedCoordProps[key].push(coordProp)
+        let coordPropValue = round(coordProp, COORD_PROPS_ROUND[key])
+        // if (key === 'times') {
+        //   coordPropValue = compressTimestamp(coordPropValue)
+        // }
+
+        simplifiedCoordProps[key].push(coordPropValue)
         lastCoordinateProperties[key] = coordProp
       })
     }
@@ -62,9 +89,6 @@ export const simplifyTrack = (track:FeatureCollection) => {
       const isPosInfMaxΔ = posΔ < POS_MAX_Δ
 
       // check that every coordProp Δ is less than max Δ
-      const allΔ:number[] = coordPropsKeys.map(key => {
-        return Math.abs(coordProps[key][i] - lastCoordinateProperties[key])
-      })
       const isCoordPropsInfMaxΔ = coordPropsKeys.every(key => {
         const Δ = Math.abs(coordProps[key][i] - lastCoordinateProperties[key])
         const maxΔ = COORD_PROPS_MAX_ΔS[key]
