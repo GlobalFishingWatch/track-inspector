@@ -1,23 +1,15 @@
-import React, { useMemo } from 'react';
-import ReactMapGL from 'react-map-gl';
-import LayerComposer, { sort } from "@globalfishingwatch/layer-composer";
-import useLayerComposer from "@globalfishingwatch/map-components/components/layer-composer-hook";
+import React, { useMemo } from 'react'
+import ReactMapGL from 'react-map-gl'
+import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
+import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
 import './useViewport'
-import useViewport from './useViewport';
+import useViewport from './useViewport'
 
-const layerComposer = new LayerComposer();
-const styleTransformations = [sort];
+const layerComposer = new LayerComposer()
+const styleTransformations = [sort]
 
 function Map(props: any) {
-  const {
-    zoom,
-    latitude,
-    longitude,
-    start,
-    end,
-    generatorConfigs,
-    setMapViewport,
-  } = props
+  const { zoom, latitude, longitude, start, end, generatorConfigs, setMapViewport } = props
 
   const globalGeneratorConfig = useMemo(() => ({ start, end }), [start, end])
 
@@ -26,7 +18,7 @@ function Map(props: any) {
     styleTransformations,
     generatorConfigs,
     globalGeneratorConfig
-  );
+  )
 
   const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)
 
@@ -40,8 +32,7 @@ function Map(props: any) {
         mapStyle={style}
       />
     </div>
-  );
+  )
 }
 
-export default Map;
-
+export default Map

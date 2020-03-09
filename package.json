@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "build:manifest": "node scripts/manifest",
     "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
-    "test": "react-scripts test",
+    "test": "npm run lint",
     "eject": "react-scripts eject"
   },
   "dependencies": {
