@@ -1,10 +1,11 @@
 import React from 'react';
-import Timebar from "@globalfishingwatch/map-components/components/timebar";
+import Timebar, { TimebarTracks } from '@globalfishingwatch/map-components/components/timebar';
 
 const TimebarWrapper = (props: any) => {
   const {
     start,
     end,
+    tracks,
     setTimerange
   } = props
 
@@ -21,7 +22,11 @@ const TimebarWrapper = (props: any) => {
         setTimerange(start, end)
       }}
     >
-
+      {(props:any) => 
+        <>
+          {tracks.length && <TimebarTracks key="tracks" {...props} tracks={tracks} />}
+        </>
+      }
     </Timebar>
   </div>
   );

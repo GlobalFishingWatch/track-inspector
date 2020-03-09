@@ -27,7 +27,8 @@ export const DEFAULT_WORKSPACE:Workspace = {
       id: 'carrierReeferTrack',
       overrides: {
         id: 'c91e63157-7e49-8387-e4ff-8bc6f44ede1d',
-        binary: true
+        binary: true,
+        color: '#aaff00',
       },
       dataview: {
         id: 'carrierReeferTrack',
