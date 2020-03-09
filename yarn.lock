@@ -983,10 +983,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@0.0.15-dataviews":
-  version "0.0.15-dataviews"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15-dataviews.tgz#f177cf208b758276b64d9b50a893f16637605a5e"
-  integrity sha512-79NQa0C026itk7fiMSKkB+kFyj4snx7pha48vLq9vbobzqVj+DN0I+zuiDF+qqIrIdVIu0/WSxpT2JlGh3pcrA==
+"@globalfishingwatch/api-client@0.0.15-dataviews2":
+  version "0.0.15-dataviews2"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15-dataviews2.tgz#6069df1bcd0a6dff6e347e3eae67e6695e8b9351"
+  integrity sha512-qr36dwFImwoGA8A+fRaEZBh+zv8TnktluzaWd5qjNBXwen7ITrs53L+KC/FvuJh1gko4zi0LB5fTD3EbKi1uRg==
   dependencies:
     lodash "^4.17.15"
 
