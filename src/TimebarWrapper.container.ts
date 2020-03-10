@@ -12,9 +12,9 @@ const mapStateToProps = (state: any) => ({
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setTimerange: (start: string, end:string) => {
+  setTimerange: (start: string, end: string) => {
     dispatch(updateQueryParams({ start, end }))
-  }
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimebarWrapper)

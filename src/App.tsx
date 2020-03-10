@@ -1,9 +1,9 @@
-import React from 'react';
-import GFWAPI, { getLoginUrl } from '@globalfishingwatch/api-client'
+import React from 'react'
+import GFWAPI from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
 import Map from './Map.container'
-import TimebarWrapper from './TimebarWrapper.container';
-import './App.css';
+import TimebarWrapper from './TimebarWrapper.container'
+import './App.css'
 
 function App() {
   const { loading, logged } = useGFWLogin(GFWAPI)
@@ -11,7 +11,7 @@ function App() {
   // TODO add spinner
 
   if (!loading && !logged) {
-    window.location.href = getLoginUrl(window.location.toString())
+    window.location.href = GFWAPI.getLoginUrl(window.location.toString())
   }
 
   return (
@@ -19,8 +19,7 @@ function App() {
       <Map />
       <TimebarWrapper />
     </>
-  );
+  )
 }
 
-export default App;
-
+export default App

@@ -10,30 +10,40 @@ const urlToObjectTransformation: Dictionary<(value: string) => any> = {
   latitude: (s) => parseFloat(s),
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
+  dataviewsWorkspace: (s) => s.replace('%23', '#'),
+}
+
+const encodeWorkspace = (object: object) => {
+  return qs.stringify(object, {
+    encoder: (value: any) => {
+      if (typeof value === 'string') {
+        return value.replace('#', '%23')
+      }
+      return value
+    },
+  })
 }
 
 const decodeWorkspace = (queryString: string) => {
-  const parsedUrl = qs.parse(queryString, { arrayLimit: 300 })
-  const workspace:Dictionary<any> = {}
-  ;(['zoom', 'latitude', 'longitude'] as string[]).forEach((param: string) => {
-    const value = parsedUrl[param]
-    if (value) {
-      workspace[param] = urlToObjectTransformation[param](value)
+  const parsed = qs.parse(queryString, { arrayLimit: 300 })
+
+  Object.keys(parsed).forEach((param: string) => {
+    const value = parsed[param]
+    if (value && urlToObjectTransformation[param]) {
+      parsed[param] = urlToObjectTransformation[param](value)
     }
   })
-  return workspace
+  return parsed
 }
 
 const routesOptions: Options = {
   querySerializer: {
-    stringify: (object: object) => qs.stringify(object, { encode: false }),
+    stringify: encodeWorkspace,
     parse: decodeWorkspace,
   },
 }
 
-const routerQueryMiddleware: Middleware = ({ getState }) => (next) => (
-  action: any
-) => {
+const routerQueryMiddleware: Middleware = ({ getState }) => (next) => (action: any) => {
   const routesActions = Object.keys(routesMap)
   // check if action type matches a route type
   const isRouterAction = routesActions.includes(action.type)
@@ -53,7 +63,6 @@ const routerQueryMiddleware: Middleware = ({ getState }) => (next) => (
 
   next(newAction)
 }
-
 
 const { reducer, middleware, enhancer } = connectRoutes(routesMap, routesOptions)
 export const rootReducer = combineReducers({ ...reducers, location: reducer })
