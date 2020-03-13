@@ -36,7 +36,7 @@
     "redux-first-router": "2.1.5",
     "reselect": "4.0.0",
     "typesafe-actions": "5.1.0",
-    "typescript": "~3.7.2"
+    "typescript": "3.7.5"
   },
   "devDependencies": {
     "@satellitestudio/eslint-config": "1.2.1",
@@ -45,8 +45,8 @@
     "@types/react-map-gl": "5.1.1",
     "@types/react-redux": "7.1.7",
     "@types/redux-first-router": "2.1.5",
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-config-react-app": "5.2.0",
@@ -55,7 +55,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-hooks": "2.5.0",
     "favicons": "6.0.0",
     "husky": "4.2.3",
     "imagemin-lint-staged": "0.4.0",
