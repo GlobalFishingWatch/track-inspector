@@ -63,7 +63,7 @@
     "prettier": "1.19.1",
     "redux-devtools-extension": "2.13.8",
     "stylelint": "13.2.0",
-    "stylelint-config-css-modules": "2.0.0",
+    "stylelint-config-css-modules": "2.2.0",
     "stylelint-config-standard": "20.0.0"
   },
   "husky": {
