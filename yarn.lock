@@ -1994,10 +1994,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-map-gl@5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.1.1.tgz#844187c9ea336225b1a9b06433f7509a4b88b02e"
-  integrity sha512-b88Vt35l2IF4ATrqr9BrEyGmatbRjAi+RPjk0xSjh41InWtaYsrKuXMugVZBBY2xSCHySYB1belCYhbq6CXkrw==
+"@types/react-map-gl@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.2.0.tgz#6fe8223e856b98deb20b0bbf169eb6a2c0b13f5f"
+  integrity sha512-Bb0dKBa45hIIQEmXLnKOQjPu45WkQOKK4Zzp10kbLazlx+ZzlbbSNVBarv5s4iUAXmocdZS4lE9OmYjtmqmicw==
   dependencies:
     "@types/geojson" "*"
     "@types/mapbox-gl" "*"
