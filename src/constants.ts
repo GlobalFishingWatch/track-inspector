@@ -28,6 +28,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
       overrides: {
         id: 'c91e63157-7e49-8387-e4ff-8bc6f44ede1d',
         binary: true,
+        color: '#aaff00',
       },
       dataview: {
         id: 'carrierReeferTrack',
@@ -67,8 +68,7 @@ const datasetsMock: Dataset[] = [
       {
         type: 'track',
         urlTemplate:
-        '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=fishing,speed,course'
-
+          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=fishing,speed,course',
       },
     ],
   },
