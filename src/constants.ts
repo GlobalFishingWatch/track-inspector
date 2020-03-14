@@ -24,33 +24,33 @@ export const DEFAULT_WORKSPACE: Workspace = {
       },
     },
     {
-      id: 'carrierReeferTrack',
+      id: 'trackCarrier',
       overrides: {
         id: 'c91e63157-7e49-8387-e4ff-8bc6f44ede1d',
         binary: true,
-        color: '#aaff00',
+        color: '#00c1e7',
       },
       dataview: {
-        id: 'carrierReeferTrack',
+        id: 'trackCarrier',
         config: {
           type: TYPES.TRACK,
         },
-        datasetsIds: ['carrierPortalVessel'],
+        datasetsIds: ['carrierPortalVesselTrack'],
       },
     },
     {
-      id: 'carrierVesselTrack',
+      id: 'trackFishing',
       overrides: {
         id: 'd7b7d7901-12a5-d265-38fa-31b348928055',
         binary: true,
-        color: '#ffff00',
+        color: '#f59e84',
       },
       dataview: {
-        id: 'carrierVesselTrack',
+        id: 'trackFishing',
         config: {
           type: TYPES.TRACK,
         },
-        datasetsIds: ['carrierPortalVessel'],
+        datasetsIds: ['carrierPortalVesselTrack'],
       },
     },
   ],
@@ -63,7 +63,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
 
 const datasetsMock: Dataset[] = [
   {
-    id: 'carrierPortalVessel',
+    id: 'carrierPortalVesselTrack',
     endpoints: [
       {
         type: 'track',
@@ -88,29 +88,30 @@ const dataviewsMock: Dataview[] = [
     },
   },
   {
-    id: 'carrierReeferTrack',
+    id: 'trackCarrier',
     config: {
       type: TYPES.TRACK,
+      color: '#00c1e7',
     },
     datasets: datasetsMock,
   },
   {
-    id: 'carrierVesselTrack',
+    id: 'trackFishing',
     config: {
       type: TYPES.TRACK,
-      color: '#ff0000',
+      color: '#f59e84',
     },
     datasets: datasetsMock,
   },
 ]
 
-const carrierReeferTrack = track1
+const trackCarrier = track1
 
 const carrierVesselMock = track2
 
 export const mockFetches: any = {
-  'dataviews?ids=background,landmass,carrierReeferTrack,carrierVesselTrack': dataviewsMock,
-  'datasets?ids=carrierPortalVessel': datasetsMock,
-  'track?vesselId=1': carrierReeferTrack,
+  'dataviews?ids=background,landmass,trackCarrier,trackFishing': dataviewsMock,
+  'datasets?ids=carrierPortalVesselTrack': datasetsMock,
+  'track?vesselId=1': trackCarrier,
   'track?vesselId=2': carrierVesselMock,
 }

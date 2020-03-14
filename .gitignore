@@ -7,9 +7,15 @@
 
 # testing
 /coverage
+cypress/screenshots
+cypress/videos
+snapshots.js
 
 # production
 /build
+
+# env
+.env
 
 # misc
 .DS_Store

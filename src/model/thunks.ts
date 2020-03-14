@@ -37,6 +37,7 @@ const dataviewsClient = new DataviewsClient(
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
   const dataviewsQuery = getDataviewsQuery(state)
+  // TODO: improve this loading diffing
   if (dataviewsQuery) {
     // console.log('dataviews query:', dataviewsQuery)
     const dataviews = await dataviewsClient.load(dataviewsQuery)
@@ -62,8 +63,12 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                 return geobuf.decode(protobuf)
               })
               .then((data) => {
-                const simplifiedTrack = simplifyTrack(data as FeatureCollection)
-                dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
+                try {
+                  const simplifiedTrack = simplifyTrack(data as FeatureCollection)
+                  dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
+                } catch (e) {
+                  console.error(e)
+                }
               })
           }
         })
