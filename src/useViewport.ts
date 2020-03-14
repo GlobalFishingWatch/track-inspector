@@ -1,14 +1,14 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react'
 import debounce from 'lodash/debounce'
 
-const trunc = (v:number) => Math.trunc(v * 100000) / 100000
+const trunc = (v: number) => Math.trunc(v * 100000) / 100000
 
 const useViewport = (
-    setMapViewport: (zoom: number, latitude:number, longitude:number) => any,
-    zoom:number,
-    latitude:number,
-    longitude:number
-  ) => {
+  setMapViewport: (zoom: number, latitude: number, longitude: number) => any,
+  zoom: number,
+  latitude: number,
+  longitude: number
+) => {
   const [localViewport, setLocalViewport] = useState<{
     latitude: number
     longitude: number
@@ -42,7 +42,7 @@ const useViewport = (
     return {
       latitude,
       longitude,
-      zoom
+      zoom,
     }
   }, [localViewport, latitude, longitude, zoom])
 

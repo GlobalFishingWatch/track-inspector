@@ -11,12 +11,11 @@ import {
   // Position,
 } from 'geojson'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
-import { TYPES } from "@globalfishingwatch/layer-composer";
+import { TYPES, simplifyTrack } from "@globalfishingwatch/layer-composer";
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
 import { setVesselTrack } from './vessels.actions'
-import { simplifyTrack } from './tracks'
 
 
 const mockFetch = (mockFetchUrl: string) => {
@@ -66,8 +65,8 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               })
               .then((data) => {
                 const simplifiedTrack = simplifyTrack(data as FeatureCollection)
-                console.log(JSON.stringify(data).length, '->', JSON.stringify(simplifiedTrack).length)
-                console.log(data, simplifiedTrack)
+                // console.log(JSON.stringify(data).length, '->', JSON.stringify(simplifiedTrack).length)
+                // console.log(data, simplifiedTrack)
                 dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
               })
           }
