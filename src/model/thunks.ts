@@ -34,10 +34,13 @@ const dataviewsClient = new DataviewsClient(
   DEFAULT_WORKSPACE.dataviewsWorkspace
 )
 
+let loading = false
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
   const dataviewsQuery = getDataviewsQuery(state)
-  if (dataviewsQuery) {
+  // TODO: improve this loading diffing
+  if (dataviewsQuery && !loading) {
+    loading = true
     // console.log('dataviews query:', dataviewsQuery)
     const dataviews = await dataviewsClient.load(dataviewsQuery)
     // console.log(dataviews)
@@ -62,12 +65,22 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                 return geobuf.decode(protobuf)
               })
               .then((data) => {
-                const simplifiedTrack = simplifyTrack(data as FeatureCollection)
-                dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
+                try {
+                  const simplifiedTrack = simplifyTrack(data as FeatureCollection)
+                  dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
+                } catch (e) {
+                  console.error(e)
+                }
               })
           }
         })
       })
+      try {
+        await Promise.all(loadDataPromises)
+        loading = false
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }

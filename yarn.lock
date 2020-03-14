@@ -990,10 +990,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.1.7.tgz#d3d1bc4c728937a21b869d496315863822d36d5c"
-  integrity sha512-qVmAIs9iTEmkxmdl45cF7fxQhdiE2dc684e3chY5aVleG836LUNM3cYuUnezbAo3/4hqCuqJqSS1oE+cqDWfGw==
+"@globalfishingwatch/layer-composer@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.3.0.tgz#66039e8d14af22f1463b0e118c63604451ffa8ca"
+  integrity sha512-YFL1O5kbr9UnFepIqM50o1mi5DUdkRy7+9waao6JXMGckiTKXkyW7Y/auiCutrjaMLo5/Sm5JP1Y+BtMuNlpGw==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"

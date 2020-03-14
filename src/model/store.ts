@@ -10,18 +10,10 @@ const urlToObjectTransformation: Dictionary<(value: string) => any> = {
   latitude: (s) => parseFloat(s),
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
-  dataviewsWorkspace: (s) => s.replace('%23', '#'),
 }
 
 const encodeWorkspace = (object: object) => {
-  return qs.stringify(object, {
-    encoder: (value: any) => {
-      if (typeof value === 'string') {
-        return value.replace('#', '%23')
-      }
-      return value
-    },
-  })
+  return qs.stringify(object, { encode: false })
 }
 
 const decodeWorkspace = (queryString: string) => {
