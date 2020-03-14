@@ -34,13 +34,11 @@ const dataviewsClient = new DataviewsClient(
   DEFAULT_WORKSPACE.dataviewsWorkspace
 )
 
-let loading = false
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
   const dataviewsQuery = getDataviewsQuery(state)
   // TODO: improve this loading diffing
-  if (dataviewsQuery && !loading) {
-    loading = true
+  if (dataviewsQuery) {
     // console.log('dataviews query:', dataviewsQuery)
     const dataviews = await dataviewsClient.load(dataviewsQuery)
     // console.log(dataviews)
@@ -75,12 +73,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
           }
         })
       })
-      try {
-        await Promise.all(loadDataPromises)
-        loading = false
-      } catch (e) {
-        console.error(e)
-      }
     }
   }
 }
