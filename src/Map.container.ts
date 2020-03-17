@@ -13,13 +13,20 @@ import { updateQueryParams } from './model/router.actions'
 
 const getGeneratorConfigs = (state: any) => state.map.generatorConfigs
 const getTracks = (state: any) => state.vessels.tracks
+const getVesselEvents = (state: any) => state.vessels.events
 
 const getGeneratorConfigWithData = createSelector(
-  [getGeneratorConfigs, getTracks],
-  (generatorConfigs, tracks) => {
-    return generatorConfigs.map((generatorConfig: GeneratorConfig) => {
+  [getGeneratorConfigs, getTracks, getVesselEvents],
+  (generatorConfigs, tracks, events) => {
+    const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
       if (generatorConfig.type === TYPES.TRACK) {
         const data = tracks[generatorConfig.id]
+        return {
+          ...generatorConfig,
+          data,
+        }
+      } else if (generatorConfig.type === TYPES.VESSEL_EVENTS) {
+        const data = events[generatorConfig.id]
         return {
           ...generatorConfig,
           data,
@@ -27,6 +34,7 @@ const getGeneratorConfigWithData = createSelector(
       }
       return generatorConfig
     })
+    return generatorConfigsWithData
   }
 )
 

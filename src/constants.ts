@@ -26,9 +26,10 @@ export const DEFAULT_WORKSPACE: Workspace = {
     {
       id: 'trackCarrier',
       overrides: {
-        id: 'c91e63157-7e49-8387-e4ff-8bc6f44ede1d',
+        id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
         color: '#00c1e7',
+        // visible: false,
       },
       dataview: {
         id: 'trackCarrier',
@@ -41,9 +42,10 @@ export const DEFAULT_WORKSPACE: Workspace = {
     {
       id: 'trackFishing',
       overrides: {
-        id: 'd7b7d7901-12a5-d265-38fa-31b348928055',
+        id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
         color: '#f59e84',
+        // visible: false,
       },
       dataview: {
         id: 'trackFishing',
@@ -51,6 +53,20 @@ export const DEFAULT_WORKSPACE: Workspace = {
           type: TYPES.TRACK,
         },
         datasetsIds: ['carrierPortalVesselTrack'],
+      },
+    },
+    {
+      id: 'carrierEvents',
+      overrides: {
+        id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
+        // visible: false,
+      },
+      dataview: {
+        id: 'carrierEvents',
+        config: {
+          type: TYPES.VESSEL_EVENTS,
+        },
+        datasetsIds: ['carrierPortalVesselEvents'],
       },
     },
   ],
@@ -69,6 +85,16 @@ const datasetsMock: Dataset[] = [
         type: 'track',
         urlTemplate:
           '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=fishing,speed,course',
+      },
+    ],
+  },
+  {
+    id: 'carrierPortalVesselEvents',
+    endpoints: [
+      {
+        type: 'track',
+        urlTemplate:
+          '/datasets/carriers:dev/events?vessels={{id}}&startDate=2017-01-01T00%3A00%3A00.000Z&endDate=2019-09-30T00%3A00%3A00.000Z&timeFormat=timestamp&sortOrder=desc',
       },
     ],
   },
@@ -111,7 +137,7 @@ const carrierVesselMock = track2
 
 export const mockFetches: any = {
   'dataviews?ids=background,landmass,trackCarrier,trackFishing': dataviewsMock,
-  'datasets?ids=carrierPortalVesselTrack': datasetsMock,
+  'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsMock,
   'track?vesselId=1': trackCarrier,
   'track?vesselId=2': carrierVesselMock,
 }
