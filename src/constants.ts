@@ -3,24 +3,40 @@ import { TYPES } from '@globalfishingwatch/layer-composer'
 import track1 from './track1.json'
 import track2 from './track2.json'
 
+const dataviewsMock = {
+  background: {
+    type: TYPES.BACKGROUND,
+  },
+  landmass: {
+    type: TYPES.BASEMAP,
+  },
+  trackCarrier: {
+    type: TYPES.TRACK,
+    color: '#00c1e7',
+  },
+  trackFishing: {
+    type: TYPES.TRACK,
+    color: '#f59e84',
+  },
+  carrierEvents: {
+    type: TYPES.VESSEL_EVENTS,
+  },
+}
+
 export const DEFAULT_WORKSPACE: Workspace = {
   dataviewsWorkspace: [
     {
       id: 'background',
       dataview: {
         id: 'background',
-        config: {
-          type: TYPES.BACKGROUND,
-        },
+        config: dataviewsMock.background,
       },
     },
     {
       id: 'landmass',
       dataview: {
         id: 'landmass',
-        config: {
-          type: TYPES.BASEMAP,
-        },
+        config: dataviewsMock.landmass,
       },
     },
     {
@@ -28,14 +44,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
       overrides: {
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
-        color: '#00c1e7',
         // visible: false,
       },
       dataview: {
         id: 'trackCarrier',
-        config: {
-          type: TYPES.TRACK,
-        },
+        config: dataviewsMock.trackCarrier,
         datasetsIds: ['carrierPortalVesselTrack'],
       },
     },
@@ -44,14 +57,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
       overrides: {
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
-        color: '#f59e84',
         // visible: false,
       },
       dataview: {
         id: 'trackFishing',
-        config: {
-          type: TYPES.TRACK,
-        },
+        config: dataviewsMock.trackFishing,
         datasetsIds: ['carrierPortalVesselTrack'],
       },
     },
@@ -63,9 +73,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
       },
       dataview: {
         id: 'carrierEvents',
-        config: {
-          type: TYPES.VESSEL_EVENTS,
-        },
+        config: dataviewsMock.carrierEvents,
         datasetsIds: ['carrierPortalVesselEvents'],
       },
     },
@@ -77,7 +85,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
   end: '2020-01-01T00:00:00.000Z',
 }
 
-const datasetsMock: Dataset[] = [
+const datasetsEndpointMock: Dataset[] = [
   {
     id: 'carrierPortalVesselTrack',
     endpoints: [
@@ -100,34 +108,24 @@ const datasetsMock: Dataset[] = [
   },
 ]
 
-const dataviewsMock: Dataview[] = [
+const dataviewsEndpointMock: Dataview[] = [
   {
     id: 'background',
-    config: {
-      type: TYPES.BACKGROUND,
-    },
+    config: dataviewsMock.background,
   },
   {
     id: 'landmass',
-    config: {
-      type: TYPES.BASEMAP,
-    },
+    config: dataviewsMock.landmass,
   },
   {
     id: 'trackCarrier',
-    config: {
-      type: TYPES.TRACK,
-      color: '#00c1e7',
-    },
-    datasets: datasetsMock,
+    config: dataviewsMock.trackCarrier,
+    datasets: datasetsEndpointMock,
   },
   {
     id: 'trackFishing',
-    config: {
-      type: TYPES.TRACK,
-      color: '#f59e84',
-    },
-    datasets: datasetsMock,
+    config: dataviewsMock.trackFishing,
+    datasets: datasetsEndpointMock,
   },
 ]
 
@@ -136,8 +134,8 @@ const trackCarrier = track1
 const carrierVesselMock = track2
 
 export const mockFetches: any = {
-  'dataviews?ids=background,landmass,trackCarrier,trackFishing': dataviewsMock,
-  'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsMock,
+  'dataviews?ids=background,landmass,trackCarrier,trackFishing': dataviewsEndpointMock,
+  'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
   'track?vesselId=1': trackCarrier,
   'track?vesselId=2': carrierVesselMock,
 }
