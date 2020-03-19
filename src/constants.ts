@@ -1,7 +1,5 @@
-import { Workspace, Dataview, Dataset } from '@globalfishingwatch/api-client'
+import { Workspace, Dataset } from '@globalfishingwatch/api-client'
 import { TYPES } from '@globalfishingwatch/layer-composer'
-import track1 from './track1.json'
-import track2 from './track2.json'
 
 const dataviewsMock = {
   background: {
@@ -79,8 +77,8 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
   ],
   zoom: 3,
-  latitude: 0,
-  longitude: 0,
+  latitude: 20,
+  longitude: 134,
   start: '2019-01-01T00:00:00.000Z',
   end: '2020-01-01T00:00:00.000Z',
 }
@@ -108,34 +106,6 @@ const datasetsEndpointMock: Dataset[] = [
   },
 ]
 
-const dataviewsEndpointMock: Dataview[] = [
-  {
-    id: 'background',
-    config: dataviewsMock.background,
-  },
-  {
-    id: 'landmass',
-    config: dataviewsMock.landmass,
-  },
-  {
-    id: 'trackCarrier',
-    config: dataviewsMock.trackCarrier,
-    datasets: datasetsEndpointMock,
-  },
-  {
-    id: 'trackFishing',
-    config: dataviewsMock.trackFishing,
-    datasets: datasetsEndpointMock,
-  },
-]
-
-const trackCarrier = track1
-
-const carrierVesselMock = track2
-
 export const mockFetches: any = {
-  'dataviews?ids=background,landmass,trackCarrier,trackFishing': dataviewsEndpointMock,
   'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
-  'track?vesselId=1': trackCarrier,
-  'track?vesselId=2': carrierVesselMock,
 }
