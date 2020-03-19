@@ -4,11 +4,11 @@ import geobuf from 'geobuf'
 import Pbf from 'pbf'
 import { FeatureCollection } from 'geojson'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
-import { TYPES, simplifyTrack } from '@globalfishingwatch/layer-composer'
+import { TYPES, simplifyTrack, getVesselEventsGeojson } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
-import { setVesselTrack } from './vessels.actions'
+import { setVesselTrack, setVesselEvents } from './vessels.actions'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -69,6 +69,13 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                 } catch (e) {
                   console.error(e)
                 }
+              })
+          } else if (dataview.config.type === TYPES.VESSEL_EVENTS) {
+            promise
+              .then(({ response }) => response.json())
+              .then((data) => {
+                const geoJson = getVesselEventsGeojson(data)
+                dispatch(setVesselEvents({ id: dataview.id, data: geoJson }))
               })
           }
         })
