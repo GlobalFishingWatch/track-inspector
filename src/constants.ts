@@ -1,40 +1,24 @@
 import { Workspace, Dataset } from '@globalfishingwatch/api-client'
 import { TYPES } from '@globalfishingwatch/layer-composer'
 
-const dataviewsMock = {
-  background: {
-    type: TYPES.BACKGROUND,
-  },
-  landmass: {
-    type: TYPES.BASEMAP,
-  },
-  trackCarrier: {
-    type: TYPES.TRACK,
-    color: '#00c1e7',
-  },
-  trackFishing: {
-    type: TYPES.TRACK,
-    color: '#f59e84',
-  },
-  carrierEvents: {
-    type: TYPES.VESSEL_EVENTS,
-  },
-}
-
 export const DEFAULT_WORKSPACE: Workspace = {
   dataviewsWorkspace: [
     {
       id: 'background',
       dataview: {
         id: 'background',
-        config: dataviewsMock.background,
+        config: {
+          type: TYPES.BACKGROUND,
+        },
       },
     },
     {
       id: 'landmass',
       dataview: {
         id: 'landmass',
-        config: dataviewsMock.landmass,
+        config: {
+          type: TYPES.BASEMAP,
+        },
       },
     },
     {
@@ -46,8 +30,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
       },
       dataview: {
         id: 'trackCarrier',
-        config: dataviewsMock.trackCarrier,
         datasetsIds: ['carrierPortalVesselTrack'],
+        config: {
+          type: TYPES.TRACK,
+          color: '#00c1e7',
+        },
       },
     },
     {
@@ -59,8 +46,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
       },
       dataview: {
         id: 'trackFishing',
-        config: dataviewsMock.trackFishing,
         datasetsIds: ['carrierPortalVesselTrack'],
+        config: {
+          type: TYPES.TRACK,
+          color: '#f59e84',
+        },
       },
     },
     {
@@ -71,8 +61,74 @@ export const DEFAULT_WORKSPACE: Workspace = {
       },
       dataview: {
         id: 'carrierEvents',
-        config: dataviewsMock.carrierEvents,
         datasetsIds: ['carrierPortalVesselEvents'],
+        config: {
+          type: TYPES.VESSEL_EVENTS,
+        },
+      },
+    },
+    {
+      id: 'cp_rfmo',
+      dataview: {
+        id: 'cp_rfmo',
+        name: 'Tuna RFMO areas',
+        description:
+          'RFMO stands for Regional Fishery Management Organization. These organizations are international organizations formed by countries with a shared interest in managing or conserving an area’s fish stock. Source: GFW',
+        config: {
+          type: TYPES.CARTO_POLYGONS,
+          color: '#58CFFF',
+        },
+      },
+    },
+    {
+      id: 'sprfmo',
+      dataview: {
+        id: 'sprfmo',
+        name: 'SPRFMO area',
+        description:
+          'Geographic Area of Competence of South Pacific Regional Fisheries Management Organisation. Source: fao.org/geonetwork',
+        config: {
+          type: TYPES.CARTO_POLYGONS,
+          color: '#d8d454',
+        },
+      },
+    },
+    {
+      id: 'eez',
+      dataview: {
+        id: 'eez',
+        name: 'Exclusive Economic Zones',
+        description:
+          'Exclusive Economic Zones (EEZ) are states’ sovereign waters, which extend 200 nautical miles from the coast. Source: marineregions.org',
+        config: {
+          type: TYPES.CARTO_POLYGONS,
+          color: '#61cb96',
+        },
+      },
+    },
+    {
+      id: 'mpant',
+      dataview: {
+        id: 'mpant',
+        name: 'Marine Protected Areas',
+        description: 'Protected Planet WDPA',
+        config: {
+          type: TYPES.CARTO_POLYGONS,
+          color: '#e5777c',
+        },
+      },
+    },
+    {
+      id: 'bluefin_rfmo',
+      dataview: {
+        id: 'bluefin_rfmo',
+        name: 'Southern bluefin tuna range',
+        description:
+          'Prepared by GFW based on "The Current Status of International Fishery Stocks", 2018, Fisheries Agency and Japan Fisheries Research and Education Agency',
+        config: {
+          type: TYPES.CARTO_POLYGONS,
+          color: '#A758FF',
+        },
       },
     },
   ],
