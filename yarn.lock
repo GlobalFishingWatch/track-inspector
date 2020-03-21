@@ -983,17 +983,17 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@0.0.15-dataviews2":
-  version "0.0.15-dataviews2"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15-dataviews2.tgz#6069df1bcd0a6dff6e347e3eae67e6695e8b9351"
-  integrity sha512-qr36dwFImwoGA8A+fRaEZBh+zv8TnktluzaWd5qjNBXwen7ITrs53L+KC/FvuJh1gko4zi0LB5fTD3EbKi1uRg==
+"@globalfishingwatch/api-client@0.0.15-dataviews3":
+  version "0.0.15-dataviews3"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.15-dataviews3.tgz#d75e30ab5753e24fc1ae9864fba3bf74ec81b67f"
+  integrity sha512-9hFR3kX3e7VSu/WKol81m1Cyf8G9joxwVJp/dxjYrxG3fO201LONmGZfhTNeCbux9wl1orO7KcLAVTfM8wOklg==
   dependencies:
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.3.2.tgz#7a676086dd3ee764985b40e04a96439f25beb08e"
-  integrity sha512-4PyPwGKms31Vj8rjLcJtqfR6lXWo1aktEtNu7MZ/0XOoo3wi0XFWeI3y8i/wgEtuquCiZEEjrdek+Ji4xBfbyA==
+"@globalfishingwatch/layer-composer@0.3.4":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.3.4.tgz#c2a9c93120215cbedd58d2a42eab16603d66b211"
+  integrity sha512-PEWSawf5WaIzLWHms6kaixxiEBQLH1NDV0/z6flc7yQ+cUryUJ5QmlvC6x8fTpq4SVRHucPu04Tqv0CxP4MLww==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
