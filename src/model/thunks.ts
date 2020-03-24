@@ -2,9 +2,8 @@ import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
-import { FeatureCollection } from 'geojson'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
-import { TYPES, simplifyTrack, getVesselEventsGeojson } from '@globalfishingwatch/layer-composer'
+import { TYPES, getVesselEventsGeojson } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
@@ -64,8 +63,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               })
               .then((data) => {
                 try {
-                  const simplifiedTrack = simplifyTrack(data as FeatureCollection)
-                  dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
+                  dispatch(setVesselTrack({ id: dataview.id, data }))
                 } catch (e) {
                   console.error(e)
                 }
