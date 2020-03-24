@@ -2,7 +2,7 @@ import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
-import { FeatureCollection } from 'geojson'
+import { FeatureCollection, LineString } from 'geojson'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
 import { TYPES, simplifyTrack, getVesselEventsGeojson } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
@@ -26,6 +26,32 @@ const mockFetch = (mockFetchUrl: string) => {
       )
     }, Math.random() * 3000)
   })
+}
+
+const explodeTracks = (data: FeatureCollection<LineString>) => {
+  const fc: FeatureCollection<LineString> = {
+    type: 'FeatureCollection',
+    features: [],
+  }
+  data.features.forEach((feature) => {
+    const linestring = feature.geometry as LineString
+    for (let index = 1; index < linestring.coordinates.length; index++) {
+      const prevCoord = linestring.coordinates[index - 1]
+      const coord = linestring.coordinates[index]
+      const ts = feature.properties && feature.properties.coordinateProperties.times[index]
+      fc.features.push({
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: [prevCoord, coord],
+        },
+        properties: {
+          ts,
+        },
+      })
+    }
+  })
+  return fc
 }
 
 // TODO use GFWAPI for real fetches
@@ -64,7 +90,9 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               })
               .then((data) => {
                 try {
-                  const simplifiedTrack = simplifyTrack(data as FeatureCollection)
+                  const simplifiedTrack = simplifyTrack(data as FeatureCollection<LineString>)
+                  // const xpl = explodeTracks(simplifiedTrack as FeatureCollection<LineString>)
+                  // console.log(xpl)
                   dispatch(setVesselTrack({ id: dataview.id, data: simplifiedTrack }))
                 } catch (e) {
                   console.error(e)
