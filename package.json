@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "/track-inspector",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
