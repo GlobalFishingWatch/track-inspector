@@ -34,6 +34,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         config: {
           type: TYPES.TRACK,
           color: '#00c1e7',
+          simplify: true,
         },
       },
     },
@@ -50,6 +51,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         config: {
           type: TYPES.TRACK,
           color: '#f59e84',
+          simplify: true,
         },
       },
     },
@@ -69,6 +71,9 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
     {
       id: 'cp_rfmo',
+      overrides: {
+        visible: false,
+      },
       dataview: {
         id: 'cp_rfmo',
         name: 'Tuna RFMO areas',
@@ -82,6 +87,9 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
     {
       id: 'sprfmo',
+      overrides: {
+        visible: false,
+      },
       dataview: {
         id: 'sprfmo',
         name: 'SPRFMO area',
@@ -95,6 +103,9 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
     {
       id: 'eez',
+      overrides: {
+        visible: false,
+      },
       dataview: {
         id: 'eez',
         name: 'Exclusive Economic Zones',
@@ -108,6 +119,9 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
     {
       id: 'mpant',
+      overrides: {
+        visible: false,
+      },
       dataview: {
         id: 'mpant',
         name: 'Marine Protected Areas',
@@ -120,6 +134,9 @@ export const DEFAULT_WORKSPACE: Workspace = {
     },
     {
       id: 'bluefin_rfmo',
+      overrides: {
+        visible: false,
+      },
       dataview: {
         id: 'bluefin_rfmo',
         name: 'Southern bluefin tuna range',
@@ -146,7 +163,7 @@ const datasetsEndpointMock: Dataset[] = [
       {
         type: 'track',
         urlTemplate:
-          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=fishing,speed,course',
+          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=speed,course',
       },
     ],
   },

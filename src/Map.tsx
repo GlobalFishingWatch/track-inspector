@@ -11,7 +11,7 @@ const styleTransformations = [sort]
 function Map(props: any) {
   const { zoom, latitude, longitude, start, end, generatorConfigs, setMapViewport } = props
 
-  const globalGeneratorConfig = useMemo(() => ({ start, end }), [start, end])
+  const globalGeneratorConfig = useMemo(() => ({ start, end, zoom }), [start, end, zoom])
 
   const [style] = useLayerComposer(
     layerComposer,
