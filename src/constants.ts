@@ -34,6 +34,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         config: {
           type: TYPES.TRACK,
           color: '#00c1e7',
+          simplify: true,
         },
       },
     },
@@ -50,6 +51,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         config: {
           type: TYPES.TRACK,
           color: '#f59e84',
+          simplify: true,
         },
       },
     },
