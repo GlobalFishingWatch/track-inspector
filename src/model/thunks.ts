@@ -3,7 +3,7 @@ import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
 import GFWAPI, { DataviewsClient, Dataview } from '@globalfishingwatch/api-client'
-import { TYPES, getVesselEventsGeojson } from '@globalfishingwatch/layer-composer'
+import { TYPES } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
@@ -72,8 +72,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
             promise
               .then(({ response }) => response.json())
               .then((data) => {
-                const geoJson = getVesselEventsGeojson(data)
-                dispatch(setVesselEvents({ id: dataview.id, data: geoJson }))
+                dispatch(setVesselEvents({ id: dataview.id, data }))
               })
           }
         })
