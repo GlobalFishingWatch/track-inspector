@@ -8,6 +8,7 @@ import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'
 import { updateMapLayers } from './map.actions'
 import { setVesselTrack, setVesselEvents } from './vessels.actions'
+import { startLoading, completeLoading } from './loaders.actions'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -39,7 +40,9 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
   // TODO: improve this loading diffing
   if (dataviewsQuery) {
     // console.log('dataviews query:', dataviewsQuery)
+    dispatch(startLoading({ id: 'dataviews', areas: ['map', 'timebar'] }))
     const dataviews = await dataviewsClient.load(dataviewsQuery)
+    dispatch(completeLoading({ id: 'dataviews' }))
     // console.log(dataviews)
     if (dataviews === null) {
       console.log('no updates, dont trigger any action')
@@ -49,6 +52,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       const generatorConfigs = dataviews.map((dataview: Dataview) => dataview.config)
       dispatch(updateMapLayers(generatorConfigs))
 
+      dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))
       const loadDataPromises = dataviewsClient.loadData()
       loadDataPromises.forEach((promise) => {
         promise.then(({ data, dataview }) => {
@@ -76,6 +80,9 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               })
           }
         })
+      })
+      Promise.all(loadDataPromises).then(() => {
+        dispatch(completeLoading({ id: 'dataviews-data' }))
       })
     }
   }

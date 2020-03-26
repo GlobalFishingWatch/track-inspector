@@ -10,10 +10,12 @@ import {
   getEndQuery,
 } from './model/route.selectors'
 import { updateQueryParams } from './model/router.actions'
+import { Loader } from './types/types'
 
 const getGeneratorConfigs = (state: any) => state.map.generatorConfigs
 const getTracks = (state: any) => state.vessels.tracks
 const getVesselEvents = (state: any) => state.vessels.events
+const getLoaders = (state: any) => state.loaders.loaders
 
 const getGeneratorConfigWithData = createSelector(
   [getGeneratorConfigs, getTracks, getVesselEvents],
@@ -38,6 +40,10 @@ const getGeneratorConfigWithData = createSelector(
   }
 )
 
+const getLoading = createSelector([getLoaders], (loaders: Loader[]): boolean => {
+  return loaders.filter((l) => l.areas.includes('map')).length > 0
+})
+
 const mapStateToProps = (state: any) => ({
   zoom: getMapZoomQuery(state),
   latitude: getMapLatitudeQuery(state),
@@ -45,6 +51,7 @@ const mapStateToProps = (state: any) => ({
   start: getStartQuery(state),
   end: getEndQuery(state),
   generatorConfigs: getGeneratorConfigWithData(state),
+  loading: getLoading(state),
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
