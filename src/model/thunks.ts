@@ -31,7 +31,7 @@ const mockFetch = (mockFetchUrl: string) => {
 const dataviewsClient = new DataviewsClient(
   /*GFWAPI.fetch*/ mockFetch,
   DEFAULT_WORKSPACE.dataviewsWorkspace,
-  ['currentEvent']
+  ['currentEventId']
 )
 
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
