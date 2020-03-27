@@ -40,7 +40,7 @@ const getGeneratorConfigWithData = createSelector(
   }
 )
 
-const getLoading = createSelector([getLoaders], (loaders: Loader[]): boolean => {
+const getLoading = createSelector([getLoaders], (loaders): boolean => {
   return loaders.filter((l) => l.areas.includes('map')).length > 0
 })
 
