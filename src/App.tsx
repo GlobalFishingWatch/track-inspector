@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import GFWAPI from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
-import Map from './Map.container'
 import TimebarWrapper from './TimebarWrapper.container'
 import './App.css'
+import './Loader.css'
+import Loader from './Loader'
+
+const Map = React.lazy(() => import('./Map.container'))
 
 function App() {
   const { loading, logged } = useGFWLogin(GFWAPI)
-
-  // TODO add spinner
 
   if (!loading && !logged) {
     window.location.href = GFWAPI.getLoginUrl(window.location.toString())
@@ -16,7 +17,9 @@ function App() {
 
   return (
     <>
-      <Map />
+      <Suspense fallback={<Loader />}>
+        <Map />
+      </Suspense>
       <TimebarWrapper />
     </>
   )

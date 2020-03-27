@@ -8,14 +8,14 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;
-  grid-template-areas: "map" "timebar";
-  background: #0e2e82;
-  color: white;
+  grid-template-areas: 'map' 'timebar';
+  background: var(--color-background);
+  color: var(--color-foreground);
 }
 
 .map {
   grid-area: map;
-
+  position: relative;
 }
 
 .timebar {
