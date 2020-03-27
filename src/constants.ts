@@ -24,9 +24,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
     {
       id: 'trackCarrier',
       overrides: {
+        // visible: false,
+      },
+      datasetParams: {
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
-        // visible: false,
       },
       dataview: {
         id: 'trackCarrier',
@@ -41,9 +43,11 @@ export const DEFAULT_WORKSPACE: Workspace = {
     {
       id: 'trackFishing',
       overrides: {
+        // visible: false,
+      },
+      datasetParams: {
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
-        // visible: false,
       },
       dataview: {
         id: 'trackFishing',
@@ -58,8 +62,10 @@ export const DEFAULT_WORKSPACE: Workspace = {
     {
       id: 'carrierEvents',
       overrides: {
-        id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         // visible: false,
+      },
+      datasetParams: {
+        id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
       },
       dataview: {
         id: 'carrierEvents',

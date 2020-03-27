@@ -6,10 +6,25 @@ import routesMap from './routes'
 import reducers from './reducers'
 import { Dictionary } from '../types/types'
 
-const urlToObjectTransformation: Dictionary<(value: string) => any> = {
+const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   latitude: (s) => parseFloat(s),
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
+  dataviewsWorkspace: (s) => {
+    const layers = s.map((layer: any) => {
+      const newLayer = { ...layer }
+      if (layer.overrides?.currentEvent) {
+        layer.overrides.currentEvent = {
+          position: {
+            lat: parseFloat(layer.overrides.currentEvent.position.lat),
+            lng: parseFloat(layer.overrides.currentEvent.position.lng),
+          },
+        }
+      }
+      return newLayer
+    })
+    return layers
+  },
 }
 
 const encodeWorkspace = (object: object) => {
