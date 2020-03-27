@@ -11,7 +11,6 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
   dataviewsWorkspace: (s) => {
-    console.log(s)
     const layers = s.map((layer: any) => {
       const newLayer = { ...layer }
       if (layer.overrides?.currentEvent) {
