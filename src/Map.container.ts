@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { connect } from 'react-redux'
 import Map from './Map'
-import { TYPES, GeneratorConfig } from '@globalfishingwatch/layer-composer'
+import { Type, GeneratorConfig } from '@globalfishingwatch/layer-composer'
 import {
   getMapZoomQuery,
   getMapLatitudeQuery,
@@ -21,13 +21,13 @@ const getGeneratorConfigWithData = createSelector(
   [getGeneratorConfigs, getTracks, getVesselEvents],
   (generatorConfigs, tracks, events) => {
     const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
-      if (generatorConfig.type === TYPES.TRACK) {
+      if (generatorConfig.type === Type.Track) {
         const data = tracks[generatorConfig.id]
         return {
           ...generatorConfig,
           data,
         }
-      } else if (generatorConfig.type === TYPES.VESSEL_EVENTS) {
+      } else if (generatorConfig.type === Type.VesselEvents) {
         const data = events[generatorConfig.id]
         return {
           ...generatorConfig,
@@ -41,7 +41,7 @@ const getGeneratorConfigWithData = createSelector(
 )
 
 const getLoading = createSelector([getLoaders], (loaders): boolean => {
-  return loaders.filter((l) => l.areas.includes('map')).length > 0
+  return loaders.filter((l: Loader) => l.areas.includes('map')).length > 0
 })
 
 const mapStateToProps = (state: any) => ({
