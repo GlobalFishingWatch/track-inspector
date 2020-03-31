@@ -41,7 +41,7 @@ const getGeneratorConfigWithData = createSelector(
 )
 
 const getLoading = createSelector([getLoaders], (loaders): boolean => {
-  return loaders.filter((l) => l.areas.includes('map')).length > 0
+  return loaders.filter((l: Loader) => l.areas.includes('map')).length > 0
 })
 
 const mapStateToProps = (state: any) => ({
