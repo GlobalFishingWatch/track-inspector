@@ -5,6 +5,7 @@
   --color-background: rgb(var(--color-background-rgb));
   --color-background-transparent: rgba(var(--color-background-rgb), 0.5);
   --color-foreground: white;
+  --color-foreground-transparent: rgba(255, 255, 255, 0.5);
 }
 
 body {
