@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import Timebar, { TimebarTracks } from '@globalfishingwatch/map-components/components/timebar'
+import React, { useState, useMemo } from 'react'
+import Timebar, {
+  TimebarTracks,
+  TimebarActivity,
+  geoJSONTrackToTimebarFeatureSegments,
+} from '@globalfishingwatch/map-components/components/timebar'
 import Loader from './Loader'
 import './TimebarWrapper.css'
 
@@ -8,10 +12,36 @@ enum Graph {
   Speed = 'Speed',
 }
 
+const tracksToSegments = (tracks: any[]) => {
+  return tracks.map((track: any) => ({
+    segments: geoJSONTrackToTimebarFeatureSegments(track.geojson),
+    color: track.color,
+  }))
+}
+
+const segmentsToGraph = (tracks: any[], currentGraph: string) => {
+  return tracks.map((track) => {
+    const segments = track.segments
+    const segmentsWithCurrentFeature = segments.map((segment: any) =>
+      segment.map((item: any) => ({
+        ...item,
+        value: item[`${currentGraph.toLowerCase()}s`],
+      }))
+    )
+    return {
+      segmentsWithCurrentFeature,
+      color: track.color,
+    }
+  })
+}
+
 const TimebarWrapper = (props: any) => {
   const { start, end, tracks, setTimerange, loading } = props
 
   const [currentGraph, setCurrentGraph] = useState(Graph.Speed)
+
+  const segments = useMemo(() => tracksToSegments(tracks), [tracks])
+  const graph = useMemo(() => segmentsToGraph(segments, currentGraph), [segments, currentGraph])
 
   return (
     <div className="timebar">
@@ -34,7 +64,16 @@ const TimebarWrapper = (props: any) => {
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
-              {tracks.length && currentGraph === Graph.Speed && <div></div>}
+              {tracks.length && currentGraph === Graph.Speed && (
+                <TimebarActivity
+                  {...props}
+                  key="trackActivity"
+                  // color={featureGraph.color}
+                  // opacity={0.4}
+                  // curve="curveBasis"
+                  graphTracks={graph}
+                />
+              )}
             </>
           )
         }
