@@ -13,7 +13,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@globalfishingwatch/api-client": "0.0.15-dataviews4",
+    "@globalfishingwatch/api-client": "0.0.20",
     "@globalfishingwatch/layer-composer": "0.5.1",
     "@globalfishingwatch/map-components": "3.0.9",
     "@testing-library/jest-dom": "4.2.4",
