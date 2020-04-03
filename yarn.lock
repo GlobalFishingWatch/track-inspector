@@ -990,10 +990,10 @@
   dependencies:
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.4.1.tgz#5edfe99fddead5e2038d42b066a9229740a13288"
-  integrity sha512-T5z25wWpO4eV3LrdRe0BVLnQ6juLKTQYHfC+sqSA3PhG/oYmMa0NcviWkmrLy5S4xp/dZAJHOL778gQjjrKvSg==
+"@globalfishingwatch/layer-composer@0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.5.1.tgz#a5b2e5f00759deccbabd94cbdbac65d44bb3e3ba"
+  integrity sha512-3vUQXKmpWf3Om+n8GXXdoxUnhXrXwfOCQSBo8UetxrNFv+7mMvOrlq2ZqGQ1utmT13lA/mCeP+dZUyMv29J1/g==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
@@ -1007,10 +1007,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.0.4.tgz#4a6f7dade9c7079b4bdef7d6e4c015aa6d7509fb"
-  integrity sha512-3UuPz4MkbJomiaKPS5ZalGBfn2XBFQbG8nUBD1cnUzCFSlabTzSzycBj8liiysW1Ig/gG1nlirvSWym2pwphUg==
+"@globalfishingwatch/map-components@3.0.9":
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.0.9.tgz#8eb367cc6aca20ad5404a4ead5c443109335587b"
+  integrity sha512-QaezVDgIeFlW4JDVDCBUQqyhzpmaf9sjRAxxwCsE9kNROaXOldNoGPzyUgx6J2F/zJp82u68OsRhfURi8XmGCg==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
@@ -1018,10 +1018,10 @@
     "@turf/bbox" "^6.0.1"
     classnames "^2.2.6"
     countryflag "^2.4.2"
-    d3-ease "^1.0.5"
-    d3-geo "^1.11.3"
-    d3-scale "^2.2.2"
-    d3-shape "^1.3.4"
+    d3-ease "1.0.5"
+    d3-geo "1.11.3"
+    d3-scale "2.2.2"
+    d3-shape "1.3.4"
     immutable "^4.0.0-rc.12"
     lodash "^4.17.13"
     mapbox-gl "^1.7.0"
@@ -4635,20 +4635,20 @@ d3-color@1:
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.4.0.tgz#89c45a995ed773b13314f06460df26d60ba0ecaf"
   integrity sha512-TzNPeJy2+iEepfiL92LAAB7fvnp/dV2YwANPVHdDWmYMm23qIJBYww3qT8I8C1wXrmrg4UWs7BKc2tKIgyjzHg==
 
-d3-ease@^1.0.5:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.6.tgz#ebdb6da22dfac0a22222f2d4da06f66c416a0ec0"
-  integrity sha512-SZ/lVU7LRXafqp7XtIcBdxnWl8yyLpgOmzAk0mWBI9gXNzLDx5ybZgnRbH9dN/yY5tzVBqCQ9avltSnqVwessQ==
+d3-ease@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/d3-ease/-/d3-ease-1.0.5.tgz#8ce59276d81241b1b72042d6af2d40e76d936ffb"
+  integrity sha512-Ct1O//ly5y5lFM9YTdu+ygq7LleSgSE4oj7vUt9tPLHUi8VCV7QoizGpdWRWAwCO9LdYzIrQDg97+hGVdsSGPQ==
 
 d3-format@1:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.4.3.tgz#4e8eb4dff3fdcb891a8489ec6e698601c41b96f1"
   integrity sha512-mm/nE2Y9HgGyjP+rKIekeITVgBtX97o1nrvHCWX8F/yBYyevUTvu9vb5pUnKwrcSw7o7GuwMOWjS9gFDs4O+uQ==
 
-d3-geo@^1.11.3:
-  version "1.11.9"
-  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.11.9.tgz#77eaed14ba62fc2c0aef55cd2943849c866f7ae6"
-  integrity sha512-9edcH6J3s/Aa3KJITWqFJbyB/8q3mMlA9Fi7z6yy+FAYMnRaxmC7jBhUnsINxVWD14GmqX3DK8uk7nV6/Ekt4A==
+d3-geo@1.11.3:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.11.3.tgz#5bb08388f45e4b281491faa72d3abd43215dbd1c"
+  integrity sha512-n30yN9qSKREvV2fxcrhmHUdXP9TNH7ZZj3C/qnaoU0cVf/Ea85+yT7HY7i8ySPwkwjCNYtmKqQFTvLFngfkItQ==
   dependencies:
     d3-array "1"
 
@@ -4664,7 +4664,7 @@ d3-path@1:
   resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.9.tgz#48c050bb1fe8c262493a8caf5524e3e9591701cf"
   integrity sha512-VLaYcn81dtHVTjEHd8B+pbe9yHWpXKZUC87PzoFmsFrJqgFwDe/qxfp5MlfsfM1V5E/iVt0MmEbWQ7FVIXh/bg==
 
-d3-scale@2.2.2, d3-scale@^2.2.2:
+d3-scale@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-2.2.2.tgz#4e880e0b2745acaaddd3ede26a9e908a9e17b81f"
   integrity sha512-LbeEvGgIb8UMcAa0EATLNX0lelKWGYDQiPdHj+gLblGVhGLyNbaCn3EvrJf0A3Y/uOOU5aD6MTh5ZFCdEwGiCw==
@@ -4676,10 +4676,10 @@ d3-scale@2.2.2, d3-scale@^2.2.2:
     d3-time "1"
     d3-time-format "2"
 
-d3-shape@^1.3.4:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.3.7.tgz#df63801be07bc986bc54f63789b4fe502992b5d7"
-  integrity sha512-EUkvKjqPFUAZyOlhY5gzCxCeI0Aep04LwIRpsZ/mLFelJiUfnK56jo5JMDSE7yyP2kLSb6LtF+S5chMk7uqPqw==
+d3-shape@1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/d3-shape/-/d3-shape-1.3.4.tgz#358e76014645321eecc7c364e188f8ae3d2a07d4"
+  integrity sha512-izaz4fOpOnY3CD17hkZWNxbaN70sIGagLR/5jb6RS96Y+6VqX+q1BQf1av6QSBRdfULi3Gb8Js4CzG4+KAPjMg==
   dependencies:
     d3-path "1"
 
