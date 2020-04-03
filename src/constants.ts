@@ -1,5 +1,5 @@
 import { Workspace, Dataset } from '@globalfishingwatch/api-client'
-import { TYPES } from '@globalfishingwatch/layer-composer'
+import { Type } from '@globalfishingwatch/layer-composer'
 
 export const DEFAULT_WORKSPACE: Workspace = {
   dataviewsWorkspace: [
@@ -8,7 +8,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
       dataview: {
         id: 'background',
         config: {
-          type: TYPES.BACKGROUND,
+          type: Type.Background,
         },
       },
     },
@@ -17,7 +17,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
       dataview: {
         id: 'landmass',
         config: {
-          type: TYPES.BASEMAP,
+          type: Type.Basemap,
         },
       },
     },
@@ -34,7 +34,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         id: 'trackCarrier',
         datasetsIds: ['carrierPortalVesselTrack'],
         config: {
-          type: TYPES.TRACK,
+          type: Type.Track,
           color: '#00c1e7',
           simplify: true,
         },
@@ -53,7 +53,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         id: 'trackFishing',
         datasetsIds: ['carrierPortalVesselTrack'],
         config: {
-          type: TYPES.TRACK,
+          type: Type.Track,
           color: '#f59e84',
           simplify: true,
         },
@@ -71,7 +71,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         id: 'carrierEvents',
         datasetsIds: ['carrierPortalVesselEvents'],
         config: {
-          type: TYPES.VESSEL_EVENTS,
+          type: Type.VesselEvents,
         },
       },
     },
@@ -86,7 +86,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         description:
           'RFMO stands for Regional Fishery Management Organization. These organizations are international organizations formed by countries with a shared interest in managing or conserving an area’s fish stock. Source: GFW',
         config: {
-          type: TYPES.CARTO_POLYGONS,
+          type: Type.CartoPolygons,
           color: '#58CFFF',
         },
       },
@@ -102,7 +102,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         description:
           'Geographic Area of Competence of South Pacific Regional Fisheries Management Organisation. Source: fao.org/geonetwork',
         config: {
-          type: TYPES.CARTO_POLYGONS,
+          type: Type.CartoPolygons,
           color: '#d8d454',
         },
       },
@@ -118,7 +118,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         description:
           'Exclusive Economic Zones (EEZ) are states’ sovereign waters, which extend 200 nautical miles from the coast. Source: marineregions.org',
         config: {
-          type: TYPES.CARTO_POLYGONS,
+          type: Type.CartoPolygons,
           color: '#61cb96',
         },
       },
@@ -133,7 +133,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         name: 'Marine Protected Areas',
         description: 'Protected Planet WDPA',
         config: {
-          type: TYPES.CARTO_POLYGONS,
+          type: Type.CartoPolygons,
           color: '#e5777c',
         },
       },
@@ -149,7 +149,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
         description:
           'Prepared by GFW based on "The Current Status of International Fishery Stocks", 2018, Fisheries Agency and Japan Fisheries Research and Education Agency',
         config: {
-          type: TYPES.CARTO_POLYGONS,
+          type: Type.CartoPolygons,
           color: '#A758FF',
         },
       },
