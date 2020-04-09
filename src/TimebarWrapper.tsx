@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { Fragment, memo, useState, useMemo } from 'react'
 import Timebar, {
   TimebarTracks,
   TimebarActivity,
@@ -41,7 +41,9 @@ const TimebarWrapper = (props: any) => {
   const [currentGraph, setCurrentGraph] = useState(Graph.Speed)
 
   const segments = useMemo(() => tracksToSegments(tracks), [tracks])
-  const graph = useMemo(() => segmentsToGraph(segments, currentGraph), [segments, currentGraph])
+  const graph = useMemo(() => {
+    return segmentsToGraph(segments, currentGraph)
+  }, [segments, currentGraph])
 
   return (
     <div className="timebar">
@@ -56,27 +58,30 @@ const TimebarWrapper = (props: any) => {
           setTimerange(start, end)
         }}
       >
-        {(props: any) =>
-          loading ? (
+        {(props: any) => {
+          return loading ? (
             <Loader />
           ) : (
-            <>
+            <Fragment>
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
               {tracks.length && currentGraph === Graph.Speed && (
                 <TimebarActivity
-                  {...props}
                   key="trackActivity"
+                  graphHeight={props.graphHeight}
+                  svgTransform={props.svgTransform}
+                  overallScale={props.overallScale}
+                  outerWidth={props.outerWidth}
                   // color={featureGraph.color}
                   // opacity={0.4}
                   // curve="curveBasis"
                   graphTracks={graph}
                 />
               )}
-            </>
+            </Fragment>
           )
-        }
+        }}
       </Timebar>
       <div className="graphSelector">
         <select
@@ -99,4 +104,4 @@ const TimebarWrapper = (props: any) => {
   )
 }
 
-export default TimebarWrapper
+export default memo(TimebarWrapper)

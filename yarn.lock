@@ -1008,10 +1008,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.1.0.tgz#e9247a44a07bc803233adcfbb88bd9b85094bf23"
-  integrity sha512-XsGgeOzgJsLVlzZZRK/THQbBbpQmkHqqNa5zZVCs+159SB+Dur7RCIDVKRrarvER2NY3BP+wCleW1orGR5nsQw==
+"@globalfishingwatch/map-components@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.2.0.tgz#6c3f590fd33712d3a8da7866d5e1c5756a0e53db"
+  integrity sha512-IRJj69vtQr5YQqPYWWrVP0DwaHqrEB+stoKmFJUk0EJHUj/FURAn6V/wH3kaSBHPkLwhmayI7az9iXlpyO/sLw==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"

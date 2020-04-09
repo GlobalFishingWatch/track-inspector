@@ -15,7 +15,7 @@
   "dependencies": {
     "@globalfishingwatch/api-client": "0.0.20-dataviews4",
     "@globalfishingwatch/layer-composer": "0.5.1",
-    "@globalfishingwatch/map-components": "3.1.0",
+    "@globalfishingwatch/map-components": "3.2.0",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
     "@testing-library/user-event": "7.1.2",

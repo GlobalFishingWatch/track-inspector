@@ -1,7 +1,7 @@
 .graphSelector {
   position: absolute;
-  right: 10px;
-  bottom: 66px;
+  right: 1rem;
+  bottom: 2.5rem;
   z-index: 100;
 }
 
@@ -24,7 +24,7 @@
   border: 1px solid var(--color-foreground-transparent);
   border-radius: 99px;
   background: var(--color-background);
-  padding: 6px 16px 6px 24px;
+  padding: 6px 24px 6px 16px;
   color: white;
 
   /* font-size: $font-size-xxs-small; */
