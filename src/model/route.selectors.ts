@@ -9,15 +9,12 @@ const getLocationQuery = createSelector([getLocation], (location) => {
 })
 
 const getQueryParam = (param: QueryParam) =>
-  createSelector(
-    [getLocationQuery],
-    (query: any) => {
-      if (query === undefined || query[param] === undefined) {
-        return DEFAULT_WORKSPACE[param]
-      }
-      return query[param]
+  createSelector([getLocationQuery], (query: any) => {
+    if (query === undefined || query[param] === undefined) {
+      return DEFAULT_WORKSPACE[param]
     }
-  )
+    return query[param]
+  })
 
 export const getDataviewsQuery = getQueryParam('dataviewsWorkspace')
 
