@@ -27,7 +27,6 @@ const getGeoJSONTracksData = createSelector(
     return geoJSONTracks
   }
 )
-
 const getLoading = createSelector([getLoaders], (loaders: Loader[]): boolean => {
   return loaders.filter((l) => l.areas.includes('timebar')).length > 0
 })

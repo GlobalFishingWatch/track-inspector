@@ -56,19 +56,19 @@ const routerQueryMiddleware: Middleware = ({ getState }) => (next) => (action: a
   const isRouterAction = routesActions.includes(action.type)
   if (!isRouterAction) {
     next(action)
-  }
+  } else {
+    const newAction: any = { ...action }
 
-  const newAction: any = { ...action }
-
-  const prevQuery = getState().location.query || {}
-  if (newAction.replaceQuery !== true) {
-    newAction.query = {
-      ...prevQuery,
-      ...newAction.query,
+    const prevQuery = getState().location.query || {}
+    if (newAction.replaceQuery !== true) {
+      newAction.query = {
+        ...prevQuery,
+        ...newAction.query,
+      }
     }
-  }
 
-  next(newAction)
+    next(newAction)
+  }
 }
 
 const { reducer, middleware, enhancer } = connectRoutes(routesMap, routesOptions)

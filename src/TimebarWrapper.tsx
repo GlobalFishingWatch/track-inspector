@@ -1,9 +1,49 @@
-import React from 'react'
-import Timebar, { TimebarTracks } from '@globalfishingwatch/map-components/components/timebar'
+import React, { Fragment, memo, useState, useMemo } from 'react'
+import Timebar, {
+  TimebarTracks,
+  TimebarActivity,
+  geoJSONTrackToTimebarFeatureSegments,
+} from '@globalfishingwatch/map-components/components/timebar'
 import Loader from './Loader'
+import './TimebarWrapper.css'
+
+enum Graph {
+  Encounters = 'Encounters',
+  Speed = 'Speed',
+}
+
+const tracksToSegments = (tracks: any[]) => {
+  return tracks.map((track: any) => ({
+    segments: geoJSONTrackToTimebarFeatureSegments(track.geojson),
+    color: track.color,
+  }))
+}
+
+const segmentsToGraph = (tracks: any[], currentGraph: string) => {
+  return tracks.map((track) => {
+    const segments = track.segments
+    const segmentsWithCurrentFeature = segments.map((segment: any) =>
+      segment.map((item: any) => ({
+        ...item,
+        value: item[`${currentGraph.toLowerCase()}s`],
+      }))
+    )
+    return {
+      segmentsWithCurrentFeature,
+      color: track.color,
+    }
+  })
+}
 
 const TimebarWrapper = (props: any) => {
   const { start, end, tracks, setTimerange, loading } = props
+
+  const [currentGraph, setCurrentGraph] = useState(Graph.Speed)
+
+  const segments = useMemo(() => tracksToSegments(tracks), [tracks])
+  const graph = useMemo(() => {
+    return segmentsToGraph(segments, currentGraph)
+  }, [segments, currentGraph])
 
   return (
     <div className="timebar">
@@ -18,16 +58,50 @@ const TimebarWrapper = (props: any) => {
           setTimerange(start, end)
         }}
       >
-        {(props: any) =>
-          loading ? (
+        {(props: any) => {
+          return loading ? (
             <Loader />
           ) : (
-            <>{tracks.length && <TimebarTracks key="tracks" {...props} tracks={tracks} />}</>
+            <Fragment>
+              {tracks.length && currentGraph === Graph.Encounters && (
+                <TimebarTracks key="tracks" {...props} tracks={tracks} />
+              )}
+              {tracks.length && currentGraph === Graph.Speed && (
+                <TimebarActivity
+                  key="trackActivity"
+                  graphHeight={props.graphHeight}
+                  svgTransform={props.svgTransform}
+                  overallScale={props.overallScale}
+                  outerWidth={props.outerWidth}
+                  // color={featureGraph.color}
+                  // opacity={0.4}
+                  // curve="curveBasis"
+                  graphTracks={graph}
+                />
+              )}
+            </Fragment>
           )
-        }
+        }}
       </Timebar>
+      <div className="graphSelector">
+        <select
+          className="graphSelectorSelect"
+          onChange={(event) => {
+            setCurrentGraph(event.target.value as Graph)
+          }}
+          value={currentGraph}
+        >
+          <option key={Graph.Encounters} value={Graph.Encounters}>
+            {Graph.Encounters}
+          </option>
+          <option key={Graph.Speed} value={Graph.Speed}>
+            {Graph.Speed}
+          </option>
+        </select>
+        <div className="graphSelectorArrow">{/* <Icon icon="graph" /> */}</div>
+      </div>
     </div>
   )
 }
 
-export default TimebarWrapper
+export default memo(TimebarWrapper)

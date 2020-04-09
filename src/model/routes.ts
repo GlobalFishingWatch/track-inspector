@@ -4,14 +4,9 @@ import { dataviewsThunk } from './thunks'
 
 export const HOME = 'HOME'
 
-const preFetchThunks = [
-  dataviewsThunk,
-]
+const preFetchThunks = [dataviewsThunk]
 
-const thunk = async (
-  dispatch: Dispatch<any>,
-  getState: StateGetter<any>
-) => {
+const thunk = async (dispatch: Dispatch<any>, getState: StateGetter<any>) => {
   preFetchThunks.forEach((thunk) => thunk(dispatch, getState))
 }
 

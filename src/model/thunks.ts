@@ -37,12 +37,12 @@ const dataviewsClient = new DataviewsClient(
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
   const dataviewsQuery = getDataviewsQuery(state)
-  // TODO: improve this loading diffing
+
   if (dataviewsQuery) {
-    // console.log('dataviews query:', dataviewsQuery)
-    dispatch(startLoading({ id: 'dataviews', areas: ['map', 'timebar'] }))
+    // TODO: better handle of loading when no new dataviews to load, removing for now to avoid unnecesary rerenders
+    // dispatch(startLoading({ id: 'dataviews', areas: ['map', 'timebar'] }))
     const dataviews = await dataviewsClient.load(dataviewsQuery)
-    dispatch(completeLoading({ id: 'dataviews' }))
+    // dispatch(completeLoading({ id: 'dataviews' }))
     // console.log(dataviews)
     if (dataviews === null) {
       console.log('no updates, dont trigger any action')
