@@ -38,7 +38,7 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 const TimebarWrapper = (props: any) => {
   const { start, end, tracks, setTimerange, loading } = props
 
-  const [currentGraph, setCurrentGraph] = useState(Graph.Speed)
+  const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
 
   const segments = useMemo(() => tracksToSegments(tracks), [tracks])
   const graph = useMemo(() => {
@@ -73,7 +73,6 @@ const TimebarWrapper = (props: any) => {
                   svgTransform={props.svgTransform}
                   overallScale={props.overallScale}
                   outerWidth={props.outerWidth}
-                  // color={featureGraph.color}
                   // opacity={0.4}
                   // curve="curveBasis"
                   graphTracks={graph}
