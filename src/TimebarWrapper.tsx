@@ -2,6 +2,8 @@ import React, { Fragment, memo, useState, useMemo } from 'react'
 import Timebar, {
   TimebarTracks,
   TimebarActivity,
+  // TimebarVesselEvents,
+  TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from './Loader'
@@ -36,7 +38,16 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 }
 
 const TimebarWrapper = (props: any) => {
-  const { start, end, tracks, setTimerange, loading } = props
+  const {
+    start,
+    end,
+    tracks,
+    // events,
+    loading,
+    highlightedTime,
+    setTimerange,
+    setHighlightedTime,
+  } = props
 
   const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
 
@@ -57,6 +68,7 @@ const TimebarWrapper = (props: any) => {
           // TODO needs to be debounced like viewport
           setTimerange(start, end)
         }}
+        onMouseMove={setHighlightedTime}
       >
         {(props: any) => {
           return loading ? (
@@ -66,6 +78,18 @@ const TimebarWrapper = (props: any) => {
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
+              {/* {events.length && currentGraph === Graph.Encounters && (
+                <TimebarVesselEvents
+                  key="events"
+                  events={events}
+                  outerStart={props.outerStart}
+                  outerEnd={props.outerEnd}
+                  outerScale={props.outerScale}
+                  outerWidth={props.outerWidth}
+                  outerHeight={props.outerHeight}
+                  graphHeight={props.graphHeight}
+                />
+              )} */}
               {tracks.length && currentGraph === Graph.Speed && (
                 <TimebarActivity
                   key="trackActivity"
@@ -76,6 +100,13 @@ const TimebarWrapper = (props: any) => {
                   // opacity={0.4}
                   // curve="curveBasis"
                   graphTracks={graph}
+                />
+              )}
+              {highlightedTime && (
+                <TimebarHighlighter
+                  {...props}
+                  hoverStart={highlightedTime.start}
+                  hoverEnd={highlightedTime.end}
                 />
               )}
             </Fragment>
