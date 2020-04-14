@@ -2,7 +2,6 @@ import React, { Fragment, memo, useState, useMemo } from 'react'
 import Timebar, {
   TimebarTracks,
   TimebarActivity,
-  // TimebarVesselEvents,
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
@@ -78,18 +77,6 @@ const TimebarWrapper = (props: any) => {
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
-              {/* {events.length && currentGraph === Graph.Encounters && (
-                <TimebarVesselEvents
-                  key="events"
-                  events={events}
-                  outerStart={props.outerStart}
-                  outerEnd={props.outerEnd}
-                  outerScale={props.outerScale}
-                  outerWidth={props.outerWidth}
-                  outerHeight={props.outerHeight}
-                  graphHeight={props.graphHeight}
-                />
-              )} */}
               {tracks.length && currentGraph === Graph.Speed && (
                 <TimebarActivity
                   key="trackActivity"

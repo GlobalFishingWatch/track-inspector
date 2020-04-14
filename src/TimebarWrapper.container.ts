@@ -50,7 +50,6 @@ const mapStateToProps = (state: any) => ({
   end: getEndQuery(state),
   tracks: getGeoJSONTracksData(state),
   events: getEventsForTimebar(state),
-  // events: getEvents(state),
   loading: getLoading(state),
   highlightedTime: getHighlightedTime(state),
 })
