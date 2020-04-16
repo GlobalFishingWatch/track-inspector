@@ -1,13 +1,13 @@
 import { createReducer } from 'typesafe-actions'
 import { setHighlightedTime, disableHighlightedTime } from './app.actions'
 
-interface LoadersReducer {
+interface AppReducer {
   highlightedTime?: {
     start: string
     end: string
   }
 }
-const initialState: LoadersReducer = {}
+const initialState: AppReducer = {}
 
 export default createReducer(initialState)
   .handleAction(setHighlightedTime, (state: any, action: any) => {

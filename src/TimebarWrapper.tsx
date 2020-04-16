@@ -91,7 +91,9 @@ const TimebarWrapper = (props: any) => {
               )}
               {highlightedTime && (
                 <TimebarHighlighter
-                  {...props}
+                  outerScale={props.outerScale}
+                  graphHeight={props.graphHeight}
+                  tooltipContainer={props.tooltipContainer}
                   hoverStart={highlightedTime.start}
                   hoverEnd={highlightedTime.end}
                 />
