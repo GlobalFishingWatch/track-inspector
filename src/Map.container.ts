@@ -16,16 +16,18 @@ const getGeneratorConfigs = (state: any) => state.map.generatorConfigs
 const getTracks = (state: any) => state.vessels.tracks
 const getVesselEvents = (state: any) => state.vessels.events
 const getLoaders = (state: any) => state.loaders.loaders
+const getHighlightedTime = (state: any) => state.app.highlightedTime
 
 const getGeneratorConfigWithData = createSelector(
-  [getGeneratorConfigs, getTracks, getVesselEvents],
-  (generatorConfigs, tracks, events) => {
+  [getGeneratorConfigs, getTracks, getVesselEvents, getHighlightedTime],
+  (generatorConfigs, tracks, events, highlightedTime) => {
     const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
       if (generatorConfig.type === Type.Track) {
         const data = tracks[generatorConfig.id]
         return {
           ...generatorConfig,
           data,
+          highlightedTime,
         }
       } else if (generatorConfig.type === Type.VesselEvents) {
         const data = events[generatorConfig.id]
