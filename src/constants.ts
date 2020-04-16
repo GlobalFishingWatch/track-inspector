@@ -1,5 +1,14 @@
 import { Workspace, Dataset } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
+import { Dictionary } from './types/types'
+
+export const EVENTS_COLORS: Dictionary<string> = {
+  encounterauthorized: '#FAE9A0',
+  encounterpartially: '#F59E84',
+  encounterunmatched: '#CE2C54',
+  loitering: '#cfa9f9',
+  port: '#99EEFF',
+}
 
 export const DEFAULT_WORKSPACE: Workspace = {
   dataviewsWorkspace: [

@@ -22,3 +22,10 @@ export type Loader = {
   id: string
   areas: LoaderArea[]
 }
+
+export type Event = {
+  type: 'encounter' | 'port' | 'loitering'
+  encounter?: {
+    authorizationStatus: 'authorized' | 'partially' | 'unmatched'
+  }
+}

@@ -2,7 +2,7 @@ import React, { Fragment, memo, useState, useMemo } from 'react'
 import Timebar, {
   TimebarTracks,
   TimebarActivity,
-  TimebarVesselEvents,
+  TimebarTracksEvents,
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
@@ -42,7 +42,7 @@ const TimebarWrapper = (props: any) => {
     start,
     end,
     tracks,
-    events,
+    tracksEvents,
     loading,
     highlightedTime,
     setTimerange,
@@ -55,8 +55,6 @@ const TimebarWrapper = (props: any) => {
   const graph = useMemo(() => {
     return segmentsToGraph(segments, currentGraph)
   }, [segments, currentGraph])
-
-  console.log(events)
 
   return (
     <div className="timebar">
@@ -80,16 +78,14 @@ const TimebarWrapper = (props: any) => {
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
-              {events.length && currentGraph === Graph.Encounters && (
-                <TimebarVesselEvents
+              {tracksEvents.length && currentGraph === Graph.Encounters && (
+                <TimebarTracksEvents
                   key="events"
-                  events={events}
-                  outerStart={props.outerStart}
-                  outerEnd={props.outerEnd}
                   outerScale={props.outerScale}
                   outerWidth={props.outerWidth}
-                  outerHeight={props.outerHeight}
                   graphHeight={props.graphHeight}
+                  tooltipContainer={props.tooltipContainer}
+                  tracksEvents={tracksEvents}
                 />
               )}
               {tracks.length && currentGraph === Graph.Speed && (

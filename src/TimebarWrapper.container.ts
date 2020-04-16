@@ -6,7 +6,8 @@ import { getStartQuery, getEndQuery } from './model/route.selectors'
 import { updateQueryParams } from './model/router.actions'
 import { setHighlightedTime, disableHighlightedTime } from './model/app.actions'
 import { FeatureCollection } from 'geojson'
-import { Loader } from './types/types'
+import { Loader, Event } from './types/types'
+import { EVENTS_COLORS } from './constants'
 
 const getGeneratorConfigs = (state: any) => state.map.generatorConfigs
 const getTracks = (state: any) => state.vessels.tracks
@@ -31,10 +32,23 @@ const getGeoJSONTracksData = createSelector(
   }
 )
 
+// TODO: This is track-inspector specific, will need to be abstracted for map-client
 const getEventsForTimebar = createSelector([getEvents, getTracks], (events, tracks) => {
   const carrierEvents = Object.keys(tracks).map((id) => {
     if (id === 'trackCarrier') {
-      return events.carrierEvents || []
+      return (
+        events.carrierEvents.map((event: Event) => {
+          let colorKey = event.type as string
+          if (event.type === 'encounter') {
+            colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
+          }
+          const color = EVENTS_COLORS[colorKey]
+          return {
+            ...event,
+            color,
+          }
+        }) || []
+      )
     }
     return []
   })
@@ -49,7 +63,7 @@ const mapStateToProps = (state: any) => ({
   start: getStartQuery(state),
   end: getEndQuery(state),
   tracks: getGeoJSONTracksData(state),
-  events: getEventsForTimebar(state),
+  tracksEvents: getEventsForTimebar(state),
   loading: getLoading(state),
   highlightedTime: getHighlightedTime(state),
 })
