@@ -21,7 +21,7 @@ const getGeoJSONTracksData = createSelector(
     const geoJSONTracks: { geojson: FeatureCollection; color: string }[] = []
     Object.keys(tracks).forEach((id) => {
       const config: GeneratorConfig = generatorConfigs.find(
-        (config: GeneratorConfig) => config.id === id
+        (config: GeneratorConfig) => config.datasetParamsId === id
       )
       if (config !== undefined && config.visible !== false) {
         // TODO I'm not able to export TrackGeneratorConfig
@@ -32,28 +32,56 @@ const getGeoJSONTracksData = createSelector(
   }
 )
 
-// TODO: This is track-inspector specific, will need to be abstracted for map-client
-const getEventsForTimebar = createSelector([getEvents, getTracks], (events, tracks) => {
-  const carrierEvents = Object.keys(tracks).map((id) => {
-    if (id === 'trackCarrier') {
-      return (
-        events.carrierEvents.map((event: Event) => {
-          let colorKey = event.type as string
-          if (event.type === 'encounter') {
-            colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
-          }
-          const color = EVENTS_COLORS[colorKey]
-          return {
-            ...event,
-            color,
-          }
-        }) || []
-      )
-    }
-    return []
-  })
-  return carrierEvents
-})
+// TODO: This is completely track-inspector specific, will need to be abstracted for map-client
+const getEventsForTimebar = createSelector(
+  [getGeneratorConfigs, getEvents, getTracks],
+  (generatorConfigs, events, tracks) => {
+    // Retrieve original carrier and fishing vessels ids from generator config
+    const trackCarrierConfig = generatorConfigs.find(
+      (config: GeneratorConfig) => config.dataviewId === 'trackCarrier'
+    )
+    const trackFishingConfig = generatorConfigs.find(
+      (config: GeneratorConfig) => config.dataviewId === 'trackFishing'
+    )
+    if (!trackCarrierConfig || !trackFishingConfig) return []
+
+    // Retrieve events using carrier id
+    const carrierId = trackCarrierConfig.datasetParamsId
+    const trackCarrierEvents = events[carrierId]
+    if (!trackCarrierEvents) return []
+
+    // Inject colors using type and auth status
+    const trackCarrierEventsWithColors = trackCarrierEvents.map((event: Event) => {
+      let colorKey = event.type as string
+      if (event.type === 'encounter') {
+        colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
+      }
+      const color = EVENTS_COLORS[colorKey]
+      return {
+        ...event,
+        color,
+      }
+    })
+
+    // Filter encounters events from the carrier that are matching the fishing vessel id
+    const fishingId = trackFishingConfig.datasetParamsId
+    const trackFishingEventsWithColors = trackCarrierEventsWithColors.filter(
+      (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
+    )
+
+    console.log(trackFishingEventsWithColors)
+
+    const trackEvents = Object.keys(tracks).map((id) => {
+      if (id === carrierId) {
+        return trackCarrierEventsWithColors
+      } else if (id === fishingId) {
+        return trackFishingEventsWithColors
+      }
+      return []
+    })
+    return trackEvents
+  }
+)
 
 const getLoading = createSelector([getLoaders], (loaders: Loader[]): boolean => {
   return loaders.filter((l) => l.areas.includes('timebar')).length > 0

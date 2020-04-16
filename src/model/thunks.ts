@@ -2,11 +2,7 @@ import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
-import GFWAPI, {
-  DataviewsClient,
-  Dataview,
-  DataviewWorkspace,
-} from '@globalfishingwatch/api-client'
+import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
 import { getDataviewsQuery } from './route.selectors'

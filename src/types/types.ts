@@ -27,5 +27,8 @@ export type Event = {
   type: 'encounter' | 'port' | 'loitering'
   encounter?: {
     authorizationStatus: 'authorized' | 'partially' | 'unmatched'
+    vessel: {
+      id: string
+    }
   }
 }
