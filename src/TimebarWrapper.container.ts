@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect'
 import { connect } from 'react-redux'
+import { formatDistance } from 'date-fns'
 import { GeneratorConfig } from '@globalfishingwatch/layer-composer'
 import TimebarWrapper from './TimebarWrapper'
 import { getStartQuery, getEndQuery } from './model/route.selectors'
@@ -32,7 +33,7 @@ const getGeoJSONTracksData = createSelector(
   }
 )
 
-// TODO: This is completely track-inspector specific, will need to be abstracted for map-client
+// TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
 const getEventsForTimebar = createSelector(
   [getGeneratorConfigs, getEvents, getTracks],
   (generatorConfigs, events, tracks) => {
@@ -51,31 +52,55 @@ const getEventsForTimebar = createSelector(
     if (!trackCarrierEvents) return []
 
     // Inject colors using type and auth status
-    const trackCarrierEventsWithColors = trackCarrierEvents.map((event: Event) => {
+    // + add text descriptions
+    const trackCarrierEventsForTimebar = trackCarrierEvents.map((event: Event) => {
       let colorKey = event.type as string
       if (event.type === 'encounter') {
         colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
       }
       const color = EVENTS_COLORS[colorKey]
+      const vesselName = event.vessel.name || 'This vessel'
+      let description
+      switch (event.type) {
+        case 'encounter':
+          if (event.encounter && event.encounter.vessel.name) {
+            description = `${vesselName} had encounter with ${event.encounter.vessel.name}`
+          } else {
+            description = `${vesselName} had encounter with another vessel`
+          }
+          break
+        case 'port':
+          if (event.port && event.port.name) {
+            description = `${vesselName} docked at ${event.port.name}`
+          } else {
+            description = `${vesselName} Docked`
+          }
+          break
+        case 'loitering':
+          description = `${vesselName} loitered`
+          break
+        default:
+          description = 'Unknown event'
+      }
+      description = `${description} for ${formatDistance(event.start, event.end)}`
       return {
         ...event,
         color,
+        description,
       }
     })
 
     // Filter encounters events from the carrier that are matching the fishing vessel id
     const fishingId = trackFishingConfig.datasetParamsId
-    const trackFishingEventsWithColors = trackCarrierEventsWithColors.filter(
+    const trackFishingEventsForTimebar = trackCarrierEventsForTimebar.filter(
       (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
     )
 
-    console.log(trackFishingEventsWithColors)
-
     const trackEvents = Object.keys(tracks).map((id) => {
       if (id === carrierId) {
-        return trackCarrierEventsWithColors
+        return trackCarrierEventsForTimebar
       } else if (id === fishingId) {
-        return trackFishingEventsWithColors
+        return trackFishingEventsForTimebar
       }
       return []
     })

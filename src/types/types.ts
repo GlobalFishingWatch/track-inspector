@@ -23,12 +23,21 @@ export type Loader = {
   areas: LoaderArea[]
 }
 
+export type EventVessel = {
+  id: string
+  name?: string
+}
+
 export type Event = {
   type: 'encounter' | 'port' | 'loitering'
+  start: number
+  end: number
+  vessel: EventVessel
   encounter?: {
     authorizationStatus: 'authorized' | 'partially' | 'unmatched'
-    vessel: {
-      id: string
-    }
+    vessel: EventVessel
+  }
+  port?: {
+    name: string
   }
 }
