@@ -1008,17 +1008,17 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.2.1.tgz#44652da9b76fb1ec9004b714f92a53df3d2d5356"
-  integrity sha512-ci9pS2Kk8WffCGzCztn7g3HG36hAUMuLNRz1v0G5e1oqpszjzSePDpt0oJJTw3yz6+/tHioDOgh+s7BTaDHAig==
+"@globalfishingwatch/map-components@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.3.0.tgz#9dfca5e2573e5280b8d70497116abf0f943cc34a"
+  integrity sha512-taYZqaluDHGuYP2I5gNXe4WC7zR8k2Yil6M3LwJ/+p/khQ2NR5U4Fca5CQm8L058TCmjphT4XUUO2jX6DCK9Lw==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
     "@turf/area" "^6.0.1"
     "@turf/bbox" "^6.0.1"
     classnames "^2.2.6"
-    countryflag "^2.4.2"
+    countryflag "^2.5.0"
     d3-ease "1.0.5"
     d3-geo "1.11.3"
     d3-scale "2.2.2"
@@ -1783,10 +1783,10 @@
     "@testing-library/dom" "^6.15.0"
     "@types/testing-library__react" "^9.1.2"
 
-"@testing-library/user-event@7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.1.2.tgz#3a71bb8a45a1e08b71a54c9efcee9927f3895e80"
-  integrity sha512-lDyCVxxgX5lrgCa75ELCfWcdEDyfisjqoDIM3YsghQ+lyViIac/qT67qabQ/HmoVxyikFKovjKwWdn3b/oKhZA==
+"@testing-library/user-event@7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
+  integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
 "@turf/area@^6.0.1":
   version "6.0.1"
@@ -4295,12 +4295,17 @@ core-js-pure@^3.0.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.6.4.tgz#4bf1ba866e25814f149d4e9aaa08c36173506e3a"
   integrity sha512-epIhRLkXdgv32xIUFaaAry2wdxZYBi6bgM7cB136dzzXXa+dFyRLTZeLUJxnd8ShrmyVXBub63n2NHo2JAt8Cw==
 
+core-js@3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.4.tgz#3a2837fc48e582e1ae25907afcd6cf03b0cc7a07"
+  integrity sha512-YNZN8lt82XIMLnLirj9MhKDFZHalwzzrL9YLt6eb0T5D0EDl4IQ90IGkua8mHbnxNrkj1d8hbdizMc0Qmg1WnQ==
+
 core-js@^2.4.0:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
-core-js@^3.1.4, core-js@^3.4.1, core-js@^3.5.0:
+core-js@^3.4.1, core-js@^3.5.0:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
   integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
@@ -4331,14 +4336,14 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-countryflag@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-2.4.2.tgz#fd7b992ac3bb75cbf9560739c2ab34b84351a1c9"
-  integrity sha512-s2iyo9okeMnRlzcQlpoLGq42F7Y7WS8Z4vTRc+9rlWz6clCIvQynYREdQc3VhYMOGsdGU12yLSFhW+fSfkNF+Q==
+countryflag@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-2.5.0.tgz#03615546078739f692fc85c107d9c7ba2900e019"
+  integrity sha512-Yh1xsTxwLK2pihISGIxRB6E4NP3gP+SalYThBvBs8eieX+/t7DB7pHiaCDRxTYzlsZTbc/GmufwxMqCyNnMO6A==
   dependencies:
-    core-js "^3.1.4"
-    if-emoji "^0.1.0"
-    world-countries "^2.1.0"
+    core-js "3.1.4"
+    if-emoji "0.1.0"
+    world-countries "4.0.0"
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -4770,6 +4775,11 @@ date-fns@^2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
   integrity sha512-qJgn99xxKnFgB1qL4jpxU7Q2t0LOn1p8KMIveef3UZD7kqjT3tpFNNdXJelEHhE+rUgffriXriw/sOSU+cS1Hw==
+
+dayjs@1.8.20:
+  version "1.8.20"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.20.tgz#724a5cb6ad1f6fc066b0bd9a800dedcc7886f19e"
+  integrity sha512-mH0MCDxw6UCGJYxVN78h8ugWycZAO8thkj3bW6vApL5tS0hQplIDdAQcmbvl7n35H0AKdCJQaArTrIQw2xt4Qg==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -7115,7 +7125,7 @@ ieee754@^1.1.12, ieee754@^1.1.4:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.13.tgz#ec168558e95aa181fd87d37f55c32bbcb6708b84"
   integrity sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==
 
-if-emoji@^0.1.0:
+if-emoji@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/if-emoji/-/if-emoji-0.1.0.tgz#85e1b036c6425a30f249e9034ff4400ceaa33947"
   integrity sha1-heGwNsZCWjDySekDT/RADOqjOUc=
@@ -14697,10 +14707,10 @@ worker-rpc@^0.1.0:
   dependencies:
     microevent.ts "~0.1.1"
 
-world-countries@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/world-countries/-/world-countries-2.1.0.tgz#935a3bb5839a88bc1c7d05b8645341db4edd48d4"
-  integrity sha512-g8DRgoH7UJiF5L0xjj+RP/GFH4fOVlD3J5CxkJ+PZYH1PNl0i5JrstBOX53Ub8ObTZ6lCx0V7nIA8BuCvxMoSg==
+world-countries@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/world-countries/-/world-countries-4.0.0.tgz#a14757e2240d8c16249e3c6e6cdcd61d119a042d"
+  integrity sha512-LsFFYmggquj0U+i7VUaJOZYz5F4QNu+oceGw8odnyVHMT2LxYSdVncqdouOEnq1esr7yCakp9+3BZTztuSw1Pg==
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
