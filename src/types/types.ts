@@ -30,6 +30,10 @@ export type EventVessel = {
 
 export type Event = {
   type: 'encounter' | 'port' | 'loitering'
+  position: {
+    lat: number
+    lon: number
+  }
   start: number
   end: number
   vessel: EventVessel

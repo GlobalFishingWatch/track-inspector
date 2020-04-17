@@ -134,6 +134,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     const end = scale(clientX + 10).toISOString()
     dispatch(setHighlightedTime({ start, end }))
   },
+  panToEvent: (latitude: number, longitude: number) => {
+    dispatch(updateQueryParams({ latitude, longitude }))
+  },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimebarWrapper)

@@ -8,6 +8,7 @@ import Timebar, {
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from './Loader'
 import './TimebarWrapper.css'
+import { Event } from './types/types'
 
 enum Graph {
   Encounters = 'Encounters',
@@ -47,6 +48,7 @@ const TimebarWrapper = (props: any) => {
     highlightedTime,
     setTimerange,
     setHighlightedTime,
+    panToEvent,
   } = props
 
   const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
@@ -86,6 +88,9 @@ const TimebarWrapper = (props: any) => {
                   graphHeight={props.graphHeight}
                   tooltipContainer={props.tooltipContainer}
                   tracksEvents={tracksEvents}
+                  onEventClick={(event: Event) => {
+                    panToEvent(event.position.lat, event.position.lon)
+                  }}
                 />
               )}
               {tracks.length && currentGraph === Graph.Speed && (
