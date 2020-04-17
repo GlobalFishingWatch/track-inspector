@@ -2,11 +2,13 @@ import React, { Fragment, memo, useState, useMemo } from 'react'
 import Timebar, {
   TimebarTracks,
   TimebarActivity,
+  TimebarTracksEvents,
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from './Loader'
 import './TimebarWrapper.css'
+import { Event } from './types/types'
 
 enum Graph {
   Encounters = 'Encounters',
@@ -41,11 +43,12 @@ const TimebarWrapper = (props: any) => {
     start,
     end,
     tracks,
-    // events,
+    tracksEvents,
     loading,
     highlightedTime,
     setTimerange,
     setHighlightedTime,
+    panToEvent,
   } = props
 
   const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
@@ -76,6 +79,19 @@ const TimebarWrapper = (props: any) => {
             <Fragment>
               {tracks.length && currentGraph === Graph.Encounters && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
+              )}
+              {tracksEvents.length && currentGraph === Graph.Encounters && (
+                <TimebarTracksEvents
+                  key="events"
+                  outerScale={props.outerScale}
+                  outerWidth={props.outerWidth}
+                  graphHeight={props.graphHeight}
+                  tooltipContainer={props.tooltipContainer}
+                  tracksEvents={tracksEvents}
+                  onEventClick={(event: Event) => {
+                    panToEvent(event.position.lat, event.position.lon)
+                  }}
+                />
               )}
               {tracks.length && currentGraph === Graph.Speed && (
                 <TimebarActivity

@@ -20,7 +20,6 @@ function Map(props: any) {
     }),
     [start, end, zoom]
   )
-
   const [style] = useLayerComposer(layerComposer, generatorConfigs, globalGeneratorConfig)
 
   const [viewport, onViewportChange] = useViewport(setMapViewport, zoom, latitude, longitude)

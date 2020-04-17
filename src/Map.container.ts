@@ -22,15 +22,15 @@ const getGeneratorConfigWithData = createSelector(
   [getGeneratorConfigs, getTracks, getVesselEvents, getHighlightedTime],
   (generatorConfigs, tracks, events, highlightedTime) => {
     const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
-      if (generatorConfig.type === Type.Track) {
-        const data = tracks[generatorConfig.id]
+      if (generatorConfig.type === Type.Track && generatorConfig.datasetParamsId) {
+        const data = tracks[generatorConfig.datasetParamsId]
         return {
           ...generatorConfig,
           data,
           highlightedTime,
         }
-      } else if (generatorConfig.type === Type.VesselEvents) {
-        const data = events[generatorConfig.id]
+      } else if (generatorConfig.type === Type.VesselEvents && generatorConfig.datasetParamsId) {
+        const data = events[generatorConfig.datasetParamsId]
         return {
           ...generatorConfig,
           data,
