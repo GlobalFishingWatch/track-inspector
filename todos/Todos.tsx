@@ -5,9 +5,7 @@ import { selectTodos } from './todos.selectors'
 
 const Todos = () => {
   const todos: Todo[] = useSelector(selectTodos)
-  // const todos: any[] = [{ id: 0, text: 'lol'}]
   const dispatch = useDispatch()
-  console.log('render')
   return (
     <div>
       {todos.map((todo) => {
