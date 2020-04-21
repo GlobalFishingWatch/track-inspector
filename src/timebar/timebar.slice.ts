@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../store'
 
 type TimebarSlice = {
   highlightedTime: {
@@ -26,3 +27,5 @@ const slice = createSlice({
 
 export const { setHighlightedTime, disableHighlightedTime } = slice.actions
 export default slice.reducer
+
+export const selectHighlightedTime = (state: RootState) => state.timebar.highlightedTime

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Loader } from '../types'
+import { RootState } from '../store'
 
 const initialState: Loader[] = []
 
@@ -23,3 +24,5 @@ const slice = createSlice({
 
 export const { startLoading, completeLoading } = slice.actions
 export default slice.reducer
+
+export const selectLoaders = (state: RootState) => state.loaders

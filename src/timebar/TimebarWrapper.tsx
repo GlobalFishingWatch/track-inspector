@@ -6,7 +6,7 @@ import Timebar, {
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
-// import Loader from './Loader'
+import Loader from '../loaders/Loader'
 import './TimebarWrapper.css'
 import { Event } from '../types/'
 
@@ -74,8 +74,7 @@ const TimebarWrapper = (props: any) => {
       >
         {(props: any) => {
           return loading ? (
-            // <Loader />
-            <span />
+            <Loader />
           ) : (
             <Fragment>
               {tracks.length && currentGraph === Graph.Encounters && (

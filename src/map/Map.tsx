@@ -8,44 +8,34 @@ import {
   selectMapZoomQuery,
   selectMapLatitudeQuery,
   selectMapLongitudeQuery,
+  selectStartQuery,
+  selectEndQuery,
 } from '../routes/routes.selectors'
+import { selectMapLoading, selectGeneratorConfigWithData } from './map.selectors'
 import useViewport, { Viewport } from './useViewport'
+import Loader from '../loaders/Loader'
 
 const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
 
-const generatorConfigs: any = [
-  {
-    type: 'BACKGROUND',
-  },
-  {
-    type: 'BASEMAP',
-    id: 'landmass',
-  },
-]
-
-function Map(props: any) {
-  const {
-    // start,
-    // end,
-    // generatorConfigs
-    // setMapViewport,
-    // loading,
-  } = props
-
+function Map() {
   const zoom: number = useSelector(selectMapZoomQuery)
   const latitude: number = useSelector(selectMapLatitudeQuery)
   const longitude: number = useSelector(selectMapLongitudeQuery)
+  const start = useSelector(selectStartQuery)
+  const end = useSelector(selectEndQuery)
+  const loading: boolean = useSelector(selectMapLoading)
+  const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
   const dispatch = useDispatch()
   const globalGeneratorConfig = useMemo(
     () => ({
-      // start,
-      // end,
+      start,
+      end,
       zoom,
       styleTransformations,
     }),
-    [/*start, end, */ zoom]
+    [start, end, zoom]
   )
   const [style] = useLayerComposer(layerComposer, generatorConfigs, globalGeneratorConfig)
 
@@ -61,7 +51,7 @@ function Map(props: any) {
 
   return (
     <div className="map">
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <ReactMapGL
         width="100%"
         height="100%"

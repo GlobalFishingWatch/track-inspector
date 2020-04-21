@@ -11,26 +11,26 @@ import qs from 'qs'
 import { RootState } from '../store'
 import { Dictionary } from '../types'
 import { UpdateQueryParamsAction } from './routes.actions'
-// import { dataviewsThunk } from './thunks'
+import { dataviewsThunk } from '../dataviews/dataviews.thunks'
 
 export const HOME = 'HOME'
 
-// const preFetchThunks = [dataviewsThunk]
+const preFetchThunks = [dataviewsThunk]
 
-// const thunk = async (dispatch: Dispatch<any>, getState: StateGetter<any>) => {
-//   preFetchThunks.forEach((thunk) => thunk(dispatch, getState))
-// }
+const thunk = async (dispatch: Dispatch<any>, getState: StateGetter<any>) => {
+  preFetchThunks.forEach((thunk) => thunk(dispatch, getState))
+}
 
 const routesMap: RoutesMap = {
   [HOME]: {
     path: '/',
-    // thunk,
+    thunk,
   },
   [NOT_FOUND]: {
     path: '',
-    // thunk: async (dispatch: Dispatch) => {
-    //   dispatch(redirect({ type: HOME }))
-    // },
+    thunk: async (dispatch: Dispatch) => {
+      dispatch(redirect({ type: HOME }))
+    },
   },
 }
 

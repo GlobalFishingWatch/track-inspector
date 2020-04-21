@@ -3,22 +3,20 @@ import { connect } from 'react-redux'
 import { formatDistance } from 'date-fns'
 import { GeneratorConfig } from '@globalfishingwatch/layer-composer'
 import TimebarWrapper from './TimebarWrapper'
-import { getStartQuery, getEndQuery } from '../routes/routes.selectors'
+import { selectStartQuery, selectEndQuery } from '../routes/routes.selectors'
 import { updateQueryParams } from '../routes/routes.actions'
-import { setHighlightedTime, disableHighlightedTime } from './timebar.slice'
-import { getHighlightedTime } from './timebar.selectors'
-import { getTimebarLoading } from '../loaders/loaders.selectors'
+import { selectTracks, selectEvents } from '../vessels/vessels.slice'
+import { selectGeneratorConfigs } from '../map/map.selectors'
+import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
+import { selectTimebarLoading } from './timebar.selectors'
 import { FeatureCollection } from 'geojson'
 import { Event } from '../types'
 import { EVENTS_COLORS } from '../constants'
 
-const getGeneratorConfigs = (state: any) => state.map.generatorConfigs
-const getTracks = (state: any) => state.vessels.tracks
-const getEvents = (state: any) => state.vessels.events
-
 const getGeoJSONTracksData = createSelector(
-  [getGeneratorConfigs, getTracks],
+  [selectGeneratorConfigs, selectTracks],
   (generatorConfigs, tracks) => {
+    console.log(generatorConfigs)
     const geoJSONTracks: { geojson: FeatureCollection; color: string }[] = []
     Object.keys(tracks).forEach((id) => {
       const config: GeneratorConfig = generatorConfigs.find(
@@ -35,7 +33,7 @@ const getGeoJSONTracksData = createSelector(
 
 // TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
 const getEventsForTimebar = createSelector(
-  [getGeneratorConfigs, getEvents, getTracks],
+  [selectGeneratorConfigs, selectEvents, selectTracks],
   (generatorConfigs, events, tracks) => {
     // Retrieve original carrier and fishing vessels ids from generator config
     const trackCarrierConfig = generatorConfigs.find(
@@ -109,14 +107,12 @@ const getEventsForTimebar = createSelector(
 )
 
 const mapStateToProps = (state: any) => ({
-  start: getStartQuery(state),
-  end: getEndQuery(state),
-  // tracks: getGeoJSONTracksData(state),
-  // tracksEvents: getEventsForTimebar(state),
-  tracks: [],
-  tracksEvents: [],
-  loading: getTimebarLoading(state),
-  highlightedTime: getHighlightedTime(state),
+  start: selectStartQuery(state),
+  end: selectEndQuery(state),
+  tracks: getGeoJSONTracksData(state),
+  tracksEvents: getEventsForTimebar(state),
+  loading: selectTimebarLoading(state),
+  highlightedTime: selectHighlightedTime(state),
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
