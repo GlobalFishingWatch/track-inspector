@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import connectedRoutes, { routerQueryMiddleware } from './routes'
+import timebar from './timebar/timebar.slice'
+import loaders from './loaders/loaders.slice'
 
 const {
   reducer: location,
@@ -10,7 +12,8 @@ const {
 } = connectedRoutes
 
 const rootReducer = combineReducers({
-  // todos: todosReducer,
+  timebar,
+  loaders,
   location: location,
 })
 

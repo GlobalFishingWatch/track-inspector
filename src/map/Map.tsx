@@ -24,10 +24,6 @@ const generatorConfigs: any = [
   },
 ]
 
-// const setMapViewport: (viewport: Viewport) => {
-//   dispatch(updateQueryParams(viewport))
-// }
-
 function Map(props: any) {
   const {
     // start,
@@ -46,15 +42,15 @@ function Map(props: any) {
     () => ({
       // start,
       // end,
-      // zoom,
+      zoom,
       styleTransformations,
     }),
-    // [start, end, zoom]
-    []
+    [/*start, end, */ zoom]
   )
   const [style] = useLayerComposer(layerComposer, generatorConfigs, globalGeneratorConfig)
 
   const [viewport, onViewportChange] = useViewport(
+    // TODO this being an anonymous function, will a Map render be triggered with unrelated store changes???
     (viewport: Viewport) => {
       dispatch(updateQueryParams(viewport))
     },
