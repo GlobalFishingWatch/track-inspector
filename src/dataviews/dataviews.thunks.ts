@@ -5,7 +5,7 @@ import Pbf from 'pbf'
 import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
-import { getDataviewsQuery } from '../routes/routes.selectors'
+import { selectDataviewsQuery } from '../routes/routes.selectors'
 import { updateMapLayers } from '../map/map.actions'
 import { setVesselTrack, setVesselEvents } from '../vessels/vessels.slice'
 import { startLoading, completeLoading } from '../loaders/loaders.slice'
@@ -36,7 +36,7 @@ const dataviewsClient = new DataviewsClient(
 
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
-  const dataviewsQuery = getDataviewsQuery(state)
+  const dataviewsQuery = selectDataviewsQuery(state)
 
   if (dataviewsQuery) {
     // TODO: better handle of loading when no new dataviews to load, removing for now to avoid unnecesary rerenders

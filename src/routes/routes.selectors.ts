@@ -16,7 +16,7 @@ const selectQueryParam = (param: WorkspaceParam) =>
     return query[param]
   })
 
-export const getDataviewsQuery = selectQueryParam('dataviewsWorkspace')
+export const selectDataviewsQuery = selectQueryParam('dataviewsWorkspace')
 
 export const selectMapZoomQuery = selectQueryParam('zoom')
 export const selectMapLatitudeQuery = selectQueryParam('latitude')
