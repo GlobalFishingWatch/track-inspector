@@ -19,15 +19,16 @@ const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
 
 function Map() {
-  const zoom: number = useSelector(selectMapZoomQuery)
-  const latitude: number = useSelector(selectMapLatitudeQuery)
-  const longitude: number = useSelector(selectMapLongitudeQuery)
+  const zoom = useSelector(selectMapZoomQuery)
+  const latitude = useSelector(selectMapLatitudeQuery)
+  const longitude = useSelector(selectMapLongitudeQuery)
   const start = useSelector(selectStartQuery)
   const end = useSelector(selectEndQuery)
-  const loading: boolean = useSelector(selectMapLoading)
+  const loading = useSelector(selectMapLoading)
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
   const dispatch = useDispatch()
+
   const globalGeneratorConfig = useMemo(
     () => ({
       start,

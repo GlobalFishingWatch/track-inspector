@@ -3,7 +3,7 @@ import GFWAPI from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
 import './App.css'
 import Map from '../map/Map'
-import TimebarWrapper from '../timebar/TimebarWrapper.container'
+import Timebar from '../timebar/Timebar'
 
 function App() {
   const { loading, logged } = useGFWLogin(GFWAPI)
@@ -15,7 +15,7 @@ function App() {
   return (
     <Fragment>
       <Map />
-      <TimebarWrapper />
+      <Timebar />
     </Fragment>
   )
 }

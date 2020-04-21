@@ -1,5 +1,11 @@
 import React, { Fragment, memo, useState, useMemo } from 'react'
-import Timebar, {
+import { useSelector, useDispatch } from 'react-redux'
+import { selectStartQuery, selectEndQuery } from '../routes/routes.selectors'
+import { getGeoJSONTracksData, getEventsForTimebar } from './timebar.selectors'
+import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
+import { selectTimebarLoading } from './timebar.selectors'
+import { updateQueryParams } from '../routes/routes.actions'
+import TimebarComponent, {
   TimebarTracks,
   TimebarActivity,
   TimebarTracksEvents,
@@ -7,7 +13,7 @@ import Timebar, {
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from '../loaders/Loader'
-import './TimebarWrapper.css'
+import './Timebar.css'
 import { Event } from '../types/'
 
 enum Graph {
@@ -38,18 +44,15 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
   })
 }
 
-const TimebarWrapper = (props: any) => {
-  const {
-    start,
-    end,
-    tracks,
-    tracksEvents,
-    loading,
-    highlightedTime,
-    setTimerange,
-    setHighlightedTime,
-    panToEvent,
-  } = props
+const TimebarWrapper = () => {
+  const start = useSelector(selectStartQuery)
+  const end = useSelector(selectEndQuery)
+  const tracks = useSelector(getGeoJSONTracksData)
+  const tracksEvents = useSelector(getEventsForTimebar)
+  const highlightedTime = useSelector(selectHighlightedTime)
+  const loading = useSelector(selectTimebarLoading)
+
+  const dispatch = useDispatch()
 
   const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
 
@@ -60,7 +63,7 @@ const TimebarWrapper = (props: any) => {
 
   return (
     <div className="timebar">
-      <Timebar
+      <TimebarComponent
         enablePlayback
         start={start}
         end={end}
@@ -68,9 +71,17 @@ const TimebarWrapper = (props: any) => {
         absoluteEnd={'2020-01-01T00:00:00.000Z'}
         onChange={(start: string, end: string) => {
           // TODO needs to be debounced like viewport
-          setTimerange(start, end)
+          dispatch(updateQueryParams({ start, end }))
         }}
-        onMouseMove={setHighlightedTime}
+        onMouseMove={(clientX: number, scale: (arg: number) => Date) => {
+          if (clientX === null) {
+            dispatch(disableHighlightedTime())
+            return
+          }
+          const start = scale(clientX - 10).toISOString()
+          const end = scale(clientX + 10).toISOString()
+          dispatch(setHighlightedTime({ start, end }))
+        }}
       >
         {(props: any) => {
           return loading ? (
@@ -89,7 +100,12 @@ const TimebarWrapper = (props: any) => {
                   tooltipContainer={props.tooltipContainer}
                   tracksEvents={tracksEvents}
                   onEventClick={(event: Event) => {
-                    panToEvent(event.position.lat, event.position.lon)
+                    dispatch(
+                      updateQueryParams({
+                        latitude: event.position.lat,
+                        longitude: event.position.lon,
+                      })
+                    )
                   }}
                 />
               )}
@@ -117,7 +133,7 @@ const TimebarWrapper = (props: any) => {
             </Fragment>
           )
         }}
-      </Timebar>
+      </TimebarComponent>
       <div className="graphSelector">
         <select
           className="graphSelectorSelect"
