@@ -10,7 +10,7 @@ export const selectGeneratorConfigs = (state: any) => state.map.generatorConfigs
 export const selectGeneratorConfigWithData = createSelector(
   [selectGeneratorConfigs, selectTracks, selectEvents, selectHighlightedTime, selectDataviewsQuery],
   (generatorConfigs, tracks, events, highlightedTime, dvq) => {
-    console.log(dvq, generatorConfigs)
+    // console.log(dvq, generatorConfigs)
     const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
       if (generatorConfig.type === Type.Track && generatorConfig.datasetParamsId) {
         const data = tracks[generatorConfig.datasetParamsId]

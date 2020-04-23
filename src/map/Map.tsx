@@ -4,13 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
 import { updateQueryParams } from '../routes/routes.actions'
-import {
-  selectMapZoomQuery,
-  selectMapLatitudeQuery,
-  selectMapLongitudeQuery,
-  selectStartQuery,
-  selectEndQuery,
-} from '../routes/routes.selectors'
+import { selectViewport, selectTimerange } from '../routes/routes.selectors'
 import { selectGeneratorConfigWithData } from './map.selectors'
 import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
@@ -20,11 +14,8 @@ const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
 
 function Map() {
-  const zoom = useSelector(selectMapZoomQuery)
-  const latitude = useSelector(selectMapLatitudeQuery)
-  const longitude = useSelector(selectMapLongitudeQuery)
-  const start = useSelector(selectStartQuery)
-  const end = useSelector(selectEndQuery)
+  const { zoom, latitude, longitude } = useSelector(selectViewport)
+  const { start, end } = useSelector(selectTimerange)
   const loading = useSelector(selectLoader('map'))
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
