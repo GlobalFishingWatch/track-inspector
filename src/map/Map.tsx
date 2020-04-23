@@ -11,9 +11,10 @@ import {
   selectStartQuery,
   selectEndQuery,
 } from '../routes/routes.selectors'
-import { selectMapLoading, selectGeneratorConfigWithData } from './map.selectors'
+import { selectGeneratorConfigWithData } from './map.selectors'
 import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
+import { selectLoader } from '../loaders/loaders.slice'
 
 const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
@@ -24,7 +25,7 @@ function Map() {
   const longitude = useSelector(selectMapLongitudeQuery)
   const start = useSelector(selectStartQuery)
   const end = useSelector(selectEndQuery)
-  const loading = useSelector(selectMapLoading)
+  const loading = useSelector(selectLoader('map'))
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
   const dispatch = useDispatch()

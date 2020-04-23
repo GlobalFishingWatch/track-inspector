@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Loader } from '../types'
+import { createSelector } from '@reduxjs/toolkit'
+import { Loader, LoaderArea } from '../types'
 import { RootState } from '../store'
 
 const initialState: Loader[] = []
@@ -26,3 +27,8 @@ export const { startLoading, completeLoading } = slice.actions
 export default slice.reducer
 
 export const selectLoaders = (state: RootState) => state.loaders
+
+export const selectLoader = (loader: LoaderArea) =>
+  createSelector([selectLoaders], (loaders: Loader[]): boolean => {
+    return loaders.filter((l) => l.areas.includes(loader)).length > 0
+  })

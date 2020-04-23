@@ -1,6 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { Loader } from '../types'
-import { selectLoaders } from '../loaders/loaders.slice'
 import { selectGeneratorConfigs } from '../map/map.selectors'
 import { selectTracks, selectEvents } from '../vessels/vessels.slice'
 import { formatDistance } from 'date-fns'
@@ -8,13 +6,6 @@ import { GeneratorConfig } from '@globalfishingwatch/layer-composer'
 import { FeatureCollection } from 'geojson'
 import { Event } from '../types'
 import { EVENTS_COLORS } from '../constants'
-
-export const selectTimebarLoading = createSelector(
-  [selectLoaders],
-  (loaders: Loader[]): boolean => {
-    return loaders.filter((l) => l.areas.includes('timebar')).length > 0
-  }
-)
 
 export const getGeoJSONTracksData = createSelector(
   [selectGeneratorConfigs, selectTracks],

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectStartQuery, selectEndQuery } from '../routes/routes.selectors'
 import { getGeoJSONTracksData, getEventsForTimebar } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { selectTimebarLoading } from './timebar.selectors'
 import { updateQueryParams } from '../routes/routes.actions'
 import TimebarComponent, {
   TimebarTracks,
@@ -15,6 +14,7 @@ import TimebarComponent, {
 import Loader from '../loaders/Loader'
 import './Timebar.css'
 import { Event } from '../types/'
+import { selectLoader } from '../loaders/loaders.slice'
 
 enum Graph {
   Encounters = 'Encounters',
@@ -50,7 +50,7 @@ const TimebarWrapper = () => {
   const tracks = useSelector(getGeoJSONTracksData)
   const tracksEvents = useSelector(getEventsForTimebar)
   const highlightedTime = useSelector(selectHighlightedTime)
-  const loading = useSelector(selectTimebarLoading)
+  const loading = useSelector(selectLoader('timebar'))
 
   const dispatch = useDispatch()
 

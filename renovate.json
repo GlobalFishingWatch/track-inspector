@@ -14,8 +14,24 @@
       "groupName": "eslint"
     },
     {
+      "packagePatterns": ["^stylelint"],
+      "groupName": "stylelint"
+    },
+    {
+      "packagePatterns": ["^@types"],
+      "groupName": "@types"
+    },
+    {
+      "packagePatterns": ["^@globalfishingwatch"],
+      "groupName": "globalfishingwatch"
+    },
+    {
       "packageNames": ["react", "react-dom"],
       "groupName": "react"
+    },
+    {
+      "packageNames": ["react-redux", "@reduxjs/toolkit"],
+      "groupName": "redux"
     }
   ],
   "labels": ["renovate"],
