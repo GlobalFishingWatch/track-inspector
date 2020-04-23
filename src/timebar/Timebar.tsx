@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectStartQuery, selectEndQuery } from '../routes/routes.selectors'
-import { getGeoJSONTracksData, getEventsForTimebar } from './timebar.selectors'
+import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
 import { updateQueryParams } from '../routes/routes.actions'
 import TimebarComponent, {
@@ -48,7 +48,7 @@ const TimebarWrapper = () => {
   const start = useSelector(selectStartQuery)
   const end = useSelector(selectEndQuery)
   const tracks = useSelector(getGeoJSONTracksData)
-  const tracksEvents = useSelector(getEventsForTimebar)
+  const tracksEvents = useSelector(getEventsWithRenderingInfo)
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
 

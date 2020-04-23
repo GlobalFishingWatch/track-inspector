@@ -25,7 +25,7 @@ export const getGeoJSONTracksData = createSelector(
 )
 
 // TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
-export const getEventsForTimebar = createSelector(
+export const getEventsForTracks = createSelector(
   [selectGeneratorConfigs, selectEvents, selectTracks],
   (generatorConfigs, events, tracks) => {
     // Retrieve original carrier and fishing vessels ids from generator config
@@ -42,9 +42,29 @@ export const getEventsForTimebar = createSelector(
     const trackCarrierEvents = events[carrierId]
     if (!trackCarrierEvents) return []
 
-    // Inject colors using type and auth status
-    // + add text descriptions
-    const trackCarrierEventsForTimebar = trackCarrierEvents.map((event: Event) => {
+    // Filter encounters events from the carrier that are matching the fishing vessel id
+    const fishingId = trackFishingConfig.datasetParamsId
+    const trackFishingEventsForTimebar = trackCarrierEvents.filter(
+      (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
+    )
+
+    const trackEvents = Object.keys(tracks).map((id) => {
+      if (id === carrierId) {
+        return trackCarrierEvents
+      } else if (id === fishingId) {
+        return trackFishingEventsForTimebar
+      }
+      return []
+    })
+    return trackEvents
+  }
+)
+
+// Inject colors using type and auth status
+export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (eventsForTrack) => {
+  // + add text descriptions
+  const eventsWithRenderingInfo = eventsForTrack.map((trackEvents: Event[]) => {
+    return trackEvents.map((event: Event) => {
       let colorKey = event.type as string
       if (event.type === 'encounter') {
         colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
@@ -80,21 +100,6 @@ export const getEventsForTimebar = createSelector(
         description,
       }
     })
-
-    // Filter encounters events from the carrier that are matching the fishing vessel id
-    const fishingId = trackFishingConfig.datasetParamsId
-    const trackFishingEventsForTimebar = trackCarrierEventsForTimebar.filter(
-      (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
-    )
-
-    const trackEvents = Object.keys(tracks).map((id) => {
-      if (id === carrierId) {
-        return trackCarrierEventsForTimebar
-      } else if (id === fishingId) {
-        return trackFishingEventsForTimebar
-      }
-      return []
-    })
-    return trackEvents
-  }
-)
+  })
+  return eventsWithRenderingInfo
+})
