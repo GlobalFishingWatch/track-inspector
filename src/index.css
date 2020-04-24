@@ -28,6 +28,9 @@
   --color-background-transparent: rgba(var(--color-background-rgb), 0.5);
   --color-foreground: white;
   --color-foreground-transparent: rgba(255, 255, 255, 0.5);
+  --sidebar-background: #e5f0f2;
+  --sidebar-brand-transparent: rgba(22, 63, 137, 0.7);
+  --sidebar-brand-thin: rgba(22, 63, 137, 0.1);
 }
 
 html {

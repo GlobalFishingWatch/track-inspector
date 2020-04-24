@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import ReactMapGL, { ScaleControl } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
 import { format } from 'date-fns'
@@ -9,7 +9,7 @@ import { selectViewport, selectTimerange } from '../routes/routes.selectors'
 import { selectGeneratorConfigWithData } from './map.selectors'
 import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
-import { selectLoader } from '../loaders/loaders.slice'
+import { selectLoader } from '../loaders/loaders.selectors'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import MapControls from './MapControls'
 import './Map.css'
@@ -54,7 +54,7 @@ function Map() {
   )
 
   return (
-    <div className="map">
+    <Fragment>
       {loading && <Loader />}
       <ReactMapGL
         width="100%"
@@ -68,13 +68,13 @@ function Map() {
       >
         <div className={styles.info}>
           <div className={styles.scale}>
-            <ScaleControl maxWidth={100} unit="nautical" />
+            {zoom > 3 && <ScaleControl maxWidth={100} unit="nautical" />}
           </div>
           <div>{formattedTime}</div>
         </div>
       </ReactMapGL>
       <MapControls />
-    </div>
+    </Fragment>
   )
 }
 

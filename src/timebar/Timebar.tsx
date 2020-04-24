@@ -15,7 +15,7 @@ import TimebarComponent, {
 import Loader from '../loaders/Loader'
 import styles from './Timebar.module.css'
 import { Event } from '../types/'
-import { selectLoader } from '../loaders/loaders.slice'
+import { selectLoader } from '../loaders/loaders.selectors'
 
 enum Graph {
   Encounters = 'Encounters',
@@ -63,7 +63,7 @@ const TimebarWrapper = () => {
   }, [segments, currentGraph])
 
   return (
-    <div className={styles.timebar}>
+    <Fragment>
       <TimebarComponent
         enablePlayback
         start={start}
@@ -153,7 +153,7 @@ const TimebarWrapper = () => {
         </select>
         <div className={styles.graphSelectorArrow}>{/* <Icon icon="graph" /> */}</div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 

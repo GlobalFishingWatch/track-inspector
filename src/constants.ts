@@ -1,6 +1,6 @@
-import { Workspace, Dataset } from '@globalfishingwatch/api-client'
+import { Dataset } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
-import { Dictionary } from './types'
+import { Dictionary, AppState } from './types'
 
 export const EVENTS_COLORS: Dictionary<string> = {
   encounterauthorized: '#FAE9A0',
@@ -10,7 +10,7 @@ export const EVENTS_COLORS: Dictionary<string> = {
   port: '#99EEFF',
 }
 
-export const DEFAULT_WORKSPACE: Workspace = {
+export const DEFAULT_WORKSPACE: AppState = {
   dataviewsWorkspace: [
     {
       id: 'background',
@@ -169,6 +169,7 @@ export const DEFAULT_WORKSPACE: Workspace = {
   longitude: 134,
   start: '2019-01-01T00:00:00.000Z',
   end: '2020-01-01T00:00:00.000Z',
+  sidebar: true,
 }
 
 const datasetsEndpointMock: Dataset[] = [

@@ -1,3 +1,5 @@
+import { Workspace } from '@globalfishingwatch/api-client'
+
 export interface Dictionary<T> {
   [key: string]: T
 }
@@ -9,9 +11,10 @@ export type WorkspaceParam =
   | 'longitude'
   | 'start'
   | 'end'
+  | 'sidebar'
 
 export type QueryParams = {
-  [query in WorkspaceParam]?: string | number | null
+  [query in WorkspaceParam]?: string | number | boolean | null
 }
 
 export type LoaderArea = 'map' | 'timebar'
@@ -44,3 +47,6 @@ export type Event = {
   }
 }
 
+export type AppState = Workspace & {
+  sidebar: boolean
+}

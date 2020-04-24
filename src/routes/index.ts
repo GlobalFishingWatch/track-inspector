@@ -38,6 +38,7 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   latitude: (s) => parseFloat(s),
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
+  sidebar: (s) => (s === 'true' ? true : false),
   dataviewsWorkspace: (s) => {
     const layers = s.map((layer: any) => {
       const newLayer = { ...layer }
@@ -71,6 +72,7 @@ const decodeWorkspace = (queryString: string) => {
     const value = parsed[param]
     if (value && urlToObjectTransformation[param]) {
       parsed[param] = urlToObjectTransformation[param](value)
+      console.log(param, value, parsed[param])
     }
   })
   return parsed
