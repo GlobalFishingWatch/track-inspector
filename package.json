@@ -45,7 +45,7 @@
     "typescript": "3.7.5"
   },
   "devDependencies": {
-    "@satellitestudio/eslint-config": "1.2.1",
+    "@satellitestudio/eslint-config": "1.2.2",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.1",
     "eslint-config-react-app": "5.2.1",
