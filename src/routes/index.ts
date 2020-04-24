@@ -41,12 +41,17 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   dataviewsWorkspace: (s) => {
     const layers = s.map((layer: any) => {
       const newLayer = { ...layer }
-      if (layer.overrides?.currentEvent) {
-        layer.overrides.currentEvent = {
-          position: {
-            lat: parseFloat(layer.overrides.currentEvent.position.lat),
-            lng: parseFloat(layer.overrides.currentEvent.position.lng),
-          },
+      if (layer.overrides) {
+        if (layer.overrides.currentEvent) {
+          layer.overrides.currentEvent = {
+            position: {
+              lat: parseFloat(layer.overrides.currentEvent.position.lat),
+              lng: parseFloat(layer.overrides.currentEvent.position.lng),
+            },
+          }
+        }
+        if (layer.overrides.visible) {
+          layer.overrides.visible = layer.overrides.visible === 'true' ? true : false
         }
       }
       return newLayer
