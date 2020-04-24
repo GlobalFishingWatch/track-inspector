@@ -1,0 +1,21 @@
+.mapControls {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 6;
+  filter: var(--drop-shadow);
+}
+
+.mapControl {
+  width: 3.6rem;
+  height: 3.6rem;
+  background-color: var(--color-brand);
+  border-radius: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.mapControl:hover,
+.mapControl:focus {
+  background-color: var(--color-brand-highlight);
+  fill: var(--color-brand);
+}
