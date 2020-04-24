@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Suspense, Fragment } from 'react'
 import GFWAPI from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
 import './App.css'
-import Map from '../map/Map'
+import Loader from '../loaders/Loader'
 import Timebar from '../timebar/Timebar'
+
+const Map = React.lazy(() => import('../map/Map'))
 
 function App() {
   const { loading, logged } = useGFWLogin(GFWAPI)
@@ -14,7 +16,9 @@ function App() {
 
   return (
     <Fragment>
-      <Map />
+      <Suspense fallback={<Loader />}>
+        <Map />
+      </Suspense>
       <Timebar />
     </Fragment>
   )
