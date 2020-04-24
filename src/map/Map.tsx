@@ -10,6 +10,7 @@ import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
 import { selectLoader } from '../loaders/loaders.slice'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import MapControls from './MapControls'
 import './Map.css'
 
 const layerComposer = new LayerComposer()
@@ -57,6 +58,7 @@ function Map() {
           customAttribution: '© Copyright Global Fishing Watch 2019',
         }}
       />
+      <MapControls />
     </div>
   )
 }

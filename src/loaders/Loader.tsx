@@ -1,8 +1,8 @@
 import React from 'react'
-import './Loader.css'
+import styles from './Loader.module.css'
 
 export default () => (
-  <div className="loader">
-    <div className="spinner" />
+  <div className={styles.loader}>
+    <div className={styles.spinner} />
   </div>
 )

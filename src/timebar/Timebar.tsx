@@ -13,7 +13,7 @@ import TimebarComponent, {
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from '../loaders/Loader'
-import './Timebar.css'
+import styles from './Timebar.module.css'
 import { Event } from '../types/'
 import { selectLoader } from '../loaders/loaders.slice'
 
@@ -63,7 +63,7 @@ const TimebarWrapper = () => {
   }, [segments, currentGraph])
 
   return (
-    <div className="timebar">
+    <div className={styles.timebar}>
       <TimebarComponent
         enablePlayback
         start={start}
@@ -136,9 +136,9 @@ const TimebarWrapper = () => {
           )
         }}
       </TimebarComponent>
-      <div className="graphSelector">
+      <div className={styles.graphSelector}>
         <select
-          className="graphSelectorSelect"
+          className={styles.graphSelectorSelect}
           onChange={(event) => {
             setCurrentGraph(event.target.value as Graph)
           }}
@@ -151,7 +151,7 @@ const TimebarWrapper = () => {
             {Graph.Speed}
           </option>
         </select>
-        <div className="graphSelectorArrow">{/* <Icon icon="graph" /> */}</div>
+        <div className={styles.graphSelectorArrow}>{/* <Icon icon="graph" /> */}</div>
       </div>
     </div>
   )
