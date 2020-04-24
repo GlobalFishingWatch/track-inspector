@@ -10,12 +10,19 @@
       "automerge": true
     },
     {
-      "packagePatterns": ["^eslint"],
-      "groupName": "eslint"
+      "packagePatterns": [
+        "^eslint",
+        "^lint",
+        "^stylelint",
+        "prettier",
+        "husky",
+        "imagemin-lint-stagedgp"
+      ],
+      "groupName": "linting"
     },
     {
-      "packagePatterns": ["^stylelint"],
-      "groupName": "stylelint"
+      "packagePatterns": ["^@testing-library"],
+      "groupName": "testing"
     },
     {
       "packagePatterns": ["^@types"],
@@ -26,7 +33,7 @@
       "groupName": "globalfishingwatch"
     },
     {
-      "packageNames": ["react", "react-dom"],
+      "packageNames": ["^react"],
       "groupName": "react"
     },
     {
