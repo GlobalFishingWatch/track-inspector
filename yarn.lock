@@ -1719,10 +1719,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@satellitestudio/eslint-config@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@satellitestudio/eslint-config/-/eslint-config-1.2.1.tgz#9b1ea44e47a1a5f5439fb3e2a0768417db7f8ecc"
-  integrity sha512-+ffWCiNbPWx/4CYR80O3LowkiLH70cOpFeVKVTAYYlBbXBhugI33vviSFvTUKCRgVngkEryF9/04G6uZ+Q6C7A==
+"@satellitestudio/eslint-config@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@satellitestudio/eslint-config/-/eslint-config-1.2.2.tgz#6cbb5599d358d79758f47be7b3c1b4894dfaa17a"
+  integrity sha512-caoGg2sLufw+8clCA9KbrM+HRFctMQ3DwZwiRYg++XpidBc/oYo+lDSCfNhwaZD17Xe5n2tvC6La8jgB7H/mXQ==
 
 "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.3"
