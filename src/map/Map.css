@@ -1,6 +1,7 @@
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
   background-color: transparent;
   font-family: var(--font-family);
+  font-size: var(--font-size-M);
   color: var(--color-foreground-transparent);
 }
 
@@ -29,4 +30,9 @@
 .mapboxgl-ctrl.mapboxgl-ctrl-scale::after {
   left: auto;
   right: 0;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  bottom: 0.5rem;
+  right: 0.7rem;
 }

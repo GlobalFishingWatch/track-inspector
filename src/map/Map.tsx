@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import ReactMapGL, { ScaleControl } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
+import { format } from 'date-fns'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
 import { updateQueryParams } from '../routes/routes.actions'
@@ -24,6 +25,12 @@ function Map() {
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
   const dispatch = useDispatch()
+
+  const formattedTime = useMemo(() => {
+    const startFmt = format(new Date(start), 'PPp')
+    const endFmt = format(new Date(end), 'PPp')
+    return `${startFmt} - ${endFmt}`
+  }, [start, end])
 
   const globalGeneratorConfig = useMemo(
     () => ({
@@ -59,8 +66,11 @@ function Map() {
           customAttribution: '© Copyright Global Fishing Watch 2019',
         }}
       >
-        <div className={styles.scale}>
-          <ScaleControl maxWidth={100} unit="nautical" />
+        <div className={styles.info}>
+          <div className={styles.scale}>
+            <ScaleControl maxWidth={100} unit="nautical" />
+          </div>
+          <div>{formattedTime}</div>
         </div>
       </ReactMapGL>
       <MapControls />

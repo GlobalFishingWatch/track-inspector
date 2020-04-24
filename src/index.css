@@ -10,7 +10,15 @@
   /* TYPE */
   --font-family: 'Roboto', sans-serif;
   --font-weight-regular: 400;
+  --font-size-XS: 1rem;
+  --font-size-S: 1.2rem;
+  --font-size-M: 1.4rem;
   --font-size-L: 1.6rem;
+  --font-size-XL: 2rem;
+  --font-line-height-L: 1.8rem;
+  --font-line-height-XL: 3.4rem;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
 
   /* COLORS */
   --color-brand: rgba(22, 63, 137, 1);
