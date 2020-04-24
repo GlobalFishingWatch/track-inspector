@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import ReactMapGL from 'react-map-gl'
+import ReactMapGL, { ScaleControl } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
@@ -12,6 +12,7 @@ import { selectLoader } from '../loaders/loaders.slice'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import MapControls from './MapControls'
 import './Map.css'
+import styles from './Map.module.css'
 
 const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
@@ -57,7 +58,11 @@ function Map() {
         mapOptions={{
           customAttribution: '© Copyright Global Fishing Watch 2019',
         }}
-      />
+      >
+        <div className={styles.scale}>
+          <ScaleControl maxWidth={100} unit="nautical" />
+        </div>
+      </ReactMapGL>
       <MapControls />
     </div>
   )
