@@ -4,6 +4,7 @@ import { selectTimerange } from '../routes/routes.selectors'
 import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
 import { updateQueryParams } from '../routes/routes.actions'
+import { selectGeneratorConfigCurrentEventId } from '../map/map.selectors'
 import TimebarComponent, {
   TimebarTracks,
   TimebarActivity,
@@ -50,6 +51,7 @@ const TimebarWrapper = () => {
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
+  const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
   const dispatch = useDispatch()
 
@@ -98,6 +100,7 @@ const TimebarWrapper = () => {
                   graphHeight={props.graphHeight}
                   tooltipContainer={props.tooltipContainer}
                   tracksEvents={tracksEvents}
+                  preselectedEventId={currentEventId}
                   onEventClick={(event: Event) => {
                     dispatch(
                       updateQueryParams({

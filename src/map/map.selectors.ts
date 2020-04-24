@@ -31,3 +31,17 @@ export const selectGeneratorConfigWithData = createSelector(
     return generatorConfigsWithData
   }
 )
+
+// TODO Track-inspector specific, generalize
+export const selectGeneratorConfigCurrentEventId = createSelector(
+  [selectGeneratorConfigs],
+  (generatorConfigs) => {
+    const vesselEventsConfig = generatorConfigs.find(
+      (generatorConfig: GeneratorConfig) => generatorConfig.type === Type.VesselEvents
+    )
+    if (vesselEventsConfig) {
+      return vesselEventsConfig.currentEventId
+    }
+    return null
+  }
+)
