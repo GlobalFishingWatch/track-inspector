@@ -9,6 +9,8 @@ import { selectGeneratorConfigWithData } from './map.selectors'
 import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
 import { selectLoader } from '../loaders/loaders.slice'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import './Map.css'
 
 const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
@@ -51,6 +53,9 @@ function Map() {
         {...viewport}
         onViewportChange={onViewportChange as any}
         mapStyle={style}
+        mapOptions={{
+          customAttribution: '© Copyright Global Fishing Watch 2019',
+        }}
       />
     </div>
   )

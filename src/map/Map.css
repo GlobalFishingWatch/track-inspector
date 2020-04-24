@@ -1,0 +1,5 @@
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  background-color: transparent;
+  font-family: var(--font-family);
+  color: rgba(255, 255, 255, 0.5);
+}
