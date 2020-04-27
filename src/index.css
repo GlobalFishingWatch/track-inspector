@@ -31,6 +31,10 @@
   --sidebar-background: #e5f0f2;
   --sidebar-brand-transparent: rgba(22, 63, 137, 0.7);
   --sidebar-brand-thin: rgba(22, 63, 137, 0.1);
+
+  /* SHADOWS */
+  --block-shadow: 0 0 1rem 0 rgba(44, 61, 108, 0.15);
+  --drop-shadow: drop-shadow(0 0.5rem 1rem rgba(44, 61, 108, 0.15));
 }
 
 html {

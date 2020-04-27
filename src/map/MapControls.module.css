@@ -1,9 +1,15 @@
 .mapControls {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 1.2rem;
   right: 1.2rem;
   z-index: 6;
-  filter: var(--drop-shadow);
+}
+
+.miniglobe {
+  margin-bottom: 0.8rem;
 }
 
 .mapControl {
@@ -12,6 +18,7 @@
   background-color: var(--color-brand);
   border-radius: 1.8rem;
   margin-bottom: 0.8rem;
+  filter: var(--drop-shadow);
 }
 
 .mapControl:hover,

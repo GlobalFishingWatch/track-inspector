@@ -1,7 +1,8 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useRef, useEffect, useMemo, useState } from 'react'
 import ReactMapGL, { ScaleControl } from 'react-map-gl'
 import { useSelector, useDispatch } from 'react-redux'
 import { format } from 'date-fns'
+import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
 import { updateQueryParams } from '../routes/routes.actions'
@@ -53,10 +54,30 @@ function Map() {
     longitude
   )
 
+  const mapRef = useRef<any>(null)
+
+  const [bounds, setBounds] = useState<MiniGlobeBounds | any>(null)
+
+  useEffect(() => {
+    const mapboxRef = mapRef.current && mapRef.current.getMap()
+    if (mapboxRef) {
+      const rawBounds = mapboxRef.getBounds()
+      if (rawBounds) {
+        setBounds({
+          north: rawBounds.getNorth() as number,
+          south: rawBounds.getSouth() as number,
+          west: rawBounds.getWest() as number,
+          east: rawBounds.getEast() as number,
+        })
+      }
+    }
+  }, [zoom, latitude, longitude])
+
   return (
     <Fragment>
       {loading && <Loader />}
       <ReactMapGL
+        ref={mapRef}
         width="100%"
         height="100%"
         {...viewport}
@@ -73,7 +94,7 @@ function Map() {
           <div>{formattedTime}</div>
         </div>
       </ReactMapGL>
-      <MapControls />
+      <MapControls bounds={bounds} />
     </Fragment>
   )
 }
