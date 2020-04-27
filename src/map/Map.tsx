@@ -8,6 +8,8 @@ import useLayerComposer from '@globalfishingwatch/map-components/components/laye
 import { updateQueryParams } from '../routes/routes.actions'
 import { selectViewport, selectTimerange } from '../routes/routes.selectors'
 import { selectGeneratorConfigWithData } from './map.selectors'
+import { selectEditing } from '../rulers/rulers.selectors'
+import { editRuler, moveCurrentRuler } from '../rulers/rulers.slice'
 import useViewport, { Viewport } from './useViewport'
 import Loader from '../loaders/Loader'
 import { selectLoader } from '../loaders/loaders.selectors'
@@ -24,6 +26,7 @@ function Map() {
   const { start, end } = useSelector(selectTimerange)
   const loading = useSelector(selectLoader('map'))
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
+  const rulersEditing = useSelector(selectEditing)
 
   const dispatch = useDispatch()
 
@@ -85,6 +88,27 @@ function Map() {
         mapStyle={style}
         mapOptions={{
           customAttribution: '© Copyright Global Fishing Watch 2019',
+        }}
+        onClick={(event) => {
+          if (rulersEditing === true) {
+            dispatch(
+              editRuler({
+                longitude: event.lngLat[0],
+                latitude: event.lngLat[1],
+              })
+            )
+            return
+          }
+        }}
+        onMouseMove={(event) => {
+          if (rulersEditing === true) {
+            dispatch(
+              moveCurrentRuler({
+                longitude: event.lngLat[0],
+                latitude: event.lngLat[1],
+              })
+            )
+          }
         }}
       >
         <div className={styles.info}>

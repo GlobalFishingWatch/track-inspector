@@ -4,6 +4,7 @@ import connectedRoutes, { routerQueryMiddleware } from './routes'
 import timebar from './timebar/timebar.slice'
 import loaders from './loaders/loaders.slice'
 import vessels from './vessels/vessels.slice'
+import rulers from './rulers/rulers.slice'
 import map from './map/map.reducer'
 
 const {
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   timebar,
   loaders,
   vessels,
+  rulers,
   map, // TODO: remove - should use dataviews in get params
   location: location,
 })

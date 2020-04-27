@@ -72,7 +72,6 @@ const decodeWorkspace = (queryString: string) => {
     const value = parsed[param]
     if (value && urlToObjectTransformation[param]) {
       parsed[param] = urlToObjectTransformation[param](value)
-      console.log(param, value, parsed[param])
     }
   })
   return parsed

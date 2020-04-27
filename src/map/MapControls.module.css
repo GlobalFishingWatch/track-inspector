@@ -22,8 +22,12 @@
   filter: var(--drop-shadow);
 }
 
-.mapControl:hover,
-.mapControl:focus {
+.mapControl:hover {
+  background-color: var(--color-brand-highlight);
+  fill: var(--color-brand);
+}
+
+.mapControl._active {
   background-color: var(--color-brand-highlight);
   fill: var(--color-brand);
 }
