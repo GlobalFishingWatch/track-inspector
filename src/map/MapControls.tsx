@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import cx from 'classnames'
+import formatcoords from 'formatcoords'
 import MiniGlobe from '@globalfishingwatch/map-components/components/miniglobe'
 import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
 import { updateQueryParams } from '../routes/routes.actions'
@@ -12,9 +14,19 @@ import { ReactComponent as IconRuler } from '../assets/icons/ruler.svg'
 const MapControls = ({ bounds }: { bounds: MiniGlobeBounds | null }) => {
   const { latitude, longitude, zoom } = useSelector(selectViewport)
   const dispatch = useDispatch()
+
+  const [showCoords, setShowCoords] = useState(false)
+  const [pinned, setPinned] = useState(false)
+  const [showDMS, setShowDMS] = useState(false)
+
   return (
     <div className={styles.mapControls}>
-      <div className={styles.miniglobe}>
+      <div
+        className={styles.miniglobe}
+        onMouseEnter={() => setShowCoords(true)}
+        onMouseLeave={() => setShowCoords(false)}
+        onClick={() => setPinned(!pinned)}
+      >
         {bounds && (
           <MiniGlobe
             center={[latitude, longitude]}
@@ -52,6 +64,19 @@ const MapControls = ({ bounds }: { bounds: MiniGlobeBounds | null }) => {
       >
         <IconRuler />
       </button>
+      {(pinned || showCoords) && (
+        <div
+          className={cx(styles.coords, { [styles._pinned]: pinned })}
+          onClick={() => setShowDMS(!showDMS)}
+        >
+          {showDMS
+            ? formatcoords(latitude, longitude).format('DDMMssX', {
+                latLonSeparator: '',
+                decimalPlaces: 2,
+              })
+            : `${latitude},${longitude}`}
+        </div>
+      )}
     </div>
   )
 }

@@ -10,6 +10,7 @@
 
 .miniglobe {
   margin-bottom: 0.8rem;
+  cursor: pointer;
 }
 
 .mapControl {
@@ -25,4 +26,17 @@
 .mapControl:focus {
   background-color: var(--color-brand-highlight);
   fill: var(--color-brand);
+}
+
+.coords {
+  position: absolute;
+  right: 78px;
+  top: 26px;
+  color: var(--color-foreground);
+  font-size: var(--font-size-M);
+  text-transform: uppercase;
+}
+
+._pinned {
+  font-weight: bold;
 }

@@ -13,6 +13,5 @@ export interface UpdateQueryParamsAction {
 }
 
 export function updateQueryParams(query: QueryParams): UpdateQueryParamsAction {
-  console.log(query)
   return { type: HOME, query }
 }

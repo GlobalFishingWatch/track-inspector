@@ -18,7 +18,6 @@ const Sidebar = () => {
   const contextLayers = useSelector(selectGeneratorConfigByType(Type.CartoPolygons, true))
   const tracks = useSelector(selectGeneratorConfigByType(Type.Track))
   const dispatch = useDispatch()
-  console.log(tracks)
   return (
     <Fragment>
       {sidebar && (
@@ -30,9 +29,10 @@ const Sidebar = () => {
             <h1>Vessels</h1>
             <ul>
               {tracks.map((track: GeneratorConfig) => (
-                <li>
+                <li key={track.id}>
                   {/* TODO Cant import TrackGeneratorConfig for ssome reason :/ */}
-                  <Toggle backgroundColor={(track as any).color} /> {track.id}
+                  <Toggle backgroundColor={(track as any).color} />
+                  {track.id}
                 </li>
               ))}
             </ul>
@@ -41,7 +41,7 @@ const Sidebar = () => {
             <h1>Context areas</h1>
             <ul>
               {contextLayers.map((contextLayer: GeneratorConfig) => (
-                <li>
+                <li key={contextLayer.id}>
                   <Toggle backgroundColor={(contextLayer as any).color} />
                   {contextLayer.id}
                 </li>

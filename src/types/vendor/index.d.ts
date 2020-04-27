@@ -3,3 +3,4 @@
 declare module 'classnames'
 declare module 'geobuf'
 declare module 'pbf'
+declare module 'formatcoords'
