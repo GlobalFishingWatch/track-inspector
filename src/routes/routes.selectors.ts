@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import { WorkspaceParam } from '../types'
+import { WorkspaceParam } from 'types'
 import { DEFAULT_WORKSPACE } from '../constants'
-import { RootState } from '../store'
+import { RootState } from 'store'
 
 const selectLocation = (state: RootState) => state.location
 

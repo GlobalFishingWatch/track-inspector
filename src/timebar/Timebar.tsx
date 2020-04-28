@@ -12,10 +12,10 @@ import TimebarComponent, {
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
-import Loader from '../loaders/Loader'
+import Loader from 'loaders/Loader'
+import { Event } from 'types/'
+import { selectLoader } from 'loaders/loaders.selectors'
 import styles from './Timebar.module.css'
-import { Event } from '../types/'
-import { selectLoader } from '../loaders/loaders.selectors'
 
 enum Graph {
   Encounters = 'Encounters',

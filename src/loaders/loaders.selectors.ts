@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { Loader, LoaderArea } from '../types'
-import { RootState } from '../store'
+import { Loader, LoaderArea } from 'types'
+import { RootState } from 'store'
 
 export const selectLoaders = (state: RootState) => state.loaders
 

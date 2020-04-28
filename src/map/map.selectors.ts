@@ -1,9 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { Type, GeneratorConfig } from '@globalfishingwatch/layer-composer'
-import { selectTracks, selectEvents } from '../vessels/vessels.slice'
-import { selectHighlightedTime } from '../timebar/timebar.slice'
-import { selectRulers } from '../rulers/rulers.selectors'
 import { RulersGeneratorConfig } from '@globalfishingwatch/layer-composer/dist/types/layer-composer/generators/types'
+import { selectTracks, selectEvents } from 'vessels/vessels.slice'
+import { selectHighlightedTime } from 'timebar/timebar.slice'
+import { selectRulers } from 'rulers/rulers.selectors'
 
 // TODO: deprecate, use GET params
 export const selectGeneratorConfigs = (state: any) => state.map.generatorConfigs

@@ -4,12 +4,12 @@ import cx from 'classnames'
 import formatcoords from 'formatcoords'
 import MiniGlobe from '@globalfishingwatch/map-components/components/miniglobe'
 import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
-import { updateQueryParams } from '../routes/routes.actions'
-import { selectViewport } from '../routes/routes.selectors'
-import Rulers from '../rulers/Rulers'
+import { updateQueryParams } from 'routes/routes.actions'
+import { selectViewport } from 'routes/routes.selectors'
+import Rulers from 'rulers/Rulers'
 import styles from './MapControls.module.css'
-import { ReactComponent as IconPlus } from '../assets/icons/plus.svg'
-import { ReactComponent as IconMinus } from '../assets/icons/minus.svg'
+import { ReactComponent as IconPlus } from 'assets/icons/plus.svg'
+import { ReactComponent as IconMinus } from 'assets/icons/minus.svg'
 
 const MapControls = ({ bounds }: { bounds: MiniGlobeBounds | null }) => {
   const { latitude, longitude, zoom } = useSelector(selectViewport)

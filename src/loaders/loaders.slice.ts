@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Loader } from '../types'
+import { Loader } from 'types'
 
 const initialState: Loader[] = []
 

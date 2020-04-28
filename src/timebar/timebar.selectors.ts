@@ -1,10 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { selectGeneratorConfigs } from '../map/map.selectors'
-import { selectTracks, selectEvents } from '../vessels/vessels.slice'
 import { formatDistance } from 'date-fns'
 import { GeneratorConfig } from '@globalfishingwatch/layer-composer'
+import { selectGeneratorConfigs } from 'map/map.selectors'
+import { selectTracks, selectEvents } from 'vessels/vessels.slice'
 import { FeatureCollection } from 'geojson'
-import { Event } from '../types'
+import { Event } from 'types'
 import { EVENTS_COLORS } from '../constants'
 
 export const getGeoJSONTracksData = createSelector(

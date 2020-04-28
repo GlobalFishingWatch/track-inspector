@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import cx from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
+import mapControlsStyles from 'map/MapControls.module.css'
 import { selectEditing, selectNumRulers } from './rulers.selectors'
 import { toggleRulersEditing, resetRulers } from './rulers.slice'
 import styles from './Rulers.module.css'
-import mapControlsStyles from '../map/MapControls.module.css'
-import { ReactComponent as IconRemove } from '../assets/icons/close.svg'
-import { ReactComponent as IconRuler } from '../assets/icons/ruler.svg'
+import { ReactComponent as IconRemove } from 'assets/icons/close.svg'
+import { ReactComponent as IconRuler } from 'assets/icons/ruler.svg'
 
 const Rulers = () => {
   const editing = useSelector(selectEditing)
