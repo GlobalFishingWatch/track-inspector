@@ -1032,13 +1032,15 @@
     file-saver "^2.0.2"
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.7.0.tgz#02587ca4481212d1b0786f3b16359e6f2a828a59"
-  integrity sha512-7/vxy6wBvqGPFHZMemtrelSEdNHKTu7eC3uDL/PkcTUpT2tdm5i3CVSdJhb1LZfplTSXS5PXfCw3QXdj9IR/OQ==
+"@globalfishingwatch/layer-composer@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.0.tgz#a9e729e8794b704c0282debe505bca3fc94be045"
+  integrity sha512-klrIrt8xixMrioKQJikykgW1e/LlRUFFzOFz+K9speEb3l87HEUMGKYu+UxNVyrIantzCkmN7p4ZL4CQky5Rtw==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
+    "@turf/great-circle" "^5.1.5"
+    "@turf/length" "^6.0.2"
     "@types/d3" "^5.7.2"
     "@types/geojson" "^7946.0.7"
     abortcontroller-polyfill "^1.4.0"
@@ -1049,10 +1051,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.3.0.tgz#9dfca5e2573e5280b8d70497116abf0f943cc34a"
-  integrity sha512-taYZqaluDHGuYP2I5gNXe4WC7zR8k2Yil6M3LwJ/+p/khQ2NR5U4Fca5CQm8L058TCmjphT4XUUO2jX6DCK9Lw==
+"@globalfishingwatch/map-components@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.4.0.tgz#de67058cc5e050b32b45846666b7a7c0808a86c4"
+  integrity sha512-EyGUlXdwGYpD3xsEk5cdoDatGO+vP1q2U+N9cbCy9bpOvI6vWWUBBT/VSZG7QfYNjn39YWK8S4YjH0f0edSjDg==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
@@ -1910,10 +1912,54 @@
     "@turf/helpers" "6.x"
     "@turf/meta" "6.x"
 
+"@turf/distance@6.x":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-6.0.1.tgz#0761f28784286e7865a427c4e7e3593569c2dea8"
+  integrity sha512-q7t7rWIWfkg7MP1Vt4uLjSEhe5rPfCO2JjpKmk7JC+QZKEQkuvHEqy3ejW1iC7Kw5ZcZNR3qdMGGz+6HnVwqvg==
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/invariant" "6.x"
+
+"@turf/great-circle@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/great-circle/-/great-circle-5.1.5.tgz#debfb671ce475509cb637301c15fcfccfa359a93"
+  integrity sha1-3r+2cc5HVQnLY3MBwV/PzPo1mpM=
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+    "@turf/invariant" "^5.1.5"
+
 "@turf/helpers@6.x":
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-6.1.4.tgz#d6fd7ebe6782dd9c87dca5559bda5c48ae4c3836"
   integrity sha512-vJvrdOZy1ngC7r3MDA7zIGSoIgyrkWcGnNIEaqn/APmw+bVLF2gAW7HIsdTxd12s5wQMqEpqIQrmrbRRZ0xC7g==
+
+"@turf/helpers@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.5.tgz#153405227ab933d004a5bb9641a9ed999fcbe0cf"
+  integrity sha1-FTQFInq5M9AEpbuWQantmZ/L4M8=
+
+"@turf/invariant@6.x":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-6.1.2.tgz#6013ed6219f9ac2edada9b31e1dfa5918eb0a2f7"
+  integrity sha512-WU08Ph8j0J2jVGlQCKChXoCtI50BB3yEH21V++V0T4cR1T27HKCxkehV2sYMwTierfMBgjwSwDIsxnR4/2mWXg==
+  dependencies:
+    "@turf/helpers" "6.x"
+
+"@turf/invariant@^5.1.5":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-5.2.0.tgz#f0150ff7290b38577b73d088b7932c1ee0aa90a7"
+  integrity sha1-8BUP9ykLOFd7c9CIt5MsHuCqkKc=
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+
+"@turf/length@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@turf/length/-/length-6.0.2.tgz#22d91a6d0174e862a3614865613f1aceb1162dac"
+  integrity sha512-nyfXMowVtX2dICEG7u7EGC2SMaauVUWIMc9eWQrEauNA/9aw+7wbiuip4GPBoyeXEUUekF0EOjJn5aB9Zc8CzA==
+  dependencies:
+    "@turf/distance" "6.x"
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
 
 "@turf/meta@6.x":
   version "6.0.2"
@@ -6363,6 +6409,11 @@ form-data@~2.3.2:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
+
+formatcoords@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/formatcoords/-/formatcoords-1.1.3.tgz#752f056ab2fe34c1d4ae8a19048ce0c38e16ed03"
+  integrity sha1-dS8FarL+NMHUrooZBIzgw44W7QM=
 
 forwarded@~0.1.2:
   version "0.1.2"

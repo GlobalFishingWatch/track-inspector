@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
-import { WorkspaceParam } from '../types'
-import { DEFAULT_WORKSPACE } from '../constants'
-import { RootState } from '../store'
+import { WorkspaceParam } from 'types'
+import { DEFAULT_WORKSPACE } from 'config'
+import { RootState } from 'store/store'
 
 const selectLocation = (state: RootState) => state.location
 
@@ -24,6 +24,7 @@ export const selectMapLatitudeQuery = selectQueryParam('latitude')
 export const selectMapLongitudeQuery = selectQueryParam('longitude')
 export const selectStartQuery = selectQueryParam('start')
 export const selectEndQuery = selectQueryParam('end')
+export const selectSidebarQuery = selectQueryParam('sidebar')
 
 export const selectViewport = createSelector(
   [selectMapZoomQuery, selectMapLatitudeQuery, selectMapLongitudeQuery],

@@ -1,0 +1,38 @@
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  background-color: transparent;
+  font-family: var(--font-family);
+  font-size: var(--font-size-M);
+  color: var(--color-foreground-transparent);
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-scale {
+  background-color: transparent;
+  border-width: 1px;
+  border-left: none;
+  border-right: none;
+  color: var(--color-foreground-transparent);
+  border-color: var(--color-foreground-transparent);
+  position: relative;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-scale::before,
+.mapboxgl-ctrl.mapboxgl-ctrl-scale::after {
+  content: '';
+  height: 4px;
+  width: 1px;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  background: var(--color-foreground-transparent);
+  display: block;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-scale::after {
+  left: auto;
+  right: 0;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  bottom: 0.5rem;
+  right: 0.7rem;
+}

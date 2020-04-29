@@ -1,0 +1,12 @@
+.info {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.7rem;
+  color: var(--color-foreground-transparent);
+  font-size: var(--font-size-M);
+  text-transform: uppercase;
+}
+
+.scale {
+  margin-bottom: 0.5rem;
+}

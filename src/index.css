@@ -1,18 +1,40 @@
 :root {
   /* SIZES */
+  --header-height: 6rem;
+  --block-height-M: 4rem;
+  --block-height-S: 3.2rem;
+  --space-S: 1rem;
+  --space-M: 2rem;
+  --space-L: 4rem;
 
   /* TYPE */
   --font-family: 'Roboto', sans-serif;
   --font-weight-regular: 400;
+  --font-size-XS: 1rem;
+  --font-size-S: 1.2rem;
+  --font-size-M: 1.4rem;
   --font-size-L: 1.6rem;
+  --font-size-XL: 2rem;
+  --font-line-height-L: 1.8rem;
+  --font-line-height-XL: 3.4rem;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
 
   /* COLORS */
   --color-brand: rgba(22, 63, 137, 1);
+  --color-brand-highlight: #d1dee7;
   --color-background-rgb: 10, 23, 56;
   --color-background: rgb(var(--color-background-rgb));
   --color-background-transparent: rgba(var(--color-background-rgb), 0.5);
   --color-foreground: white;
   --color-foreground-transparent: rgba(255, 255, 255, 0.5);
+  --sidebar-background: #e5f0f2;
+  --sidebar-brand-transparent: rgba(22, 63, 137, 0.7);
+  --sidebar-brand-thin: rgba(22, 63, 137, 0.1);
+
+  /* SHADOWS */
+  --block-shadow: 0 0 1rem 0 rgba(44, 61, 108, 0.15);
+  --drop-shadow: drop-shadow(0 0.5rem 1rem rgba(44, 61, 108, 0.15));
 }
 
 html {
@@ -30,4 +52,22 @@ body {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+}
+
+button {
+  font-family: var(--font-family);
+  font-size: var(--font-size-S);
+  line-height: 2rem;
+  color: var(--color-foreground);
+  fill: var(--color-foreground);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: all 150ms ease-out;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
