@@ -1,40 +1,26 @@
-import React, { Fragment, useRef, useEffect, useMemo, useState } from 'react'
-import ReactMapGL, { ScaleControl } from 'react-map-gl'
-import { useSelector, useDispatch } from 'react-redux'
-import { format } from 'date-fns'
-import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
+import React, { Fragment, useRef, useMemo } from 'react'
+import ReactMapGL from 'react-map-gl'
+import { useSelector } from 'react-redux'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
-import { updateQueryParams } from 'routes/routes.actions'
-import { selectViewport, selectTimerange } from 'routes/routes.selectors'
-import { selectEditing } from 'features/rulers/rulers.selectors'
-import { editRuler, moveCurrentRuler } from 'features/rulers/rulers.slice'
 import Loader from 'features/loaders/Loader'
 import { selectLoader } from 'features/loaders/loaders.selectors'
+import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigWithData } from './map.selectors'
-import useViewport, { Viewport } from './useViewport'
+import { useViewport, useViewportConnect, useMapClick, useMapMove, useMapBounds } from './map.hooks'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import MapInfo from './MapInfo'
 import MapControls from './MapControls'
 import './Map.css'
-import styles from './Map.module.css'
 
 const layerComposer = new LayerComposer()
 const styleTransformations = [sort]
 
-function Map() {
-  const { zoom, latitude, longitude } = useSelector(selectViewport)
-  const { start, end } = useSelector(selectTimerange)
+const Map = () => {
+  const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
+  const { start, end } = useTimerangeConnect()
   const loading = useSelector(selectLoader('map'))
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
-  const rulersEditing = useSelector(selectEditing)
-
-  const dispatch = useDispatch()
-
-  const formattedTime = useMemo(() => {
-    const startFmt = format(new Date(start), 'PPp')
-    const endFmt = format(new Date(end), 'PPp')
-    return `${startFmt} - ${endFmt}`
-  }, [start, end])
 
   const globalGeneratorConfig = useMemo(
     () => ({
@@ -49,32 +35,17 @@ function Map() {
 
   const [viewport, onViewportChange] = useViewport(
     // TODO this being an anonymous function, will a Map render be triggered with unrelated store changes???
-    (viewport: Viewport) => {
-      dispatch(updateQueryParams(viewport))
-    },
+    dispatchViewport,
     zoom,
     latitude,
     longitude
   )
 
   const mapRef = useRef<any>(null)
+  const onMapClick = useMapClick()
+  const onMapMove = useMapMove()
 
-  const [bounds, setBounds] = useState<MiniGlobeBounds | any>(null)
-
-  useEffect(() => {
-    const mapboxRef = mapRef.current && mapRef.current.getMap()
-    if (mapboxRef) {
-      const rawBounds = mapboxRef.getBounds()
-      if (rawBounds) {
-        setBounds({
-          north: rawBounds.getNorth() as number,
-          south: rawBounds.getSouth() as number,
-          west: rawBounds.getWest() as number,
-          east: rawBounds.getEast() as number,
-        })
-      }
-    }
-  }, [zoom, latitude, longitude])
+  const mapBounds = useMapBounds(mapRef)
 
   return (
     <Fragment>
@@ -89,36 +60,12 @@ function Map() {
         mapOptions={{
           customAttribution: '© Copyright Global Fishing Watch 2019',
         }}
-        onClick={(event) => {
-          if (rulersEditing === true) {
-            dispatch(
-              editRuler({
-                longitude: event.lngLat[0],
-                latitude: event.lngLat[1],
-              })
-            )
-            return
-          }
-        }}
-        onMouseMove={(event) => {
-          if (rulersEditing === true) {
-            dispatch(
-              moveCurrentRuler({
-                longitude: event.lngLat[0],
-                latitude: event.lngLat[1],
-              })
-            )
-          }
-        }}
+        onClick={onMapClick}
+        onMouseMove={onMapMove}
       >
-        <div className={styles.info}>
-          <div className={styles.scale}>
-            {zoom > 3 && <ScaleControl maxWidth={100} unit="nautical" />}
-          </div>
-          <div>{formattedTime}</div>
-        </div>
+        <MapInfo />
       </ReactMapGL>
-      <MapControls bounds={bounds} />
+      <MapControls bounds={mapBounds} />
     </Fragment>
   )
 }

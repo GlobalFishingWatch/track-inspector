@@ -1,10 +1,10 @@
 import React, { Fragment, memo, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectTimerange } from 'routes/routes.selectors'
 import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { updateQueryParams } from 'routes/routes.actions'
-import { selectGeneratorConfigCurrentEventId } from '../map/map.selectors'
+import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
+import { selectGeneratorConfigCurrentEventId } from 'features/map/map.selectors'
+import { useViewportConnect } from 'features/map/map.hooks'
 import TimebarComponent, {
   TimebarTracks,
   TimebarActivity,
@@ -46,7 +46,8 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 }
 
 const TimebarWrapper = () => {
-  const { start, end } = useSelector(selectTimerange)
+  const { start, end, dispatchTimerange } = useTimerangeConnect()
+  const { dispatchViewport } = useViewportConnect()
   const tracks = useSelector(getGeoJSONTracksData)
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
   const highlightedTime = useSelector(selectHighlightedTime)
@@ -70,10 +71,7 @@ const TimebarWrapper = () => {
         end={end}
         absoluteStart={'2012-01-01T00:00:00.000Z'}
         absoluteEnd={'2020-01-01T00:00:00.000Z'}
-        onChange={(start: string, end: string) => {
-          // TODO needs to be debounced like viewport
-          dispatch(updateQueryParams({ start, end }))
-        }}
+        onChange={dispatchTimerange}
         onMouseMove={(clientX: number, scale: (arg: number) => Date) => {
           if (clientX === null) {
             dispatch(disableHighlightedTime())
@@ -102,12 +100,10 @@ const TimebarWrapper = () => {
                   tracksEvents={tracksEvents}
                   preselectedEventId={currentEventId}
                   onEventClick={(event: Event) => {
-                    dispatch(
-                      updateQueryParams({
-                        latitude: event.position.lat,
-                        longitude: event.position.lon,
-                      })
-                    )
+                    dispatchViewport({
+                      latitude: event.position.lat,
+                      longitude: event.position.lon,
+                    })
                   }}
                 />
               )}
