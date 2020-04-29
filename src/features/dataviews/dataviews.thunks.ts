@@ -4,11 +4,11 @@ import geobuf from 'geobuf'
 import Pbf from 'pbf'
 import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
-import { mockFetches, DEFAULT_WORKSPACE } from '../constants'
+import { mockFetches, DEFAULT_WORKSPACE } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
-import { updateMapLayers } from 'map/map.actions'
-import { setVesselTrack, setVesselEvents } from 'vessels/vessels.slice'
-import { startLoading, completeLoading } from 'loaders/loaders.slice'
+import { updateMapLayers } from 'features/map/map.actions'
+import { setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
+import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]

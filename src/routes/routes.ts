@@ -8,9 +8,9 @@ import {
   StateGetter,
 } from 'redux-first-router'
 import qs from 'qs'
-import { RootState } from 'store'
+import { RootState } from 'store/store'
 import { Dictionary } from 'types'
-import { dataviewsThunk } from 'dataviews/dataviews.thunks'
+import { dataviewsThunk } from 'features/dataviews/dataviews.thunks'
 import { UpdateQueryParamsAction } from './routes.actions'
 
 export const HOME = 'HOME'

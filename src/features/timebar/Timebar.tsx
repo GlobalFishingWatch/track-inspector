@@ -1,9 +1,9 @@
 import React, { Fragment, memo, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectTimerange } from '../routes/routes.selectors'
+import { selectTimerange } from 'routes/routes.selectors'
 import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { updateQueryParams } from '../routes/routes.actions'
+import { updateQueryParams } from 'routes/routes.actions'
 import { selectGeneratorConfigCurrentEventId } from '../map/map.selectors'
 import TimebarComponent, {
   TimebarTracks,
@@ -12,9 +12,9 @@ import TimebarComponent, {
   TimebarHighlighter,
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
-import Loader from 'loaders/Loader'
+import Loader from 'features/loaders/Loader'
 import { Event } from 'types/'
-import { selectLoader } from 'loaders/loaders.selectors'
+import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
 
 enum Graph {

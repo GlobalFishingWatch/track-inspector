@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FeatureCollection } from 'geojson'
 import { Dictionary } from 'types'
-import { RootState } from 'store'
+import { RootState } from 'store/store'
 
 type VesselsSlice = {
   tracks: Dictionary<FeatureCollection>

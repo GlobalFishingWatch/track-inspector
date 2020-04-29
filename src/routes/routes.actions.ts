@@ -1,5 +1,5 @@
-import { HOME } from '.'
-import { QueryParams } from '../types'
+import { HOME } from './routes'
+import { QueryParams } from 'types'
 
 export interface UpdateQueryParamsAction {
   type: typeof HOME

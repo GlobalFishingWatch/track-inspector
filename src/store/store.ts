@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import connectedRoutes, { routerQueryMiddleware } from 'routes'
-import timebar from 'timebar/timebar.slice'
-import loaders from 'loaders/loaders.slice'
-import vessels from 'vessels/vessels.slice'
-import rulers from 'rulers/rulers.slice'
-import map from 'map/map.reducer'
+import connectedRoutes, { routerQueryMiddleware } from 'routes/routes'
+import timebar from 'features/timebar/timebar.slice'
+import loaders from 'features/loaders/loaders.slice'
+import vessels from 'features/vessels/vessels.slice'
+import rulers from 'features/rulers/rulers.slice'
+import map from 'features/map/map.reducer'
 
 const {
   reducer: location,

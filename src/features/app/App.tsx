@@ -5,9 +5,9 @@ import GFWAPI from '@globalfishingwatch/api-client'
 import useGFWLogin from '@globalfishingwatch/api-client/dist/react-hook'
 import { selectSidebarQuery } from 'routes/routes.selectors'
 import styles from './App.module.css'
-import Loader from 'loaders/Loader'
-import Timebar from 'timebar/Timebar'
-import Sidebar from 'sidebar/Sidebar'
+import Loader from 'features/loaders/Loader'
+import Timebar from 'features/timebar/Timebar'
+import Sidebar from 'features/sidebar/Sidebar'
 
 const Map = React.lazy(() => import('../map/Map'))
 
