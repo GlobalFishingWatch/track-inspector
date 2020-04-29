@@ -179,7 +179,7 @@ const datasetsEndpointMock: Dataset[] = [
       {
         type: 'track',
         urlTemplate:
-          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&features=speed,course',
+          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&fields=speed,course',
       },
     ],
   },
