@@ -9,9 +9,15 @@ const slice = createSlice({
   initialState,
   reducers: {
     setDataviews: (state, action: PayloadAction<DataviewWorkspace[]>) => {
-      action.payload.forEach((dataviewWorkspace: DataviewWorkspace) =>
-        state.push(dataviewWorkspace)
-      )
+      action.payload.forEach((dataviewWorkspace: DataviewWorkspace) => {
+        // inject workspaceDV id in config for convenience
+        const newDataviewWorkspace = { ...dataviewWorkspace }
+        if (newDataviewWorkspace.dataview) {
+          newDataviewWorkspace.dataview.config.id = newDataviewWorkspace.id
+          newDataviewWorkspace.dataview.config.datasetParamsId = dataviewWorkspace.datasetParams.id
+        }
+        state.push(newDataviewWorkspace)
+      })
     },
   },
 })

@@ -1,13 +1,12 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
-import { TrackGeneratorConfig, Type } from '@globalfishingwatch/layer-composer'
+import { Type } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
+import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
 import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
-import { Vessel } from 'features/vessels/vessels.slice'
-import { selectVesselsWithConfig } from 'features/vessels/vessels.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/logo-gfw.svg'
 import styles from './Sidebar.module.css'
@@ -32,7 +31,7 @@ const Sidebar = () => {
           <section>
             <h1>Vessels</h1>
             <ul>
-              {vessels.map((vessel: Vessel & TrackGeneratorConfig) => (
+              {vessels.map((vessel: VesselWithConfig) => (
                 <li key={vessel.id}>
                   <Toggle backgroundColor={vessel.color as string} />
                   {vessel.name}

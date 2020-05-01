@@ -1,26 +1,28 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { Type, GeneratorConfig } from '@globalfishingwatch/layer-composer'
 import { RulersGeneratorConfig } from '@globalfishingwatch/layer-composer/dist/types/layer-composer/generators/types'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { selectHighlightedTime } from 'features/timebar/timebar.slice'
 import { selectRulers } from 'features/rulers/rulers.selectors'
-
-// TODO: deprecate, use GET params
-export const selectGeneratorConfigs = (state: any) => state.map.generatorConfigs
+import { selectDataviews } from 'features/dataviews/dataviews.slice'
 
 export const selectGeneratorConfigWithData = createSelector(
-  [selectGeneratorConfigs, selectTracks, selectEvents, selectHighlightedTime, selectRulers],
-  (generatorConfigs, tracks, events, highlightedTime, rulers) => {
-    const generatorConfigsWithData = generatorConfigs.map((generatorConfig: GeneratorConfig) => {
-      if (generatorConfig.type === Type.Track && generatorConfig.datasetParamsId) {
-        const data = tracks[generatorConfig.datasetParamsId]
+  [selectDataviews, selectTracks, selectEvents, selectHighlightedTime, selectRulers],
+  (dataviews, tracks, events, highlightedTime, rulers) => {
+    const generatorConfigsWithData = dataviews.map((dataviewWorkspace: DataviewWorkspace) => {
+      if (!dataviewWorkspace.dataview || !dataviewWorkspace.dataview.config) return null
+      const generatorConfig: GeneratorConfig = dataviewWorkspace.dataview.config
+      const datasetParamsId = dataviewWorkspace.datasetParams.id
+      if (generatorConfig.type === Type.Track && datasetParamsId) {
+        const data = tracks[datasetParamsId]
         return {
           ...generatorConfig,
           data,
           highlightedTime,
         }
-      } else if (generatorConfig.type === Type.VesselEvents && generatorConfig.datasetParamsId) {
-        const data = events[generatorConfig.datasetParamsId]
+      } else if (generatorConfig.type === Type.VesselEvents && datasetParamsId) {
+        const data = events[datasetParamsId]
         return {
           ...generatorConfig,
           data,
@@ -35,19 +37,5 @@ export const selectGeneratorConfigWithData = createSelector(
     }
     generatorConfigsWithData.push(rulersConfig)
     return generatorConfigsWithData
-  }
-)
-
-// TODO Track-inspector specific, generalize
-export const selectGeneratorConfigCurrentEventId = createSelector(
-  [selectGeneratorConfigs],
-  (generatorConfigs) => {
-    const vesselEventsConfig = generatorConfigs.find(
-      (generatorConfig: GeneratorConfig) => generatorConfig.type === Type.VesselEvents
-    )
-    if (vesselEventsConfig) {
-      return vesselEventsConfig.currentEventId
-    }
-    return null
   }
 )

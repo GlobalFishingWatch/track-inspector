@@ -1,27 +1,34 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { Type, GeneratorConfig } from '@globalfishingwatch/layer-composer'
-import { selectGeneratorConfigs } from 'features/map/map.selectors'
+import { Type, TrackGeneratorConfig } from '@globalfishingwatch/layer-composer'
+import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { Vessel, selectVessels } from './vessels.slice'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+
+export type VesselWithConfig = Partial<Vessel & TrackGeneratorConfig>
 
 export const selectVesselsWithConfig = createSelector(
-  [selectGeneratorConfigs, selectVessels],
-  (generatorConfigs, vessels) => {
-    const trackGenerators = generatorConfigs.filter(
-      (generatorConfig: GeneratorConfig) => generatorConfig.type === Type.Track
-    )
-    return trackGenerators.map((trackGenerator: GeneratorConfig) => {
-      let vessel: Vessel = {
-        name: trackGenerator.id,
-        ...trackGenerator,
+  [selectDataviews, selectVessels],
+  (dataviewWorkspaces, vessels) => {
+    const trackDataviewWorkspaces = dataviewWorkspaces.filter(
+      (dataviewWorkspace: DataviewWorkspace) => {
+        return dataviewWorkspace.dataview && dataviewWorkspace.dataview.config.type === Type.Track
       }
-      if (trackGenerator.datasetParamsId) {
-        vessel.name = trackGenerator.datasetParamsId
-        const vesselInfo = vessels[trackGenerator.datasetParamsId]
+    )
+    return trackDataviewWorkspaces.map((dataviewWorkspace: DataviewWorkspace) => {
+      const config: TrackGeneratorConfig = dataviewWorkspace.dataview?.config
+      let vessel: VesselWithConfig = {
+        id: config.id,
+        name: config.id,
+        ...config,
+      }
+      if (config.datasetParamsId) {
+        vessel.name = config.datasetParamsId
+        const vesselInfo = vessels[config.datasetParamsId]
         if (vesselInfo) {
           vessel = { ...vessel, ...vesselInfo }
         }
       }
-      return vessel
+      return vessel as VesselWithConfig
     })
   }
 )

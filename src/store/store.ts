@@ -6,7 +6,6 @@ import timebar from 'features/timebar/timebar.slice'
 import loaders from 'features/loaders/loaders.slice'
 import vessels from 'features/vessels/vessels.slice'
 import rulers from 'features/rulers/rulers.slice'
-import map from 'features/map/map.reducer'
 
 const {
   reducer: location,
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
   loaders,
   vessels,
   rulers,
-  map, // TODO: remove - should use dataviews in get params
   location: location,
 })
 

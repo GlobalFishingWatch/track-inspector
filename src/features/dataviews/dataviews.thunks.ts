@@ -5,7 +5,6 @@ import Pbf from 'pbf'
 import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { mockFetches, DEFAULT_WORKSPACE } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
-import { updateMapLayers } from 'features/map/map.actions'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
 import { setDataviews } from './dataviews.slice'
@@ -50,17 +49,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       console.log('received this from dataviews-client:', dataviewsWorkspace)
 
       // update layer composer
-      const generatorConfigs = dataviewsWorkspace.map((dataviewWorkspace: DataviewWorkspace) => {
-        const dataviewConfig = dataviewWorkspace.dataview ? dataviewWorkspace.dataview.config : {}
-        return {
-          ...dataviewConfig,
-          ...dataviewWorkspace.overrides,
-          id: dataviewWorkspace.id,
-          dataviewId: dataviewWorkspace.dataview && dataviewWorkspace.dataview.id,
-          datasetParamsId: dataviewWorkspace.datasetParams.id,
-        }
-      })
-      dispatch(updateMapLayers(generatorConfigs))
       dispatch(setDataviews(dataviewsWorkspace))
 
       dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))

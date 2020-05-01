@@ -1,21 +1,23 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { formatDistance } from 'date-fns'
-import { GeneratorConfig } from '@globalfishingwatch/layer-composer'
-import { selectGeneratorConfigs } from 'features/map/map.selectors'
+import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { FeatureCollection } from 'geojson'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 
 export const getGeoJSONTracksData = createSelector(
-  [selectGeneratorConfigs, selectTracks],
-  (generatorConfigs, tracks) => {
+  [selectDataviews, selectTracks],
+  (dataviewWorkspaces, tracks) => {
     const geoJSONTracks: { geojson: FeatureCollection; color: string }[] = []
     Object.keys(tracks).forEach((id) => {
-      const config: GeneratorConfig = generatorConfigs.find(
-        (config: GeneratorConfig) => config.datasetParamsId === id
+      const dataviewWorkspace = dataviewWorkspaces.find(
+        (dataviewWorkspace: DataviewWorkspace) => id === dataviewWorkspace.datasetParams.id
       )
-      if (config !== undefined && config.visible !== false) {
+      if (!dataviewWorkspace || !dataviewWorkspace.dataview) return
+      const config = dataviewWorkspace.dataview.config
+      if (config.visible !== false) {
         // TODO I'm not able to export TrackGeneratorConfig
         geoJSONTracks.push({ geojson: tracks[id], color: (config as any).color })
       }
@@ -26,24 +28,26 @@ export const getGeoJSONTracksData = createSelector(
 
 // TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
 export const getEventsForTracks = createSelector(
-  [selectGeneratorConfigs, selectEvents, selectTracks],
-  (generatorConfigs, events, tracks) => {
+  [selectDataviews, selectEvents, selectTracks],
+  (dataviewWorkspaces, events, tracks) => {
     // Retrieve original carrier and fishing vessels ids from generator config
-    const trackCarrierConfig = generatorConfigs.find(
-      (config: GeneratorConfig) => config.dataviewId === 'trackCarrier'
+    const trackCarrierDataviewWorkspace = dataviewWorkspaces.find(
+      (dataviewWorkspace: DataviewWorkspace) =>
+        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackCarrier'
     )
-    const trackFishingConfig = generatorConfigs.find(
-      (config: GeneratorConfig) => config.dataviewId === 'trackFishing'
+    const trackFishingDataviewWorkspace = dataviewWorkspaces.find(
+      (dataviewWorkspace: DataviewWorkspace) =>
+        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackFishing'
     )
-    if (!trackCarrierConfig || !trackFishingConfig) return []
+    if (!trackCarrierDataviewWorkspace || !trackFishingDataviewWorkspace) return []
 
     // Retrieve events using carrier id
-    const carrierId = trackCarrierConfig.datasetParamsId
+    const carrierId = trackCarrierDataviewWorkspace.datasetParams.id
     const trackCarrierEvents = events[carrierId]
     if (!trackCarrierEvents) return []
 
     // Filter encounters events from the carrier that are matching the fishing vessel id
-    const fishingId = trackFishingConfig.datasetParamsId
+    const fishingId = trackFishingDataviewWorkspace.datasetParams.id
     const trackFishingEventsForTimebar = trackCarrierEvents.filter(
       (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
     )

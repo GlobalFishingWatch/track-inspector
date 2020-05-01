@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
-import { selectGeneratorConfigCurrentEventId } from 'features/map/map.selectors'
+import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
 import { useViewportConnect } from 'features/map/map.hooks'
 import TimebarComponent, {
   TimebarTracks,
