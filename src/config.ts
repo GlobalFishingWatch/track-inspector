@@ -181,13 +181,17 @@ const datasetsEndpointMock: Dataset[] = [
         urlTemplate:
           '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&fields=speed,course',
       },
+      {
+        type: 'info',
+        urlTemplate: '/datasets/carriers:dev/vessels/{{id}}',
+      },
     ],
   },
   {
     id: 'carrierPortalVesselEvents',
     endpoints: [
       {
-        type: 'track',
+        type: 'events',
         urlTemplate:
           '/datasets/carriers:dev/events?vessels={{id}}&startDate=2017-01-01T00%3A00%3A00.000Z&endDate=2019-09-30T00%3A00%3A00.000Z&timeFormat=timestamp&sortOrder=desc',
       },
