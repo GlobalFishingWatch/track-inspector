@@ -51,10 +51,3 @@ export const selectGeneratorConfigCurrentEventId = createSelector(
     return null
   }
 )
-
-export const selectGeneratorConfigByType = (type: Type, onlyVisible = false) =>
-  createSelector([selectGeneratorConfigs], (generatorConfigs) => {
-    return generatorConfigs.filter((config: GeneratorConfig) => {
-      return config.type === type && (!onlyVisible || config.visible)
-    })
-  })

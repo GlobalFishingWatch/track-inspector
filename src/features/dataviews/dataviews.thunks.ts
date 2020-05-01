@@ -8,6 +8,7 @@ import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { updateMapLayers } from 'features/map/map.actions'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
+import { setDataviews } from './dataviews.slice'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -60,6 +61,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
         }
       })
       dispatch(updateMapLayers(generatorConfigs))
+      dispatch(setDataviews(dataviewsWorkspace))
 
       dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))
       const loadDataPromises = dataviewsClient.loadData()

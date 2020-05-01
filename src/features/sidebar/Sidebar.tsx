@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
-import { GeneratorConfig, TrackGeneratorConfig, Type } from '@globalfishingwatch/layer-composer'
+import { TrackGeneratorConfig, Type } from '@globalfishingwatch/layer-composer'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
-import { selectGeneratorConfigByType } from 'features/map/map.selectors'
+import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { Vessel } from 'features/vessels/vessels.slice'
 import { selectVesselsWithConfig } from 'features/vessels/vessels.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
@@ -17,8 +18,9 @@ const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
 
 const Sidebar = () => {
   const sidebar = useSelector(selectSidebarQuery)
-  const contextLayers = useSelector(selectGeneratorConfigByType(Type.CartoPolygons, true))
   const vessels = useSelector(selectVesselsWithConfig)
+  const contextLayers = useSelector(selectDataviewByGeneratorConfigType(Type.CartoPolygons))
+
   const dispatch = useDispatch()
   return (
     <Fragment>
@@ -32,7 +34,6 @@ const Sidebar = () => {
             <ul>
               {vessels.map((vessel: Vessel & TrackGeneratorConfig) => (
                 <li key={vessel.id}>
-                  {/* TODO Cant import TrackGeneratorConfig for ssome reason :/ */}
                   <Toggle backgroundColor={vessel.color as string} />
                   {vessel.name}
                 </li>
@@ -42,10 +43,10 @@ const Sidebar = () => {
           <section>
             <h1>Context areas</h1>
             <ul>
-              {contextLayers.map((contextLayer: GeneratorConfig) => (
+              {contextLayers.map((contextLayer: DataviewWorkspace) => (
                 <li key={contextLayer.id}>
-                  <Toggle backgroundColor={(contextLayer as any).color} />
-                  {contextLayer.id}
+                  <Toggle backgroundColor={contextLayer.dataview?.config.color} />
+                  {contextLayer.dataview?.name}
                 </li>
               ))}
             </ul>

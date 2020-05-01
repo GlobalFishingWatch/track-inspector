@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import connectedRoutes, { routerQueryMiddleware } from 'routes/routes'
+import dataviews from 'features/dataviews/dataviews.slice'
 import timebar from 'features/timebar/timebar.slice'
 import loaders from 'features/loaders/loaders.slice'
 import vessels from 'features/vessels/vessels.slice'
@@ -15,6 +16,7 @@ const {
 } = connectedRoutes
 
 const rootReducer = combineReducers({
+  dataviews,
   timebar,
   loaders,
   vessels,
