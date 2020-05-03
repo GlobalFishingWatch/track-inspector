@@ -1,6 +1,6 @@
 import React, { Fragment, memo, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getGeoJSONTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
+import { getTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
@@ -48,7 +48,7 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
   const { dispatchViewport } = useViewportConnect()
-  const tracks = useSelector(getGeoJSONTracksData)
+  const tracks = useSelector(getTracksData)
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
