@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
-import { GeneratorConfig, Type } from '@globalfishingwatch/layer-composer'
+import { Type } from '@globalfishingwatch/layer-composer'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
-import { selectGeneratorConfigByType } from 'features/map/map.selectors'
+import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
+import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/logo-gfw.svg'
 import styles from './Sidebar.module.css'
@@ -15,8 +17,9 @@ const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
 
 const Sidebar = () => {
   const sidebar = useSelector(selectSidebarQuery)
-  const contextLayers = useSelector(selectGeneratorConfigByType(Type.CartoPolygons, true))
-  const tracks = useSelector(selectGeneratorConfigByType(Type.Track))
+  const vessels = useSelector(selectVesselsWithConfig)
+  const contextLayers = useSelector(selectDataviewByGeneratorConfigType(Type.CartoPolygons))
+
   const dispatch = useDispatch()
   return (
     <Fragment>
@@ -28,11 +31,10 @@ const Sidebar = () => {
           <section>
             <h1>Vessels</h1>
             <ul>
-              {tracks.map((track: GeneratorConfig) => (
-                <li key={track.id}>
-                  {/* TODO Cant import TrackGeneratorConfig for ssome reason :/ */}
-                  <Toggle backgroundColor={(track as any).color} />
-                  {track.id}
+              {vessels.map((vessel: VesselWithConfig) => (
+                <li key={vessel.id}>
+                  <Toggle backgroundColor={vessel.color as string} />
+                  {vessel.name}
                 </li>
               ))}
             </ul>
@@ -40,10 +42,10 @@ const Sidebar = () => {
           <section>
             <h1>Context areas</h1>
             <ul>
-              {contextLayers.map((contextLayer: GeneratorConfig) => (
+              {contextLayers.map((contextLayer: DataviewWorkspace) => (
                 <li key={contextLayer.id}>
-                  <Toggle backgroundColor={(contextLayer as any).color} />
-                  {contextLayer.id}
+                  <Toggle backgroundColor={contextLayer.dataview?.config.color} />
+                  {contextLayer.dataview?.name}
                 </li>
               ))}
             </ul>

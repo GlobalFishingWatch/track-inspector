@@ -3,12 +3,11 @@ import { StateGetter } from 'redux-first-router'
 import geobuf from 'geobuf'
 import Pbf from 'pbf'
 import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
-import { Type } from '@globalfishingwatch/layer-composer'
 import { mockFetches, DEFAULT_WORKSPACE } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
-import { updateMapLayers } from 'features/map/map.actions'
-import { setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
+import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
+import { setDataviews } from './dataviews.slice'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -50,24 +49,14 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       console.log('received this from dataviews-client:', dataviewsWorkspace)
 
       // update layer composer
-      const generatorConfigs = dataviewsWorkspace.map((dataviewWorkspace: DataviewWorkspace) => {
-        const dataviewConfig = dataviewWorkspace.dataview ? dataviewWorkspace.dataview.config : {}
-        return {
-          ...dataviewConfig,
-          ...dataviewWorkspace.overrides,
-          id: dataviewWorkspace.id,
-          dataviewId: dataviewWorkspace.dataview && dataviewWorkspace.dataview.id,
-          datasetParamsId: dataviewWorkspace.datasetParams.id,
-        }
-      })
-      dispatch(updateMapLayers(generatorConfigs))
+      dispatch(setDataviews(dataviewsWorkspace))
 
       dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))
       const loadDataPromises = dataviewsClient.loadData()
       loadDataPromises.forEach((promise) => {
-        promise.then(({ data, dataviewWorkspace }) => {
-          console.log('Loaded endpoint data:', data, dataviewWorkspace)
-          if (dataviewWorkspace.dataview.config.type === Type.Track) {
+        promise.then(({ endpoint, dataviewWorkspace }) => {
+          console.log('Loaded endpoint data:', endpoint, dataviewWorkspace)
+          if (endpoint.type === 'track') {
             promise
               .then(({ response }) => response)
               .then((r) => r.arrayBuffer())
@@ -82,7 +71,13 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                   console.error(e)
                 }
               })
-          } else if (dataviewWorkspace.dataview.config.type === Type.VesselEvents) {
+          } else if (endpoint.type === 'info') {
+            promise
+              .then(({ response }) => response.json())
+              .then((data) => {
+                dispatch(setVessel(data))
+              })
+          } else if (endpoint.type === 'events') {
             promise
               .then(({ response }) => response.json())
               .then((data) => {

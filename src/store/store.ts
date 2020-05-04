@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import connectedRoutes, { routerQueryMiddleware } from 'routes/routes'
+import dataviews from 'features/dataviews/dataviews.slice'
 import timebar from 'features/timebar/timebar.slice'
 import loaders from 'features/loaders/loaders.slice'
 import vessels from 'features/vessels/vessels.slice'
 import rulers from 'features/rulers/rulers.slice'
-import map from 'features/map/map.reducer'
 
 const {
   reducer: location,
@@ -15,11 +15,11 @@ const {
 } = connectedRoutes
 
 const rootReducer = combineReducers({
+  dataviews,
   timebar,
   loaders,
   vessels,
   rulers,
-  map, // TODO: remove - should use dataviews in get params
   location: location,
 })
 
