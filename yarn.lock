@@ -1032,10 +1032,10 @@
     file-saver "^2.0.2"
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.0.tgz#a9e729e8794b704c0282debe505bca3fc94be045"
-  integrity sha512-klrIrt8xixMrioKQJikykgW1e/LlRUFFzOFz+K9speEb3l87HEUMGKYu+UxNVyrIantzCkmN7p4ZL4CQky5Rtw==
+"@globalfishingwatch/layer-composer@0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.1.tgz#1d72afc92f67872737a00b994d719ff357cc4b5c"
+  integrity sha512-Wsn8401BfzeKuYz7W/xoz5w1GgtuBKG/zWbJMwCNsvSx89um1zmeyzLs+4ljQmY0wnV0V44YCMZ4tW3IRjUjYg==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
@@ -11739,10 +11739,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-map-gl@5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-5.2.3.tgz#612d8112fc2dffbbbd03650e7a68ee8c2ac3d6b3"
-  integrity sha512-3oANqJVTMER1Xl6Xx20sZk+Dh8gnQ5YKjK0grBKXLQnDUKI4WxtGJb7zNMuutW8lL9w6qxyZRtLqoZJy74pMxA==
+react-map-gl@5.2.5:
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-5.2.5.tgz#0b16bfd384d5d471cceaabff893b0d088fec9270"
+  integrity sha512-+U5d2ZJ3FpvJvO1U8hJvikC0s51Gq5bcjA77I8yECrbRIfgtPlnhuRoxUDN7rtxtlMHBsPdsypPe3pKgkK+iow==
   dependencies:
     "@babel/runtime" "^7.0.0"
     mapbox-gl "^1.0.0"
