@@ -2358,17 +2358,24 @@
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.1.tgz#937fab3194766256ee09fcd40b781740758617e7"
   integrity sha512-lhbQXx9HKZAPgBkISrBcmAcMpZsmpe/Cd/hY7LGZS5OfkySUBItnPZHgQPssWYUET8elF+yCFBbP1Q0RZPTdaw==
 
-"@types/react-dom@*", "@types/react-dom@16.9.6":
+"@types/react-dom@*":
   version "16.9.6"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.6.tgz#9e7f83d90566521cc2083be2277c6712dcaf754c"
   integrity sha512-S6ihtlPMDotrlCJE9ST1fRmYrQNNwfgL61UB4I1W7M6kPulUKx9fXAleW5zpdIjUQ4fTaaog8uERezjsGUj9HQ==
   dependencies:
     "@types/react" "*"
 
-"@types/react-map-gl@5.2.2":
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.2.2.tgz#21b61427a70759f68e57fa597532d5c4e0204a6e"
-  integrity sha512-VxPjj2EvmGGjOAXUmFOBRHnvdzhe4FVtic6+tWCfob9w74Vm/ZyVerRXkL03+/I1+Ejk8qhbRDfii3zDzr56Lw==
+"@types/react-dom@16.9.7":
+  version "16.9.7"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.7.tgz#60844d48ce252d7b2dccf0c7bb937130e27c0cd2"
+  integrity sha512-GHTYhM8/OwUCf254WO5xqR/aqD3gC9kSTLpopWGpQLpnw23jk44RvMHsyUSEplvRJZdHxhJGMMLF0kCPYHPhQA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-map-gl@5.2.3":
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.2.3.tgz#a18564c1056d22be36461ba94d7c1426dfe06402"
+  integrity sha512-SzFDgwCj2i+MoPtWbcWpamqC37vuxgz/guFhzK+DfhMSBueKVkaI8cJmH+XcBVp5RuliMgBWvCtFhmXy41jHjg==
   dependencies:
     "@types/geojson" "*"
     "@types/mapbox-gl" "*"
@@ -4864,10 +4871,10 @@ date-fns@^1.27.2:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-dayjs@1.8.25:
-  version "1.8.25"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.25.tgz#d09a8696cee7191bc1289e739f96626391b9c73c"
-  integrity sha512-Pk36juDfQQGDCgr0Lqd1kw15w3OS6xt21JaLPE3lCfsEf8KrERGwDNwvK1tRjrjqFC0uZBJncT4smZQ4F+uV5g==
+dayjs@1.8.26:
+  version "1.8.26"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.26.tgz#c6d62ccdf058ca72a8d14bb93a23501058db9f1e"
+  integrity sha512-KqtAuIfdNfZR5sJY1Dixr2Is4ZvcCqhb0dZpCOt5dGEFiMzoIbjkTSzUb4QKTCsP+WNpGwUjAFIZrnZvUxxkhw==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
@@ -11739,10 +11746,10 @@ react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-map-gl@5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-5.2.3.tgz#612d8112fc2dffbbbd03650e7a68ee8c2ac3d6b3"
-  integrity sha512-3oANqJVTMER1Xl6Xx20sZk+Dh8gnQ5YKjK0grBKXLQnDUKI4WxtGJb7zNMuutW8lL9w6qxyZRtLqoZJy74pMxA==
+react-map-gl@5.2.5:
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-5.2.5.tgz#0b16bfd384d5d471cceaabff893b0d088fec9270"
+  integrity sha512-+U5d2ZJ3FpvJvO1U8hJvikC0s51Gq5bcjA77I8yECrbRIfgtPlnhuRoxUDN7rtxtlMHBsPdsypPe3pKgkK+iow==
   dependencies:
     "@babel/runtime" "^7.0.0"
     mapbox-gl "^1.0.0"
