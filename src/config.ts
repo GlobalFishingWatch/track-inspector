@@ -185,7 +185,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'track',
-        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}`,
+        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
       },
       {
         type: 'info',
