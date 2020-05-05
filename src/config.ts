@@ -37,13 +37,13 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'trackCarrier',
-      overrides: {
-        // visible: false,
-      },
       datasetParams: {
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
         format: 'valueArray',
+        fields: [Field.lonlat, Field.timestamp],
+        startDate: TRACK_START.toISOString(),
+        endDate: TRACK_END.toISOString(),
       },
       dataview: {
         id: 'trackCarrier',
@@ -57,13 +57,13 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'trackFishing',
-      overrides: {
-        // visible: false,
-      },
       datasetParams: {
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
         format: 'valueArray',
+        fields: [Field.lonlat, Field.timestamp],
+        startDate: TRACK_START.toISOString(),
+        endDate: TRACK_END.toISOString(),
       },
       dataview: {
         id: 'trackFishing',
@@ -77,11 +77,10 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'carrierEvents',
-      overrides: {
-        // visible: false,
-      },
       datasetParams: {
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
+        startDate: TRACK_START.toISOString(),
+        endDate: TRACK_END.toISOString(),
       },
       dataview: {
         id: 'carrierEvents',
@@ -93,9 +92,6 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'cp_rfmo',
-      overrides: {
-        visible: false,
-      },
       dataview: {
         id: 'cp_rfmo',
         name: 'Tuna RFMO areas',
@@ -109,9 +105,6 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'sprfmo',
-      overrides: {
-        visible: false,
-      },
       dataview: {
         id: 'sprfmo',
         name: 'SPRFMO area',
@@ -125,9 +118,6 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'eez',
-      overrides: {
-        visible: false,
-      },
       dataview: {
         id: 'eez',
         name: 'Exclusive Economic Zones',
@@ -141,9 +131,6 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'mpant',
-      overrides: {
-        visible: false,
-      },
       dataview: {
         id: 'mpant',
         name: 'Marine Protected Areas',
@@ -156,9 +143,6 @@ export const DEFAULT_WORKSPACE: AppState = {
     },
     {
       id: 'bluefin_rfmo',
-      overrides: {
-        visible: false,
-      },
       dataview: {
         id: 'bluefin_rfmo',
         name: 'Southern bluefin tuna range',
@@ -185,7 +169,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'track',
-        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}`,
+        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate={{startDate}}&endDate={{endDate}}&binary={{binary}}&fields={{fields}}&format={{format}}`,
       },
       {
         type: 'info',
@@ -198,7 +182,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'events',
-        urlTemplate: `/datasets/carriers:dev/events?vessels={{id}}&startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&timeFormat=timestamp&sortOrder=desc`,
+        urlTemplate: `/datasets/carriers:dev/events?vessels={{id}}&startDate={{startDate}}&endDate={{endDate}}&timeFormat=timestamp&sortOrder=desc`,
       },
     ],
   },
