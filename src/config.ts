@@ -1,6 +1,7 @@
 import { Dataset } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
 import { Dictionary, AppState } from './types'
+import { Field } from 'data-transform/trackValueArrayToSegments'
 
 export const EVENTS_COLORS: Dictionary<string> = {
   encounterauthorized: '#FAE9A0',
@@ -9,6 +10,10 @@ export const EVENTS_COLORS: Dictionary<string> = {
   loitering: '#cfa9f9',
   port: '#99EEFF',
 }
+
+export const TRACK_START = new Date('2017-01-01T00:00:00.000Z')
+export const TRACK_END = new Date('2020-01-01T00:00:00.000Z')
+export const TRACK_FIELDS = [Field.lonlat, Field.timestamp, Field.speed]
 
 export const DEFAULT_WORKSPACE: AppState = {
   dataviewsWorkspace: [
@@ -38,6 +43,7 @@ export const DEFAULT_WORKSPACE: AppState = {
       datasetParams: {
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
+        format: 'valueArray',
       },
       dataview: {
         id: 'trackCarrier',
@@ -57,6 +63,7 @@ export const DEFAULT_WORKSPACE: AppState = {
       datasetParams: {
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
+        format: 'valueArray',
       },
       dataview: {
         id: 'trackFishing',
@@ -178,8 +185,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'track',
-        urlTemplate:
-          '/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=2017-01-01T00:00:00.000Z&endDate=2019-09-30T00:00:00.000Z&binary={{binary}}&fields=speed,course',
+        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
       },
       {
         type: 'info',
@@ -192,8 +198,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'events',
-        urlTemplate:
-          '/datasets/carriers:dev/events?vessels={{id}}&startDate=2017-01-01T00%3A00%3A00.000Z&endDate=2019-09-30T00%3A00%3A00.000Z&timeFormat=timestamp&sortOrder=desc',
+        urlTemplate: `/datasets/carriers:dev/events?vessels={{id}}&startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&timeFormat=timestamp&sortOrder=desc`,
       },
     ],
   },

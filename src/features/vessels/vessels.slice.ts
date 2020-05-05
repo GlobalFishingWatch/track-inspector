@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { FeatureCollection } from 'geojson'
 import { Dictionary } from 'types'
 import { RootState } from 'store/store'
+import { Segment } from 'data-transform/trackValueArrayToSegments'
 
 export type Vessel = {
   id: string
@@ -10,7 +10,7 @@ export type Vessel = {
 
 type VesselsSlice = {
   vessels: Dictionary<Vessel>
-  tracks: Dictionary<FeatureCollection>
+  tracks: Dictionary<Segment[]>
   events: Dictionary<any>
 }
 
@@ -27,7 +27,7 @@ const slice = createSlice({
     setVessel: (state, action: PayloadAction<Vessel>) => {
       state.vessels[action.payload.id] = action.payload
     },
-    setVesselTrack: (state, action: PayloadAction<{ id: string; data: FeatureCollection }>) => {
+    setVesselTrack: (state, action: PayloadAction<{ id: string; data: Segment[] }>) => {
       state.tracks[action.payload.id] = action.payload.data
     },
     setVesselEvents: (state, action: PayloadAction<{ id: string; data: any }>) => {

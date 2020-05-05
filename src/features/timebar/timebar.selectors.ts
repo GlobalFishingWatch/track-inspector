@@ -2,15 +2,23 @@ import { createSelector } from '@reduxjs/toolkit'
 import { formatDistance } from 'date-fns'
 import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
-import { FeatureCollection } from 'geojson'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 
-export const getGeoJSONTracksData = createSelector(
+type TimebarTrackSegment = {
+  start: number
+  end: number
+}
+type TimebarTrack = {
+  segments: TimebarTrackSegment[]
+  color: string
+}
+
+export const getTracksData = createSelector(
   [selectDataviews, selectTracks],
   (dataviewWorkspaces, tracks) => {
-    const geoJSONTracks: { geojson: FeatureCollection; color: string }[] = []
+    const tracksSegments: TimebarTrack[] = []
     Object.keys(tracks).forEach((id) => {
       const dataviewWorkspace = dataviewWorkspaces.find(
         (dataviewWorkspace: DataviewWorkspace) => id === dataviewWorkspace.datasetParams.id
@@ -18,11 +26,19 @@ export const getGeoJSONTracksData = createSelector(
       if (!dataviewWorkspace || !dataviewWorkspace.dataview) return
       const config = dataviewWorkspace.dataview.config
       if (config.visible !== false) {
-        // TODO I'm not able to export TrackGeneratorConfig
-        geoJSONTracks.push({ geojson: tracks[id], color: (config as any).color })
+        const trackSegments: TimebarTrackSegment[] = tracks[id].map((segment) => {
+          return {
+            start: segment[0].timestamp || 0,
+            end: segment[segment.length - 1].timestamp || 0,
+          }
+        })
+        tracksSegments.push({
+          segments: trackSegments,
+          color: config.color,
+        })
       }
     })
-    return geoJSONTracks
+    return tracksSegments
   }
 )
 

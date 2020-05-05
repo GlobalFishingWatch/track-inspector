@@ -1,13 +1,13 @@
 import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
-import geobuf from 'geobuf'
-import Pbf from 'pbf'
-import GFWAPI, { DataviewsClient, DataviewWorkspace } from '@globalfishingwatch/api-client'
-import { mockFetches, DEFAULT_WORKSPACE } from 'config'
+import GFWAPI, { DataviewsClient } from '@globalfishingwatch/api-client'
+import { mockFetches, DEFAULT_WORKSPACE, TRACK_FIELDS } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
 import { setDataviews } from './dataviews.slice'
+import decodeProtobuf from 'data-transform/decodeProtobuf'
+import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -61,15 +61,17 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               .then(({ response }) => response)
               .then((r) => r.arrayBuffer())
               .then((buffer) => {
-                const protobuf = new Pbf(buffer)
-                return geobuf.decode(protobuf)
+                const valuesArray = decodeProtobuf(buffer)
+                return valuesArray
               })
-              .then((data) => {
-                try {
-                  dispatch(setVesselTrack({ id: dataviewWorkspace.datasetParams.id, data }))
-                } catch (e) {
-                  console.error(e)
-                }
+              .then((valuesArray) => {
+                const segments = trackValueArrayToSegments(valuesArray, TRACK_FIELDS)
+                dispatch(
+                  setVesselTrack({
+                    id: dataviewWorkspace.datasetParams.id as string,
+                    data: segments,
+                  })
+                )
               })
           } else if (endpoint.type === 'info') {
             promise
