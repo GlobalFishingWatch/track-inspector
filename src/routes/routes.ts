@@ -12,6 +12,9 @@ import { RootState } from 'store/store'
 import { Dictionary } from 'types'
 import { dataviewsThunk } from 'features/dataviews/dataviews.thunks'
 import { UpdateQueryParamsAction } from './routes.actions'
+import parseDeep from 'util/parseDeep'
+// import { ADD_DATAVIEWS, REMOVE_DATAVIEWS } from 'features/dataviews/dataview.actions'
+// import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 
 export const HOME = 'HOME'
 
@@ -39,26 +42,7 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
   sidebar: (s) => s === 'true',
-  dataviewsWorkspace: (s) => {
-    const layers = s.map((layer: any) => {
-      const newLayer = { ...layer }
-      if (layer.overrides) {
-        if (layer.overrides.currentEvent) {
-          layer.overrides.currentEvent = {
-            position: {
-              lat: parseFloat(layer.overrides.currentEvent.position.lat),
-              lng: parseFloat(layer.overrides.currentEvent.position.lng),
-            },
-          }
-        }
-        if (layer.overrides.visible) {
-          layer.overrides.visible = layer.overrides.visible === 'true' ? true : false
-        }
-      }
-      return newLayer
-    })
-    return layers
-  },
+  dataviewsWorkspace: (s) => parseDeep(s),
 }
 
 const encodeWorkspace = (object: object) => {
@@ -95,8 +79,20 @@ export const routerQueryMiddleware: Middleware = ({ getState }: { getState: () =
     next(action)
   } else {
     const newAction: UpdateQueryParamsAction = { ...action }
-
     const prevQuery = getState().location.query || {}
+    // TODO use separated dataviews middleware BUT use prevQuery.dataviewsWorkspace as source of truth
+    // console.log(action.subtype)
+    // if (action.subtype) {
+    //   const currentDataviewsWorkspace = (prevQuery.dataviewsWorkspace as unknown) as DataviewWorkspace[]
+    //   switch (action.subtype) {
+    //     case ADD_DATAVIEWS:
+    //       console.log(currentDataviewsWorkspace)
+    //       const newDataviewsWorkspace = [...currentDataviewsWorkspace, ...action.payload]
+    //       newAction.query = { dataviewsWorkspace: (newDataviewsWorkspace as unknown) as string }
+    //       break
+    //   }
+    // }
+    // console.log(prevQuery, action)
     if (newAction.replaceQuery !== true) {
       newAction.query = {
         ...prevQuery,

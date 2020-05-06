@@ -16,6 +16,8 @@ import Loader from 'features/loaders/Loader'
 import { Event } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
+import { selectDataviews, addDataviews, removeDataviews } from 'features/dataviews/dataviews.slice'
+import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 
 enum Graph {
   Encounters = 'Encounters',
@@ -53,6 +55,23 @@ const TimebarWrapper = () => {
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
+  const dataviews = useSelector(selectDataviews)
+
+  // get carrier and fishing id from dataviews
+  const { carrierId, fishingId } = useMemo(() => {
+    const carrierDataview = dataviews.find(
+      (dataviewWorkspace: DataviewWorkspace) =>
+        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackCarrier'
+    )
+    const fishingDataview = dataviews.find(
+      (dataviewWorkspace: DataviewWorkspace) =>
+        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackFishing'
+    )
+    return {
+      carrierId: carrierDataview && carrierDataview.datasetParams.id,
+      fishingId: fishingDataview && fishingDataview.datasetParams.id,
+    }
+  }, [dataviews])
 
   const dispatch = useDispatch()
 
@@ -136,6 +155,27 @@ const TimebarWrapper = () => {
         <select
           className={styles.graphSelectorSelect}
           onChange={(event) => {
+            if (event.target.value === Graph.Speed) {
+              dispatch(
+                // TODO collect IDs
+                addDataviews([
+                  {
+                    id: 'speedGraphCarrier',
+                    datasetParams: {
+                      id: carrierId,
+                    },
+                  },
+                  {
+                    id: 'speedGraphFishing',
+                    datasetParams: {
+                      id: fishingId,
+                    },
+                  },
+                ])
+              )
+            } else {
+              dispatch(removeDataviews(['speedGraphCarrier', 'speedGraphFishing']))
+            }
             setCurrentGraph(event.target.value as Graph)
           }}
           value={currentGraph}

@@ -5,7 +5,7 @@ import { RootState } from 'store/store'
 const initialState: DataviewWorkspace[] = []
 
 const slice = createSlice({
-  name: 'vessels',
+  name: 'dataviews',
   initialState,
   reducers: {
     setDataviews: (state, action: PayloadAction<DataviewWorkspace[]>) => {
@@ -19,8 +19,14 @@ const slice = createSlice({
         state.push(newDataviewWorkspace)
       })
     },
+    addDataviews: (state, action: PayloadAction<DataviewWorkspace[]>) => {
+      // ...
+    },
+    removeDataviews: (state, action: PayloadAction<string[]>) => {
+      // ...
+    },
   },
 })
-export const { setDataviews } = slice.actions
+export const { setDataviews, addDataviews, removeDataviews } = slice.actions
 export default slice.reducer
 export const selectDataviews = (state: RootState) => state.dataviews

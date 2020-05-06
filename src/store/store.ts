@@ -6,6 +6,7 @@ import timebar from 'features/timebar/timebar.slice'
 import loaders from 'features/loaders/loaders.slice'
 import vessels from 'features/vessels/vessels.slice'
 import rulers from 'features/rulers/rulers.slice'
+import { forwardDataviewsToURLMiddleware } from 'features/dataviews/dataviews.middleware'
 
 const {
   reducer: location,
@@ -42,6 +43,7 @@ export default () => {
     reducer: rootReducer,
     middleware: [
       ...getDefaultMiddleware(defaultMiddlewareOptions),
+      forwardDataviewsToURLMiddleware,
       routerQueryMiddleware,
       routerMiddleware,
     ],

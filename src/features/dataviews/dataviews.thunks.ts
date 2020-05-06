@@ -1,7 +1,8 @@
 import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import GFWAPI, { DataviewsClient } from '@globalfishingwatch/api-client'
-import { mockFetches, DEFAULT_WORKSPACE, TRACK_FIELDS } from 'config'
+import { mockFetches, DATAVIEW_LIBRARY } from 'config'
+import { Field } from 'data-transform/trackValueArrayToSegments'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
@@ -28,27 +29,25 @@ const mockFetch = (mockFetchUrl: string) => {
 }
 
 // TODO use GFWAPI for real fetches
-const dataviewsClient = new DataviewsClient(
-  /*GFWAPI.fetch*/ mockFetch,
-  DEFAULT_WORKSPACE.dataviewsWorkspace
-)
+const dataviewsClient = new DataviewsClient(/*GFWAPI.fetch*/ mockFetch, DATAVIEW_LIBRARY)
 
 export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
   const state = getState()
   const dataviewsQuery = selectDataviewsQuery(state)
+
+  console.log(dataviewsQuery)
 
   if (dataviewsQuery) {
     // TODO: better handle of loading when no new dataviews to load, removing for now to avoid unnecesary rerenders
     // dispatch(startLoading({ id: 'dataviews', areas: ['map', 'timebar'] }))
     const dataviewsWorkspace = await dataviewsClient.load(dataviewsQuery)
     // dispatch(completeLoading({ id: 'dataviews' }))
-    // console.log(dataviews)
+
     if (dataviewsWorkspace === null) {
       console.log('no updates, dont trigger any action')
     } else {
       console.log('received this from dataviews-client:', dataviewsWorkspace)
 
-      // update layer composer
       dispatch(setDataviews(dataviewsWorkspace))
 
       dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))
@@ -65,7 +64,11 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
                 return valuesArray
               })
               .then((valuesArray) => {
-                const segments = trackValueArrayToSegments(valuesArray, TRACK_FIELDS)
+                const segments = trackValueArrayToSegments(valuesArray, [
+                  Field.lonlat,
+                  Field.timestamp,
+                ])
+                console.log('track decoded', segments, dataviewWorkspace)
                 dispatch(
                   setVesselTrack({
                     id: dataviewWorkspace.datasetParams.id as string,
