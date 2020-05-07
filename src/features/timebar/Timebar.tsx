@@ -2,7 +2,7 @@ import React, { Fragment, memo, useState, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
+import { useTimerangeConnect, useBookmarkTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
 import { useViewportConnect } from 'features/map/map.hooks'
 import TimebarComponent, {
@@ -47,6 +47,7 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
+  const { bookmarkStart, bookmarkEnd, dispatchBookmarkTimerange } = useBookmarkTimerangeConnect()
   const { dispatchViewport } = useViewportConnect()
   const tracks = useSelector(getTracksData)
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
@@ -72,6 +73,9 @@ const TimebarWrapper = () => {
         absoluteStart={'2012-01-01T00:00:00.000Z'}
         absoluteEnd={'2020-01-01T00:00:00.000Z'}
         onChange={dispatchTimerange}
+        bookmarkStart={bookmarkStart}
+        bookmarkEnd={bookmarkEnd}
+        onBookmarkChange={dispatchBookmarkTimerange}
         onMouseMove={(clientX: number, scale: (arg: number) => Date) => {
           if (clientX === null) {
             dispatch(disableHighlightedTime())

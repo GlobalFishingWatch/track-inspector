@@ -11,6 +11,8 @@ export type WorkspaceParam =
   | 'longitude'
   | 'start'
   | 'end'
+  | 'bookmarkStart'
+  | 'bookmarkEnd'
   | 'sidebar'
 
 export type QueryParams = {
@@ -49,4 +51,6 @@ export type Event = {
 
 export type AppState = Workspace & {
   sidebar: boolean
+  bookmarkStart?: string
+  bookmarkEnd?: string
 }

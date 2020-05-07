@@ -24,6 +24,8 @@ export const selectMapLatitudeQuery = selectQueryParam('latitude')
 export const selectMapLongitudeQuery = selectQueryParam('longitude')
 export const selectStartQuery = selectQueryParam('start')
 export const selectEndQuery = selectQueryParam('end')
+export const selectBookmarkStartQuery = selectQueryParam('bookmarkStart')
+export const selectBookmarkEndQuery = selectQueryParam('bookmarkEnd')
 export const selectSidebarQuery = selectQueryParam('sidebar')
 
 export const selectViewport = createSelector(
@@ -39,3 +41,11 @@ export const selectTimerange = createSelector([selectStartQuery, selectEndQuery]
   start,
   end,
 }))
+
+export const selectBookmarkTimerange = createSelector(
+  [selectBookmarkStartQuery, selectBookmarkEndQuery],
+  (bookmarkStart, bookmarkEnd) => ({
+    bookmarkStart,
+    bookmarkEnd,
+  })
+)
