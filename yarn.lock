@@ -1051,17 +1051,17 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.5.0.tgz#57a81dbb52ad748e61f19ca7d14487b6f9a3bb14"
-  integrity sha512-w1dlJz4mKDGrtM4hE3rmX4atM0dpHThnAylgHn7Ajc+pIg0wLYaQ6nVG0bEYQFwxiP2124p9ACgLjNmmGXL6Ug==
+"@globalfishingwatch/map-components@3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.6.0.tgz#e73c5adeb2d2ed7ce8628e9d3493a4e2f2d84ee5"
+  integrity sha512-Cf+VVuMjUePdXE23+ZTq7py4PKKsuAIYyGUs7I6i2ymqfviDP7hsBWAWBNDkceVG/3Ir+jJmcMI6vrJmUVmXdg==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
     "@turf/area" "^6.0.1"
     "@turf/bbox" "^6.0.1"
     classnames "^2.2.6"
-    countryflag "^2.5.0"
+    countryflag "^2.5.3"
     d3-ease "1.0.5"
     d3-geo "1.11.3"
     d3-scale "2.2.2"
@@ -4422,10 +4422,10 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-countryflag@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-2.5.0.tgz#03615546078739f692fc85c107d9c7ba2900e019"
-  integrity sha512-Yh1xsTxwLK2pihISGIxRB6E4NP3gP+SalYThBvBs8eieX+/t7DB7pHiaCDRxTYzlsZTbc/GmufwxMqCyNnMO6A==
+countryflag@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-2.5.3.tgz#f0a9bbc64e1de994df913d3a594780bf871ab17f"
+  integrity sha512-2xzvk93Hf8r95K5+soBAj+ckRi11YXag/YP6WzK0ki5/HOkNToiAYt96+gMUSZTHUGZ2emd7eU/PlAp+MyJ26g==
   dependencies:
     core-js "3.1.4"
     if-emoji "0.1.0"
@@ -4864,10 +4864,10 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
-  integrity sha512-qJgn99xxKnFgB1qL4jpxU7Q2t0LOn1p8KMIveef3UZD7kqjT3tpFNNdXJelEHhE+rUgffriXriw/sOSU+cS1Hw==
+date-fns@2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.13.0.tgz#d7b8a0a2d392e8d88a8024d0a46b980bbfdbd708"
+  integrity sha512-xm0c61mevGF7f0XpCGtDTGpzEFC/1fpLXHbmFpxZZQJuvByIK2ozm6cSYuU+nxFYOPh2EuCfzUwlTEFwKG+h5w==
 
 dayjs@1.8.26:
   version "1.8.26"
