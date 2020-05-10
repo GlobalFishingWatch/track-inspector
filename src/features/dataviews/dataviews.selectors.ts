@@ -11,16 +11,17 @@ export const selectDataviewByGeneratorConfigType = (type: Type) =>
     })
   })
 
-// TODO Track-inspector specific, generalize
 export const selectGeneratorConfigCurrentEventId = createSelector(
   [selectDataviews],
   (dataviewConfigs) => {
     const vesselEventsConfig = dataviewConfigs.find(
       (dataviewConfig: DataviewWorkspace) =>
-        dataviewConfig.dataview && dataviewConfig.dataview.config.type === Type.VesselEvents
+        dataviewConfig.dataview &&
+        dataviewConfig.dataview.config.type === Type.VesselEvents &&
+        dataviewConfig.overrides.currentEventId
     )
     if (vesselEventsConfig) {
-      return vesselEventsConfig.dataview?.config.currentEventId
+      return vesselEventsConfig.overrides.currentEventId
     }
     return null
   }
