@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useMemo } from 'react'
+import React, { Fragment, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   getTracksData,
@@ -116,6 +116,8 @@ const TimebarWrapper = () => {
                   graphHeight={props.graphHeight}
                   svgTransform={props.svgTransform}
                   overallScale={props.overallScale}
+                  outerScale={props.outerScale}
+                  absoluteEnd={props.absoluteEnd}
                   outerWidth={props.outerWidth}
                   // opacity={0.4}
                   // curve="curveBasis"
@@ -129,6 +131,8 @@ const TimebarWrapper = () => {
                   tooltipContainer={props.tooltipContainer}
                   hoverStart={highlightedTime.start}
                   hoverEnd={highlightedTime.end}
+                  activity={timebarMode === TimebarMode.speed ? tracksGraph : null}
+                  unit="knots"
                 />
               )}
             </Fragment>
