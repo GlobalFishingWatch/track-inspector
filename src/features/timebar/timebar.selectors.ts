@@ -116,10 +116,24 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
   return eventsWithRenderingInfo
 })
 
+// Gets common encounter across several vessels events lists
 export const getEncounters = createSelector([getEventsWithRenderingInfo], (trackEvents) => {
-  return trackEvents.map((events: RenderedEvent[]) => {
-    return events.filter((event: RenderedEvent) => {
-      return event.type === 'encounter'
+  if (trackEvents.length !== 2) return []
+  const allVesselsIds = trackEvents
+    .filter((events: RenderedEvent[]) => events.length)
+    .map((events: RenderedEvent[]) => events[0].vessel.id)
+  return trackEvents
+    .map((events: RenderedEvent[]) => {
+      return events
+        .filter((event: RenderedEvent) => {
+          return event.type === 'encounter'
+        })
+        .filter((event: RenderedEvent) => {
+          return event.encounter && allVesselsIds.includes(event.encounter.vessel.id)
+        })
+        .map((event: RenderedEvent) => {
+          return { ...event, height: 16 }
+        })
     })
-  })
+    .slice(0, 1)
 })

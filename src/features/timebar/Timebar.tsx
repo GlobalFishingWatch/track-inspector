@@ -63,6 +63,8 @@ const TimebarWrapper = () => {
     return segmentsToGraph(segments, timebarMode)
   }, [segments, timebarMode])
 
+  const disableEncounters = timebarMode === TimebarMode.encounters && tracksEvents.length !== 2
+
   return (
     <Fragment>
       <TimebarComponent
@@ -90,27 +92,47 @@ const TimebarWrapper = () => {
             <Loader />
           ) : (
             <Fragment>
-              {tracks.length && timebarMode === TimebarMode.events && (
-                <TimebarTracks key="tracks" {...props} tracks={tracks} />
+              {(timebarMode === TimebarMode.events || timebarMode === TimebarMode.encounters) && (
+                <Fragment>
+                  {tracks.length && !disableEncounters && (
+                    <TimebarTracks
+                      key="tracks"
+                      outerScale={props.outerScale}
+                      graphHeight={props.graphHeight}
+                      tracks={tracks}
+                    />
+                  )}
+                  {tracksEvents.length && (
+                    <Fragment>
+                      {disableEncounters ? (
+                        <div className={styles.noEncounters}>
+                          Can't display encounters for{' '}
+                          {tracks.length === 1 ? 'a single vessel' : 'more than two vessels'}
+                        </div>
+                      ) : (
+                        <TimebarTracksEvents
+                          key="events"
+                          outerScale={props.outerScale}
+                          outerWidth={props.outerWidth}
+                          graphHeight={props.graphHeight}
+                          tooltipContainer={props.tooltipContainer}
+                          tracksEvents={
+                            timebarMode === TimebarMode.encounters ? encounters : tracksEvents
+                          }
+                          preselectedEventId={currentEventId}
+                          onEventClick={(event: Event) => {
+                            dispatchViewport({
+                              latitude: event.position.lat,
+                              longitude: event.position.lon,
+                            })
+                          }}
+                        />
+                      )}
+                    </Fragment>
+                  )}
+                </Fragment>
               )}
-              {tracksEvents.length && timebarMode === TimebarMode.events && (
-                <TimebarTracksEvents
-                  key="events"
-                  outerScale={props.outerScale}
-                  outerWidth={props.outerWidth}
-                  graphHeight={props.graphHeight}
-                  tooltipContainer={props.tooltipContainer}
-                  tracksEvents={tracksEvents}
-                  preselectedEventId={currentEventId}
-                  onEventClick={(event: Event) => {
-                    dispatchViewport({
-                      latitude: event.position.lat,
-                      longitude: event.position.lon,
-                    })
-                  }}
-                />
-              )}
-              {tracks.length && timebarMode === TimebarMode.speed && (
+              {timebarMode === TimebarMode.speed && tracks.length && (
                 <TimebarActivity
                   key="trackActivity"
                   graphHeight={props.graphHeight}
