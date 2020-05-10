@@ -5,6 +5,7 @@ import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+import { Type } from '@globalfishingwatch/layer-composer'
 
 type TimebarTrackSegment = {
   start: number
@@ -18,26 +19,30 @@ type TimebarTrack = {
 export const getTracksData = createSelector(
   [selectDataviews, selectTracks],
   (dataviewWorkspaces, tracks) => {
-    const tracksSegments: TimebarTrack[] = []
-    Object.keys(tracks).forEach((id) => {
-      const dataviewWorkspace = dataviewWorkspaces.find(
-        (dataviewWorkspace: DataviewWorkspace) => id === dataviewWorkspace.datasetParams.id
-      )
-      if (!dataviewWorkspace || !dataviewWorkspace.dataview) return
-      const config = dataviewWorkspace.dataview.config
-      if (config.visible !== false) {
-        const trackSegments: TimebarTrackSegment[] = tracks[id].map((segment) => {
-          return {
-            start: segment[0].timestamp || 0,
-            end: segment[segment.length - 1].timestamp || 0,
-          }
-        })
-        tracksSegments.push({
+    const tracksSegments: TimebarTrack[] = dataviewWorkspaces
+      .filter((dataviewWorkspace: DataviewWorkspace) => {
+        return (
+          dataviewWorkspace.dataview?.config.type === Type.Track &&
+          dataviewWorkspace.dataview?.config.visible !== false
+        )
+      })
+      .map((dataviewWorkspace: DataviewWorkspace) => {
+        const id = dataviewWorkspace.datasetParams.id
+        const track = tracks[id]
+        const trackSegments: TimebarTrackSegment[] = !track
+          ? []
+          : tracks[id].map((segment) => {
+              return {
+                start: segment[0].timestamp || 0,
+                end: segment[segment.length - 1].timestamp || 0,
+              }
+            })
+        return {
           segments: trackSegments,
-          color: config.color,
-        })
-      }
-    })
+          color: dataviewWorkspace.dataview?.config.color,
+        }
+      })
+
     return tracksSegments
   }
 )
@@ -45,38 +50,21 @@ export const getTracksData = createSelector(
 // TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
 export const getEventsForTracks = createSelector(
   [selectDataviews, selectEvents, selectTracks],
-  (dataviewWorkspaces, events, tracks) => {
-    // Retrieve original carrier and fishing vessels ids from generator config
-    const trackCarrierDataviewWorkspace = dataviewWorkspaces.find(
-      (dataviewWorkspace: DataviewWorkspace) =>
-        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackCarrier'
-    )
-    const trackFishingDataviewWorkspace = dataviewWorkspaces.find(
-      (dataviewWorkspace: DataviewWorkspace) =>
-        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackFishing'
-    )
-    if (!trackCarrierDataviewWorkspace || !trackFishingDataviewWorkspace) return []
-
-    // Retrieve events using carrier id
-    const carrierId = trackCarrierDataviewWorkspace.datasetParams.id
-    const trackCarrierEvents = events[carrierId]
-    if (!trackCarrierEvents) return []
-
-    // Filter encounters events from the carrier that are matching the fishing vessel id
-    const fishingId = trackFishingDataviewWorkspace.datasetParams.id
-    const trackFishingEventsForTimebar = trackCarrierEvents.filter(
-      (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
-    )
-
-    const trackEvents = Object.keys(tracks).map((id) => {
-      if (id === carrierId) {
-        return trackCarrierEvents
-      } else if (id === fishingId) {
-        return trackFishingEventsForTimebar
-      }
-      return []
-    })
-    return trackEvents
+  (dataviewWorkspaces, events) => {
+    const vesselsEvents = dataviewWorkspaces
+      .filter((dataviewWorkspace: DataviewWorkspace) => {
+        // get Tracks gen configs, not VesselEvents, to ensure events will appear in the same order as tracks
+        return (
+          dataviewWorkspace.dataview?.config.type === Type.Track &&
+          dataviewWorkspace.dataview?.config.visible !== false
+        )
+      })
+      .map((dataviewWorkspace: DataviewWorkspace) => {
+        const id = dataviewWorkspace.datasetParams.id
+        const vesselEvents = events[id] || []
+        return vesselEvents
+      })
+    return vesselsEvents
   }
 )
 

@@ -92,6 +92,22 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
     },
     {
+      id: 'fishingEvents',
+      overrides: {
+        // visible: false,
+      },
+      datasetParams: {
+        id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
+      },
+      dataview: {
+        id: 'fishingEvents',
+        datasetsIds: ['carrierPortalVesselEvents'],
+        config: {
+          type: Type.VesselEvents,
+        },
+      },
+    },
+    {
       id: 'cp_rfmo',
       overrides: {
         visible: false,
@@ -205,5 +221,5 @@ const datasetsEndpointMock: Dataset[] = [
 ]
 
 export const mockFetches: any = {
-  'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
+  '/datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
 }
