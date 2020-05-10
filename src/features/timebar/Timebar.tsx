@@ -1,6 +1,11 @@
 import React, { Fragment, memo, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getTracksData, getEventsWithRenderingInfo, getEncounters } from './timebar.selectors'
+import {
+  getTracksData,
+  getTracksGraphs,
+  getEventsWithRenderingInfo,
+  getEncounters,
+} from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
 import {
   useTimerangeConnect,
@@ -14,35 +19,11 @@ import TimebarComponent, {
   TimebarActivity,
   TimebarTracksEvents,
   TimebarHighlighter,
-  geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
-
-const tracksToSegments = (tracks: any[]) => {
-  return tracks.map((track: any) => ({
-    segments: geoJSONTrackToTimebarFeatureSegments(track.geojson),
-    color: track.color,
-  }))
-}
-
-const segmentsToGraph = (tracks: any[], timebarMode: string) => {
-  return tracks.map((track) => {
-    const segments = track.segments
-    const segmentsWithCurrentFeature = segments.map((segment: any) =>
-      segment.map((item: any) => ({
-        ...item,
-        value: item[`${timebarMode}s`],
-      }))
-    )
-    return {
-      segmentsWithCurrentFeature,
-      color: track.color,
-    }
-  })
-}
 
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
@@ -56,12 +37,9 @@ const TimebarWrapper = () => {
   const loading = useSelector(selectLoader('timebar'))
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
-  const dispatch = useDispatch()
+  const tracksGraph = useSelector(getTracksGraphs)
 
-  const segments = useMemo(() => tracksToSegments(tracks), [tracks])
-  const graph = useMemo(() => {
-    return segmentsToGraph(segments, timebarMode)
-  }, [segments, timebarMode])
+  const dispatch = useDispatch()
 
   const disableEncounters = timebarMode === TimebarMode.encounters && tracksEvents.length !== 2
 
@@ -141,7 +119,7 @@ const TimebarWrapper = () => {
                   outerWidth={props.outerWidth}
                   // opacity={0.4}
                   // curve="curveBasis"
-                  graphTracks={graph}
+                  graphTracks={tracksGraph}
                 />
               )}
               {highlightedTime && (

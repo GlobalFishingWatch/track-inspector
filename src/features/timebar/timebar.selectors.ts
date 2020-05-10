@@ -6,6 +6,8 @@ import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
+import { selectTimebarMode } from 'routes/routes.selectors'
+import { Field } from 'data-transform/trackValueArrayToSegments'
 
 type TimebarTrackSegment = {
   start: number
@@ -16,17 +18,23 @@ type TimebarTrack = {
   color: string
 }
 
+const selectTracksDataviews = createSelector([selectDataviews], (dataviewWorkspaces) => {
+  const dataviews: DataviewWorkspace[] = dataviewWorkspaces.filter(
+    (dataviewWorkspace: DataviewWorkspace) => {
+      return (
+        dataviewWorkspace.dataview?.config.type === Type.Track &&
+        dataviewWorkspace.dataview?.config.visible !== false
+      )
+    }
+  )
+  return dataviews
+})
+
 export const getTracksData = createSelector(
-  [selectDataviews, selectTracks],
-  (dataviewWorkspaces, tracks) => {
-    const tracksSegments: TimebarTrack[] = dataviewWorkspaces
-      .filter((dataviewWorkspace: DataviewWorkspace) => {
-        return (
-          dataviewWorkspace.dataview?.config.type === Type.Track &&
-          dataviewWorkspace.dataview?.config.visible !== false
-        )
-      })
-      .map((dataviewWorkspace: DataviewWorkspace) => {
+  [selectTracksDataviews, selectTracks],
+  (trackDataviews, tracks) => {
+    const tracksSegments: TimebarTrack[] = trackDataviews.map(
+      (dataviewWorkspace: DataviewWorkspace) => {
         const id = dataviewWorkspace.datasetParams.id
         const track = tracks[id]
         const trackSegments: TimebarTrackSegment[] = !track
@@ -41,28 +49,49 @@ export const getTracksData = createSelector(
           segments: trackSegments,
           color: dataviewWorkspace.dataview?.config.color,
         }
-      })
+      }
+    )
 
     return tracksSegments
   }
 )
 
+export const getTracksGraphs = createSelector(
+  [selectTracksDataviews, selectTracks, selectTimebarMode],
+  (trackDataviews, tracks, currentTimebarMode) => {
+    const graphs = trackDataviews.map((dataviewWorkspace: DataviewWorkspace) => {
+      const id = dataviewWorkspace.datasetParams.id
+      const trackSegments = tracks[id]
+      if (!trackSegments) return null
+      const color = dataviewWorkspace.dataview?.config.color
+      const segmentsWithCurrentFeature = trackSegments.map((segment) => {
+        return segment.map((pt) => {
+          const value = pt[currentTimebarMode as Field]
+          return {
+            date: pt.timestamp,
+            value,
+          }
+        })
+      })
+      return {
+        color,
+        segmentsWithCurrentFeature,
+        // TODO Figure out this magic value
+        maxValue: 20,
+      }
+    })
+    return graphs
+  }
+)
+
 export const getEventsForTracks = createSelector(
-  [selectDataviews, selectEvents, selectTracks],
-  (dataviewWorkspaces, events) => {
-    const vesselsEvents = dataviewWorkspaces
-      .filter((dataviewWorkspace: DataviewWorkspace) => {
-        // get Tracks gen configs, not VesselEvents, to ensure events will appear in the same order as tracks
-        return (
-          dataviewWorkspace.dataview?.config.type === Type.Track &&
-          dataviewWorkspace.dataview?.config.visible !== false
-        )
-      })
-      .map((dataviewWorkspace: DataviewWorkspace) => {
-        const id = dataviewWorkspace.datasetParams.id
-        const vesselEvents = events[id] || []
-        return vesselEvents
-      })
+  [selectTracksDataviews, selectEvents, selectTracks],
+  (trackDataviews, events) => {
+    const vesselsEvents = trackDataviews.map((dataviewWorkspace: DataviewWorkspace) => {
+      const id = dataviewWorkspace.datasetParams.id
+      const vesselEvents = events[id] || []
+      return vesselEvents
+    })
     return vesselsEvents
   }
 )
