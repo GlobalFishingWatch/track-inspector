@@ -14,6 +14,7 @@ export type WorkspaceParam =
   | 'bookmarkStart'
   | 'bookmarkEnd'
   | 'sidebar'
+  | 'timebarMode'
 
 export type QueryParams = {
   [query in WorkspaceParam]?: string | number | boolean | null
@@ -51,6 +52,13 @@ export type Event = {
 
 export type AppState = Workspace & {
   sidebar: boolean
+  timebarMode: string
   bookmarkStart?: string
   bookmarkEnd?: string
+}
+
+export enum TimebarMode {
+  events = 'events',
+  encounters = 'encounters',
+  speed = 'speed',
 }

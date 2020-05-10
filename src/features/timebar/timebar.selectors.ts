@@ -47,7 +47,6 @@ export const getTracksData = createSelector(
   }
 )
 
-// TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
 export const getEventsForTracks = createSelector(
   [selectDataviews, selectEvents, selectTracks],
   (dataviewWorkspaces, events) => {
@@ -68,10 +67,15 @@ export const getEventsForTracks = createSelector(
   }
 )
 
+interface RenderedEvent extends Event {
+  color: string
+  description: string
+}
+
 // Inject colors using type and auth status
 export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (eventsForTrack) => {
   // + add text descriptions
-  const eventsWithRenderingInfo = eventsForTrack.map((trackEvents: Event[]) => {
+  const eventsWithRenderingInfo: RenderedEvent[][] = eventsForTrack.map((trackEvents: Event[]) => {
     return trackEvents.map((event: Event) => {
       let colorKey = event.type as string
       if (event.type === 'encounter') {
@@ -110,4 +114,12 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
     })
   })
   return eventsWithRenderingInfo
+})
+
+export const getEncounters = createSelector([getEventsWithRenderingInfo], (trackEvents) => {
+  return trackEvents.map((events: RenderedEvent[]) => {
+    return events.filter((event: RenderedEvent) => {
+      return event.type === 'encounter'
+    })
+  })
 })

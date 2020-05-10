@@ -1,8 +1,12 @@
-import React, { Fragment, memo, useState, useMemo } from 'react'
+import React, { Fragment, memo, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
+import { getTracksData, getEventsWithRenderingInfo, getEncounters } from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { useTimerangeConnect, useBookmarkTimerangeConnect } from 'features/timebar/timebar.hooks'
+import {
+  useTimerangeConnect,
+  useBookmarkTimerangeConnect,
+  useTimebarModeConnect,
+} from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
 import { useViewportConnect } from 'features/map/map.hooks'
 import TimebarComponent, {
@@ -13,14 +17,9 @@ import TimebarComponent, {
   geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from 'features/loaders/Loader'
-import { Event } from 'types/'
+import { Event, TimebarMode } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
-
-enum Graph {
-  Encounters = 'Encounters',
-  Speed = 'Speed',
-}
 
 const tracksToSegments = (tracks: any[]) => {
   return tracks.map((track: any) => ({
@@ -29,13 +28,13 @@ const tracksToSegments = (tracks: any[]) => {
   }))
 }
 
-const segmentsToGraph = (tracks: any[], currentGraph: string) => {
+const segmentsToGraph = (tracks: any[], timebarMode: string) => {
   return tracks.map((track) => {
     const segments = track.segments
     const segmentsWithCurrentFeature = segments.map((segment: any) =>
       segment.map((item: any) => ({
         ...item,
-        value: item[`${currentGraph.toLowerCase()}s`],
+        value: item[`${timebarMode}s`],
       }))
     )
     return {
@@ -48,21 +47,21 @@ const segmentsToGraph = (tracks: any[], currentGraph: string) => {
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
   const { bookmarkStart, bookmarkEnd, dispatchBookmarkTimerange } = useBookmarkTimerangeConnect()
+  const { timebarMode, dispatchTimebarMode } = useTimebarModeConnect()
   const { dispatchViewport } = useViewportConnect()
   const tracks = useSelector(getTracksData)
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
+  const encounters = useSelector(getEncounters)
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
   const dispatch = useDispatch()
 
-  const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
-
   const segments = useMemo(() => tracksToSegments(tracks), [tracks])
   const graph = useMemo(() => {
-    return segmentsToGraph(segments, currentGraph)
-  }, [segments, currentGraph])
+    return segmentsToGraph(segments, timebarMode)
+  }, [segments, timebarMode])
 
   return (
     <Fragment>
@@ -91,10 +90,10 @@ const TimebarWrapper = () => {
             <Loader />
           ) : (
             <Fragment>
-              {tracks.length && currentGraph === Graph.Encounters && (
+              {tracks.length && timebarMode === TimebarMode.events && (
                 <TimebarTracks key="tracks" {...props} tracks={tracks} />
               )}
-              {tracksEvents.length && currentGraph === Graph.Encounters && (
+              {tracksEvents.length && timebarMode === TimebarMode.events && (
                 <TimebarTracksEvents
                   key="events"
                   outerScale={props.outerScale}
@@ -111,7 +110,7 @@ const TimebarWrapper = () => {
                   }}
                 />
               )}
-              {tracks.length && currentGraph === Graph.Speed && (
+              {tracks.length && timebarMode === TimebarMode.speed && (
                 <TimebarActivity
                   key="trackActivity"
                   graphHeight={props.graphHeight}
@@ -140,15 +139,18 @@ const TimebarWrapper = () => {
         <select
           className={styles.graphSelectorSelect}
           onChange={(event) => {
-            setCurrentGraph(event.target.value as Graph)
+            dispatchTimebarMode(event.target.value)
           }}
-          value={currentGraph}
+          value={timebarMode}
         >
-          <option key={Graph.Encounters} value={Graph.Encounters}>
-            {Graph.Encounters}
+          <option key={TimebarMode.events} value={TimebarMode.events}>
+            {TimebarMode.events}
           </option>
-          <option key={Graph.Speed} value={Graph.Speed}>
-            {Graph.Speed}
+          <option key={TimebarMode.encounters} value={TimebarMode.encounters}>
+            {TimebarMode.encounters}
+          </option>
+          <option key={TimebarMode.speed} value={TimebarMode.speed}>
+            {TimebarMode.speed}
           </option>
         </select>
         <div className={styles.graphSelectorArrow}>{/* <Icon icon="graph" /> */}</div>
