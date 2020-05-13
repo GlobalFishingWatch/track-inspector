@@ -1024,18 +1024,18 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@0.0.20-dataviews6":
-  version "0.0.20-dataviews6"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.20-dataviews6.tgz#33485afec1ea8e3fd2f32a9672d8298a5b911667"
-  integrity sha512-N7rdVGVop6T17pAFid4NOSq1g+8rVU14jn8tJ0FxxXzalym78b0mLSygfcFVa8Tb6nEFL/rTGMS61CqmxTOSBA==
+"@globalfishingwatch/api-client@0.0.20-dataviews8":
+  version "0.0.20-dataviews8"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.20-dataviews8.tgz#1c4fff1323d5414ca5e134e5fcdca45df36f55fa"
+  integrity sha512-yhcPi6an2lyxWqm2dZHZyW/z3DrpJzediVUj4JOtkAJ2F8mhghLF2p2OrIHJx+S5kW5jt5tm2IsPJXBXu6aw8A==
   dependencies:
     file-saver "^2.0.2"
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.5.tgz#83af43f452ced4baeced0b48f768d3cafd9f3821"
-  integrity sha512-XafuAZgEHulpfkrq/ZXgEBlnXEpB7YICqEe/cVDIsNSO/G4kb9d9S37xAe602IaNIbwjg1JcKv9PcbhDu7Gsjw==
+"@globalfishingwatch/layer-composer@0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.7.tgz#e26707df72c77c33831e209574d65e62c0fab071"
+  integrity sha512-2hfsYtQiOaqVPph2SF0dNVY3wdb2vuM/8tfZ9fesjiPO5XoG4YeWfYZ89ZctPuhb77UHTLUP8dLcGt2vECUkzQ==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
@@ -1051,10 +1051,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.6.0.tgz#e73c5adeb2d2ed7ce8628e9d3493a4e2f2d84ee5"
-  integrity sha512-Cf+VVuMjUePdXE23+ZTq7py4PKKsuAIYyGUs7I6i2ymqfviDP7hsBWAWBNDkceVG/3Ir+jJmcMI6vrJmUVmXdg==
+"@globalfishingwatch/map-components@3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.7.3.tgz#2e9be972e06350e08d70c7dcb9b6f3f8c54f0971"
+  integrity sha512-2rMhZijdFeIjiLG57ynzyHQJ/6T7C+STndOTsgS64CW1lkQ21NPYG7Cm5M3fgt+BMedloXEuAmn9lhQUpiTjhQ==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"

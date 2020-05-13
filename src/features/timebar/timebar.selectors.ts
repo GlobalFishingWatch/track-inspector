@@ -5,6 +5,9 @@ import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+import { Type } from '@globalfishingwatch/layer-composer'
+import { selectTimebarMode } from 'routes/routes.selectors'
+import { Field } from 'data-transform/trackValueArrayToSegments'
 
 type TimebarTrackSegment = {
   start: number
@@ -15,75 +18,93 @@ type TimebarTrack = {
   color: string
 }
 
-export const getTracksData = createSelector(
-  [selectDataviews, selectTracks],
-  (dataviewWorkspaces, tracks) => {
-    const tracksSegments: TimebarTrack[] = []
-    Object.keys(tracks).forEach((id) => {
-      const dataviewWorkspace = dataviewWorkspaces.find(
-        (dataviewWorkspace: DataviewWorkspace) => id === dataviewWorkspace.datasetParams.id
+const selectTracksDataviews = createSelector([selectDataviews], (dataviewWorkspaces) => {
+  const dataviews: DataviewWorkspace[] = dataviewWorkspaces.filter(
+    (dataviewWorkspace: DataviewWorkspace) => {
+      return (
+        dataviewWorkspace.dataview?.config.type === Type.Track &&
+        dataviewWorkspace.dataview?.config.visible !== false
       )
-      if (!dataviewWorkspace || !dataviewWorkspace.dataview) return
-      const config = dataviewWorkspace.dataview.config
-      if (config.visible !== false) {
-        const trackSegments: TimebarTrackSegment[] = tracks[id].map((segment) => {
-          return {
-            start: segment[0].timestamp || 0,
-            end: segment[segment.length - 1].timestamp || 0,
-          }
-        })
-        tracksSegments.push({
+    }
+  )
+  return dataviews
+})
+
+export const getTracksData = createSelector(
+  [selectTracksDataviews, selectTracks],
+  (trackDataviews, tracks) => {
+    const tracksSegments: TimebarTrack[] = trackDataviews.map(
+      (dataviewWorkspace: DataviewWorkspace) => {
+        const id = dataviewWorkspace.datasetParams.id
+        const track = tracks[id]
+        const trackSegments: TimebarTrackSegment[] = !track
+          ? []
+          : tracks[id].map((segment) => {
+              return {
+                start: segment[0].timestamp || 0,
+                end: segment[segment.length - 1].timestamp || 0,
+              }
+            })
+        return {
           segments: trackSegments,
-          color: config.color,
-        })
+          color: dataviewWorkspace.dataview?.config.color,
+        }
       }
-    })
+    )
+
     return tracksSegments
   }
 )
 
-// TODO: The trackCarrier/trackFishing stuff is completely track-inspector specific, will need to be abstracted for map-client
-export const getEventsForTracks = createSelector(
-  [selectDataviews, selectEvents, selectTracks],
-  (dataviewWorkspaces, events, tracks) => {
-    // Retrieve original carrier and fishing vessels ids from generator config
-    const trackCarrierDataviewWorkspace = dataviewWorkspaces.find(
-      (dataviewWorkspace: DataviewWorkspace) =>
-        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackCarrier'
-    )
-    const trackFishingDataviewWorkspace = dataviewWorkspaces.find(
-      (dataviewWorkspace: DataviewWorkspace) =>
-        dataviewWorkspace.dataview && dataviewWorkspace.dataview.id === 'trackFishing'
-    )
-    if (!trackCarrierDataviewWorkspace || !trackFishingDataviewWorkspace) return []
-
-    // Retrieve events using carrier id
-    const carrierId = trackCarrierDataviewWorkspace.datasetParams.id
-    const trackCarrierEvents = events[carrierId]
-    if (!trackCarrierEvents) return []
-
-    // Filter encounters events from the carrier that are matching the fishing vessel id
-    const fishingId = trackFishingDataviewWorkspace.datasetParams.id
-    const trackFishingEventsForTimebar = trackCarrierEvents.filter(
-      (event: Event) => event.encounter && event.encounter.vessel.id === fishingId
-    )
-
-    const trackEvents = Object.keys(tracks).map((id) => {
-      if (id === carrierId) {
-        return trackCarrierEvents
-      } else if (id === fishingId) {
-        return trackFishingEventsForTimebar
+export const getTracksGraphs = createSelector(
+  [selectTracksDataviews, selectTracks, selectTimebarMode],
+  (trackDataviews, tracks, currentTimebarMode) => {
+    const graphs = trackDataviews.map((dataviewWorkspace: DataviewWorkspace) => {
+      const id = dataviewWorkspace.datasetParams.id
+      const trackSegments = tracks[id]
+      if (!trackSegments) return null
+      const color = dataviewWorkspace.dataview?.config.color
+      const segmentsWithCurrentFeature = trackSegments.map((segment) => {
+        return segment.map((pt) => {
+          const value = pt[currentTimebarMode as Field]
+          return {
+            date: pt.timestamp,
+            value,
+          }
+        })
+      })
+      return {
+        color,
+        segmentsWithCurrentFeature,
+        // TODO Figure out this magic value
+        maxValue: 20,
       }
-      return []
     })
-    return trackEvents
+    return graphs
   }
 )
+
+export const getEventsForTracks = createSelector(
+  [selectTracksDataviews, selectEvents, selectTracks],
+  (trackDataviews, events) => {
+    const vesselsEvents = trackDataviews.map((dataviewWorkspace: DataviewWorkspace) => {
+      const id = dataviewWorkspace.datasetParams.id
+      const vesselEvents = events[id] || []
+      return vesselEvents
+    })
+    return vesselsEvents
+  }
+)
+
+interface RenderedEvent extends Event {
+  color: string
+  description: string
+}
 
 // Inject colors using type and auth status
 export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (eventsForTrack) => {
   // + add text descriptions
-  const eventsWithRenderingInfo = eventsForTrack.map((trackEvents: Event[]) => {
+  const eventsWithRenderingInfo: RenderedEvent[][] = eventsForTrack.map((trackEvents: Event[]) => {
     return trackEvents.map((event: Event) => {
       let colorKey = event.type as string
       if (event.type === 'encounter') {
@@ -122,4 +143,26 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
     })
   })
   return eventsWithRenderingInfo
+})
+
+// Gets common encounter across several vessels events lists
+export const getEncounters = createSelector([getEventsWithRenderingInfo], (trackEvents) => {
+  if (trackEvents.length !== 2) return []
+  const allVesselsIds = trackEvents
+    .filter((events: RenderedEvent[]) => events.length)
+    .map((events: RenderedEvent[]) => events[0].vessel.id)
+  return trackEvents
+    .map((events: RenderedEvent[]) => {
+      return events
+        .filter((event: RenderedEvent) => {
+          return event.type === 'encounter'
+        })
+        .filter((event: RenderedEvent) => {
+          return event.encounter && allVesselsIds.includes(event.encounter.vessel.id)
+        })
+        .map((event: RenderedEvent) => {
+          return { ...event, height: 16 }
+        })
+    })
+    .slice(0, 1)
 })

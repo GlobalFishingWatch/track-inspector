@@ -1,8 +1,17 @@
-import React, { Fragment, memo, useState, useMemo } from 'react'
+import React, { Fragment, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getTracksData, getEventsWithRenderingInfo } from './timebar.selectors'
+import {
+  getTracksData,
+  getTracksGraphs,
+  getEventsWithRenderingInfo,
+  getEncounters,
+} from './timebar.selectors'
 import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
-import { useTimerangeConnect, useBookmarkTimerangeConnect } from 'features/timebar/timebar.hooks'
+import {
+  useTimerangeConnect,
+  useBookmarkTimerangeConnect,
+  useTimebarModeConnect,
+} from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
 import { useViewportConnect } from 'features/map/map.hooks'
 import TimebarComponent, {
@@ -10,59 +19,29 @@ import TimebarComponent, {
   TimebarActivity,
   TimebarTracksEvents,
   TimebarHighlighter,
-  geoJSONTrackToTimebarFeatureSegments,
 } from '@globalfishingwatch/map-components/components/timebar'
 import Loader from 'features/loaders/Loader'
-import { Event } from 'types/'
+import { Event, TimebarMode } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
-
-enum Graph {
-  Encounters = 'Encounters',
-  Speed = 'Speed',
-}
-
-const tracksToSegments = (tracks: any[]) => {
-  return tracks.map((track: any) => ({
-    segments: geoJSONTrackToTimebarFeatureSegments(track.geojson),
-    color: track.color,
-  }))
-}
-
-const segmentsToGraph = (tracks: any[], currentGraph: string) => {
-  return tracks.map((track) => {
-    const segments = track.segments
-    const segmentsWithCurrentFeature = segments.map((segment: any) =>
-      segment.map((item: any) => ({
-        ...item,
-        value: item[`${currentGraph.toLowerCase()}s`],
-      }))
-    )
-    return {
-      segmentsWithCurrentFeature,
-      color: track.color,
-    }
-  })
-}
 
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
   const { bookmarkStart, bookmarkEnd, dispatchBookmarkTimerange } = useBookmarkTimerangeConnect()
+  const { timebarMode, dispatchTimebarMode } = useTimebarModeConnect()
   const { dispatchViewport } = useViewportConnect()
   const tracks = useSelector(getTracksData)
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
+  const encounters = useSelector(getEncounters)
   const highlightedTime = useSelector(selectHighlightedTime)
   const loading = useSelector(selectLoader('timebar'))
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
+  const tracksGraph = useSelector(getTracksGraphs)
+
   const dispatch = useDispatch()
 
-  const [currentGraph, setCurrentGraph] = useState(Graph.Encounters)
-
-  const segments = useMemo(() => tracksToSegments(tracks), [tracks])
-  const graph = useMemo(() => {
-    return segmentsToGraph(segments, currentGraph)
-  }, [segments, currentGraph])
+  const disableEncounters = timebarMode === TimebarMode.encounters && tracksEvents.length !== 2
 
   return (
     <Fragment>
@@ -91,36 +70,58 @@ const TimebarWrapper = () => {
             <Loader />
           ) : (
             <Fragment>
-              {tracks.length && currentGraph === Graph.Encounters && (
-                <TimebarTracks key="tracks" {...props} tracks={tracks} />
+              {(timebarMode === TimebarMode.events || timebarMode === TimebarMode.encounters) && (
+                <Fragment>
+                  {tracks.length && !disableEncounters && (
+                    <TimebarTracks
+                      key="tracks"
+                      outerScale={props.outerScale}
+                      graphHeight={props.graphHeight}
+                      tracks={tracks}
+                    />
+                  )}
+                  {tracksEvents.length && (
+                    <Fragment>
+                      {disableEncounters ? (
+                        <div className={styles.noEncounters}>
+                          Can't display encounters for{' '}
+                          {tracks.length === 1 ? 'a single vessel' : 'more than two vessels'}
+                        </div>
+                      ) : (
+                        <TimebarTracksEvents
+                          key="events"
+                          outerScale={props.outerScale}
+                          outerWidth={props.outerWidth}
+                          graphHeight={props.graphHeight}
+                          tooltipContainer={props.tooltipContainer}
+                          tracksEvents={
+                            timebarMode === TimebarMode.encounters ? encounters : tracksEvents
+                          }
+                          preselectedEventId={currentEventId}
+                          onEventClick={(event: Event) => {
+                            dispatchViewport({
+                              latitude: event.position.lat,
+                              longitude: event.position.lon,
+                            })
+                          }}
+                        />
+                      )}
+                    </Fragment>
+                  )}
+                </Fragment>
               )}
-              {tracksEvents.length && currentGraph === Graph.Encounters && (
-                <TimebarTracksEvents
-                  key="events"
-                  outerScale={props.outerScale}
-                  outerWidth={props.outerWidth}
-                  graphHeight={props.graphHeight}
-                  tooltipContainer={props.tooltipContainer}
-                  tracksEvents={tracksEvents}
-                  preselectedEventId={currentEventId}
-                  onEventClick={(event: Event) => {
-                    dispatchViewport({
-                      latitude: event.position.lat,
-                      longitude: event.position.lon,
-                    })
-                  }}
-                />
-              )}
-              {tracks.length && currentGraph === Graph.Speed && (
+              {timebarMode === TimebarMode.speed && tracks.length && (
                 <TimebarActivity
                   key="trackActivity"
                   graphHeight={props.graphHeight}
                   svgTransform={props.svgTransform}
                   overallScale={props.overallScale}
+                  outerScale={props.outerScale}
+                  absoluteEnd={props.absoluteEnd}
                   outerWidth={props.outerWidth}
                   // opacity={0.4}
                   // curve="curveBasis"
-                  graphTracks={graph}
+                  graphTracks={tracksGraph}
                 />
               )}
               {highlightedTime && (
@@ -130,6 +131,8 @@ const TimebarWrapper = () => {
                   tooltipContainer={props.tooltipContainer}
                   hoverStart={highlightedTime.start}
                   hoverEnd={highlightedTime.end}
+                  activity={timebarMode === TimebarMode.speed ? tracksGraph : null}
+                  unit="knots"
                 />
               )}
             </Fragment>
@@ -140,15 +143,18 @@ const TimebarWrapper = () => {
         <select
           className={styles.graphSelectorSelect}
           onChange={(event) => {
-            setCurrentGraph(event.target.value as Graph)
+            dispatchTimebarMode(event.target.value)
           }}
-          value={currentGraph}
+          value={timebarMode}
         >
-          <option key={Graph.Encounters} value={Graph.Encounters}>
-            {Graph.Encounters}
+          <option key={TimebarMode.events} value={TimebarMode.events}>
+            {TimebarMode.events}
           </option>
-          <option key={Graph.Speed} value={Graph.Speed}>
-            {Graph.Speed}
+          <option key={TimebarMode.encounters} value={TimebarMode.encounters}>
+            {TimebarMode.encounters}
+          </option>
+          <option key={TimebarMode.speed} value={TimebarMode.speed}>
+            {TimebarMode.speed}
           </option>
         </select>
         <div className={styles.graphSelectorArrow}>{/* <Icon icon="graph" /> */}</div>
