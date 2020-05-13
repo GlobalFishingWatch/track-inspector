@@ -44,7 +44,6 @@
     "react-redux": "7.2.0",
     "react-scripts": "3.4.1",
     "redux-first-router": "2.1.5",
-    "tracks-cloud-function": "git+ssh://git@github.com/GlobalFishingWatch/api-function-vessels.git",
     "typesafe-actions": "5.1.0",
     "typescript": "3.7.5"
   },
