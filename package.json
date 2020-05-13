@@ -9,7 +9,7 @@
     "build": "react-scripts build",
     "build:manifest": "node scripts/manifest",
     "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
-    "test": "react-scripts test --env=jsdom",
+    "test": "CI=true react-scripts test --env=jsdom --all",
     "eject": "react-scripts eject"
   },
   "dependencies": {
