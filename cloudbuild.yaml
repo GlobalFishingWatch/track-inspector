@@ -69,4 +69,4 @@ steps:
 images:
   - 'gcr.io/world-fishing-827/github.com/globalfishingwatch/carrier-portal:$COMMIT_SHA'
 
-timeout: 900s
+timeout: 1800s
