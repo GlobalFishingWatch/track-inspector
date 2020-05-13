@@ -10,7 +10,8 @@
     "build:manifest": "node scripts/manifest",
     "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
     "test": "CI=true react-scripts test --env=jsdom --all",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-static-pbf-reader": "pbjs -t static-module -w commonjs -o src/pbf/vessels.js node_modules/tracks-cloud-function/src/proto/vessels.proto && pbts -o src/pbf/vessels.d.ts src/pbf/vessels.js"
   },
   "dependencies": {
     "@globalfishingwatch/api-client": "0.0.20-dataviews8",
@@ -35,6 +36,7 @@
     "geobuf": "3.0.1",
     "lodash": "4.17.15",
     "pbf": "3.2.1",
+    "protobufjs": "^6.9.0",
     "qs": "6.9.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -42,6 +44,7 @@
     "react-redux": "7.2.0",
     "react-scripts": "3.4.1",
     "redux-first-router": "2.1.5",
+    "tracks-cloud-function": "git+ssh://git@github.com/GlobalFishingWatch/api-function-vessels.git",
     "typesafe-actions": "5.1.0",
     "typescript": "3.7.5"
   },

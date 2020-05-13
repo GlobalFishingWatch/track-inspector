@@ -6,8 +6,8 @@ import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
 import { setDataviews } from './dataviews.slice'
-import decodeProtobuf from 'data-transform/decodeProtobuf'
 import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
+import { vessels } from 'pbf/vessels'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]
@@ -61,8 +61,8 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               .then(({ response }) => response)
               .then((r) => r.arrayBuffer())
               .then((buffer) => {
-                const valuesArray = decodeProtobuf(buffer)
-                return valuesArray
+                const track = vessels.Track.decode(new Uint8Array(buffer))
+                return track.data
               })
               .then((valuesArray) => {
                 const segments = trackValueArrayToSegments(valuesArray, TRACK_FIELDS)
