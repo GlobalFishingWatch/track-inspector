@@ -119,7 +119,7 @@ export const DEFAULT_WORKSPACE: AppState = {
           'RFMO stands for Regional Fishery Management Organization. These organizations are international organizations formed by countries with a shared interest in managing or conserving an area’s fish stock. Source: GFW',
         config: {
           type: Type.CartoPolygons,
-          color: '#58CFFF',
+          color: '#6b67e5',
         },
       },
     },
