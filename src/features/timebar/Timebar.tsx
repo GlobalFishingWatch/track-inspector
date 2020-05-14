@@ -49,7 +49,7 @@ const TimebarWrapper = () => {
         enablePlayback
         start={start}
         end={end}
-        absoluteStart={'2012-01-01T00:00:00.000Z'}
+        absoluteStart={'2017-01-01T00:00:00.000Z'}
         absoluteEnd={'2020-01-01T00:00:00.000Z'}
         onChange={dispatchTimerange}
         bookmarkStart={bookmarkStart}
