@@ -8,8 +8,9 @@ import { selectSidebarQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
 import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
-import { ReactComponent as Logo } from 'assets/images/logo-gfw.svg'
+import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
 import styles from './Sidebar.module.css'
+import { CARRIER_PORTAL_URL } from 'config'
 
 const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
   return <button className={styles.toggle} style={{ backgroundColor }}></button>
@@ -26,7 +27,9 @@ const Sidebar = () => {
       {sidebar && (
         <div className={styles.content}>
           <header>
-            <Logo />
+            <a target="_blank" href={CARRIER_PORTAL_URL}>
+              <Logo />
+            </a>
           </header>
           <section>
             <h1>Vessels</h1>
