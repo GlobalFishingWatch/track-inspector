@@ -27,7 +27,7 @@ const Sidebar = () => {
       {sidebar && (
         <div className={styles.content}>
           <header>
-            <a target="_blank" href={CARRIER_PORTAL_URL}>
+            <a target="_blank" rel="noopener noreferrer" href={CARRIER_PORTAL_URL}>
               <Logo />
             </a>
           </header>

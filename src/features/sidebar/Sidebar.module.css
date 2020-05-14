@@ -44,12 +44,15 @@ ul {
 
 li {
   margin: 0 0 1rem;
+  font-size: var(--font-size-M);
 }
 
 .toggle {
+  pointer-events: none;
   display: inline-block;
   border-radius: 99px;
   width: 24px;
   height: 10px;
   margin-right: 0.5rem;
+  vertical-align: middle;
 }
