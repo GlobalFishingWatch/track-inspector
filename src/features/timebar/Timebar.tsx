@@ -54,6 +54,7 @@ const TimebarWrapper = () => {
         onChange={dispatchTimerange}
         bookmarkStart={bookmarkStart}
         bookmarkEnd={bookmarkEnd}
+        showLastUpdate={false}
         onBookmarkChange={dispatchBookmarkTimerange}
         onMouseMove={(clientX: number, scale: (arg: number) => Date) => {
           if (clientX === null) {
