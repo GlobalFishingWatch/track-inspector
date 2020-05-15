@@ -49,3 +49,5 @@ export const selectBookmarkTimerange = createSelector(
     bookmarkEnd,
   })
 )
+
+export const selectTimebarMode = selectQueryParam('timebarMode')

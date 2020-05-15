@@ -1,6 +1,6 @@
 import { Dataset } from '@globalfishingwatch/api-client'
 import { Type } from '@globalfishingwatch/layer-composer'
-import { Dictionary, AppState } from './types'
+import { Dictionary, AppState, TimebarMode } from './types'
 import { Field } from 'data-transform/trackValueArrayToSegments'
 
 export const EVENTS_COLORS: Dictionary<string> = {
@@ -85,6 +85,22 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
       dataview: {
         id: 'carrierEvents',
+        datasetsIds: ['carrierPortalVesselEvents'],
+        config: {
+          type: Type.VesselEvents,
+        },
+      },
+    },
+    {
+      id: 'fishingEvents',
+      overrides: {
+        // visible: false,
+      },
+      datasetParams: {
+        id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
+      },
+      dataview: {
+        id: 'fishingEvents',
         datasetsIds: ['carrierPortalVesselEvents'],
         config: {
           type: Type.VesselEvents,
@@ -177,6 +193,7 @@ export const DEFAULT_WORKSPACE: AppState = {
   start: '2019-01-01T00:00:00.000Z',
   end: '2020-01-01T00:00:00.000Z',
   sidebar: true,
+  timebarMode: TimebarMode.events,
 }
 
 const datasetsEndpointMock: Dataset[] = [
@@ -205,5 +222,5 @@ const datasetsEndpointMock: Dataset[] = [
 ]
 
 export const mockFetches: any = {
-  'datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
+  '/datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
 }
