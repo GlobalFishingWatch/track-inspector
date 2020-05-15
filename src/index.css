@@ -22,6 +22,7 @@
 
   /* COLORS */
   --color-brand: rgba(22, 63, 137, 1);
+  --color-brand-secondary: rgba(22, 63, 137, 0.7);
   --color-brand-highlight: #d1dee7;
   --color-background-rgb: 10, 23, 56;
   --color-background: rgb(var(--color-background-rgb));
@@ -70,4 +71,12 @@ button {
   transition: all 150ms ease-out;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+label {
+  color: var(--color-brand-secondary);
+  font-size: var(--font-size-S);
+  line-height: 2rem;
+  text-transform: uppercase;
+  display: block;
 }

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import { Type } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+import CountryFlag from '@globalfishingwatch/map-components/components/countryflag'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
@@ -37,7 +38,23 @@ const Sidebar = () => {
               {vessels.map((vessel: VesselWithConfig) => (
                 <li key={vessel.id}>
                   <Toggle backgroundColor={vessel.color as string} />
-                  {vessel.name}
+                  {vessel.name || ' loading...'}
+                  {vessel.name && (
+                    <div className={styles.details}>
+                      <div className={styles.property}>
+                        <label>IMO</label>
+                        <span>{vessel.imo || '-'}</span>
+                      </div>
+                      <div className={styles.property}>
+                        <label>Last MMSI</label>
+                        <span>{vessel.lastMMSI || '-'}</span>
+                      </div>
+                      <div className={styles.property}>
+                        <label>Last Flag</label>
+                        {<CountryFlag iso={vessel.lastFlag} />}
+                      </div>
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

@@ -58,7 +58,7 @@ const Map = () => {
         onViewportChange={onViewportChange as any}
         mapStyle={style}
         mapOptions={{
-          customAttribution: '© Copyright Global Fishing Watch 2019',
+          customAttribution: '© Copyright Global Fishing Watch 2020',
         }}
         onClick={onMapClick}
         onMouseMove={onMapMove}
