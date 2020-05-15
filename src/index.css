@@ -80,3 +80,49 @@ label {
   text-transform: uppercase;
   display: block;
 }
+
+span[aria-label],
+button[aria-label] {
+  position: relative;
+}
+
+span[aria-label]::before,
+button[aria-label]::before {
+  content: attr(aria-label);
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 1rem);
+  width: max-content;
+  min-height: 2rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-transform: none;
+  white-space: nowrap;
+  font-size: var(--font-size-M);
+  line-height: 1.5;
+  border-radius: 3px;
+  background: var(--color-brand);
+  color: var(--color-foreground);
+  filter: var(--drop-shadow);
+  border: 1px solid var(--color-background-highlight);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 2;
+  pointer-events: none;
+  transform: translate(-50%, 1rem);
+}
+
+span[aria-label]:hover::before,
+button[aria-label]:hover::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition: all 0.2s ease-in-out 0.5s;
+}
+
+span[data-tip-wrap='multiline']::before,
+button[data-tip-wrap='multiline']::before {
+  width: 26rem;
+  white-space: unset;
+  text-align: left;
+}

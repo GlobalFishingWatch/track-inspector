@@ -12,6 +12,7 @@ import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
 import styles from './Sidebar.module.css'
 import { CARRIER_PORTAL_URL } from 'config'
+import { ReactComponent as IconInfo } from 'assets/icons/info.svg'
 
 const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
   return <button className={styles.toggle} style={{ backgroundColor }}></button>
@@ -21,7 +22,6 @@ const Sidebar = () => {
   const sidebar = useSelector(selectSidebarQuery)
   const vessels = useSelector(selectVesselsWithConfig)
   const contextLayers = useSelector(selectDataviewByGeneratorConfigType(Type.CartoPolygons))
-
   const dispatch = useDispatch()
   return (
     <Fragment>
@@ -66,6 +66,15 @@ const Sidebar = () => {
                 <li key={contextLayer.id}>
                   <Toggle backgroundColor={contextLayer.dataview?.config.color} />
                   {contextLayer.dataview?.name}
+                  {contextLayer.dataview?.description && (
+                    <span
+                      className={styles.info}
+                      aria-label={contextLayer.dataview?.description}
+                      data-tip-wrap="multiline"
+                    >
+                      <IconInfo />
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

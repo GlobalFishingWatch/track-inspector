@@ -1032,10 +1032,10 @@
     file-saver "^2.0.2"
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.8.7":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.7.tgz#e26707df72c77c33831e209574d65e62c0fab071"
-  integrity sha512-2hfsYtQiOaqVPph2SF0dNVY3wdb2vuM/8tfZ9fesjiPO5XoG4YeWfYZ89ZctPuhb77UHTLUP8dLcGt2vECUkzQ==
+"@globalfishingwatch/layer-composer@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.9.0.tgz#cb7523e15fc1cd1fd79a02c64c0b8e709ede65ba"
+  integrity sha512-6fPQySqCFwub6avqDKxl/dBLcj6TtcLPiNtBpUq0lC7GQFRseHydFpd93JYqtrDCbcx/ZIpX64Vq+NS57WmcbA==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
@@ -1051,10 +1051,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.7.3.tgz#2e9be972e06350e08d70c7dcb9b6f3f8c54f0971"
-  integrity sha512-2rMhZijdFeIjiLG57ynzyHQJ/6T7C+STndOTsgS64CW1lkQ21NPYG7Cm5M3fgt+BMedloXEuAmn9lhQUpiTjhQ==
+"@globalfishingwatch/map-components@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.8.0.tgz#08f14a0b6bdb6f6ffd6f752c8ef01ac9c9be431b"
+  integrity sha512-0BN0R0VQ6LyWpPQfj5VR1wRd/ua1Gz57Got7uceeA+ccseh+cYpL4XQolAzw7JK7nm21buf7cJvuQ87JYvz+Bg==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"

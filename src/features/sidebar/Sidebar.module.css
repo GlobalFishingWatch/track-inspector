@@ -72,3 +72,11 @@ li {
 .property span[role='img']::after {
   content: attr(aria-label);
 }
+
+.info {
+  fill: var(--color-brand-secondary);
+  cursor: help;
+  margin-left: 0.5rem;
+  transform: scale(0.7);
+  vertical-align: bottom;
+}
