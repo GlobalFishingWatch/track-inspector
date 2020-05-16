@@ -36,7 +36,6 @@ const slice = createSlice({
   initialState,
   reducers: {
     setVessel: (state, action: PayloadAction<Vessel>) => {
-      console.log(action.payload)
       const vessel = action.payload
       if (vessel.mmsi) {
         vessel.mmsi.sort((a, b) => {

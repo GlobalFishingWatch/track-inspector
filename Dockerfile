@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Config build args
 ARG REACT_APP_API_GATEWAY=https://gateway.api.dev.globalfishingwatch.org
-ARG REACT_APP_GOOGLE_TAG_MANAGER_KEY=
+ARG REACT_APP_GOOGLE_TAG_MANAGER_KEY=GTM-KK5ZFST
 ARG REACT_APP_CARRIER_PORTAL_URL=https://carrier-portal.dev.globalfishingwatch.org
 
 # Install build dependencies
