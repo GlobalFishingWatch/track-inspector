@@ -24,6 +24,7 @@ import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
+import { TRACK_START, TRACK_END } from 'config'
 
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
@@ -49,8 +50,8 @@ const TimebarWrapper = () => {
         enablePlayback
         start={start}
         end={end}
-        absoluteStart={'2017-01-01T00:00:00.000Z'}
-        absoluteEnd={'2020-01-01T00:00:00.000Z'}
+        absoluteStart={TRACK_START.toISOString()}
+        absoluteEnd={TRACK_END.toISOString()}
         onChange={dispatchTimerange}
         bookmarkStart={bookmarkStart}
         bookmarkEnd={bookmarkEnd}
