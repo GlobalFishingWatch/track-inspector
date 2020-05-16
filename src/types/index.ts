@@ -4,6 +4,11 @@ export interface Dictionary<T> {
   [key: string]: T
 }
 
+export type LatLon = {
+  latitude: number
+  longitude: number
+}
+
 export type WorkspaceParam =
   | 'dataviewsWorkspace'
   | 'zoom'

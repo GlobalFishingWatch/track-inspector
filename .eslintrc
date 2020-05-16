@@ -1,3 +1,6 @@
 {
-  "extends": "@satellitestudio/eslint-config/typescript"
+  "extends": "@satellitestudio/eslint-config/typescript",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }

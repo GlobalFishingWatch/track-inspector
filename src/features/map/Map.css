@@ -1,7 +1,7 @@
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
   background-color: transparent;
   font-family: var(--font-family);
-  font-size: var(--font-size-M);
+  font-size: var(--font-size-S);
   color: var(--color-foreground-transparent);
 }
 
@@ -33,6 +33,6 @@
 }
 
 .mapboxgl-ctrl-bottom-right {
-  bottom: 0.5rem;
+  bottom: 0.3rem;
   right: 0.7rem;
 }

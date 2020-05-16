@@ -43,7 +43,7 @@ const Map = () => {
 
   const mapRef = useRef<any>(null)
   const onMapClick = useMapClick()
-  const onMapMove = useMapMove()
+  const { onMapMove, hoverCenter } = useMapMove()
 
   const mapBounds = useMapBounds(mapRef)
 
@@ -63,7 +63,7 @@ const Map = () => {
         onClick={onMapClick}
         onMouseMove={onMapMove}
       >
-        <MapInfo />
+        <MapInfo center={hoverCenter} />
       </ReactMapGL>
       <MapControls bounds={mapBounds} />
     </Fragment>
