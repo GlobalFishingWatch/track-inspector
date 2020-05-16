@@ -71,6 +71,7 @@ li {
 
 .property span[role='img']::after {
   content: attr(aria-label);
+  margin-left: 0.3rem;
 }
 
 .info {

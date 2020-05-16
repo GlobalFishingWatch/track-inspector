@@ -5,8 +5,8 @@
   "homepage": "/track-inspector",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "EXTEND_ESLINT=true react-scripts start",
+    "build": "EXTEND_ESLINT=true react-scripts build",
     "build:manifest": "node scripts/manifest",
     "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
     "test": "CI=true react-scripts test --env=jsdom --all",
