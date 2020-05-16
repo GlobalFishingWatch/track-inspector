@@ -5,6 +5,7 @@ import { Field } from 'data-transform/trackValueArrayToSegments'
 
 export const EVENTS_COLORS: Dictionary<string> = {
   encounterauthorized: '#FAE9A0',
+  encounterauthorizedLabels: '#DCC76D',
   encounterpartially: '#F59E84',
   encounterunmatched: '#CE2C54',
   loitering: '#cfa9f9',
