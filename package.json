@@ -49,7 +49,6 @@
   },
   "devDependencies": {
     "@satellitestudio/eslint-config": "1.2.2",
-    "eslint": "7.0.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-import": "2.20.2",
