@@ -17,7 +17,6 @@ export const selectVesselsWithConfig = createSelector(
     return trackDataviewWorkspaces.map((dataviewWorkspace: DataviewWorkspace) => {
       const config: TrackGeneratorConfig = dataviewWorkspace.dataview?.config
       let vessel: VesselWithConfig = {
-        id: config.id,
         ...config,
       }
       if (config.datasetParamsId) {
