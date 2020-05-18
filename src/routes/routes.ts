@@ -78,6 +78,7 @@ const decodeWorkspace = (queryString: string) => {
 }
 
 const routesOptions: Options = {
+  basename: process.env.NODE_ENV === 'production' ? '/carrier-portal' : '',
   querySerializer: {
     stringify: encodeWorkspace,
     parse: decodeWorkspace,
