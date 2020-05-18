@@ -44,6 +44,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         // visible: false,
       },
       datasetParams: {
+        dataset: 'carriers:dev',
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
         binary: true,
         format: 'valueArray',
@@ -64,6 +65,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         // visible: false,
       },
       datasetParams: {
+        dataset: 'carriers:dev',
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
         binary: true,
         format: 'valueArray',
@@ -84,6 +86,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         // visible: false,
       },
       datasetParams: {
+        dataset: 'carriers:dev',
         id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
       },
       dataview: {
@@ -100,6 +103,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         // visible: false,
       },
       datasetParams: {
+        dataset: 'carriers:dev',
         id: 'c723c1925-56f9-465c-bee8-bcc6d649c17c',
       },
       dataview: {
@@ -127,15 +131,15 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
     },
     {
-      id: 'sprfmo',
+      id: 'other_rfmos',
       overrides: {
         visible: false,
       },
       dataview: {
-        id: 'sprfmo',
-        name: 'SPRFMO area',
+        id: 'other_rfmos',
+        name: 'Other RFMO areas',
         description:
-          'Geographic Area of Competence of South Pacific Regional Fisheries Management Organisation. Source: fao.org/geonetwork',
+          'Geographic Area of Competence of South Pacific RFMO, Convention on Conservation of Antarctic Marine Living Resources, North-East Atlantic Fisheries Commission, Northwest Atlantic Fisheries Organization, South-East Atlantic Fisheries Organization, South Indian Ocean Fisheries Agreement, and General Fisheries Commission for the Mediterranean. Source: fao.org/geonetwork',
         config: {
           type: Type.CartoPolygons,
           color: '#d8d454',
@@ -205,11 +209,11 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'track',
-        urlTemplate: `/datasets/carriers:dev/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
+        urlTemplate: `/datasets/{{dataset}}/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
       },
       {
         type: 'info',
-        urlTemplate: '/datasets/carriers:dev/vessels/{{id}}',
+        urlTemplate: '/datasets/{{dataset}}/vessels/{{id}}',
       },
     ],
   },
@@ -218,7 +222,7 @@ const datasetsEndpointMock: Dataset[] = [
     endpoints: [
       {
         type: 'events',
-        urlTemplate: `/datasets/carriers:dev/events?vessels={{id}}&startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&timeFormat=timestamp&sortOrder=desc`,
+        urlTemplate: `/datasets/{{dataset}}/events?vessels={{id}}&startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&timeFormat=timestamp&sortOrder=desc`,
       },
     ],
   },
