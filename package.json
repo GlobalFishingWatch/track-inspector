@@ -45,7 +45,7 @@
     "react-scripts": "3.4.1",
     "redux-first-router": "2.1.5",
     "typesafe-actions": "5.1.0",
-    "typescript": "3.7.5"
+    "typescript": "3.9.2"
   },
   "devDependencies": {
     "@satellitestudio/eslint-config": "1.2.2",
