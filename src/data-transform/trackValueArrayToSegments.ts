@@ -8,8 +8,9 @@ export enum Field {
   course = 'course',
 }
 
-export type Point = Partial<Record<Field, number>>
+export type Point = Partial<Record<Field, number | null>>
 export type Segment = Point[]
+export const DEFAULT_NULL_VALUE = -Math.pow(2, 31)
 
 export default (valueArray: number[], fields_: Field[]) => {
   if (!fields_.length) {
@@ -27,6 +28,7 @@ export default (valueArray: number[], fields_: Field[]) => {
   const segmentIndices: number[] = []
   const segments: Point[][] = []
 
+  let nullValue = DEFAULT_NULL_VALUE
   let currentSegment: Point[] = []
   let currentPoint: Point = {}
   let pointsFieldIndex = 0
@@ -35,8 +37,10 @@ export default (valueArray: number[], fields_: Field[]) => {
   let currentSegPointIndex = 0
   valueArray.forEach((value, index) => {
     if (index === 0) {
+      nullValue = value
+    } else if (index === 1) {
       numSegments = value
-    } else if (index < 1 + numSegments) {
+    } else if (index < 2 + numSegments) {
       segmentIndices.push(value)
     } else {
       // a segment starts
@@ -71,7 +75,11 @@ export default (valueArray: number[], fields_: Field[]) => {
 
       // values by default must be / 1000000 in order to convert ints to floats
       // except for timestamp that mmust be converted from s to ms
-      currentPoint[field] = field === Field.timestamp ? value * 1000 : value / 1000000
+      if (value === nullValue) {
+        currentPoint[field] = null
+      } else {
+        currentPoint[field] = field === Field.timestamp ? value * 1000 : value / 1000000
+      }
 
       pointsFieldIndex++
     }
