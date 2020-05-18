@@ -127,15 +127,15 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
     },
     {
-      id: 'sprfmo',
+      id: 'other_rfmos',
       overrides: {
         visible: false,
       },
       dataview: {
-        id: 'sprfmo',
-        name: 'SPRFMO area',
+        id: 'other_rfmos',
+        name: 'Other RFMO areas',
         description:
-          'Geographic Area of Competence of South Pacific Regional Fisheries Management Organisation. Source: fao.org/geonetwork',
+          'Geographic Area of Competence of South Pacific RFMO, Convention on Conservation of Antarctic Marine Living Resources, North-East Atlantic Fisheries Commission, Northwest Atlantic Fisheries Organization, South-East Atlantic Fisheries Organization, South Indian Ocean Fisheries Agreement, and General Fisheries Commission for the Mediterranean. Source: fao.org/geonetwork',
         config: {
           type: Type.CartoPolygons,
           color: '#d8d454',
