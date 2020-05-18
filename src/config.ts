@@ -5,6 +5,7 @@ import { Field } from 'data-transform/trackValueArrayToSegments'
 
 export const EVENTS_COLORS: Dictionary<string> = {
   encounterauthorized: '#FAE9A0',
+  encounterauthorizedLabels: '#DCC76D',
   encounterpartially: '#F59E84',
   encounterunmatched: '#CE2C54',
   loitering: '#cfa9f9',
@@ -12,8 +13,10 @@ export const EVENTS_COLORS: Dictionary<string> = {
 }
 
 export const TRACK_START = new Date('2017-01-01T00:00:00.000Z')
-export const TRACK_END = new Date('2020-01-01T00:00:00.000Z')
+export const TRACK_END = new Date('2020-05-01T00:00:00.000Z')
 export const TRACK_FIELDS = [Field.lonlat, Field.timestamp, Field.speed]
+
+export const CARRIER_PORTAL_URL = process.env.REACT_APP_CARRIER_PORTAL_URL
 
 export const DEFAULT_WORKSPACE: AppState = {
   dataviewsWorkspace: [
@@ -119,7 +122,7 @@ export const DEFAULT_WORKSPACE: AppState = {
           'RFMO stands for Regional Fishery Management Organization. These organizations are international organizations formed by countries with a shared interest in managing or conserving an area’s fish stock. Source: GFW',
         config: {
           type: Type.CartoPolygons,
-          color: '#58CFFF',
+          color: '#6b67e5',
         },
       },
     },

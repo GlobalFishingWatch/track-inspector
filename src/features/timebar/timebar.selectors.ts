@@ -106,11 +106,6 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
   // + add text descriptions
   const eventsWithRenderingInfo: RenderedEvent[][] = eventsForTrack.map((trackEvents: Event[]) => {
     return trackEvents.map((event: Event) => {
-      let colorKey = event.type as string
-      if (event.type === 'encounter') {
-        colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
-      }
-      const color = EVENTS_COLORS[colorKey]
       const vesselName = event.vessel.name || 'This vessel'
       let description
       switch (event.type) {
@@ -135,9 +130,18 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
           description = 'Unknown event'
       }
       description = `${description} for ${formatDistance(event.start, event.end)}`
+
+      let colorKey = event.type as string
+      if (event.type === 'encounter') {
+        colorKey = `${colorKey}${event.encounter?.authorizationStatus}`
+      }
+      const color = EVENTS_COLORS[colorKey]
+      const colorLabels = EVENTS_COLORS[`${colorKey}Labels`]
+
       return {
         ...event,
         color,
+        colorLabels,
         description,
       }
     })

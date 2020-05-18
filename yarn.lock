@@ -1032,10 +1032,10 @@
     file-saver "^2.0.2"
     lodash "^4.17.15"
 
-"@globalfishingwatch/layer-composer@0.8.7":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.8.7.tgz#e26707df72c77c33831e209574d65e62c0fab071"
-  integrity sha512-2hfsYtQiOaqVPph2SF0dNVY3wdb2vuM/8tfZ9fesjiPO5XoG4YeWfYZ89ZctPuhb77UHTLUP8dLcGt2vECUkzQ==
+"@globalfishingwatch/layer-composer@0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-0.9.0.tgz#cb7523e15fc1cd1fd79a02c64c0b8e709ede65ba"
+  integrity sha512-6fPQySqCFwub6avqDKxl/dBLcj6TtcLPiNtBpUq0lC7GQFRseHydFpd93JYqtrDCbcx/ZIpX64Vq+NS57WmcbA==
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
     "@mapbox/vector-tile" "^1.3.1"
@@ -1051,10 +1051,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.7.3.tgz#2e9be972e06350e08d70c7dcb9b6f3f8c54f0971"
-  integrity sha512-2rMhZijdFeIjiLG57ynzyHQJ/6T7C+STndOTsgS64CW1lkQ21NPYG7Cm5M3fgt+BMedloXEuAmn9lhQUpiTjhQ==
+"@globalfishingwatch/map-components@3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.8.2.tgz#8572ab0afc014ae39cac1431c988d72ce241d3df"
+  integrity sha512-NmSdVM3CDminlytXZrcO7+ewPPuLfdlI/Z/L6PiyF5aBy7SB+zgmiYiuPfiph9vvnLFxnMofXaBXfvJcVTG4xg==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
@@ -1757,10 +1757,10 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@reduxjs/toolkit@1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.3.6.tgz#306171fce2ab7423931736c34fa82190959dcd62"
-  integrity sha512-eNYURfoJa6mRNU5YtBVbmE5+nDoc4lpjZ181PBwRC6nIFYZdNR3GcoQ4uomFt8eHpXAUAdpCdxBlDsmwyXOt9Q==
+"@reduxjs/toolkit@1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.3.5.tgz#37c1ab6de9aa66f95bab25a8e9bd9d8ec3b7b80c"
+  integrity sha512-QVqI2T6kwT/3CVdCa6KjUDdEz9YY1eCLQVcRZamiaOAcKI7kkJSh2P0GjaaKXTjIFy0u9sWCXjzifPJNGoXjlw==
   dependencies:
     immer "^6.0.1"
     redux "^4.0.0"
@@ -2548,6 +2548,16 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
+"@typescript-eslint/eslint-plugin@^2.33.0":
+  version "2.33.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.33.0.tgz#d6c8319d5011b4783bb3d2dadf105d8bdd499bd5"
+  integrity sha512-QV6P32Btu1sCI/kTqjTNI/8OpCYyvlGjW5vD8MpTIg+HGE5S88HtT1G+880M4bXlvXj/NjsJJG0aGcVh0DdbeQ==
+  dependencies:
+    "@typescript-eslint/experimental-utils" "2.33.0"
+    functional-red-black-tree "^1.0.1"
+    regexpp "^3.0.0"
+    tsutils "^3.17.1"
+
 "@typescript-eslint/experimental-utils@2.29.0":
   version "2.29.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.29.0.tgz#3cb8060de9265ba131625a96bbfec31ba6d4a0fe"
@@ -2555,6 +2565,16 @@
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@typescript-eslint/typescript-estree" "2.29.0"
+    eslint-scope "^5.0.0"
+    eslint-utils "^2.0.0"
+
+"@typescript-eslint/experimental-utils@2.33.0":
+  version "2.33.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.33.0.tgz#000f1e5f344fbea1323dc91cc174805d75f99a03"
+  integrity sha512-qzPM2AuxtMrRq78LwyZa8Qn6gcY8obkIrBs1ehqmQADwkYzTE1Pb4y2W+U3rE/iFkSWcWHG2LS6MJfj6SmHApg==
+  dependencies:
+    "@types/json-schema" "^7.0.3"
+    "@typescript-eslint/typescript-estree" "2.33.0"
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
@@ -2579,6 +2599,19 @@
     is-glob "^4.0.1"
     lodash "^4.17.15"
     semver "^6.3.0"
+    tsutils "^3.17.1"
+
+"@typescript-eslint/typescript-estree@2.33.0":
+  version "2.33.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.33.0.tgz#33504c050ccafd38f397a645d4e9534d2eccbb5c"
+  integrity sha512-d8rY6/yUxb0+mEwTShCQF2zYQdLlqihukNfG9IUlLYz5y1CH6G/9XYbrxQLq3Z14RNvkCC6oe+OcFlyUpwUbkg==
+  dependencies:
+    debug "^4.1.1"
+    eslint-visitor-keys "^1.1.0"
+    glob "^7.1.6"
+    is-glob "^4.0.1"
+    lodash "^4.17.15"
+    semver "^7.3.2"
     tsutils "^3.17.1"
 
 "@webassemblyjs/ast@1.8.5":
@@ -12782,7 +12815,7 @@ semver@7.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
-semver@^7.1.3, semver@^7.2.1:
+semver@^7.1.3, semver@^7.2.1, semver@^7.3.2:
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
   integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==

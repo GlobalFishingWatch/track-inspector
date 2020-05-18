@@ -43,13 +43,41 @@ ul {
 }
 
 li {
-  margin: 0 0 1rem;
+  margin: 0 0 2rem;
+  font-size: var(--font-size-M);
 }
 
 .toggle {
+  pointer-events: none;
   display: inline-block;
   border-radius: 99px;
   width: 24px;
   height: 10px;
   margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.details {
+  display: flex;
+}
+
+.property {
+  margin: 1rem 2.5rem 0 0;
+}
+
+.property span[role='img'] {
+  line-height: 0;
+}
+
+.property span[role='img']::after {
+  content: attr(aria-label);
+  margin-left: 0.3rem;
+}
+
+.info {
+  fill: var(--color-brand-secondary);
+  cursor: help;
+  margin-left: 0.5rem;
+  transform: scale(0.7);
+  vertical-align: bottom;
 }
