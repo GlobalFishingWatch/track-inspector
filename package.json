@@ -14,7 +14,7 @@
     "generate-static-pbf-reader": "pbjs -t static-module -w commonjs -o src/pbf/vessels.js node_modules/tracks-cloud-function/src/proto/vessels.proto && pbts -o src/pbf/vessels.d.ts src/pbf/vessels.js"
   },
   "dependencies": {
-    "@globalfishingwatch/api-client": "0.0.20-dataviews8",
+    "@globalfishingwatch/api-client": "0.0.21-dataviews8",
     "@globalfishingwatch/layer-composer": "0.9.0",
     "@globalfishingwatch/map-components": "3.8.2",
     "@reduxjs/toolkit": "1.3.5",
