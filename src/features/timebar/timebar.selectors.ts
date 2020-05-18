@@ -77,7 +77,7 @@ export const getTracksGraphs = createSelector(
         color,
         segmentsWithCurrentFeature,
         // TODO Figure out this magic value
-        maxValue: 20,
+        maxValue: 25,
       }
     })
     return graphs
