@@ -27,6 +27,7 @@ body {
 
 .map {
   grid-area: map;
+  position: relative;
 }
 
 .timebar {
