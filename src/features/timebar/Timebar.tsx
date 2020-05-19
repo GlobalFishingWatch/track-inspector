@@ -94,6 +94,8 @@ const TimebarWrapper = () => {
                           key="events"
                           outerScale={props.outerScale}
                           outerWidth={props.outerWidth}
+                          innerStartPx={props.innerStartPx}
+                          innerEndPx={props.innerEndPx}
                           graphHeight={props.graphHeight}
                           tooltipContainer={props.tooltipContainer}
                           tracksEvents={
