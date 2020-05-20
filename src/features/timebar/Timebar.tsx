@@ -6,7 +6,12 @@ import {
   getEventsWithRenderingInfo,
   getEncounters,
 } from './timebar.selectors'
-import { setHighlightedTime, disableHighlightedTime, selectHighlightedTime } from './timebar.slice'
+import {
+  setHighlightedTime,
+  disableHighlightedTime,
+  selectHighlightedTime,
+  setHighlightedEvent,
+} from './timebar.slice'
 import {
   useTimerangeConnect,
   useBookmarkTimerangeConnect,
@@ -107,6 +112,9 @@ const TimebarWrapper = () => {
                               latitude: event.position.lat,
                               longitude: event.position.lon,
                             })
+                          }}
+                          onEventHover={(event: Event) => {
+                            dispatch(setHighlightedEvent(event))
                           }}
                         />
                       )}

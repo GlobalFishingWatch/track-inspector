@@ -38,6 +38,7 @@ export type EventVessel = {
 }
 
 export type Event = {
+  id: string
   type: 'encounter' | 'port' | 'loitering'
   position: {
     lat: number
