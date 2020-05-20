@@ -6,8 +6,9 @@ import { selectViewport } from 'routes/routes.selectors'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectEditing } from 'features/rulers/rulers.selectors'
 import { editRuler, moveCurrentRuler } from 'features/rulers/rulers.slice'
+import { LatLon } from 'types'
 
-export type Viewport = {
+export interface Viewport extends LatLon {
   latitude: number
   longitude: number
   zoom: number
@@ -43,19 +44,21 @@ export const useMapClick = () => {
 export const useMapMove = () => {
   const dispatch = useDispatch()
   const rulersEditing = useSelector(selectEditing)
-  return useCallback(
+  const [hoverCenter, setHoverCenter] = useState<LatLon | null>(null)
+  const onMapMove = useCallback(
     (event) => {
+      const center = {
+        longitude: event.lngLat[0],
+        latitude: event.lngLat[1],
+      }
+      setHoverCenter(center)
       if (rulersEditing === true) {
-        dispatch(
-          moveCurrentRuler({
-            longitude: event.lngLat[0],
-            latitude: event.lngLat[1],
-          })
-        )
+        dispatch(moveCurrentRuler(center))
       }
     },
     [dispatch, rulersEditing]
   )
+  return { onMapMove, hoverCenter }
 }
 
 export const useMapBounds = (mapRef: any) => {
