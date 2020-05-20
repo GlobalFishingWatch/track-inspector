@@ -1,9 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { Type, GeneratorConfig } from '@globalfishingwatch/layer-composer'
-import {
-  RulersGeneratorConfig,
-  VesselEventsGeneratorConfig,
-} from '@globalfishingwatch/layer-composer/dist/types/layer-composer/generators/types'
+import { Generators } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { selectHighlightedTime, selectHighlightedEvent } from 'features/timebar/timebar.slice'
@@ -22,18 +18,18 @@ export const selectGeneratorConfigWithData = createSelector(
   (dataviews, tracks, events, highlightedTime, rulers, highlightedEvent) => {
     const generatorConfigsWithData = dataviews.map((dataviewWorkspace: DataviewWorkspace) => {
       if (!dataviewWorkspace.dataview || !dataviewWorkspace.dataview.config) return null
-      const generatorConfig: GeneratorConfig = dataviewWorkspace.dataview.config
+      const generatorConfig: Generators.GeneratorConfig = dataviewWorkspace.dataview.config
       const datasetParamsId = dataviewWorkspace.datasetParams.id
-      if (generatorConfig.type === Type.Track && datasetParamsId) {
+      if (generatorConfig.type === Generators.Type.Track && datasetParamsId) {
         const data = tracks[datasetParamsId]
         return {
           ...generatorConfig,
           data,
           highlightedTime,
         }
-      } else if (generatorConfig.type === Type.VesselEvents && datasetParamsId) {
+      } else if (generatorConfig.type === Generators.Type.VesselEvents && datasetParamsId) {
         const data = events[datasetParamsId]
-        const vesselEventsConfig: VesselEventsGeneratorConfig = {
+        const vesselEventsConfig: Generators.VesselEventsGeneratorConfig = {
           ...generatorConfig,
           data,
         }
@@ -46,8 +42,8 @@ export const selectGeneratorConfigWithData = createSelector(
       }
       return generatorConfig
     })
-    const rulersConfig: RulersGeneratorConfig = {
-      type: Type.Rulers,
+    const rulersConfig: Generators.RulersGeneratorConfig = {
+      type: Generators.Type.Rulers,
       id: 'rulers',
       data: rulers,
     }

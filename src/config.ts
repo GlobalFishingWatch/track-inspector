@@ -1,5 +1,5 @@
 import { Dataset } from '@globalfishingwatch/api-client'
-import { Type } from '@globalfishingwatch/layer-composer'
+import { Generators } from '@globalfishingwatch/layer-composer'
 import { Dictionary, AppState, TimebarMode } from './types'
 import { Field } from 'data-transform/trackValueArrayToSegments'
 
@@ -25,7 +25,7 @@ export const DEFAULT_WORKSPACE: AppState = {
       dataview: {
         id: 'background',
         config: {
-          type: Type.Background,
+          type: Generators.Type.Background,
         },
       },
     },
@@ -34,7 +34,7 @@ export const DEFAULT_WORKSPACE: AppState = {
       dataview: {
         id: 'landmass',
         config: {
-          type: Type.Basemap,
+          type: Generators.Type.Basemap,
         },
       },
     },
@@ -53,7 +53,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         id: 'trackCarrier',
         datasetsIds: ['carrierPortalVesselTrack'],
         config: {
-          type: Type.Track,
+          type: Generators.Type.Track,
           color: '#00c1e7',
           simplify: true,
         },
@@ -74,7 +74,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         id: 'trackFishing',
         datasetsIds: ['carrierPortalVesselTrack'],
         config: {
-          type: Type.Track,
+          type: Generators.Type.Track,
           color: '#f59e84',
           simplify: true,
         },
@@ -93,7 +93,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         id: 'carrierEvents',
         datasetsIds: ['carrierPortalVesselEvents'],
         config: {
-          type: Type.VesselEvents,
+          type: Generators.Type.VesselEvents,
         },
       },
     },
@@ -110,7 +110,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         id: 'fishingEvents',
         datasetsIds: ['carrierPortalVesselEvents'],
         config: {
-          type: Type.VesselEvents,
+          type: Generators.Type.VesselEvents,
         },
       },
     },
@@ -125,7 +125,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         description:
           'RFMO stands for Regional Fishery Management Organization. These organizations are international organizations formed by countries with a shared interest in managing or conserving an area’s fish stock. Source: GFW',
         config: {
-          type: Type.CartoPolygons,
+          type: Generators.Type.CartoPolygons,
           color: '#6b67e5',
         },
       },
@@ -141,7 +141,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         description:
           'Geographic Area of Competence of South Pacific RFMO, Convention on Conservation of Antarctic Marine Living Resources, North-East Atlantic Fisheries Commission, Northwest Atlantic Fisheries Organization, South-East Atlantic Fisheries Organization, South Indian Ocean Fisheries Agreement, and General Fisheries Commission for the Mediterranean. Source: fao.org/geonetwork',
         config: {
-          type: Type.CartoPolygons,
+          type: Generators.Type.CartoPolygons,
           color: '#d8d454',
         },
       },
@@ -157,7 +157,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         description:
           'Exclusive Economic Zones (EEZ) are states’ sovereign waters, which extend 200 nautical miles from the coast. Source: marineregions.org',
         config: {
-          type: Type.CartoPolygons,
+          type: Generators.Type.CartoPolygons,
           color: '#61cb96',
         },
       },
@@ -172,7 +172,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         name: 'Marine Protected Areas',
         description: 'Protected Planet WDPA',
         config: {
-          type: Type.CartoPolygons,
+          type: Generators.Type.CartoPolygons,
           color: '#e5777c',
         },
       },
@@ -188,7 +188,7 @@ export const DEFAULT_WORKSPACE: AppState = {
         description:
           'Prepared by GFW based on "The Current Status of International Fishery Stocks", 2018, Fisheries Agency and Japan Fisheries Research and Education Agency',
         config: {
-          type: Type.CartoPolygons,
+          type: Generators.Type.CartoPolygons,
           color: '#A758FF',
         },
       },

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
-import { Type } from '@globalfishingwatch/layer-composer'
+import { Generators } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import CountryFlag from '@globalfishingwatch/map-components/components/countryflag'
 import { updateQueryParams } from 'routes/routes.actions'
@@ -21,7 +21,9 @@ const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
 const Sidebar = () => {
   const sidebar = useSelector(selectSidebarQuery)
   const vessels = useSelector(selectVesselsWithConfig)
-  const contextLayers = useSelector(selectDataviewByGeneratorConfigType(Type.CartoPolygons))
+  const contextLayers = useSelector(
+    selectDataviewByGeneratorConfigType(Generators.Type.CartoPolygons)
+  )
   const dispatch = useDispatch()
   return (
     <Fragment>

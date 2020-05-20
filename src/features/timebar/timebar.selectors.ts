@@ -5,7 +5,7 @@ import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
 import { DataviewWorkspace } from '@globalfishingwatch/api-client'
-import { Type } from '@globalfishingwatch/layer-composer'
+import { Generators } from '@globalfishingwatch/layer-composer'
 import { selectTimebarMode } from 'routes/routes.selectors'
 import { Field } from 'data-transform/trackValueArrayToSegments'
 
@@ -22,7 +22,7 @@ const selectTracksDataviews = createSelector([selectDataviews], (dataviewWorkspa
   const dataviews: DataviewWorkspace[] = dataviewWorkspaces.filter(
     (dataviewWorkspace: DataviewWorkspace) => {
       return (
-        dataviewWorkspace.dataview?.config.type === Type.Track &&
+        dataviewWorkspace.dataview?.config.type === Generators.Type.Track &&
         dataviewWorkspace.dataview?.config.visible !== false
       )
     }
