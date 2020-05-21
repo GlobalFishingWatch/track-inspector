@@ -24,7 +24,7 @@ import TimebarComponent, {
   TimebarActivity,
   TimebarTracksEvents,
   TimebarHighlighter,
-} from '@globalfishingwatch/map-components/components/timebar'
+} from '@globalfishingwatch/timebar'
 import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
 import { selectLoader } from 'features/loaders/loaders.selectors'
