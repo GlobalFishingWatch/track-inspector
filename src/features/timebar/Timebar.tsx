@@ -80,12 +80,7 @@ const TimebarWrapper = () => {
               {(timebarMode === TimebarMode.events || timebarMode === TimebarMode.encounters) && (
                 <Fragment>
                   {tracks.length && !disableEncounters && (
-                    <TimebarTracks
-                      key="tracks"
-                      outerScale={props.outerScale}
-                      graphHeight={props.graphHeight}
-                      tracks={tracks}
-                    />
+                    <TimebarTracks key="tracks" tracks={tracks} />
                   )}
                   {tracksEvents.length && (
                     <Fragment>
@@ -97,12 +92,6 @@ const TimebarWrapper = () => {
                       ) : (
                         <TimebarTracksEvents
                           key="events"
-                          outerScale={props.outerScale}
-                          outerWidth={props.outerWidth}
-                          innerStartPx={props.innerStartPx}
-                          innerEndPx={props.innerEndPx}
-                          graphHeight={props.graphHeight}
-                          tooltipContainer={props.tooltipContainer}
                           tracksEvents={
                             timebarMode === TimebarMode.encounters ? encounters : tracksEvents
                           }
@@ -125,12 +114,6 @@ const TimebarWrapper = () => {
               {timebarMode === TimebarMode.speed && tracks.length && (
                 <TimebarActivity
                   key="trackActivity"
-                  graphHeight={props.graphHeight}
-                  svgTransform={props.svgTransform}
-                  overallScale={props.overallScale}
-                  outerScale={props.outerScale}
-                  absoluteEnd={props.absoluteEnd}
-                  outerWidth={props.outerWidth}
                   // opacity={0.4}
                   // curve="curveBasis"
                   graphTracks={tracksGraph}
@@ -138,9 +121,6 @@ const TimebarWrapper = () => {
               )}
               {highlightedTime && (
                 <TimebarHighlighter
-                  outerScale={props.outerScale}
-                  graphHeight={props.graphHeight}
-                  tooltipContainer={props.tooltipContainer}
                   hoverStart={highlightedTime.start}
                   hoverEnd={highlightedTime.end}
                   activity={timebarMode === TimebarMode.speed ? tracksGraph : null}
