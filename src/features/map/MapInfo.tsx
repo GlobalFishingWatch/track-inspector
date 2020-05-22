@@ -6,15 +6,18 @@ import { useViewportConnect } from './map.hooks'
 import styles from './MapInfo.module.css'
 import { LatLon } from 'types'
 
-const toFixed = (value: number) => (Math.round(value * 100) / 100).toFixed(4)
+const toFixed = (value: number) => (Math.round(value * 10000) / 10000).toFixed(4)
+const A_DAY = 1000 * 60 * 60 * 24
 
 const MapInfo = ({ center }: { center: LatLon | null }) => {
   const { zoom } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
 
   const formattedTime = useMemo(() => {
-    const startFmt = format(new Date(start), 'PPp')
-    const endFmt = format(new Date(end), 'PPp')
+    const timeΔ = new Date(end).getTime() - new Date(start).getTime()
+    const timeFormat = timeΔ > A_DAY ? 'PP' : 'PP kk:mm'
+    const startFmt = format(new Date(start), timeFormat)
+    const endFmt = format(new Date(end), timeFormat)
     return `${startFmt} - ${endFmt}`
   }, [start, end])
 
