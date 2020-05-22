@@ -33,7 +33,7 @@ export const selectGeneratorConfigWithData = createSelector(
           ...generatorConfig,
           data,
         }
-        if (highlightedEvent && highlightedEvent.vessel.id === datasetParamsId) {
+        if (highlightedEvent) {
           vesselEventsConfig.currentEventId = highlightedEvent.id
         } else if (dataviewWorkspace.overrides.currentEventId) {
           vesselEventsConfig.currentEventId = dataviewWorkspace.overrides.currentEventId
