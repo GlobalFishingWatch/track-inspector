@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/map-components/components/layer-composer-hook'
 import Loader from 'features/loaders/Loader'
-import { selectLoader } from 'features/loaders/loaders.selectors'
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigWithData } from './map.selectors'
 import { useViewport, useViewportConnect, useMapClick, useMapMove, useMapBounds } from './map.hooks'
@@ -19,7 +18,6 @@ const styleTransformations = [sort]
 const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
-  const loading = useSelector(selectLoader('map'))
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
 
   const globalGeneratorConfig = useMemo(
@@ -49,7 +47,6 @@ const Map = () => {
 
   return (
     <Fragment>
-      {loading && <Loader />}
       <ReactMapGL
         ref={mapRef}
         width="100%"

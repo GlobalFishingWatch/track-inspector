@@ -27,7 +27,6 @@ import TimebarComponent, {
 } from '@globalfishingwatch/timebar'
 import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
-import { selectLoader } from 'features/loaders/loaders.selectors'
 import styles from './Timebar.module.css'
 import { TRACK_START, TRACK_END } from 'config'
 
@@ -40,7 +39,6 @@ const TimebarWrapper = () => {
   const tracksEvents = useSelector(getEventsWithRenderingInfo)
   const encounters = useSelector(getEncounters)
   const highlightedTime = useSelector(selectHighlightedTime)
-  const loading = useSelector(selectLoader('timebar'))
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
   const tracksGraph = useSelector(getTracksGraphs)
@@ -72,64 +70,60 @@ const TimebarWrapper = () => {
           dispatch(setHighlightedTime({ start, end }))
         }}
       >
-        {(props: any) => {
-          return loading ? (
-            <Loader />
-          ) : (
-            <Fragment>
-              {(timebarMode === TimebarMode.events || timebarMode === TimebarMode.encounters) && (
-                <Fragment>
-                  {tracks.length && !disableEncounters && (
-                    <TimebarTracks key="tracks" tracks={tracks} />
-                  )}
-                  {tracksEvents.length && (
-                    <Fragment>
-                      {disableEncounters ? (
-                        <div className={styles.noEncounters}>
-                          Can't display encounters for{' '}
-                          {tracks.length === 1 ? 'a single vessel' : 'more than two vessels'}
-                        </div>
-                      ) : (
-                        <TimebarTracksEvents
-                          key="events"
-                          tracksEvents={
-                            timebarMode === TimebarMode.encounters ? encounters : tracksEvents
-                          }
-                          preselectedEventId={currentEventId}
-                          onEventClick={(event: Event) => {
-                            dispatchViewport({
-                              latitude: event.position.lat,
-                              longitude: event.position.lon,
-                            })
-                          }}
-                          onEventHover={(event: Event) => {
-                            dispatch(setHighlightedEvent(event))
-                          }}
-                        />
-                      )}
-                    </Fragment>
-                  )}
-                </Fragment>
-              )}
-              {timebarMode === TimebarMode.speed && tracks.length && (
-                <TimebarActivity
-                  key="trackActivity"
-                  // opacity={0.4}
-                  // curve="curveBasis"
-                  graphTracks={tracksGraph}
-                />
-              )}
-              {highlightedTime && (
-                <TimebarHighlighter
-                  hoverStart={highlightedTime.start}
-                  hoverEnd={highlightedTime.end}
-                  activity={timebarMode === TimebarMode.speed ? tracksGraph : null}
-                  unit="knots"
-                />
-              )}
-            </Fragment>
-          )
-        }}
+        {(props: any) => (
+          <Fragment>
+            {(timebarMode === TimebarMode.events || timebarMode === TimebarMode.encounters) && (
+              <Fragment>
+                {tracks.length && !disableEncounters && (
+                  <TimebarTracks key="tracks" tracks={tracks} />
+                )}
+                {tracksEvents.length && (
+                  <Fragment>
+                    {disableEncounters ? (
+                      <div className={styles.noEncounters}>
+                        Can't display encounters for{' '}
+                        {tracks.length === 1 ? 'a single vessel' : 'more than two vessels'}
+                      </div>
+                    ) : (
+                      <TimebarTracksEvents
+                        key="events"
+                        tracksEvents={
+                          timebarMode === TimebarMode.encounters ? encounters : tracksEvents
+                        }
+                        preselectedEventId={currentEventId}
+                        onEventClick={(event: Event) => {
+                          dispatchViewport({
+                            latitude: event.position.lat,
+                            longitude: event.position.lon,
+                          })
+                        }}
+                        onEventHover={(event: Event) => {
+                          dispatch(setHighlightedEvent(event))
+                        }}
+                      />
+                    )}
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
+            {timebarMode === TimebarMode.speed && tracks.length && (
+              <TimebarActivity
+                key="trackActivity"
+                // opacity={0.4}
+                // curve="curveBasis"
+                graphTracks={tracksGraph}
+              />
+            )}
+            {highlightedTime && (
+              <TimebarHighlighter
+                hoverStart={highlightedTime.start}
+                hoverEnd={highlightedTime.end}
+                activity={timebarMode === TimebarMode.speed ? tracksGraph : null}
+                unit="knots"
+              />
+            )}
+          </Fragment>
+        )}
       </TimebarComponent>
       <div className={styles.graphSelector}>
         <select
