@@ -23,7 +23,7 @@ const mockFetch = (mockFetchUrl: string) => {
           headers: { 'Content-Type': 'application/json' },
         })
       )
-    }, Math.random() * 3000)
+    }, 1)
   })
 }
 
