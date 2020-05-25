@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { formatDistance } from 'date-fns'
 import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'
@@ -8,6 +7,7 @@ import { DataviewWorkspace } from '@globalfishingwatch/api-client'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { selectTimebarMode } from 'routes/routes.selectors'
 import { Field } from 'data-transform/trackValueArrayToSegments'
+import { DateTime } from 'luxon'
 
 type TimebarTrackSegment = {
   start: number
@@ -129,7 +129,12 @@ export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (
         default:
           description = 'Unknown event'
       }
-      description = `${description} for ${formatDistance(event.start, event.end)}`
+      const duration = DateTime.fromMillis(event.end)
+        .diff(DateTime.fromMillis(event.start), ['hours', 'minutes'])
+        .toObject()
+      description = `${description} for ${duration.hours}hrs ${Math.round(
+        duration.minutes as number
+      )}mns`
 
       let colorKey = event.type as string
       if (event.type === 'encounter') {

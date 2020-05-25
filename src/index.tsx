@@ -5,8 +5,11 @@ import 'index.css'
 import App from 'features/app/App'
 import * as serviceWorker from 'serviceWorker'
 import configureStore from 'store/store'
+import { Settings } from 'luxon'
 
 const store = configureStore()
+
+Settings.defaultLocale = 'en'
 
 ReactDOM.render(
   <Provider store={store}>
