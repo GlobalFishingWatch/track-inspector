@@ -1102,7 +1102,7 @@
   version "1.0.0"
   resolved "https://codeload.github.com/GlobalFishingWatch/map-convert/tar.gz/29d2918507ad3b57ac661abc2791b9334a43b853"
 
-"@globalfishingwatch/timebar@^1.0.2":
+"@globalfishingwatch/timebar@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.2.tgz#e9b099182bc29e152e8a05607b1b1939be528455"
   integrity sha512-cnYfB1iPmWf1MMH1Pq0HbwP9TySpQA9Adywws9y2BxV2hkQzqJDAS34nLUqyhTlnDtnQ2Q9L3J6qJJJLCDIc3A==
