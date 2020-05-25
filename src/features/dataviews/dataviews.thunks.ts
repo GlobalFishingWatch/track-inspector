@@ -4,7 +4,6 @@ import GFWAPI, { DataviewsClient } from '@globalfishingwatch/api-client'
 import { mockFetches, DEFAULT_WORKSPACE, TRACK_FIELDS } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
-import { startLoading, completeLoading } from 'features/loaders/loaders.slice'
 import { setDataviews } from './dataviews.slice'
 import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
 import { vessels } from 'pbf/vessels'
@@ -23,7 +22,7 @@ const mockFetch = (mockFetchUrl: string) => {
           headers: { 'Content-Type': 'application/json' },
         })
       )
-    }, Math.random() * 3000)
+    }, 1)
   })
 }
 
@@ -38,8 +37,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
   const dataviewsQuery = selectDataviewsQuery(state)
 
   if (dataviewsQuery) {
-    // TODO: better handle of loading when no new dataviews to load, removing for now to avoid unnecesary rerenders
-    // dispatch(startLoading({ id: 'dataviews', areas: ['map', 'timebar'] }))
     const dataviewsWorkspace = await dataviewsClient.load(dataviewsQuery)
     // dispatch(completeLoading({ id: 'dataviews' }))
     // console.log(dataviews)
@@ -51,7 +48,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
       // update layer composer
       dispatch(setDataviews(dataviewsWorkspace))
 
-      dispatch(startLoading({ id: 'dataviews-data', areas: ['map', 'timebar'] }))
       const loadDataPromises = dataviewsClient.loadData()
       loadDataPromises.forEach((promise) => {
         promise.then(({ endpoint, dataviewWorkspace }) => {
@@ -87,9 +83,6 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
               })
           }
         })
-      })
-      Promise.all(loadDataPromises).then(() => {
-        dispatch(completeLoading({ id: 'dataviews-data' }))
       })
     }
   }

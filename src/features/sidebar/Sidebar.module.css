@@ -57,6 +57,32 @@ li {
   vertical-align: middle;
 }
 
+.toggle.loading {
+  visibility: hidden;
+  margin-right: -4px;
+}
+
+.toggle.loading::after {
+  visibility: visible;
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: inherit;
+  animation: spin 0.5s ease-in-out infinite;
+  background-color: none !important;
+  margin-left: -10px;
+  vertical-align: top;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .details {
   display: flex;
 }

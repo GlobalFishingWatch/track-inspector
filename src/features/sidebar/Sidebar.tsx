@@ -14,8 +14,13 @@ import styles from './Sidebar.module.css'
 import { CARRIER_PORTAL_URL } from 'config'
 import { ReactComponent as IconInfo } from 'assets/icons/info.svg'
 
-const Toggle = ({ backgroundColor }: { backgroundColor: string }) => {
-  return <button className={styles.toggle} style={{ backgroundColor }}></button>
+const Toggle = ({ backgroundColor, loading }: { backgroundColor: string; loading?: boolean }) => {
+  return (
+    <button
+      className={cx(styles.toggle, { [styles.loading]: loading })}
+      style={{ backgroundColor, borderColor: backgroundColor }}
+    ></button>
+  )
 }
 
 const Sidebar = () => {
@@ -39,7 +44,10 @@ const Sidebar = () => {
             <ul>
               {vessels.map((vessel: VesselWithConfig) => (
                 <li key={vessel.id}>
-                  <Toggle backgroundColor={vessel.color as string} />
+                  <Toggle
+                    backgroundColor={vessel.color as string}
+                    loading={vessel.trackLoading || !vessel.name}
+                  />
                   {vessel.name || ' loading...'}
                   {vessel.name && (
                     <div className={styles.details}>

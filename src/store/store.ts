@@ -3,7 +3,6 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import connectedRoutes, { routerQueryMiddleware } from 'routes/routes'
 import dataviews from 'features/dataviews/dataviews.slice'
 import timebar from 'features/timebar/timebar.slice'
-import loaders from 'features/loaders/loaders.slice'
 import vessels from 'features/vessels/vessels.slice'
 import rulers from 'features/rulers/rulers.slice'
 
@@ -17,7 +16,6 @@ const {
 const rootReducer = combineReducers({
   dataviews,
   timebar,
-  loaders,
   vessels,
   rulers,
   location: location,
