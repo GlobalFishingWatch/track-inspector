@@ -25,7 +25,6 @@ import TimebarComponent, {
   TimebarTracksEvents,
   TimebarHighlighter,
 } from '@globalfishingwatch/timebar'
-import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
 import styles from './Timebar.module.css'
 import { TRACK_START, TRACK_END } from 'config'
