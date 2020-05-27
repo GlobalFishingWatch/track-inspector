@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { selectHighlightedTime, selectHighlightedEvent } from 'features/timebar/timebar.slice'
 import { selectRulers } from 'features/rulers/rulers.selectors'

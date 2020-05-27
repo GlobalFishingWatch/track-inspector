@@ -1,4 +1,4 @@
-import { Dataset } from '@globalfishingwatch/api-client'
+import { Dataset } from '@globalfishingwatch/dataviews-client'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { Dictionary, AppState, TimebarMode } from './types'
 import { Field } from 'data-transform/trackValueArrayToSegments'

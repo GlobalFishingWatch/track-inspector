@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { DataviewWorkspace } from '@globalfishingwatch/api-client'
+import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { selectDataviews } from './dataviews.slice'
 

@@ -1046,13 +1046,24 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@0.0.21-dataviews8":
-  version "0.0.21-dataviews8"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-0.0.21-dataviews8.tgz#1c396822d9b9aa4c2eb729fd37ac6715f564d8bd"
-  integrity sha512-8z2O2bLcGoxfcKO4E2W0p2a9lvhFHa6BwSGuHvPUbIVsPBo76QHKqAYfPu0cAfYeTdIZ1GuOhZ0jI00kOwsrkQ==
+"@globalfishingwatch/api-client@*", "@globalfishingwatch/api-client@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.1.1.tgz#087471bd09e7ff621f42e19526ce521da8d1fbf6"
+  integrity sha512-6WYo/cKhrDwis5q4ehj/QFQjp73W3wLPigRcX9OCLHsF0KejWc6yGQdBHGNMAH+ek0teKzelHj7YiRUvljiBow==
   dependencies:
     file-saver "^2.0.2"
-    lodash "^4.17.15"
+
+"@globalfishingwatch/api-client@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.1.0.tgz#90f5303346e13c7bc4d505c3f3dd2d0c93734f81"
+  integrity sha512-OI5ll24uEOgGFXnruE7iKFr+9PILTgcww+zbHMQ6/xxxdBRhR7yIXyTUDRDggxQGRuiJwqe7E7nYKFi2lsvUWw==
+  dependencies:
+    file-saver "^2.0.2"
+
+"@globalfishingwatch/dataviews-client@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-1.1.0.tgz#4949ab25afed2f128d8c8f8a42097b9f614ed45d"
+  integrity sha512-zqPICjfOq8AQqJWMjvvWxDXIRDxXcUpAPYL2jMEQN1tzS3yHQ+PpH+SDp70yoB8Wqj3gqiv1uBvan9zVyIL86g==
 
 "@globalfishingwatch/layer-composer@2.0.0":
   version "2.0.0"
@@ -1071,36 +1082,16 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/map-components@3.8.9":
-  version "3.8.9"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/map-components/-/map-components-3.8.9.tgz#3c17a7fd07215c3e73f069ad4ceb84be2360c2db"
-  integrity sha512-9ZZeCtdBbqFJDNh0Kx9biZn8dyS1Ocn4fQbBG8g+I8LKJoK5YTRn2smNuyCRbjCwVdU2/Ue+5VAwb/fKG49VFg==
-  dependencies:
-    "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
-    "@mapbox/tile-cover" "^3.0.2"
-    "@turf/area" "^6.0.1"
-    "@turf/bbox" "^6.0.1"
-    classnames "^2.2.6"
-    countryflag "^2.5.3"
-    d3-ease "1.0.5"
-    d3-geo "1.11.3"
-    d3-scale "2.2.2"
-    d3-shape "1.3.4"
-    immutable "^4.0.0-rc.12"
-    lodash "^4.17.13"
-    mapbox-gl "^1.7.0"
-    memoize-one "^5.0.0"
-    prop-types "^15.6.2"
-    react-spring "^8.0.19"
-    redux-thunk "^2.3.0"
-    reselect "^4.0.0"
-    resize-observer-polyfill "^1.5.1"
-    topojson-client "^3.0.0"
-    viewport-mercator-project "^6.1.1"
-
 "@globalfishingwatch/map-convert@github:GlobalFishingWatch/map-convert":
   version "1.0.0"
   resolved "https://codeload.github.com/GlobalFishingWatch/map-convert/tar.gz/29d2918507ad3b57ac661abc2791b9334a43b853"
+
+"@globalfishingwatch/react-hooks@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/react-hooks/-/react-hooks-1.1.1.tgz#9bbacf48a59f6629b83414777896b9dab8ec7b89"
+  integrity sha512-l9FIquA4MqT9PvCF/DIza9T77xuu/Z4iI8j7MPeSsFWHeFLp7Ea8qE0SOBRJQNxJmlowFF/Zbo4F4aB5WSPyqw==
+  dependencies:
+    "@globalfishingwatch/api-client" "*"
 
 "@globalfishingwatch/timebar@^1.0.3":
   version "1.0.3"
@@ -1124,6 +1115,16 @@
     resize-observer-polyfill "^1.5.1"
     topojson-client "^3.0.0"
     viewport-mercator-project "^6.1.1"
+
+"@globalfishingwatch/ui-components@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.1.0.tgz#db316335d127f47328aaf991c882ffa75415cd4a"
+  integrity sha512-m7E+rgAvUzenHuMmrO2WQWZr94A80pDL+uLZ8TBmFmhHJJdiuKis3Ght3NON6bl2bUzGU0ShV9Qm7jLqPd64eQ==
+  dependencies:
+    "@globalfishingwatch/api-client" "^1.1.0"
+    countryflag "^3.0.3"
+    d3-geo "^1.12.0"
+    topojson-client "^3.1.0"
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -4330,12 +4331,13 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-countryflag@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-2.5.3.tgz#f0a9bbc64e1de994df913d3a594780bf871ab17f"
-  integrity sha512-2xzvk93Hf8r95K5+soBAj+ckRi11YXag/YP6WzK0ki5/HOkNToiAYt96+gMUSZTHUGZ2emd7eU/PlAp+MyJ26g==
+countryflag@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-3.0.3.tgz#8e2e819365c93fa55f38ce831975f3dbaa953906"
+  integrity sha512-C3vMfznS10l2T/OD+86nYovYziXlR1+SokAXzegsOwMZ/o6udQrXIH09uplCd/j6A6LZULKsVyskEMddXtxIAw==
   dependencies:
     core-js "3.1.4"
+    cross-env "^7.0.2"
     if-emoji "0.1.0"
     world-countries "4.0.0"
 
@@ -4370,6 +4372,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cross-env@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.2.tgz#bd5ed31339a93a3418ac4f3ca9ca3403082ae5f9"
+  integrity sha512-KZP/bMEOJEDCkDQAyRhu3RL2ZO/SUVrxQVI0G3YEQ+OLbRA3c6zgixe8Mq8a/z7+HKlNEjo8oiLUs8iRijY2Rw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
 cross-spawn@7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.1.tgz#0ab56286e0f7c24e153d04cc2aa027e43a9a5d14"
@@ -4403,6 +4412,15 @@ cross-spawn@^7.0.0:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.2.tgz#d0d7dcfa74e89115c7619f4f721a94e1fdb716d6"
   integrity sha512-PD6G8QG3S4FK/XCGFbEQrDqO2AnMMsy0meR7lerlIOHAAbkuavGU/pOqprrlvfTNjvowivTeBsjebAL0NSoMxw==
+  dependencies:
+    path-key "^3.1.0"
+    shebang-command "^2.0.0"
+    which "^2.0.1"
+
+cross-spawn@^7.0.1:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
+  integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
   dependencies:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
@@ -4702,6 +4720,13 @@ d3-geo@1.11.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.11.3.tgz#5bb08388f45e4b281491faa72d3abd43215dbd1c"
   integrity sha512-n30yN9qSKREvV2fxcrhmHUdXP9TNH7ZZj3C/qnaoU0cVf/Ea85+yT7HY7i8ySPwkwjCNYtmKqQFTvLFngfkItQ==
+  dependencies:
+    d3-array "1"
+
+d3-geo@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/d3-geo/-/d3-geo-1.12.0.tgz#58ddbdf4d9db5f199db69d1b7c93dca6454a6f24"
+  integrity sha512-NalZVW+6/SpbKcnl+BCO67m8gX+nGeJdo6oGL9H6BRUGUL1e+AtPcP4vE4TwCQ/gl8y5KE7QvBzrLn+HsKIl+w==
   dependencies:
     d3-array "1"
 
@@ -7250,11 +7275,6 @@ immer@^6.0.1:
   resolved "https://registry.yarnpkg.com/immer/-/immer-6.0.6.tgz#ffd46c1976548fe3df0be671b7f8aaf620166623"
   integrity sha512-KAo8XDbDcF59lDlKEFOhyssB/z6805ZvH/S3wqMPaTzLMFDUUu1Lq647LrUyuXzI36wMpzwZ83mMxwOXM961aA==
 
-immutable@^4.0.0-rc.12:
-  version "4.0.0-rc.12"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
-  integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
-
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -9065,7 +9085,7 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl@^1.0.0, mapbox-gl@^1.7.0:
+mapbox-gl@^1.0.0:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.10.1.tgz#7dbd53bdf2f78e45e125c1115e94dea286ef663c"
   integrity sha512-0aHt+lFUpYfvh0kMIqXqNXqoYMuhuAsMlw87TbhWrw78Tx2zfuPI0Lx31/YPUgJ+Ire0tzQ4JnuBL7acDNXmMg==
@@ -13830,7 +13850,7 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
-topojson-client@^3.0.0:
+topojson-client@^3.0.0, topojson-client@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/topojson-client/-/topojson-client-3.1.0.tgz#22e8b1ed08a2b922feeb4af6f53b6ef09a467b99"
   integrity sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==

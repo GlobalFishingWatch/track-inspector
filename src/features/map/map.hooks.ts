@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import debounce from 'lodash/debounce'
-import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
+import { MiniglobeBounds } from '@globalfishingwatch/ui-components/dist/miniglobe'
 import { selectViewport } from 'routes/routes.selectors'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectEditing } from 'features/rulers/rulers.selectors'
@@ -63,7 +63,7 @@ export const useMapMove = () => {
 
 export const useMapBounds = (mapRef: any) => {
   const { zoom, latitude, longitude } = useViewportConnect()
-  const [bounds, setBounds] = useState<MiniGlobeBounds | any>(null)
+  const [bounds, setBounds] = useState<MiniglobeBounds | any>(null)
   useEffect(() => {
     const mapboxRef = mapRef.current && mapRef.current.getMap()
     if (mapboxRef) {

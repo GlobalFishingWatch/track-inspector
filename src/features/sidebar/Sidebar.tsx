@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DataviewWorkspace } from '@globalfishingwatch/api-client'
-import CountryFlag from '@globalfishingwatch/map-components/components/countryflag'
+import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
+import CountryFlag from '@globalfishingwatch/ui-components/dist/countryflag'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
@@ -61,7 +61,7 @@ const Sidebar = () => {
                       </div>
                       <div className={styles.property}>
                         <label>Last Flag</label>
-                        {<CountryFlag iso={vessel.lastFlag} />}
+                        {vessel.lastFlag && <CountryFlag iso={vessel.lastFlag} />}
                       </div>
                     </div>
                   )}
