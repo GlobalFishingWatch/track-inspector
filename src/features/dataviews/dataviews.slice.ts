@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
+
 import { RootState } from 'store/store'
 
 const initialState: DataviewWorkspace[] = []
