@@ -1,13 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit'
+import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
+import { Generators } from '@globalfishingwatch/layer-composer'
+import { DateTime } from 'luxon'
+
 import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'
 import { EVENTS_COLORS } from 'config'
-import { DataviewWorkspace } from '@globalfishingwatch/api-client'
-import { Generators } from '@globalfishingwatch/layer-composer'
 import { selectTimebarMode } from 'routes/routes.selectors'
 import { Field } from 'data-transform/trackValueArrayToSegments'
-import { DateTime } from 'luxon'
 
 type TimebarTrackSegment = {
   start: number

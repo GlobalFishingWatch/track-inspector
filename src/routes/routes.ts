@@ -8,9 +8,11 @@ import {
   StateGetter,
 } from 'redux-first-router'
 import qs from 'qs'
+
 import { RootState } from 'store/store'
 import { Dictionary } from 'types'
 import { dataviewsThunk } from 'features/dataviews/dataviews.thunks'
+
 import { UpdateQueryParamsAction } from './routes.actions'
 
 export const HOME = 'HOME'
@@ -61,7 +63,7 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   },
 }
 
-const encodeWorkspace = (object: object) => {
+const encodeWorkspace = (object: Record<string, unknown>) => {
   return qs.stringify(object, { encode: false })
 }
 

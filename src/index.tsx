@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import 'index.css'
+import { Settings } from 'luxon'
+
 import App from 'features/app/App'
 import * as serviceWorker from 'serviceWorker'
 import configureStore from 'store/store'
-import { Settings } from 'luxon'
 
 const store = configureStore()
 

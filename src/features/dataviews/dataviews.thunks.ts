@@ -1,12 +1,15 @@
 import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
-import GFWAPI, { DataviewsClient } from '@globalfishingwatch/api-client'
+import GFWAPI from '@globalfishingwatch/api-client'
+import DataviewsClient from '@globalfishingwatch/dataviews-client'
+
 import { mockFetches, DEFAULT_WORKSPACE, TRACK_FIELDS } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
 import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
-import { setDataviews } from './dataviews.slice'
 import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
 import { vessels } from 'pbf/vessels'
+
+import { setDataviews } from './dataviews.slice'
 
 const mockFetch = (mockFetchUrl: string) => {
   const mock = mockFetches[mockFetchUrl]

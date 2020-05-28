@@ -2,17 +2,19 @@ import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DataviewWorkspace } from '@globalfishingwatch/api-client'
-import CountryFlag from '@globalfishingwatch/map-components/components/countryflag'
+import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
+import CountryFlag from '@globalfishingwatch/ui-components/dist/countryflag'
+
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
 import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
-import styles from './Sidebar.module.css'
 import { CARRIER_PORTAL_URL } from 'config'
 import { ReactComponent as IconInfo } from 'assets/icons/info.svg'
+
+import styles from './Sidebar.module.css'
 
 const Toggle = ({ backgroundColor, loading }: { backgroundColor: string; loading?: boolean }) => {
   return (
@@ -61,7 +63,7 @@ const Sidebar = () => {
                       </div>
                       <div className={styles.property}>
                         <label>Last Flag</label>
-                        {<CountryFlag iso={vessel.lastFlag} />}
+                        {vessel.lastFlag && <CountryFlag iso={vessel.lastFlag} />}
                       </div>
                     </div>
                   )}
