@@ -9,7 +9,7 @@ import Loader from 'features/loaders/Loader'
 import Timebar from 'features/timebar/Timebar'
 import Sidebar from 'features/sidebar/Sidebar'
 
-import styles from './app.module.css'
+import styles from './App.module.css'
 
 const Map = React.lazy(() => import('../map/Map'))
 

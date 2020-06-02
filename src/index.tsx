@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import 'index.css'
 import { Settings } from 'luxon'
 
-import App from 'features/app/app'
-import MobileApp from 'features/app/mobile'
+import App from 'features/app/App'
+import MobileApp from 'features/app/Mobile'
 import * as serviceWorker from 'serviceWorker'
 import configureStore from 'store/store'
 

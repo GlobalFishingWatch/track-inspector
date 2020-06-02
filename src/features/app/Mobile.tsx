@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ReactComponent as ScreenImage } from 'assets/images/screen-too-small.svg'
 
-import styles from './app.module.css'
+import styles from './App.module.css'
 
 function MobileApp() {
   return (
