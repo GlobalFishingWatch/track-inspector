@@ -1,10 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import 'index.css'
 import { Settings } from 'luxon'
 
-import App from 'features/app/App'
+import App from 'features/app/app'
+import MobileApp from 'features/app/mobile'
 import * as serviceWorker from 'serviceWorker'
 import configureStore from 'store/store'
 
@@ -12,14 +13,18 @@ const store = configureStore()
 
 Settings.defaultLocale = 'en'
 
-ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
-  document.getElementById('root')
-)
+const Root = () =>
+  typeof window !== undefined && window.innerWidth > 720 ? (
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  ) : (
+    <MobileApp />
+  )
+
+render(<Root />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
