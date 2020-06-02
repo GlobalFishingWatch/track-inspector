@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import cx from 'classnames'
 import formatcoords from 'formatcoords'
-import MiniGlobe from '@globalfishingwatch/map-components/components/miniglobe'
-import { MiniGlobeBounds } from '@globalfishingwatch/map-components/types/components/miniglobe'
-import { useViewportConnect } from './map.hooks'
+import MiniGlobe, { MiniglobeBounds } from '@globalfishingwatch/ui-components/dist/miniglobe'
+
 import Rulers from 'features/rulers/Rulers'
-import styles from './MapControls.module.css'
 import { ReactComponent as IconPlus } from 'assets/icons/plus.svg'
 import { ReactComponent as IconMinus } from 'assets/icons/minus.svg'
 
-const MapControls = ({ bounds }: { bounds: MiniGlobeBounds | null }) => {
+import styles from './MapControls.module.css'
+import { useViewportConnect } from './map.hooks'
+
+const MapControls = ({ bounds }: { bounds: MiniglobeBounds | null }) => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
 
   const [showCoords, setShowCoords] = useState(false)
@@ -26,8 +27,7 @@ const MapControls = ({ bounds }: { bounds: MiniGlobeBounds | null }) => {
       >
         {bounds && (
           <MiniGlobe
-            center={[latitude, longitude]}
-            zoom={zoom}
+            center={{ latitude, longitude }}
             bounds={bounds}
             viewportThickness={1}
             size={70}

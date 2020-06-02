@@ -1,4 +1,4 @@
-import { Workspace } from '@globalfishingwatch/api-client'
+import { Workspace } from '@globalfishingwatch/dataviews-client'
 
 export interface Dictionary<T> {
   [key: string]: T

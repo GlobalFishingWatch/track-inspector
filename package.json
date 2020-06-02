@@ -14,10 +14,12 @@
     "generate-static-pbf-reader": "pbjs -t static-module -w commonjs -o src/pbf/vessels.js node_modules/tracks-cloud-function/src/proto/vessels.proto && pbts -o src/pbf/vessels.d.ts src/pbf/vessels.js"
   },
   "dependencies": {
-    "@globalfishingwatch/api-client": "0.0.21-dataviews8",
+    "@globalfishingwatch/api-client": "1.1.1",
+    "@globalfishingwatch/dataviews-client": "1.1.0",
     "@globalfishingwatch/layer-composer": "2.0.0",
-    "@globalfishingwatch/map-components": "3.8.9",
+    "@globalfishingwatch/react-hooks": "1.1.1",
     "@globalfishingwatch/timebar": "^1.0.3",
+    "@globalfishingwatch/ui-components": "1.1.0",
     "@reduxjs/toolkit": "1.3.5",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
@@ -49,15 +51,20 @@
     "typescript": "3.9.2"
   },
   "devDependencies": {
-    "@satellitestudio/eslint-config": "1.2.2",
+    "@globalfishingwatch/linting": "1.0.6",
     "@types/luxon": "^1.24.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.1",
+    "@typescript-eslint/parser": "^3.0.1",
+    "eslint": "^7.1.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-react-app": "5.2.1",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-flowtype": "^5.1.1",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-react": "7.20.0",
-    "eslint-plugin-react-hooks": "4.0.2",
+    "eslint-plugin-react-hooks": "4.0.4",
     "favicons": "6.1.0",
     "husky": "4.2.5",
     "imagemin-lint-staged": "0.4.0",
@@ -65,7 +72,8 @@
     "prettier": "2.0.5",
     "stylelint": "13.5.0",
     "stylelint-config-css-modules": "2.2.0",
-    "stylelint-config-standard": "20.0.0"
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"

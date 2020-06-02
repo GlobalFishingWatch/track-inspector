@@ -1,17 +1,12 @@
 import React, { Fragment, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  getTracksData,
-  getTracksGraphs,
-  getEventsWithRenderingInfo,
-  getEncounters,
-} from './timebar.selectors'
-import {
-  setHighlightedTime,
-  disableHighlightedTime,
-  selectHighlightedTime,
-  setHighlightedEvent,
-} from './timebar.slice'
+import TimebarComponent, {
+  TimebarTracks,
+  TimebarActivity,
+  TimebarTracksEvents,
+  TimebarHighlighter,
+} from '@globalfishingwatch/timebar'
+
 import {
   useTimerangeConnect,
   useBookmarkTimerangeConnect,
@@ -19,16 +14,22 @@ import {
 } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataviews.selectors'
 import { useViewportConnect } from 'features/map/map.hooks'
-import TimebarComponent, {
-  TimebarTracks,
-  TimebarActivity,
-  TimebarTracksEvents,
-  TimebarHighlighter,
-} from '@globalfishingwatch/timebar'
-import Loader from 'features/loaders/Loader'
 import { Event, TimebarMode } from 'types/'
-import styles from './Timebar.module.css'
 import { TRACK_START, TRACK_END } from 'config'
+
+import styles from './Timebar.module.css'
+import {
+  setHighlightedTime,
+  disableHighlightedTime,
+  selectHighlightedTime,
+  setHighlightedEvent,
+} from './timebar.slice'
+import {
+  getTracksData,
+  getTracksGraphs,
+  getEventsWithRenderingInfo,
+  getEncounters,
+} from './timebar.selectors'
 
 const TimebarWrapper = () => {
   const { start, end, dispatchTimerange } = useTimerangeConnect()
