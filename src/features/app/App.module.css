@@ -33,3 +33,25 @@ body {
 .timebar {
   grid-area: timebar;
 }
+
+.mobileContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileImage {
+  width: 100%;
+  max-width: 412px;
+}
+
+.mobileDisclaimer {
+  font-size: var(--font-size-L);
+  text-transform: initial;
+  text-align: center;
+  max-width: 80%;
+  line-height: 2.2rem;
+}
