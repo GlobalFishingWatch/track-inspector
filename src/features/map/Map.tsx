@@ -13,9 +13,6 @@ import MapInfo from './MapInfo'
 import MapControls from './MapControls'
 import './Map.css'
 
-const layerComposer = new LayerComposer()
-const styleTransformations = [sort]
-
 const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
@@ -26,11 +23,10 @@ const Map = () => {
       start,
       end,
       zoom,
-      styleTransformations,
     }),
     [start, end, zoom]
   )
-  const [style] = useLayerComposer(generatorConfigs, layerComposer, globalGeneratorConfig)
+  const { style } = useLayerComposer(generatorConfigs, globalGeneratorConfig)
 
   const [viewport, onViewportChange] = useViewport(
     // TODO this being an anonymous function, will a Map render be triggered with unrelated store changes???
