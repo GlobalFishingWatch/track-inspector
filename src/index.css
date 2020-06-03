@@ -81,11 +81,13 @@ label {
   display: block;
 }
 
+svg[aria-label],
 span[aria-label],
 button[aria-label] {
   position: relative;
 }
 
+svg[aria-label]::before,
 span[aria-label]::before,
 button[aria-label]::before {
   content: attr(aria-label);
@@ -113,6 +115,7 @@ button[aria-label]::before {
   transform: translate(-50%, 1rem);
 }
 
+svg[aria-label]:hover::before,
 span[aria-label]:hover::before,
 button[aria-label]:hover::before {
   opacity: 1;
@@ -120,6 +123,7 @@ button[aria-label]:hover::before {
   transition: all 0.2s ease-in-out 0.5s;
 }
 
+svg[data-tip-wrap='multiline']::before,
 span[data-tip-wrap='multiline']::before,
 button[data-tip-wrap='multiline']::before {
   width: 26rem;
