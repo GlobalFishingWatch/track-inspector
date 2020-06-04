@@ -2,13 +2,16 @@ import React, { Fragment } from 'react'
 
 import { ReactComponent as LogoImage } from 'assets/images/gfw-carrier-vessels.svg'
 import { ReactComponent as ScreenImage } from 'assets/images/screen-too-small.svg'
+import { CARRIER_PORTAL_URL } from 'config'
 
 import styles from './App.module.css'
 
 function MobileApp() {
   return (
     <Fragment>
-      <LogoImage className={styles.mobileLogo} />
+      <a href={CARRIER_PORTAL_URL}>
+        <LogoImage className={styles.mobileLogo} />
+      </a>
       <div className={styles.mobileContainer}>
         <ScreenImage className={styles.mobileImage} />
         <h1 className={styles.mobileDisclaimer}>
