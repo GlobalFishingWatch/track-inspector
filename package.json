@@ -10,13 +10,13 @@
     "build:manifest": "node scripts/manifest",
     "lint": "eslint -c .eslintrc src/*.ts src/*.tsx --fix",
     "test": "CI=true react-scripts test --env=jsdom --all",
-    "eject": "react-scripts eject",
-    "generate-static-pbf-reader": "pbjs -t static-module -w commonjs -o src/pbf/vessels.js node_modules/tracks-cloud-function/src/proto/vessels.proto && pbts -o src/pbf/vessels.d.ts src/pbf/vessels.js"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@globalfishingwatch/api-client": "1.1.1",
     "@globalfishingwatch/dataviews-client": "1.1.0",
     "@globalfishingwatch/layer-composer": "2.0.0",
+    "@globalfishingwatch/pbf": "^1.0.1",
     "@globalfishingwatch/react-hooks": "1.1.1",
     "@globalfishingwatch/timebar": "^1.0.3",
     "@globalfishingwatch/ui-components": "1.1.0",
