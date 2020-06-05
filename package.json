@@ -51,7 +51,7 @@
     "typescript": "3.9.2"
   },
   "devDependencies": {
-    "@globalfishingwatch/linting": "1.0.6",
+    "@globalfishingwatch/linting": "1.1.1",
     "@types/luxon": "^1.24.0",
     "@typescript-eslint/eslint-plugin": "^3.0.1",
     "@typescript-eslint/parser": "^3.0.1",

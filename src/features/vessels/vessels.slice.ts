@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { Dictionary } from 'types'
 import { RootState } from 'store/store'
 import { Segment } from 'data-transform/trackValueArrayToSegments'

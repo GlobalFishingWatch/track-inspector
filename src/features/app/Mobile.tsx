@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react'
-
 import { ReactComponent as LogoImage } from 'assets/images/gfw-carrier-vessels.svg'
 import { ReactComponent as ScreenImage } from 'assets/images/screen-too-small.svg'
 import { CARRIER_PORTAL_URL } from 'config'
-
 import styles from './App.module.css'
 
 function MobileApp() {

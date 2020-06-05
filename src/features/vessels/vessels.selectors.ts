@@ -1,9 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
-
 import { selectDataviews } from 'features/dataviews/dataviews.slice'
-
 import { Vessel, selectVessels, selectTracks } from './vessels.slice'
 
 export type VesselWithConfig = Partial<

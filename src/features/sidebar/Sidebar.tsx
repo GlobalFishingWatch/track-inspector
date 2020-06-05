@@ -4,7 +4,6 @@ import cx from 'classnames'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import CountryFlag from '@globalfishingwatch/ui-components/dist/countryflag'
-
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
@@ -13,7 +12,6 @@ import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
 import { CARRIER_PORTAL_URL } from 'config'
 import { ReactComponent as IconInfo } from 'assets/icons/info.svg'
-
 import styles from './Sidebar.module.css'
 
 const Toggle = ({ backgroundColor, loading }: { backgroundColor: string; loading?: boolean }) => {

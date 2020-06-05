@@ -1118,10 +1118,10 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
-"@globalfishingwatch/linting@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/linting/-/linting-1.0.6.tgz#b4474f7ee5c94dead1da2b4a784dbdb75f8a4441"
-  integrity sha512-MSdEXG4dKp3Yfq3giqudbTmBePSGPkKX4R1+XfL7733SQQ8W43QI/1R1xY7fWOhALkhIdjCv9Sa4ZUqMyKp3SA==
+"@globalfishingwatch/linting@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/linting/-/linting-1.1.1.tgz#a85da8b165b9d3e5e912bb16b62a9a8fba4cec3c"
+  integrity sha512-o/tvvVQkilppxtpkjfvO4m6aApaMWkoQxdF6/LWh564NPyDHu2KuV+pxDbDkwNWYQwRNHpsL0y3Nv7J8ZR73Ug==
 
 "@globalfishingwatch/map-convert@github:GlobalFishingWatch/map-convert":
   version "1.0.0"

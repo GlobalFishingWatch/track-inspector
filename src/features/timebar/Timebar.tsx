@@ -6,7 +6,6 @@ import TimebarComponent, {
   TimebarTracksEvents,
   TimebarHighlighter,
 } from '@globalfishingwatch/timebar'
-
 import {
   useTimerangeConnect,
   useBookmarkTimerangeConnect,
@@ -16,7 +15,6 @@ import { selectGeneratorConfigCurrentEventId } from 'features/dataviews/dataview
 import { useViewportConnect } from 'features/map/map.hooks'
 import { Event, TimebarMode } from 'types/'
 import { TRACK_START, TRACK_END } from 'config'
-
 import styles from './Timebar.module.css'
 import {
   setHighlightedTime,
