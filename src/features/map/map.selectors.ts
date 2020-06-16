@@ -17,8 +17,8 @@ export const selectGeneratorConfigWithData = createSelector(
   ],
   (dataviews, tracks, events, highlightedTime, rulers, highlightedEvent) => {
     const generatorConfigsWithData = dataviews.map((dataviewWorkspace: DataviewWorkspace) => {
-      if (!dataviewWorkspace.dataview || !dataviewWorkspace.dataview.config) return null
-      const generatorConfig: Generators.GeneratorConfig = dataviewWorkspace.dataview.config
+      const generatorConfig: Generators.GeneratorConfig =
+        dataviewWorkspace.dataview && dataviewWorkspace.dataview.config
       const datasetParamsId = dataviewWorkspace.datasetParams.id
       if (generatorConfig.type === Generators.Type.Track && datasetParamsId) {
         const data = tracks[datasetParamsId]

@@ -1,0 +1,6 @@
+{
+  "track-inspector": {
+    "cloudbuildTaskId": "track-inspector-autodeploy-bot",
+    "watch": ["**/*"]
+  }
+}

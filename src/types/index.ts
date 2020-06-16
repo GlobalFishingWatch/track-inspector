@@ -20,6 +20,7 @@ export type WorkspaceParam =
   | 'bookmarkEnd'
   | 'sidebar'
   | 'timebarMode'
+  | 'alwaysRequireAuth'
 
 export type QueryParams = {
   [query in WorkspaceParam]?: string | number | boolean | null
@@ -61,6 +62,7 @@ export type AppState = Workspace & {
   timebarMode: string
   bookmarkStart?: string
   bookmarkEnd?: string
+  alwaysRequireAuth: boolean
 }
 
 export enum TimebarMode {

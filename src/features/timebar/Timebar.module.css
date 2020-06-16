@@ -1,15 +1,16 @@
 .graphSelector {
   position: absolute;
-  right: 1rem;
-  bottom: 3rem;
+  right: 10px;
+  bottom: 17px;
   z-index: 100;
+  font-size: 1.4rem;
 }
 
 .graphSelector::after {
   content: ' ';
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 15px;
+  top: 13px;
   border-right: 2px solid white;
   border-bottom: 2px solid white;
   width: 5px;

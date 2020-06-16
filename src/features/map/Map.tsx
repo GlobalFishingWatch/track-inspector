@@ -1,7 +1,6 @@
 import React, { Fragment, useRef, useMemo } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { useSelector } from 'react-redux'
-import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/react-hooks/dist/use-layer-composer'
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { selectGeneratorConfigWithData } from './map.selectors'
@@ -10,9 +9,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import MapInfo from './MapInfo'
 import MapControls from './MapControls'
 import './Map.css'
-
-const layerComposer = new LayerComposer()
-const styleTransformations = [sort]
 
 const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
@@ -24,11 +20,10 @@ const Map = () => {
       start,
       end,
       zoom,
-      styleTransformations,
     }),
     [start, end, zoom]
   )
-  const [style] = useLayerComposer(generatorConfigs, layerComposer, globalGeneratorConfig)
+  const { style } = useLayerComposer(generatorConfigs, globalGeneratorConfig)
 
   const [viewport, onViewportChange] = useViewport(
     // TODO this being an anonymous function, will a Map render be triggered with unrelated store changes???
@@ -54,7 +49,7 @@ const Map = () => {
         onViewportChange={onViewportChange as any}
         mapStyle={style}
         mapOptions={{
-          customAttribution: '© Copyright Global Fishing Watch 2020',
+          customAttribution: '© Copyright GlobalFishingWatch 2020',
         }}
         onClick={onMapClick}
         onMouseMove={onMapMove}
