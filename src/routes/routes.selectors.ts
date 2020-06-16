@@ -28,6 +28,7 @@ export const selectEndQuery = selectQueryParam('end')
 export const selectBookmarkStartQuery = selectQueryParam('bookmarkStart')
 export const selectBookmarkEndQuery = selectQueryParam('bookmarkEnd')
 export const selectSidebarQuery = selectQueryParam('sidebar')
+export const selectAlwaysRequireAuthQuery = selectQueryParam('alwaysRequireAuth')
 
 export const selectViewport = createSelector(
   [selectMapZoomQuery, selectMapLatitudeQuery, selectMapLongitudeQuery],

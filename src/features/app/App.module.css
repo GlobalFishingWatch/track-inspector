@@ -55,3 +55,9 @@ body {
   max-width: 80%;
   line-height: 2.2rem;
 }
+
+.login {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}

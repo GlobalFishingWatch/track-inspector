@@ -1,7 +1,7 @@
 .info {
   position: absolute;
-  bottom: 0.5rem;
-  left: 0.7rem;
+  bottom: 10px;
+  left: 10px;
   color: var(--color-foreground-transparent);
   font-size: var(--font-size-S);
   text-transform: uppercase;
@@ -9,5 +9,5 @@
 }
 
 .scale {
-  margin-bottom: 0.3rem;
+  margin-bottom: 4px;
 }

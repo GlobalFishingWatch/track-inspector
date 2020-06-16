@@ -1,7 +1,6 @@
 import React, { Fragment, useRef, useMemo } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { useSelector } from 'react-redux'
-import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
 import useLayerComposer from '@globalfishingwatch/react-hooks/dist/use-layer-composer'
 
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
@@ -52,7 +51,7 @@ const Map = () => {
         onViewportChange={onViewportChange as any}
         mapStyle={style}
         mapOptions={{
-          customAttribution: '© Copyright Global Fishing Watch 2020',
+          customAttribution: '© Copyright GlobalFishingWatch 2020',
         }}
         onClick={onMapClick}
         onMouseMove={onMapMove}

@@ -41,6 +41,25 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
     },
     {
+      id: 'ais',
+      overrides: {},
+      datasetParams: {
+        dataset: 'fishing',
+        id: '0000310d2-208e-fd8b-2e59-5619ec0cd497',
+        binary: true,
+        format: 'valueArray',
+      },
+      dataview: {
+        id: 'ais',
+        datasetsIds: ['carrierPortalVesselTrack'],
+        config: {
+          type: Generators.Type.Track,
+          color: '#00c1e7',
+          simplify: false,
+        },
+      },
+    },
+    {
       id: 'trackCarrier',
       overrides: {
         // visible: false,
@@ -203,6 +222,7 @@ export const DEFAULT_WORKSPACE: AppState = {
   end: '2020-01-01T00:00:00.000Z',
   sidebar: true,
   timebarMode: TimebarMode.events,
+  alwaysRequireAuth: true,
 }
 
 const datasetsEndpointMock: Dataset[] = [
@@ -231,5 +251,8 @@ const datasetsEndpointMock: Dataset[] = [
 ]
 
 export const mockFetches: any = {
+  '/datasets?ids=fishing': datasetsEndpointMock,
+  '/datasets?ids=carrierPortalVesselTrack': datasetsEndpointMock,
   '/datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
+  '/datasets?ids=fishing,carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
 }

@@ -29,7 +29,7 @@ section:not(:last-child) {
 }
 
 h1 {
-  padding: 0 1.5rem;
+  padding: 1.5rem 1.5rem;
   font-size: var(--font-size-L);
   text-transform: uppercase;
   color: var(--sidebar-brand-transparent);
