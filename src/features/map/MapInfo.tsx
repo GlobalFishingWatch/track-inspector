@@ -1,11 +1,9 @@
 import React, { useMemo } from 'react'
 import { ScaleControl } from 'react-map-gl'
 import { DateTime } from 'luxon'
-
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
 import { LatLon } from 'types'
 import toFixed from 'util/toFixed'
-
 import { useViewportConnect } from './map.hooks'
 import styles from './MapInfo.module.css'
 

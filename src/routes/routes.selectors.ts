@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect'
-
 import { WorkspaceParam } from 'types'
 import { DEFAULT_WORKSPACE } from 'config'
 import { RootState } from 'store/store'

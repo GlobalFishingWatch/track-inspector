@@ -43,6 +43,13 @@ body {
   justify-content: center;
 }
 
+.mobileLogo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: var(--space-M);
+}
+
 .mobileImage {
   width: 100%;
   max-width: 412px;

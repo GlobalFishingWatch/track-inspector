@@ -1,8 +1,6 @@
 import { Dataset } from '@globalfishingwatch/dataviews-client'
 import { Generators } from '@globalfishingwatch/layer-composer'
-
 import { Field } from 'data-transform/trackValueArrayToSegments'
-
 import { Dictionary, AppState, TimebarMode } from './types'
 
 export const EVENTS_COLORS: Dictionary<string> = {

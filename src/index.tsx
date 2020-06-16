@@ -3,7 +3,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import 'index.css'
 import { Settings } from 'luxon'
-
 import App from 'features/app/App'
 import MobileApp from 'features/app/Mobile'
 import * as serviceWorker from 'serviceWorker'

@@ -1,8 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit'
+import { DateTime } from 'luxon'
 import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DateTime } from 'luxon'
-
 import { selectDataviews } from 'features/dataviews/dataviews.slice'
 import { selectTracks, selectEvents } from 'features/vessels/vessels.slice'
 import { Event } from 'types'

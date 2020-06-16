@@ -2,9 +2,7 @@ import React, { Fragment, useRef, useMemo } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { useSelector } from 'react-redux'
 import useLayerComposer from '@globalfishingwatch/react-hooks/dist/use-layer-composer'
-
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
-
 import { selectGeneratorConfigWithData } from './map.selectors'
 import { useViewport, useViewportConnect, useMapClick, useMapMove, useMapBounds } from './map.hooks'
 import 'mapbox-gl/dist/mapbox-gl.css'

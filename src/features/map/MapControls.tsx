@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import cx from 'classnames'
 import formatcoords from 'formatcoords'
 import MiniGlobe, { MiniglobeBounds } from '@globalfishingwatch/ui-components/dist/miniglobe'
-
 import Rulers from 'features/rulers/Rulers'
 import { ReactComponent as IconPlus } from 'assets/icons/plus.svg'
 import { ReactComponent as IconMinus } from 'assets/icons/minus.svg'
-
 import styles from './MapControls.module.css'
 import { useViewportConnect } from './map.hooks'
 

@@ -2,7 +2,6 @@ import { useState, useMemo, useCallback, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { MiniglobeBounds } from '@globalfishingwatch/ui-components/dist/miniglobe'
-
 import { selectViewport } from 'routes/routes.selectors'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectEditing } from 'features/rulers/rulers.selectors'
