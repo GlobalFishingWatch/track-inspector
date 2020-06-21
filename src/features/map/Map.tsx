@@ -1,34 +1,49 @@
 import React, { Fragment, useRef, useMemo } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { useSelector } from 'react-redux'
-import LayerComposer, { sort } from '@globalfishingwatch/layer-composer'
-import useLayerComposer from '@globalfishingwatch/react-hooks/dist/use-layer-composer'
+import { useWorkspace, useDataviews, useLayerComposer } from '@globalfishingwatch/react-hooks'
+import { WorkspaceDataview } from '@globalfishingwatch/dataviews-client'
+import { Generators } from '@globalfishingwatch/layer-composer'
 import { useTimerangeConnect } from 'features/timebar/timebar.hooks'
-import { selectGeneratorConfigWithData } from './map.selectors'
+import { selectDataviews } from 'features/dataviews/dataviews.slice'
+import { selectDataviewsQuery } from 'routes/routes.selectors'
+import { selectResources } from 'features/dataviews/resources.slice'
+import { selectRulers } from 'features/rulers/rulers.selectors'
 import { useViewport, useViewportConnect, useMapClick, useMapMove, useMapBounds } from './map.hooks'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import MapInfo from './MapInfo'
 import MapControls from './MapControls'
 import './Map.css'
 
-const layerComposer = new LayerComposer()
-const styleTransformations = [sort]
-
 const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
-  const generatorConfigs = useSelector(selectGeneratorConfigWithData)
+
+  const dataviews = useWorkspace(
+    useSelector(selectDataviews),
+    useSelector(selectDataviewsQuery) as WorkspaceDataview[]
+  )
+  const generatorConfigs = useDataviews(dataviews, useSelector(selectResources))
+  const rulers = useSelector(selectRulers)
+
+  const generatorConfigsWithRulers = useMemo(() => {
+    const rulersConfig: Generators.RulersGeneratorConfig = {
+      type: Generators.Type.Rulers,
+      id: 'rulers',
+      data: rulers,
+    }
+    return [...generatorConfigs, rulersConfig]
+  }, [generatorConfigs, rulers])
 
   const globalGeneratorConfig = useMemo(
     () => ({
       start,
       end,
       zoom,
-      styleTransformations,
     }),
     [start, end, zoom]
   )
-  const [style] = useLayerComposer(generatorConfigs, layerComposer, globalGeneratorConfig)
+  const { style } = useLayerComposer(generatorConfigsWithRulers, globalGeneratorConfig)
 
   const [viewport, onViewportChange] = useViewport(
     // TODO this being an anonymous function, will a Map render be triggered with unrelated store changes???
@@ -46,21 +61,23 @@ const Map = () => {
 
   return (
     <Fragment>
-      <ReactMapGL
-        ref={mapRef}
-        width="100%"
-        height="100%"
-        {...viewport}
-        onViewportChange={onViewportChange as any}
-        mapStyle={style}
-        mapOptions={{
-          customAttribution: '© Copyright Global Fishing Watch 2020',
-        }}
-        onClick={onMapClick}
-        onMouseMove={onMapMove}
-      >
-        <MapInfo center={hoverCenter} />
-      </ReactMapGL>
+      {style && (
+        <ReactMapGL
+          ref={mapRef}
+          width="100%"
+          height="100%"
+          {...viewport}
+          onViewportChange={onViewportChange as any}
+          mapStyle={style}
+          mapOptions={{
+            customAttribution: '© Copyright Global Fishing Watch 2020',
+          }}
+          onClick={onMapClick}
+          onMouseMove={onMapMove}
+        >
+          <MapInfo center={hoverCenter} />
+        </ReactMapGL>
+      )}
       <MapControls bounds={mapBounds} />
     </Fragment>
   )

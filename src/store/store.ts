@@ -2,8 +2,8 @@ import { combineReducers } from 'redux'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import connectedRoutes, { routerQueryMiddleware } from 'routes/routes'
 import dataviews from 'features/dataviews/dataviews.slice'
+import resources from 'features/dataviews/resources.slice'
 import timebar from 'features/timebar/timebar.slice'
-import vessels from 'features/vessels/vessels.slice'
 import rulers from 'features/rulers/rulers.slice'
 
 const {
@@ -15,8 +15,8 @@ const {
 
 const rootReducer = combineReducers({
   dataviews,
+  resources,
   timebar,
-  vessels,
   rulers,
   location: location,
 })
@@ -31,6 +31,7 @@ const defaultMiddlewareOptions: any = {
     ignoredPaths: [
       // Too big to check for immutability:
       'vessels',
+      'resources',
     ],
   },
 }

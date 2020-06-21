@@ -39,7 +39,7 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
   sidebar: (s) => s === 'true',
-  dataviewsWorkspace: (s) => {
+  workspaceDataviews: (s) => {
     const layers = s.map((layer: any) => {
       const newLayer = { ...layer }
       if (layer.overrides) {

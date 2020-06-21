@@ -9,7 +9,7 @@ const selectLocationQuery = createSelector([selectLocation], (location) => {
   return location.query
 })
 
-const selectQueryParam = (param: WorkspaceParam) =>
+const selectAppParam = (param: WorkspaceParam) =>
   createSelector([selectLocationQuery], (query: any) => {
     if (query === undefined || query[param] === undefined) {
       return DEFAULT_WORKSPACE[param]
@@ -17,16 +17,16 @@ const selectQueryParam = (param: WorkspaceParam) =>
     return query[param]
   })
 
-export const selectDataviewsQuery = selectQueryParam('dataviewsWorkspace')
+export const selectDataviewsQuery = selectAppParam('workspaceDataviews')
 
-export const selectMapZoomQuery = selectQueryParam('zoom')
-export const selectMapLatitudeQuery = selectQueryParam('latitude')
-export const selectMapLongitudeQuery = selectQueryParam('longitude')
-export const selectStartQuery = selectQueryParam('start')
-export const selectEndQuery = selectQueryParam('end')
-export const selectBookmarkStartQuery = selectQueryParam('bookmarkStart')
-export const selectBookmarkEndQuery = selectQueryParam('bookmarkEnd')
-export const selectSidebarQuery = selectQueryParam('sidebar')
+export const selectMapZoomQuery = selectAppParam('zoom')
+export const selectMapLatitudeQuery = selectAppParam('latitude')
+export const selectMapLongitudeQuery = selectAppParam('longitude')
+export const selectStartQuery = selectAppParam('start')
+export const selectEndQuery = selectAppParam('end')
+export const selectBookmarkStartQuery = selectAppParam('bookmarkStart')
+export const selectBookmarkEndQuery = selectAppParam('bookmarkEnd')
+export const selectSidebarQuery = selectAppParam('sidebar')
 
 export const selectViewport = createSelector(
   [selectMapZoomQuery, selectMapLatitudeQuery, selectMapLongitudeQuery],
@@ -50,4 +50,4 @@ export const selectBookmarkTimerange = createSelector(
   })
 )
 
-export const selectTimebarMode = selectQueryParam('timebarMode')
+export const selectTimebarMode = selectAppParam('timebarMode')

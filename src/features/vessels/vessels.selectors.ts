@@ -1,38 +1,43 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
-import { selectDataviews } from 'features/dataviews/dataviews.slice'
-import { Vessel, selectVessels, selectTracks } from './vessels.slice'
+import { selectResources } from 'features/dataviews/resources.slice'
+import { selectResolvedDataviews } from 'features/dataviews/dataviews.selectors'
 
-export type VesselWithConfig = Partial<
-  Vessel & Generators.TrackGeneratorConfig & { trackLoading: boolean }
->
+export type VesselDynamicField = {
+  start: string
+  end: string
+  value: string
+}
+export type Vessel = {
+  id: string
+  name: string
+  imo?: string
+  flags?: VesselDynamicField[]
+  lastFlag?: string
+  mmsi?: VesselDynamicField[]
+  lastMMSI?: string
+}
 
-export const selectVesselsWithConfig = createSelector(
-  [selectDataviews, selectVessels, selectTracks],
-  (dataviewWorkspaces, vessels, tracks) => {
-    const trackDataviewWorkspaces = dataviewWorkspaces.filter(
-      (dataviewWorkspace: DataviewWorkspace) => {
-        return (
-          dataviewWorkspace.dataview &&
-          dataviewWorkspace.dataview.config.type === Generators.Type.Track
+export const selectVesselsInfo = createSelector(
+  [selectResolvedDataviews, selectResources],
+  (resolvedDataviews, resources) => {
+    const vesselsInfo = resolvedDataviews
+      .filter((dataview) => dataview.view?.type === Generators.Type.Track)
+      .map((dataview) => {
+        const vesselResource = resources.find(
+          (resource) =>
+            resource.type === 'info' && resource.datasetParamId === dataview.datasetsParamIds[0]
         )
-      }
-    )
-    return trackDataviewWorkspaces.map((dataviewWorkspace: DataviewWorkspace) => {
-      const config: Generators.TrackGeneratorConfig = dataviewWorkspace.dataview?.config
-      let vessel: VesselWithConfig = {
-        trackLoading: true,
-        ...config,
-      }
-      if (config.datasetParamsId) {
-        const vesselInfo = vessels[config.datasetParamsId]
-        if (vesselInfo) {
-          vessel = { ...vessel, ...vesselInfo }
+        const trackResource = resources.find(
+          (resource) =>
+            resource.type === 'track' && resource.datasetParamId === dataview.datasetsParamIds[0]
+        )
+        return {
+          dataview,
+          data: (vesselResource?.data as Vessel) || {},
+          loaded: trackResource?.loaded,
         }
-        vessel.trackLoading = !tracks[config.datasetParamsId]
-      }
-      return vessel as VesselWithConfig
-    })
+      })
+    return vesselsInfo
   }
 )
