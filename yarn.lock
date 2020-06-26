@@ -1104,17 +1104,27 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@*", "@globalfishingwatch/api-client@1.1.1", "@globalfishingwatch/api-client@^1.1.0":
+"@globalfishingwatch/api-client@1.1.1", "@globalfishingwatch/api-client@^1.1.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.1.1.tgz#087471bd09e7ff621f42e19526ce521da8d1fbf6"
   integrity sha512-6WYo/cKhrDwis5q4ehj/QFQjp73W3wLPigRcX9OCLHsF0KejWc6yGQdBHGNMAH+ek0teKzelHj7YiRUvljiBow==
   dependencies:
     file-saver "^2.0.2"
 
-"@globalfishingwatch/dataviews-client@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-1.1.0.tgz#4949ab25afed2f128d8c8f8a42097b9f614ed45d"
-  integrity sha512-zqPICjfOq8AQqJWMjvvWxDXIRDxXcUpAPYL2jMEQN1tzS3yHQ+PpH+SDp70yoB8Wqj3gqiv1uBvan9zVyIL86g==
+"@globalfishingwatch/api-client@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.2.3.tgz#02a1d494200686bacd66f5251bde03bbdd25fd82"
+  integrity sha512-oBjPt2WkGBymKCqPfblTmo8uvqFzzXvDk/s3BX864jZKiqB5NNldk84wSjOyeSYtwxkDR1oIx2PbJB9WjsZDrQ==
+  dependencies:
+    file-saver "^2.0.2"
+
+"@globalfishingwatch/dataviews-client@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-2.0.1.tgz#854fa882f744a3313cf7974ac2b736e5fd02b760"
+  integrity sha512-CSOj/+agb9SpZvWXIw+pku8y3fkzjc1lRN4I8CmbTq6Ctq9fZDdtFo0t3x0YtZuNszVdhkdvSQRvzWpaCzoo4w==
+  dependencies:
+    "@globalfishingwatch/api-client" "^1.2.3"
+    qs "^6.9.4"
 
 "@globalfishingwatch/layer-composer@2.0.0":
   version "2.0.0"
@@ -1133,6 +1143,24 @@
     pbf "^3.2.1"
     vt-pbf "^3.1.1"
 
+"@globalfishingwatch/layer-composer@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.2.2.tgz#d429b38e03faeac483ff96d9edc1f68267eeed80"
+  integrity sha512-QGrnGWfsN4tKxmK+ByH4f76o8kCkfI0suCs0RcQneK7VdtQnEe2PWJhAQpE9r8ccQ4W/g+3+cTc/VyRpeE1LAA==
+  dependencies:
+    "@mapbox/mapbox-gl-style-spec" "^13.14.0"
+    "@mapbox/tilebelt" "^1.0.1"
+    "@mapbox/vector-tile" "^1.3.1"
+    "@turf/great-circle" "^5.1.5"
+    "@turf/length" "^6.0.2"
+    abortcontroller-polyfill "^1.4.0"
+    d3-scale "^3.2.1"
+    geojson-vt "^3.2.1"
+    memoize-one "^5.1.1"
+    pbf "^3.2.1"
+    typescript-json-schema "^0.42.0"
+    vt-pbf "^3.1.1"
+
 "@globalfishingwatch/linting@1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/linting/-/linting-1.1.1.tgz#a85da8b165b9d3e5e912bb16b62a9a8fba4cec3c"
@@ -1149,12 +1177,13 @@
   dependencies:
     tracks-cloud-function "git+https://github.com/GlobalFishingWatch/api-function-vessels.git"
 
-"@globalfishingwatch/react-hooks@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/react-hooks/-/react-hooks-1.1.1.tgz#9bbacf48a59f6629b83414777896b9dab8ec7b89"
-  integrity sha512-l9FIquA4MqT9PvCF/DIza9T77xuu/Z4iI8j7MPeSsFWHeFLp7Ea8qE0SOBRJQNxJmlowFF/Zbo4F4aB5WSPyqw==
+"@globalfishingwatch/react-hooks@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/react-hooks/-/react-hooks-2.4.0.tgz#83d067b2e0ded58bbf3ab988bb9ad26a346b4d48"
+  integrity sha512-teS1oTJxUK8SZ5EsoPLE94qu0FIaDtrIFYYloW4UGzM4MPxKA0mDAkWIoL7nWGqsyi1FXv1e6NjzwvN4S1Kxrw==
   dependencies:
-    "@globalfishingwatch/api-client" "*"
+    "@globalfishingwatch/api-client" "^1.2.3"
+    "@globalfishingwatch/layer-composer" "^2.2.2"
 
 "@globalfishingwatch/timebar@1.0.4":
   version "1.0.4"
@@ -7233,7 +7262,7 @@ glob-to-regexp@^0.3.0:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.3.0.tgz#8c5a1494d2066c570cc3bfe4496175acc4d502ab"
   integrity sha1-jFoUlNIGbFcMw7/kSWF1rMTVAqs=
 
-glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6:
+glob@^7.0.3, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@~7.1.4:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
   integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -12690,7 +12719,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@6.9.4, qs@^6.4.0:
+qs@6.9.4, qs@^6.4.0, qs@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
@@ -15341,7 +15370,18 @@ typesafe-actions@5.1.0:
   resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-5.1.0.tgz#9afe8b1e6a323af1fd59e6a57b11b7dd6623d2f1"
   integrity sha512-bna6Yi1pRznoo6Bz1cE6btB/Yy8Xywytyfrzu/wc+NFW3ZF0I+2iCGImhBsoYYCOWuICtRO4yHcnDlzgo1AdNg==
 
-typescript@3.9.5:
+typescript-json-schema@^0.42.0:
+  version "0.42.0"
+  resolved "https://registry.yarnpkg.com/typescript-json-schema/-/typescript-json-schema-0.42.0.tgz#695f212a72d91d47c0605371dc697597b7817c1b"
+  integrity sha512-9WO+lVmlph7Ecb7lPd9tU84XFUQh44kpAf3cWe/Ym4G5EKw/SS6XGpi1DZDthvxqkIdNSDlWi7FhKfxuIV/3yw==
+  dependencies:
+    "@types/json-schema" "^7.0.3"
+    glob "~7.1.4"
+    json-stable-stringify "^1.0.1"
+    typescript "^3.5.3"
+    yargs "^14.0.0"
+
+typescript@3.9.5, typescript@^3.5.3:
   version "3.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
   integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
@@ -16357,6 +16397,14 @@ yargs-parser@^13.1.2:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
+yargs-parser@^15.0.1:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-15.0.1.tgz#54786af40b820dcb2fb8025b11b4d659d76323b3"
+  integrity sha512-0OAMV2mAZQrs3FkNpDQcBk1x5HXb8X4twADss4S0Iuk+2dGnLOE/fRHrsYm542GduMveyA77OF4wrNJuanRCWw==
+  dependencies:
+    camelcase "^5.0.0"
+    decamelize "^1.2.0"
+
 yargs-parser@^18.1.3:
   version "18.1.3"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
@@ -16398,6 +16446,23 @@ yargs@^13.3.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^13.1.2"
+
+yargs@^14.0.0:
+  version "14.2.3"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-14.2.3.tgz#1a1c3edced1afb2a2fea33604bc6d1d8d688a414"
+  integrity sha512-ZbotRWhF+lkjijC/VhmOT9wSgyBQ7+zr13+YLkhfsSiTriYsMzkTUFP18pFhWwBeMa5gUc1MzbhrO6/VB7c9Xg==
+  dependencies:
+    cliui "^5.0.0"
+    decamelize "^1.2.0"
+    find-up "^3.0.0"
+    get-caller-file "^2.0.1"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^3.0.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^15.0.1"
 
 yauzl@^2.4.2:
   version "2.10.0"
