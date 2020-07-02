@@ -225,7 +225,3 @@ export const DEFAULT_DATAVIEWS: Dataview[] = [
     },
   },
 ]
-
-export const MOCK: Record<string, Dataview[]> = {
-  '/dataviews/background,landmass,trackCarrier,trackFishing,eventsCarrier,cp_rfmo,other_rfmos,eez,mpant,bluefin_rfmo?include=dataset%2Cdataset.endpoints': DEFAULT_DATAVIEWS,
-}
