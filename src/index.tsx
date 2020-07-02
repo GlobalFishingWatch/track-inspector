@@ -8,6 +8,8 @@ import MobileApp from 'features/app/Mobile'
 import * as serviceWorker from 'serviceWorker'
 import configureStore from 'store/store'
 
+import '@globalfishingwatch/ui-components/dist/base.css'
+
 const store = configureStore()
 
 Settings.defaultLocale = 'en'

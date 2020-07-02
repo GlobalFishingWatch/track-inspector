@@ -36,7 +36,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
     // TODO should take into account DVs thar are loadING
     const loadedDataviewsIds =
       state.dataviews.dataviews && state.dataviews.dataviews.map((d: Dataview) => d.id)
-    const newDataviewsIds = difference(workspaceIds, loadedDataviewsIds) as (number | string)[]
+    const newDataviewsIds = difference(workspaceIds, loadedDataviewsIds) as number[]
 
     if (newDataviewsIds.length) {
       const newDataviews = await dataviewsClient.getDataviews(newDataviewsIds)
