@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useMemo } from 'react'
+import React, { Fragment, useRef, useMemo, useState, useCallback } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { useSelector } from 'react-redux'
 import { useWorkspace, useDataviews, useLayerComposer } from '@globalfishingwatch/react-hooks'
@@ -18,6 +18,7 @@ import './Map.css'
 const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
+  const [loaded, setLoaded] = useState(false)
 
   const dataviews = useWorkspace(
     useSelector(selectDataviews),
@@ -57,7 +58,10 @@ const Map = () => {
   const onMapClick = useMapClick()
   const { onMapMove, hoverCenter } = useMapMove()
 
-  const mapBounds = useMapBounds(mapRef)
+  const mapBounds = useMapBounds(loaded ? mapRef : null)
+  const onLoadCallback = useCallback(() => {
+    setLoaded(true)
+  }, [])
 
   return (
     <Fragment>
@@ -67,6 +71,7 @@ const Map = () => {
           width="100%"
           height="100%"
           {...viewport}
+          onLoad={onLoadCallback}
           onViewportChange={onViewportChange as any}
           mapStyle={style}
           mapOptions={{
