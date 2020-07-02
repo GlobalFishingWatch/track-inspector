@@ -22,7 +22,10 @@ export const selectVesselsInfo = createSelector(
   [selectResolvedDataviews, selectResources],
   (resolvedDataviews, resources) => {
     const vesselsInfo = resolvedDataviews
-      .filter((dataview) => dataview.view?.type === Generators.Type.Track)
+      .filter(
+        (dataview) =>
+          dataview.view?.type === Generators.Type.Track && dataview.view?.visible !== 'false'
+      )
       .map((dataview) => {
         const vesselResource = resources.find(
           (resource) =>
