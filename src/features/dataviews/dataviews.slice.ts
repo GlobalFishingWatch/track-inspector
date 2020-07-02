@@ -1,26 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
+import { Dataview } from '@globalfishingwatch/dataviews-client'
 import { RootState } from 'store/store'
 
-const initialState: DataviewWorkspace[] = []
+const initialState: { dataviews: Dataview[] } = { dataviews: [] }
 
 const slice = createSlice({
   name: 'vessels',
   initialState,
   reducers: {
-    setDataviews: (state, action: PayloadAction<DataviewWorkspace[]>) => {
-      action.payload.forEach((dataviewWorkspace: DataviewWorkspace) => {
-        // inject workspaceDV id in config for convenience
-        const newDataviewWorkspace = { ...dataviewWorkspace }
-        if (newDataviewWorkspace.dataview) {
-          newDataviewWorkspace.dataview.config.id = newDataviewWorkspace.id
-          newDataviewWorkspace.dataview.config.datasetParamsId = dataviewWorkspace.datasetParams.id
-        }
-        state.push(newDataviewWorkspace)
-      })
+    setDataviews: (state, action: PayloadAction<Dataview[]>) => {
+      state.dataviews = action.payload
     },
   },
 })
 export const { setDataviews } = slice.actions
 export default slice.reducer
-export const selectDataviews = (state: RootState) => state.dataviews
+export const selectDataviews = (state: RootState) => state.dataviews.dataviews

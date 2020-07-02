@@ -1,24 +1,23 @@
 import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
-import GFWAPI from '@globalfishingwatch/api-client'
+import difference from 'lodash/difference'
+import GFWAPI, { FetchOptions } from '@globalfishingwatch/api-client'
 import DataviewsClient from '@globalfishingwatch/dataviews-client'
-import { vessels } from '@globalfishingwatch/pbf/decoders/vessels'
-import { mockFetches, DEFAULT_WORKSPACE, TRACK_FIELDS } from 'config'
+import { TRACK_FIELDS, DEFAULT_DATAVIEWS } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
-import { setVessel, setVesselTrack, setVesselEvents } from 'features/vessels/vessels.slice'
 import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
+import { RootState } from 'store/store'
 import { setDataviews } from './dataviews.slice'
+import { addResources, completeLoading as completeResourceLoading } from './resources.slice'
 
-const mockFetch = (mockFetchUrl: string) => {
-  const mock = mockFetches[mockFetchUrl]
-  if (!mock) {
-    return GFWAPI.fetch(mockFetchUrl, { json: false })
+const mockFetch = (url: string, init?: FetchOptions): Promise<Response> => {
+  if (!url.match(/^\/dataviews/)) {
+    return GFWAPI.fetch(url as string, init as any)
   }
-  console.log('For', mockFetchUrl, 'Found this mock:', mock)
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
-        new Response(JSON.stringify(mock), {
+        new Response(JSON.stringify(DEFAULT_DATAVIEWS), {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
         })
@@ -27,62 +26,37 @@ const mockFetch = (mockFetchUrl: string) => {
   })
 }
 
-// TODO use GFWAPI for real fetches
-const dataviewsClient = new DataviewsClient(
-  /*GFWAPI.fetch*/ mockFetch,
-  DEFAULT_WORKSPACE.dataviewsWorkspace
-)
+const dataviewsClient = new DataviewsClient(/*GFWAPI.fetch*/ mockFetch)
 
-export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
+export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<RootState>) => {
   const state = getState()
   const dataviewsQuery = selectDataviewsQuery(state)
 
   if (dataviewsQuery) {
-    const dataviewsWorkspace = await dataviewsClient.load(dataviewsQuery)
-    // dispatch(completeLoading({ id: 'dataviews' }))
-    // console.log(dataviews)
-    if (dataviewsWorkspace === null) {
-      console.log('no updates, dont trigger any action')
-    } else {
-      console.log('received this from dataviews-client:', dataviewsWorkspace)
+    const workspaceIds = dataviewsQuery.map((d) => d.id)
+    // TODO should take into account DVs thar are loadING
+    const loadedDataviewsIds =
+      state.dataviews.dataviews && state.dataviews.dataviews.map((d) => d.id)
+    const newDataviewsIds = difference(workspaceIds, loadedDataviewsIds) as number[]
 
-      // update layer composer
-      dispatch(setDataviews(dataviewsWorkspace))
+    if (newDataviewsIds.length) {
+      const newDataviews = await dataviewsClient.getDataviews(newDataviewsIds)
+      // TODO this actually replaces, and should add
+      dispatch(setDataviews(newDataviews))
 
-      const loadDataPromises = dataviewsClient.loadData()
-      loadDataPromises.forEach((promise) => {
-        promise.then(({ endpoint, dataviewWorkspace }) => {
-          console.log('Loaded endpoint data:', endpoint, dataviewWorkspace)
-          if (endpoint.type === 'track') {
-            promise
-              .then(({ response }) => response)
-              .then((r) => r.arrayBuffer())
-              .then((buffer) => {
-                const track = vessels.Track.decode(new Uint8Array(buffer))
-                return track.data
-              })
-              .then((valuesArray) => {
-                const segments = trackValueArrayToSegments(valuesArray, TRACK_FIELDS)
-                dispatch(
-                  setVesselTrack({
-                    id: dataviewWorkspace.datasetParams.id as string,
-                    data: segments,
-                  })
-                )
-              })
-          } else if (endpoint.type === 'info') {
-            promise
-              .then(({ response }) => response.json())
-              .then((data) => {
-                dispatch(setVessel(data))
-              })
-          } else if (endpoint.type === 'events') {
-            promise
-              .then(({ response }) => response.json())
-              .then((data) => {
-                dispatch(setVesselEvents({ id: dataviewWorkspace.datasetParams.id, data }))
-              })
+      const { promises, resources } = await dataviewsClient.getResources(
+        newDataviews,
+        dataviewsQuery
+      )
+
+      dispatch(addResources(resources))
+
+      promises.forEach((promise) => {
+        promise.then((resource) => {
+          if (resource.type === 'track') {
+            resource.data = trackValueArrayToSegments(resource.data as number[], TRACK_FIELDS)
           }
+          dispatch(completeResourceLoading(resource))
         })
       })
     }
