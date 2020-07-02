@@ -2,10 +2,11 @@ import { Dispatch } from 'redux'
 import { StateGetter } from 'redux-first-router'
 import difference from 'lodash/difference'
 import GFWAPI, { FetchOptions } from '@globalfishingwatch/api-client'
-import DataviewsClient, { WorkspaceDataview, Dataview } from '@globalfishingwatch/dataviews-client'
+import DataviewsClient from '@globalfishingwatch/dataviews-client'
 import { TRACK_FIELDS, DEFAULT_DATAVIEWS } from 'config'
 import { selectDataviewsQuery } from 'routes/routes.selectors'
 import trackValueArrayToSegments from 'data-transform/trackValueArrayToSegments'
+import { RootState } from 'store/store'
 import { setDataviews } from './dataviews.slice'
 import { addResources, completeLoading as completeResourceLoading } from './resources.slice'
 
@@ -27,7 +28,7 @@ const mockFetch = (url: string, init?: FetchOptions): Promise<Response> => {
 
 const dataviewsClient = new DataviewsClient(/*GFWAPI.fetch*/ mockFetch)
 
-export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<any>) => {
+export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<RootState>) => {
   const state = getState()
   const dataviewsQuery = selectDataviewsQuery(state)
 
@@ -35,7 +36,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
     const workspaceIds = dataviewsQuery.map((d) => d.id)
     // TODO should take into account DVs thar are loadING
     const loadedDataviewsIds =
-      state.dataviews.dataviews && state.dataviews.dataviews.map((d: Dataview) => d.id)
+      state.dataviews.dataviews && state.dataviews.dataviews.map((d) => d.id)
     const newDataviewsIds = difference(workspaceIds, loadedDataviewsIds) as number[]
 
     if (newDataviewsIds.length) {
