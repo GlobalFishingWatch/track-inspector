@@ -32,7 +32,7 @@ export const dataviewsThunk = async (dispatch: Dispatch, getState: StateGetter<a
   const dataviewsQuery = selectDataviewsQuery(state)
 
   if (dataviewsQuery) {
-    const workspaceIds = dataviewsQuery.map((d: WorkspaceDataview) => d.id)
+    const workspaceIds = dataviewsQuery.map((d) => d.id)
     // TODO should take into account DVs thar are loadING
     const loadedDataviewsIds =
       state.dataviews.dataviews && state.dataviews.dataviews.map((d: Dataview) => d.id)
