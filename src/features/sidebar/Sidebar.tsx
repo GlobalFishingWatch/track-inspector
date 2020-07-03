@@ -2,11 +2,11 @@ import React, { Fragment } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import { Generators } from '@globalfishingwatch/layer-composer'
-import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import CountryFlag from '@globalfishingwatch/ui-components/dist/countryflag'
+import { Dataview } from '@globalfishingwatch/dataviews-client'
 import { updateQueryParams } from 'routes/routes.actions'
 import { selectSidebarQuery } from 'routes/routes.selectors'
-import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
+import { selectVesselsInfo } from 'features/vessels/vessels.selectors'
 import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
 import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
@@ -25,7 +25,7 @@ const Toggle = ({ backgroundColor, loading }: { backgroundColor: string; loading
 
 const Sidebar = () => {
   const sidebar = useSelector(selectSidebarQuery)
-  const vessels = useSelector(selectVesselsWithConfig)
+  const vessels = useSelector(selectVesselsInfo)
   const contextLayers = useSelector(
     selectDataviewByGeneratorConfigType(Generators.Type.CartoPolygons)
   )
@@ -42,26 +42,26 @@ const Sidebar = () => {
           <section>
             <h1>Vessels</h1>
             <ul>
-              {vessels.map((vessel: VesselWithConfig) => (
-                <li key={vessel.id}>
+              {vessels.map((vessel) => (
+                <li key={vessel.dataview.uid}>
                   <Toggle
-                    backgroundColor={vessel.color as string}
-                    loading={vessel.trackLoading || !vessel.name}
+                    backgroundColor={vessel.dataview.view?.color as string}
+                    loading={!vessel.loaded}
                   />
-                  {vessel.name || ' loading...'}
-                  {vessel.name && (
+                  {vessel.data.name || ' loading...'}
+                  {vessel.loaded && (
                     <div className={styles.details}>
                       <div className={styles.property}>
                         <label>IMO</label>
-                        <span>{vessel.imo || '-'}</span>
+                        <span>{vessel.data.imo || '-'}</span>
                       </div>
                       <div className={styles.property}>
                         <label>Last MMSI</label>
-                        <span>{vessel.lastMMSI || '-'}</span>
+                        <span>{vessel.data.lastMMSI || '-'}</span>
                       </div>
                       <div className={styles.property}>
                         <label>Last Flag</label>
-                        {vessel.lastFlag && <CountryFlag iso={vessel.lastFlag} />}
+                        {vessel.data.lastFlag && <CountryFlag iso={vessel.data.lastFlag} />}
                       </div>
                     </div>
                   )}
@@ -72,14 +72,15 @@ const Sidebar = () => {
           <section>
             <h1>Context areas</h1>
             <ul>
-              {contextLayers.map((contextLayer: DataviewWorkspace) => (
+              {contextLayers.map((contextLayer: Dataview) => (
                 <li key={contextLayer.id}>
-                  <Toggle backgroundColor={contextLayer.dataview?.config.color} />
-                  {contextLayer.dataview?.name}
-                  {contextLayer.dataview?.description && (
+                  {/* TODO use visible to toggle on or off */}
+                  <Toggle backgroundColor={contextLayer.view!.color as string} />
+                  {contextLayer.name}
+                  {contextLayer.description && (
                     <span
                       className={styles.info}
-                      aria-label={contextLayer.dataview?.description}
+                      aria-label={contextLayer.description}
                       data-tip-wrap="multiline"
                     >
                       <IconInfo />

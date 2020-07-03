@@ -1,0 +1,8 @@
+{
+  "carrier-portal": {
+    "cloudbuildTaskId": "track-inspector-autodeploy-bot",
+    "watch": [
+      "**/*"
+    ]
+  }
+}

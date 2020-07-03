@@ -23,9 +23,9 @@ import {
   setHighlightedEvent,
 } from './timebar.slice'
 import {
-  getTracksData,
-  getTracksGraphs,
-  getEventsWithRenderingInfo,
+  selectTracksData,
+  selectTracksGraphs,
+  selectEventsWithRenderingInfo,
   getEncounters,
 } from './timebar.selectors'
 
@@ -34,13 +34,13 @@ const TimebarWrapper = () => {
   const { bookmarkStart, bookmarkEnd, dispatchBookmarkTimerange } = useBookmarkTimerangeConnect()
   const { timebarMode, dispatchTimebarMode } = useTimebarModeConnect()
   const { dispatchViewport } = useViewportConnect()
-  const tracks = useSelector(getTracksData)
-  const tracksEvents = useSelector(getEventsWithRenderingInfo)
+  const tracks = useSelector(selectTracksData)
+  const tracksEvents = useSelector(selectEventsWithRenderingInfo)
   const encounters = useSelector(getEncounters)
   const highlightedTime = useSelector(selectHighlightedTime)
   const currentEventId = useSelector(selectGeneratorConfigCurrentEventId)
 
-  const tracksGraph = useSelector(getTracksGraphs)
+  const tracksGraph = useSelector(selectTracksGraphs)
 
   const dispatch = useDispatch()
 

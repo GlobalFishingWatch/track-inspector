@@ -10,7 +10,7 @@ export type LatLon = {
 }
 
 export type WorkspaceParam =
-  | 'dataviewsWorkspace'
+  | 'workspaceDataviews'
   | 'zoom'
   | 'latitude'
   | 'longitude'

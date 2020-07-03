@@ -65,7 +65,7 @@ export const useMapBounds = (mapRef: any) => {
   const { zoom, latitude, longitude } = useViewportConnect()
   const [bounds, setBounds] = useState<MiniglobeBounds | any>(null)
   useEffect(() => {
-    const mapboxRef = mapRef.current && mapRef.current.getMap()
+    const mapboxRef = mapRef?.current?.getMap()
     if (mapboxRef) {
       const rawBounds = mapboxRef.getBounds()
       if (rawBounds) {

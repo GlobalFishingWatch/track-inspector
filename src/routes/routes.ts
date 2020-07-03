@@ -17,7 +17,7 @@ export const HOME = 'HOME'
 
 const preFetchThunks = [dataviewsThunk]
 
-const thunk = async (dispatch: Dispatch<any>, getState: StateGetter<any>) => {
+const thunk = async (dispatch: Dispatch<any>, getState: StateGetter<RootState>) => {
   preFetchThunks.forEach((thunk) => thunk(dispatch, getState))
 }
 
@@ -39,7 +39,7 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
   longitude: (s) => parseFloat(s),
   zoom: (s) => parseFloat(s),
   sidebar: (s) => s === 'true',
-  dataviewsWorkspace: (s) => {
+  workspaceDataviews: (s) => {
     const layers = s.map((layer: any) => {
       const newLayer = { ...layer }
       if (layer.overrides) {
