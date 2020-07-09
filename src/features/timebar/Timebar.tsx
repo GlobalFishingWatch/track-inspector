@@ -142,7 +142,6 @@ const TimebarWrapper = () => {
             {TimebarMode.speed}
           </option>
         </select>
-        <div className={styles.graphSelectorArrow}>{/* <Icon icon="graph" /> */}</div>
       </div>
     </Fragment>
   )

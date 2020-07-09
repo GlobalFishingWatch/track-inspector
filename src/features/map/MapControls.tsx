@@ -14,6 +14,7 @@ const MapControls = ({ bounds }: { bounds: MiniglobeBounds | null }) => {
   const [showCoords, setShowCoords] = useState(false)
   const [pinned, setPinned] = useState(false)
   const [showDMS, setShowDMS] = useState(false)
+  console.log(latitude, longitude, bounds)
 
   return (
     <div className={styles.mapControls}>
@@ -23,14 +24,7 @@ const MapControls = ({ bounds }: { bounds: MiniglobeBounds | null }) => {
         onMouseLeave={() => setShowCoords(false)}
         onClick={() => setPinned(!pinned)}
       >
-        {bounds && (
-          <MiniGlobe
-            center={{ latitude, longitude }}
-            bounds={bounds}
-            viewportThickness={1}
-            size={70}
-          />
-        )}
+        {bounds && <MiniGlobe center={{ latitude, longitude }} bounds={bounds} size={70} />}
       </div>
       <button
         className={styles.mapControl}

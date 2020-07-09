@@ -4,7 +4,7 @@
   top: 5px;
   width: 25px;
   height: 50px;
-  border-radius: 4px;
+  border-radius: 0 0.4rem 0.4rem 0;
   background: var(--color-brand);
 }
 
@@ -14,23 +14,21 @@
 
 .content {
   height: 100%;
-  background: linear-gradient(0deg, var(--sidebar-background) 0%, var(--color-foreground) 84%);
+  background: linear-gradient(0deg, var(--color-foreground) 0%, var(--sidebar-background) 84%);
   color: var(--color-brand);
 }
 
 header {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
-section:not(:last-child) {
-  border-bottom: 1px solid var(--sidebar-brand-thin);
-  padding-bottom: 1rem;
+section {
+  border-top: 1px solid var(--sidebar-brand-thin);
+  padding: 2rem 1.5rem 1rem;
 }
 
 h1 {
-  padding: 0 1.5rem;
-  font-size: var(--font-size-L);
+  font-size: var(--font-size-M);
   text-transform: uppercase;
   color: var(--sidebar-brand-transparent);
   font-weight: normal;
@@ -38,13 +36,13 @@ h1 {
 
 ul {
   margin: 0;
-  padding: 0 1.5rem;
   list-style-type: none;
 }
 
 li {
-  margin: 0 0 2rem;
-  font-size: var(--font-size-M);
+  display: block;
+  margin: 1rem 0;
+  font-size: var(--font-size-L);
 }
 
 .toggle {
@@ -52,9 +50,8 @@ li {
   display: inline-block;
   border-radius: 99px;
   width: 24px;
-  height: 10px;
+  height: 1rem;
   margin-right: 0.5rem;
-  vertical-align: middle;
 }
 
 .toggle.loading {
@@ -98,6 +95,10 @@ li {
 .property span[role='img']::after {
   content: attr(aria-label);
   margin-left: 0.3rem;
+}
+
+.property label {
+  font-size: var(--font-size-S);
 }
 
 .info {

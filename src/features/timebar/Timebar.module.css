@@ -1,15 +1,16 @@
 .graphSelector {
   position: absolute;
-  right: 1rem;
-  bottom: 3rem;
+  right: 0.5rem;
+  bottom: 1.8rem;
   z-index: 100;
+  font-size: var(--font-size-M);
 }
 
 .graphSelector::after {
   content: ' ';
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 1.2rem;
+  top: 1.2rem;
   border-right: 2px solid white;
   border-bottom: 2px solid white;
   width: 5px;
@@ -24,7 +25,7 @@
   border: 1px solid var(--color-foreground-transparent);
   border-radius: 99px;
   background: var(--color-background);
-  padding: 6px 24px 6px 16px;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
   color: white;
 
   /* font-size: $font-size-xxs-small; */
@@ -34,13 +35,6 @@
 .graphSelectorSelect:focus {
   outline-width: 0;
   border-color: white;
-}
-
-.graphSelectorArrow {
-  display: inline-block;
-  position: absolute;
-  left: 7px;
-  top: 7px;
 }
 
 .noEncounters {
