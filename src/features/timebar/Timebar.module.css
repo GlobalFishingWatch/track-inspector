@@ -1,46 +1,44 @@
 .graphSelector {
   position: absolute;
-  right: 1rem;
-  bottom: 3rem;
+  right: 0.5rem;
+  bottom: 1.6rem;
   z-index: 100;
 }
 
 .graphSelector::after {
   content: ' ';
   position: absolute;
-  right: 10px;
-  top: 10px;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  width: 5px;
-  height: 5px;
-  transform: rotateZ(45deg);
+  right: 0.1rem;
+  top: 0.1rem;
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 1.9rem;
+  pointer-events: none;
+  background: var(--color-brand) url('../../assets/icons/settings.svg') no-repeat center center;
 }
 
 .graphSelectorSelect {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  border: 1px solid var(--color-foreground-transparent);
-  border-radius: 99px;
-  background: var(--color-background);
-  padding: 6px 24px 6px 16px;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  background: var(--color-brand);
+  font-size: 0;
   color: white;
-
-  /* font-size: $font-size-xxs-small; */
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.graphSelectorSelect:hover {
+  font-size: var(--font-size-M);
+  padding: 0 4rem 0 1rem;
+  width: initial;
 }
 
 .graphSelectorSelect:focus {
   outline-width: 0;
-  border-color: white;
-}
-
-.graphSelectorArrow {
-  display: inline-block;
-  position: absolute;
-  left: 7px;
-  top: 7px;
 }
 
 .noEncounters {

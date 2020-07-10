@@ -1194,10 +1194,10 @@
     topojson-client "^3.0.0"
     viewport-mercator-project "^6.1.1"
 
-"@globalfishingwatch/ui-components@1.3.5":
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.5.tgz#716bae25f0d337ea588f056cae4b96b110e93f69"
-  integrity sha512-YQYPTVK1hl4xVvaJJ9SlUcZ3FLcYUAlj1s/X+lyKa3pOw95UqvsBnmbzhfr77CrOZyLN7Cd4oQZla9UTnGkOFQ==
+"@globalfishingwatch/ui-components@1.3.6":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.6.tgz#8ecf177698180577872db468c96a472550e590e2"
+  integrity sha512-SKvWMdZzwooT8PZgn3OiKHc7Os1Njs9tuE5o9xd21GsiCSTaKjpTcNQQFH9cJJlkLBlktEIz0vGeZKMJv4igmQ==
   dependencies:
     countryflag "4.0.0"
     d3-geo "1.12.0"

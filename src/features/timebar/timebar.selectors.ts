@@ -101,9 +101,9 @@ export const selectEventsWithRenderingInfo = createSelector(
           switch (event.type) {
             case 'encounter':
               if (event.encounter && event.encounter.vessel.name) {
-                description = `${vesselName} had encounter with ${event.encounter.vessel.name}`
+                description = `${vesselName} had an encounter with ${event.encounter.vessel.name}`
               } else {
-                description = `${vesselName} had encounter with another vessel`
+                description = `${vesselName} had an encounter with another vessel`
               }
               break
             case 'port':

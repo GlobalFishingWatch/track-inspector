@@ -17,7 +17,7 @@ body {
   grid-area: sidebar;
   position: relative;
   z-index: 100;
-  width: 320px;
+  width: 32rem;
   transition: width 0.15s;
 }
 
