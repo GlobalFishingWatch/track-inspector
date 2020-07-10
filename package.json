@@ -13,10 +13,10 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@globalfishingwatch/api-client": "^1.2.4",
-    "@globalfishingwatch/dataviews-client": "^2.1.0",
-    "@globalfishingwatch/layer-composer": "^2.3.0",
-    "@globalfishingwatch/timebar": "^1.0.10",
+    "@globalfishingwatch/api-client": "1.2.4",
+    "@globalfishingwatch/dataviews-client": "2.1.0",
+    "@globalfishingwatch/layer-composer": "2.3.0",
+    "@globalfishingwatch/timebar": "1.0.11",
     "@globalfishingwatch/pbf": "1.0.6",
     "@globalfishingwatch/react-hooks": "2.5.0",
     "@globalfishingwatch/ui-components": "1.3.6",

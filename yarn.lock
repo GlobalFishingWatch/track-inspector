@@ -1111,14 +1111,14 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@globalfishingwatch/api-client@^1.2.4":
+"@globalfishingwatch/api-client@1.2.4", "@globalfishingwatch/api-client@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.2.4.tgz#267ed97ef0d65a393c913d8811bc5e16c108b6fb"
   integrity sha512-G5tYrgSjj25SJZTlZO4oVRvNeI9TQUDLUx+MqXa3Po8iaxBo1ERoh5z8SJHoHpVC1lemBitsdAMK+1q4XEUNIQ==
   dependencies:
     file-saver "^2.0.2"
 
-"@globalfishingwatch/dataviews-client@^2.1.0":
+"@globalfishingwatch/dataviews-client@2.1.0", "@globalfishingwatch/dataviews-client@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-2.1.0.tgz#d144a700df8b20c5e514bb08f2e48b0b70cacfa8"
   integrity sha512-wTSCfAaDGKo2uMQIWxdI2+xIkG90cG5BSJQF/9fHq+ZCIGVMrT/ohRC/hPwiccL9rGxJwbjPFZbb6Py4SNc3KA==
@@ -1128,7 +1128,7 @@
     "@globalfishingwatch/pbf" "^1.0.6"
     qs "^6.9.4"
 
-"@globalfishingwatch/layer-composer@^2.3.0":
+"@globalfishingwatch/layer-composer@2.3.0", "@globalfishingwatch/layer-composer@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.3.0.tgz#17871d2d466c264e822a64d45c51999be401bc6c"
   integrity sha512-9OhRIb22XqIUiuyiGe2fCPLO36PUS6I3ruBqgOYgdDX4lyd/3AzBIeR4mJgpYG1y1OdkMtAsAMWCJqDdEp3vDg==
@@ -1171,7 +1171,7 @@
     "@globalfishingwatch/dataviews-client" "^2.1.0"
     "@globalfishingwatch/layer-composer" "^2.3.0"
 
-"@globalfishingwatch/timebar@^1.0.10":
+"@globalfishingwatch/timebar@1.0.11":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.11.tgz#b99f14e21346ddeff2869acec579927760b57aa6"
   integrity sha512-p1j5aTTrJoV9CYqVfBbPBIK9WDJmx2UC7ZtgPwFs/0Fn0NfbsBpDz4PnXJ+Fdqrw+wegCByCp8SsIrrrdmcJIA==
