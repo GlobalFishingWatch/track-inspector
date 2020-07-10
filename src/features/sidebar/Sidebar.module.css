@@ -82,10 +82,11 @@ li {
 
 .details {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .property {
-  margin: 1rem 2.5rem 0 0;
+  margin: 1rem 2rem 0 0;
 }
 
 .property span[role='img'] {
@@ -94,7 +95,6 @@ li {
 
 .property span[role='img']::after {
   content: attr(aria-label);
-  margin-left: 0.3rem;
 }
 
 .property label {
