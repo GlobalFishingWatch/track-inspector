@@ -14,7 +14,6 @@ const MapControls = ({ bounds }: { bounds: MiniglobeBounds | null }) => {
   const [showCoords, setShowCoords] = useState(false)
   const [pinned, setPinned] = useState(false)
   const [showDMS, setShowDMS] = useState(false)
-  console.log(latitude, longitude, bounds)
 
   return (
     <div className={styles.mapControls}>
