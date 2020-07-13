@@ -8,8 +8,8 @@ import {
   StateGetter,
 } from 'redux-first-router'
 import qs from 'qs'
-import { RootState } from 'store/store'
 import { Dictionary } from 'types'
+import { RootState } from 'store/store'
 import { dataviewsThunk } from 'features/dataviews/dataviews.thunks'
 import { UpdateQueryParamsAction } from './routes.actions'
 
@@ -52,8 +52,11 @@ const urlToObjectTransformation: Dictionary<(value: any) => any> = {
           }
         }
         if (layer.overrides.visible) {
-          layer.overrides.visible = layer.overrides.visible === 'true' ? true : false
+          layer.overrides.visible = layer.overrides.visible === 'true'
         }
+      }
+      if (layer.view?.visible) {
+        layer.view.visible = layer.view.visible === 'true'
       }
       return newLayer
     })

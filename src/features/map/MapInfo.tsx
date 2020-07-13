@@ -20,8 +20,8 @@ const MapInfo = ({ center }: { center: LatLon | null }) => {
     let endFormatted = endDT.toLocaleString(DateTime.DATE_MED)
     const timeΔ = new Date(end).getTime() - new Date(start).getTime()
     if (timeΔ < A_DAY) {
-      stFormatted = [stFormatted, startDT.toLocaleString(DateTime.TIME_24_SIMPLE), 'UTC'].join(' ')
-      endFormatted = [endFormatted, endDT.toLocaleString(DateTime.TIME_24_SIMPLE), 'UTC'].join(' ')
+      stFormatted = [startDT.toLocaleString(DateTime.DATETIME_MED), 'UTC'].join(' ')
+      endFormatted = [endDT.toLocaleString(DateTime.DATETIME_MED), 'UTC'].join(' ')
     }
     return `${stFormatted} - ${endFormatted}`
   }, [start, end])
