@@ -78,7 +78,17 @@ export default (valueArray: number[], fields_: Field[]) => {
       if (value === nullValue) {
         currentPoint[field] = null
       } else {
-        currentPoint[field] = field === Field.timestamp ? value * 1000 : value / 1000000
+        switch (field) {
+          case Field.timestamp:
+            currentPoint[field] = value * 1000
+            break
+          case Field.speed:
+            currentPoint[field] = value
+            break
+          default:
+            currentPoint[field] = value / 1000000
+            break
+        }
       }
 
       pointsFieldIndex++
