@@ -5687,7 +5687,7 @@ concat-stream@^1.5.0, concat-stream@^1.6.2:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-concat-stream@~2.0.0:
+concat-stream@^2.0.0, concat-stream@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-2.0.0.tgz#414cf5af790a48c60ab9be4527d56d5e41133cb1"
   integrity sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==
@@ -8288,7 +8288,16 @@ gensync@^1.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.1.tgz#58f4361ff987e5ff6e1e7a210827aa371eaac269"
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
 
-geobuf@3.0.1, geobuf@^3.0.1:
+geobuf@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/geobuf/-/geobuf-3.0.2.tgz#9b4debb57ce72ca2bef027223f3098c4f3975cd3"
+  integrity sha512-ASgKwEAQQRnyNFHNvpd5uAwstbVYmiTW0Caw3fBb509tNTqXyAAPMyFs5NNihsLZhLxU1j/kjFhkhLWA9djuVg==
+  dependencies:
+    concat-stream "^2.0.0"
+    pbf "^3.2.1"
+    shapefile "~0.6.6"
+
+geobuf@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/geobuf/-/geobuf-3.0.1.tgz#1de4376f1d270c87ea7551a12b857cf89ae777ad"
   integrity sha512-6gwj0B9oJaOVcG1HFliN/nmsUFq4FRlVmMKyykQ7lV574PeRHJH6ByB7HZtwztpDzJc8RJHUQhH5jH7Sg6EYvA==
