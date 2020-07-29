@@ -1136,7 +1136,14 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@globalfishingwatch/api-client@1.2.4", "@globalfishingwatch/api-client@^1.2.4":
+"@globalfishingwatch/api-client@1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.2.5.tgz#9a602165af3dae85e2b84ca536c8aec053918be2"
+  integrity sha512-GHdc8q0Y43Ml67As+/E9lV2ZIw6Z+/5RFaMXcRV/yYwJ6a9LseZmtOI+c9Nui/6KJjAcdLEhN3Zjpu8A6331vA==
+  dependencies:
+    file-saver "^2.0.2"
+
+"@globalfishingwatch/api-client@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.2.4.tgz#267ed97ef0d65a393c913d8811bc5e16c108b6fb"
   integrity sha512-G5tYrgSjj25SJZTlZO4oVRvNeI9TQUDLUx+MqXa3Po8iaxBo1ERoh5z8SJHoHpVC1lemBitsdAMK+1q4XEUNIQ==
@@ -1153,10 +1160,10 @@
     "@globalfishingwatch/pbf" "^1.0.6"
     qs "^6.9.4"
 
-"@globalfishingwatch/layer-composer@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.3.0.tgz#17871d2d466c264e822a64d45c51999be401bc6c"
-  integrity sha512-9OhRIb22XqIUiuyiGe2fCPLO36PUS6I3ruBqgOYgdDX4lyd/3AzBIeR4mJgpYG1y1OdkMtAsAMWCJqDdEp3vDg==
+"@globalfishingwatch/layer-composer@2.4.5":
+  version "2.4.5"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.4.5.tgz#b77a54c665276f4eebf2b5d682c5a81516cfa5f9"
+  integrity sha512-lzIGYqJvZ3bGqpiby2Qn9GHiGLUFcYie8Or5O7eL4DOjM0vvCBR+ZMDVxpTd9SEu0dAjiU0jnqmHZt3vELRggw==
   dependencies:
     "@mapbox/mapbox-gl-style-spec" "^13.14.0"
     "@mapbox/tilebelt" "^1.0.1"
@@ -1166,6 +1173,7 @@
     abortcontroller-polyfill "^1.4.0"
     d3-scale "^3.2.1"
     geojson-vt "^3.2.1"
+    luxon "^1.24.1"
     memoize-one "^5.1.1"
     pbf "^3.2.1"
     typescript-json-schema "^0.42.0"
@@ -1214,10 +1222,10 @@
     "@globalfishingwatch/dataviews-client" "^2.1.0"
     "@globalfishingwatch/layer-composer" "^2.3.0"
 
-"@globalfishingwatch/timebar@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.10.tgz#3421cf2f25875067ada1db3bf2d26be9cc71090e"
-  integrity sha512-h1SsdnIZiHtZpACF9pHA4Psc9tJ5D2kSVOJ2VZ2o4K2bKQG0yBIig+P+Yifn2SFZHMV8Hgh10UQGfOfCTPQjQw==
+"@globalfishingwatch/timebar@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.12.tgz#af6a1dd45114563dc6fb986820d368895a85c71d"
+  integrity sha512-iwBt1ldgYcpDFSvxWRxWSQfi8uKjCZ6AkU675r8G388xrhEr09MXij3UrOS9E8c+QeYenYGJmF98QHhgeJ5cAQ==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
@@ -1237,12 +1245,12 @@
     topojson-client "^3.0.0"
     viewport-mercator-project "^6.1.1"
 
-"@globalfishingwatch/ui-components@1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.6.tgz#8ecf177698180577872db468c96a472550e590e2"
-  integrity sha512-SKvWMdZzwooT8PZgn3OiKHc7Os1Njs9tuE5o9xd21GsiCSTaKjpTcNQQFH9cJJlkLBlktEIz0vGeZKMJv4igmQ==
+"@globalfishingwatch/ui-components@1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.7.tgz#a0681f470041d82c4ee0003cde8a97c578822f06"
+  integrity sha512-hWnY0EMTrOlcNmMdJql17wW56OGf72JBmOHjXQ7JUcTs61WGiPqluj53q+M0Er/IEZ3OZ5qMYqHdYd8gdVVHvA==
   dependencies:
-    countryflag "4.0.0"
+    countryflag "4.0.1"
     d3-geo "1.12.0"
     downshift "^5.4.3"
     react-modal "^3.11.2"
@@ -5881,10 +5889,10 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-countryflag@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-4.0.0.tgz#e22d8d8adcb483511c2532fe2ce3b94fb3893d52"
-  integrity sha512-qNB8dadR5teYOz2cdC66Rn2Le0muKsH7qF5xnEB/d7sLTSMU46bIK4Sd0GHBtgf+AY681kUUyXfy+1N9BwHIFw==
+countryflag@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-4.0.1.tgz#4dbf208a42b9b04b93fa0bfa654b8601eaed625c"
+  integrity sha512-6rMKF3AiY2Fl444XIEPSvNqRbaboM2h5iLUgdiP81iRd+Pp5YzhckrdZEnuluQ023jdur7r71Gv0weJ6fR6VrA==
   dependencies:
     core-js "3.1.4"
     cross-env "^7.0.2"
@@ -11205,7 +11213,7 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-luxon@1.24.1:
+luxon@1.24.1, luxon@^1.24.1:
   version "1.24.1"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.24.1.tgz#a8383266131ed4eaed4b5f430f96f3695403a52a"
   integrity sha512-CgnIMKAWT0ghcuWFfCWBnWGOddM0zu6c4wZAWmD0NN7MZTnro0+833DF6tJep+xlxRPg4KtsYEHYLfTMBQKwYg==
