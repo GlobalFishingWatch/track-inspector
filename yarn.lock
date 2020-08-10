@@ -1136,27 +1136,28 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
-"@globalfishingwatch/api-client@1.2.4", "@globalfishingwatch/api-client@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.2.4.tgz#267ed97ef0d65a393c913d8811bc5e16c108b6fb"
-  integrity sha512-G5tYrgSjj25SJZTlZO4oVRvNeI9TQUDLUx+MqXa3Po8iaxBo1ERoh5z8SJHoHpVC1lemBitsdAMK+1q4XEUNIQ==
+"@globalfishingwatch/api-client@1.3.2", "@globalfishingwatch/api-client@^1.3.0", "@globalfishingwatch/api-client@^1.3.2":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/api-client/-/api-client-1.3.2.tgz#ea51f25612ad8b0cf4f2eddafd7716e9ae2c9724"
+  integrity sha512-sbcATe3zNGnGCnRQwRvsYezMzwA123P0g1q5LRIzVzrGsLNzh1L97VqjVPijIEiM2yATeqS/5zqS3yzF0SHLgA==
   dependencies:
+    "@globalfishingwatch/pbf" "^1.0.7"
     file-saver "^2.0.2"
 
-"@globalfishingwatch/dataviews-client@2.1.0", "@globalfishingwatch/dataviews-client@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-2.1.0.tgz#d144a700df8b20c5e514bb08f2e48b0b70cacfa8"
-  integrity sha512-wTSCfAaDGKo2uMQIWxdI2+xIkG90cG5BSJQF/9fHq+ZCIGVMrT/ohRC/hPwiccL9rGxJwbjPFZbb6Py4SNc3KA==
+"@globalfishingwatch/dataviews-client@2.2.2", "@globalfishingwatch/dataviews-client@^2.2.0":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/dataviews-client/-/dataviews-client-2.2.2.tgz#ec9d23c4187698a52843097793bfecdd80083c30"
+  integrity sha512-ZwtANR78OQlhc7I+j5lf53yXtxAS/3ovTmvPc43HFV8ENoJy/gNNgmkcw/EFZw/EPiGOdslfQLBD5sk2c+byyQ==
   dependencies:
-    "@globalfishingwatch/api-client" "^1.2.4"
-    "@globalfishingwatch/layer-composer" "^2.3.0"
-    "@globalfishingwatch/pbf" "^1.0.6"
+    "@globalfishingwatch/api-client" "^1.3.2"
+    "@globalfishingwatch/layer-composer" "^2.4.4"
+    "@globalfishingwatch/pbf" "^1.0.7"
     qs "^6.9.4"
 
-"@globalfishingwatch/layer-composer@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.3.0.tgz#17871d2d466c264e822a64d45c51999be401bc6c"
-  integrity sha512-9OhRIb22XqIUiuyiGe2fCPLO36PUS6I3ruBqgOYgdDX4lyd/3AzBIeR4mJgpYG1y1OdkMtAsAMWCJqDdEp3vDg==
+"@globalfishingwatch/layer-composer@2.4.6", "@globalfishingwatch/layer-composer@^2.4.4":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.4.6.tgz#6e21186b6036491b70d8a71fdf0d5e1334718568"
+  integrity sha512-TLbfIpkFi26urwt1LNEpNxUPXBNxG9Gcx5mZw9qoxeRGRkk9OsACLvxUyQFHDd+QB5nerCpY6c5l2Nmy5TTr0A==
   dependencies:
     "@mapbox/mapbox-gl-style-spec" "^13.14.0"
     "@mapbox/tilebelt" "^1.0.1"
@@ -1166,24 +1167,7 @@
     abortcontroller-polyfill "^1.4.0"
     d3-scale "^3.2.1"
     geojson-vt "^3.2.1"
-    memoize-one "^5.1.1"
-    pbf "^3.2.1"
-    typescript-json-schema "^0.42.0"
-    vt-pbf "^3.1.1"
-
-"@globalfishingwatch/layer-composer@^2.3.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/layer-composer/-/layer-composer-2.4.0.tgz#8def08935cbf105c788de654db8de518207402a6"
-  integrity sha512-EJ526KU3m3cOdqrjd/Rq6HLeuLQGMbeGoxRsQGOP0TV2OQhvii68tuzL9eLu2CQmeDjv9wQspat2aRTbiNgwYg==
-  dependencies:
-    "@mapbox/mapbox-gl-style-spec" "^13.14.0"
-    "@mapbox/tilebelt" "^1.0.1"
-    "@mapbox/vector-tile" "^1.3.1"
-    "@turf/great-circle" "^5.1.5"
-    "@turf/length" "^6.0.2"
-    abortcontroller-polyfill "^1.4.0"
-    d3-scale "^3.2.1"
-    geojson-vt "^3.2.1"
+    luxon "^1.24.1"
     memoize-one "^5.1.1"
     pbf "^3.2.1"
     typescript-json-schema "^0.42.0"
@@ -1198,26 +1182,26 @@
   version "1.0.0"
   resolved "https://codeload.github.com/GlobalFishingWatch/map-convert/tar.gz/29d2918507ad3b57ac661abc2791b9334a43b853"
 
-"@globalfishingwatch/pbf@1.0.6", "@globalfishingwatch/pbf@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/pbf/-/pbf-1.0.6.tgz#cfdf44fc28f3e9832e564427fb2d745baef35d64"
-  integrity sha512-puTTFAyMD4nayhZacoRRtVgida8OOWtULH/EUM8r98aGdVbdkqyPMmQrDHu0+7FwhAyV85XbrRv31MBX28YnKw==
+"@globalfishingwatch/pbf@1.0.7", "@globalfishingwatch/pbf@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/pbf/-/pbf-1.0.7.tgz#3110f68f76696ca0f06982191316192f684e5052"
+  integrity sha512-MldVO9EHOdZ9ioK/uT7JaQwe9uirwVXhHxNLUMQspX31Iuer3K2hOnXQrbo4SUMru1vD1HvsMZ6dKQZ3HVkB8w==
   dependencies:
-    tracks-cloud-function "https://github.com/GlobalFishingWatch/api-function-vessels"
+    tracks-cloud-function "git+https://github.com/GlobalFishingWatch/api-function-vessels.git"
 
-"@globalfishingwatch/react-hooks@2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/react-hooks/-/react-hooks-2.5.0.tgz#fc174adf7fdf5a84c4626494437d5a290fea8f90"
-  integrity sha512-xI8SXuNBHXvt+bhfvlGlga6/FvY24DEqebLpg4QRk+X4tmiXJlsSFhDA1JL/yARy+7Izc3Zl/cIjH6nBzy7wDQ==
+"@globalfishingwatch/react-hooks@2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/react-hooks/-/react-hooks-2.5.1.tgz#88ff3deeca5b9b8038ba6d09c0012ae8b66a3407"
+  integrity sha512-RE0ZRGpMRtSMKF7EbHsa7j3QLD8yviAqmksQvKJzE0waSOhSs5yVdZRKXrmc6qpbTHKMuVgJkyobw/sLQR837Q==
   dependencies:
-    "@globalfishingwatch/api-client" "^1.2.4"
-    "@globalfishingwatch/dataviews-client" "^2.1.0"
-    "@globalfishingwatch/layer-composer" "^2.3.0"
+    "@globalfishingwatch/api-client" "^1.3.0"
+    "@globalfishingwatch/dataviews-client" "^2.2.0"
+    "@globalfishingwatch/layer-composer" "^2.4.4"
 
-"@globalfishingwatch/timebar@1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.10.tgz#3421cf2f25875067ada1db3bf2d26be9cc71090e"
-  integrity sha512-h1SsdnIZiHtZpACF9pHA4Psc9tJ5D2kSVOJ2VZ2o4K2bKQG0yBIig+P+Yifn2SFZHMV8Hgh10UQGfOfCTPQjQw==
+"@globalfishingwatch/timebar@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/timebar/-/timebar-1.0.13.tgz#cb79e011c8e939ce70dd8bae4fc105211903cb56"
+  integrity sha512-69/VKYiOvZHAqc7VR5aWGwj8mi8EdSD1wKm1T1JgzHET8c2cgzWBxejMhzakTiLKsvw7RmsJ9Uhc9mnn30QsgQ==
   dependencies:
     "@globalfishingwatch/map-convert" "github:GlobalFishingWatch/map-convert"
     "@mapbox/tile-cover" "^3.0.2"
@@ -1237,21 +1221,21 @@
     topojson-client "^3.0.0"
     viewport-mercator-project "^6.1.1"
 
-"@globalfishingwatch/ui-components@1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.6.tgz#8ecf177698180577872db468c96a472550e590e2"
-  integrity sha512-SKvWMdZzwooT8PZgn3OiKHc7Os1Njs9tuE5o9xd21GsiCSTaKjpTcNQQFH9cJJlkLBlktEIz0vGeZKMJv4igmQ==
+"@globalfishingwatch/ui-components@1.3.8":
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/@globalfishingwatch/ui-components/-/ui-components-1.3.8.tgz#6e5bd95afd2d7e52e3a3b1dc5024b834b31a89ab"
+  integrity sha512-tmHrUxTAllVDxMAnnB4iSENP+1bVIDijvPcL9QTBulKckY2+MliEE2Ahxudy9FulZsoUQKJpMUbx0Ob5UFhtTQ==
   dependencies:
-    countryflag "4.0.0"
+    countryflag "4.0.1"
     d3-geo "1.12.0"
     downshift "^5.4.3"
     react-modal "^3.11.2"
     topojson-client "3.1.0"
 
-"@google-cloud/functions-framework@^1.3.2":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/functions-framework/-/functions-framework-1.6.0.tgz#90db9d47f0cb34a018327c54cc3590834a30e0d2"
-  integrity sha512-b9dT2bAH5Y2e0Q89zFaBJoQmIxRiSeFYxHMBBTREXLWD6rs7in4M7I/hbwbXBXximDDlC1m9QGXrIwYw/7RouA==
+"@google-cloud/functions-framework@^1.6.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/functions-framework/-/functions-framework-1.7.0.tgz#a3eecc950907d6bea1bc5e01886aa29d5dcc6c90"
+  integrity sha512-aIccMyME6x1PCdTc3op9xm3UVhf8mi7e3NDogh8VhaScqsCsYDzRrBn30CWyHn6lqF0IJ/bwrD24X8UmLin3uQ==
   dependencies:
     body-parser "^1.18.3"
     express "^4.16.4"
@@ -1789,7 +1773,7 @@
     core-js "^3.4.1"
     regenerator-runtime "^0.13.3"
 
-"@koa/cors@^3.0.0":
+"@koa/cors@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@koa/cors/-/cors-3.1.0.tgz#618bb073438cfdbd3ebd0e648a76e33b84f3a3b2"
   integrity sha512-7ulRC1da/rBa6kj6P4g2aJfnET3z8Uf3SWu60cjbtxTA5g8lxRdX/Bd2P92EagGwwAhANeNw8T8if99rJliR6Q==
@@ -5700,7 +5684,7 @@ concat-stream@^1.5.0, concat-stream@^1.6.2:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-concat-stream@~2.0.0:
+concat-stream@^2.0.0, concat-stream@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-2.0.0.tgz#414cf5af790a48c60ab9be4527d56d5e41133cb1"
   integrity sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==
@@ -5881,10 +5865,10 @@ cosmiconfig@^6.0.0:
     path-type "^4.0.0"
     yaml "^1.7.2"
 
-countryflag@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-4.0.0.tgz#e22d8d8adcb483511c2532fe2ce3b94fb3893d52"
-  integrity sha512-qNB8dadR5teYOz2cdC66Rn2Le0muKsH7qF5xnEB/d7sLTSMU46bIK4Sd0GHBtgf+AY681kUUyXfy+1N9BwHIFw==
+countryflag@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/countryflag/-/countryflag-4.0.1.tgz#4dbf208a42b9b04b93fa0bfa654b8601eaed625c"
+  integrity sha512-6rMKF3AiY2Fl444XIEPSvNqRbaboM2h5iLUgdiP81iRd+Pp5YzhckrdZEnuluQ023jdur7r71Gv0weJ6fR6VrA==
   dependencies:
     core-js "3.1.4"
     cross-env "^7.0.2"
@@ -8301,13 +8285,22 @@ gensync@^1.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.1.tgz#58f4361ff987e5ff6e1e7a210827aa371eaac269"
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
 
-geobuf@3.0.1, geobuf@^3.0.1:
+geobuf@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/geobuf/-/geobuf-3.0.1.tgz#1de4376f1d270c87ea7551a12b857cf89ae777ad"
   integrity sha512-6gwj0B9oJaOVcG1HFliN/nmsUFq4FRlVmMKyykQ7lV574PeRHJH6ByB7HZtwztpDzJc8RJHUQhH5jH7Sg6EYvA==
   dependencies:
     concat-stream "^1.6.2"
     pbf "^3.1.0"
+    shapefile "~0.6.6"
+
+geobuf@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/geobuf/-/geobuf-3.0.2.tgz#9b4debb57ce72ca2bef027223f3098c4f3975cd3"
+  integrity sha512-ASgKwEAQQRnyNFHNvpd5uAwstbVYmiTW0Caw3fBb509tNTqXyAAPMyFs5NNihsLZhLxU1j/kjFhkhLWA9djuVg==
+  dependencies:
+    concat-stream "^2.0.0"
+    pbf "^3.2.1"
     shapefile "~0.6.6"
 
 geojson-equality@0.1.6:
@@ -8801,7 +8794,7 @@ helmet-csp@2.10.0:
     content-security-policy-builder "2.1.0"
     dasherize "2.0.0"
 
-helmet@^3.21.1, helmet@^3.21.2:
+helmet@^3.21.1, helmet@^3.23.3:
   version "3.23.3"
   resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.23.3.tgz#5ba30209c5f73ded4ab65746a3a11bedd4579ab7"
   integrity sha512-U3MeYdzPJQhtvqAVBPntVgAvNSOJyagwZwyKsFdyRa8TV3pOKVFljalPOCxbw5Wwf2kncGhmP0qHjyazIdNdSA==
@@ -9391,7 +9384,7 @@ invert-kv@^2.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
-ioredis@^4.14.1:
+ioredis@^4.17.3:
   version "4.17.3"
   resolved "https://registry.yarnpkg.com/ioredis/-/ioredis-4.17.3.tgz#9938c60e4ca685f75326337177bdc2e73ae9c9dc"
   integrity sha512-iRvq4BOYzNFkDnSyhx7cmJNOi1x/HWYe+A4VXHBu4qpwJaGT1Mp+D2bVGJntH9K/Z/GeOM/Nprb8gB3bmitz1Q==
@@ -10710,7 +10703,7 @@ koa-basic-auth@^4.0.0:
     basic-auth "^2.0.0"
     tsscmp "^1.0.6"
 
-koa-body@^4.1.1:
+koa-body@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/koa-body/-/koa-body-4.2.0.tgz#37229208b820761aca5822d14c5fc55cee31b26f"
   integrity sha512-wdGu7b9amk4Fnk/ytH8GuWwfs4fsB5iNkY8kZPpgQVb04QZSv85T0M8reb+cJmvLE8cjPYvBzRikD3s6qz8OoA==
@@ -10768,7 +10761,7 @@ koa-router@^7.4.0:
     path-to-regexp "^1.1.1"
     urijs "^1.19.0"
 
-koa@^2.11.0:
+koa@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.13.0.tgz#25217e05efd3358a7e5ddec00f0a380c9b71b501"
   integrity sha512-i/XJVOfPw7npbMv67+bOeXr3gPqOAw6uh5wFyNs3QvJ47tUx3M3V9rIE0//WytY42MKz4l/MXKyGkQ2LQTfLUQ==
@@ -11080,7 +11073,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@4.17.19, "lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.5:
+lodash@4.17.19, "lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.16, lodash@^4.17.19, lodash@^4.17.5:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
@@ -11205,7 +11198,7 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-luxon@1.24.1:
+luxon@1.24.1, luxon@^1.24.1:
   version "1.24.1"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.24.1.tgz#a8383266131ed4eaed4b5f430f96f3695403a52a"
   integrity sha512-CgnIMKAWT0ghcuWFfCWBnWGOddM0zu6c4wZAWmD0NN7MZTnro0+833DF6tJep+xlxRPg4KtsYEHYLfTMBQKwYg==
@@ -12754,7 +12747,7 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^7.12.1:
+pg@^7.18.2:
   version "7.18.2"
   resolved "https://registry.yarnpkg.com/pg/-/pg-7.18.2.tgz#4e219f05a00aff4db6aab1ba02f28ffa4513b0bb"
   integrity sha512-Mvt0dGYMwvEADNKy5PMQGlzPudKcKKzJds/VbOeZJpb6f/pI3mmoXX0JksPgI3l3JPP/2Apq7F36O63J7mgveA==
@@ -13793,10 +13786,29 @@ proto-list@~1.2.1:
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
 
-protobufjs@6.9.0, protobufjs@^6.8.8:
+protobufjs@6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.9.0.tgz#c08b2bf636682598e6fabbf0edb0b1256ff090bd"
   integrity sha512-LlGVfEWDXoI/STstRDdZZKb/qusoAWUnmLg9R8OLSO473mBLWHowx8clbX5/+mKDEI+v7GzjoK9tRPZMMcoTrg==
+  dependencies:
+    "@protobufjs/aspromise" "^1.1.2"
+    "@protobufjs/base64" "^1.1.2"
+    "@protobufjs/codegen" "^2.0.4"
+    "@protobufjs/eventemitter" "^1.1.0"
+    "@protobufjs/fetch" "^1.1.0"
+    "@protobufjs/float" "^1.0.2"
+    "@protobufjs/inquire" "^1.1.0"
+    "@protobufjs/path" "^1.1.2"
+    "@protobufjs/pool" "^1.1.0"
+    "@protobufjs/utf8" "^1.1.0"
+    "@types/long" "^4.0.1"
+    "@types/node" "^13.7.0"
+    long "^4.0.0"
+
+protobufjs@^6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.10.1.tgz#e6a484dd8f04b29629e9053344e3970cccf13cd2"
+  integrity sha512-pb8kTchL+1Ceg4lFd5XUpK8PdWacbvV5SK2ULH2ebrYtl4GjJmS24m6CKME67jzV53tbJxHlnNOSqQHbTsR9JQ==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -14602,6 +14614,13 @@ request-promise-core@1.1.3:
   dependencies:
     lodash "^4.17.15"
 
+request-promise-core@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/request-promise-core/-/request-promise-core-1.1.4.tgz#3eedd4223208d419867b78ce815167d10593a22f"
+  integrity sha512-TTbAfBBRdWD7aNNOoVOBH4pN/KigV6LyapYNNlAPA8JwbovRti1E88m3sYAwsLi5ryhPKsE9APwnjFTgdUjTpw==
+  dependencies:
+    lodash "^4.17.19"
+
 request-promise-native@^1.0.5:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/request-promise-native/-/request-promise-native-1.0.8.tgz#a455b960b826e44e2bf8999af64dff2bfe58cb36"
@@ -14611,7 +14630,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request-promise@^4.2.4, request-promise@^4.2.5:
+request-promise@^4.2.5:
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.5.tgz#186222c59ae512f3497dfe4d75a9c8461bd0053c"
   integrity sha512-ZgnepCykFdmpq86fKGwqntyTiUrHycALuGggpyCZwMvGaZWgxW6yagT0FHkgo5LzYvOaCNvxYwWYIjevSH1EDg==
@@ -14621,7 +14640,17 @@ request-promise@^4.2.4, request-promise@^4.2.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.65.0, request@^2.87.0, request@^2.88.0:
+request-promise@^4.2.6:
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.6.tgz#7e7e5b9578630e6f598e3813c0f8eb342a27f0a2"
+  integrity sha512-HCHI3DJJUakkOr8fNoCc73E5nU5bqITjOYFMDrKHYOXWXrgD/SBaC7LjwuPymUprRyuF06UK7hd/lMHkmUXglQ==
+  dependencies:
+    bluebird "^3.5.0"
+    request-promise-core "1.1.4"
+    stealthy-require "^1.1.1"
+    tough-cookie "^2.3.3"
+
+request@^2.65.0, request@^2.87.0, request@^2.88.0, request@^2.88.2:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -16409,35 +16438,36 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-"tracks-cloud-function@https://github.com/GlobalFishingWatch/api-function-vessels":
+"tracks-cloud-function@git+https://github.com/GlobalFishingWatch/api-function-vessels.git":
   version "1.0.0"
-  resolved "https://github.com/GlobalFishingWatch/api-function-vessels#d752b86460321eb00e70fd00e1edbcc7c19ad19e"
+  uid c5bd33e173b29eafd3178313a5d5b9ab72435d9e
+  resolved "git+https://github.com/GlobalFishingWatch/api-function-vessels.git#c5bd33e173b29eafd3178313a5d5b9ab72435d9e"
   dependencies:
-    "@google-cloud/functions-framework" "^1.3.2"
+    "@google-cloud/functions-framework" "^1.6.0"
     "@hapi/joi" "16.1.8"
-    "@koa/cors" "^3.0.0"
+    "@koa/cors" "^3.1.0"
     "@turf/turf" "^5.1.6"
     auth-middleware "git://github.com/GlobalFishingWatch/auth-middleware.git#develop"
     elasticsearch "16.0.0"
-    geobuf "^3.0.1"
-    helmet "^3.21.2"
-    ioredis "^4.14.1"
+    geobuf "^3.0.2"
+    helmet "^3.23.3"
+    ioredis "^4.17.3"
     knex "^0.19.5"
-    koa "^2.11.0"
+    koa "^2.13.0"
     koa-basic-auth "^4.0.0"
-    koa-body "^4.1.1"
+    koa-body "^4.2.0"
     koa-helmet "^5.2.0"
     koa-logger "^3.2.1"
     koa-router "^7.4.0"
-    lodash "^4.17.15"
+    lodash "^4.17.19"
     pbf "^3.2.1"
-    pg "^7.12.1"
-    protobufjs "^6.8.8"
-    request "^2.88.0"
-    request-promise "^4.2.4"
+    pg "^7.18.2"
+    protobufjs "^6.10.1"
+    request "^2.88.2"
+    request-promise "^4.2.6"
     shrink-ray-current "^4.1.2"
     url-pattern "^1.0.3"
-    winston "^3.2.1"
+    winston "^3.3.3"
 
 trim-newlines@^1.0.0:
   version "1.0.0"
@@ -17292,7 +17322,7 @@ winston-transport@^4.4.0:
     readable-stream "^2.3.7"
     triple-beam "^1.2.0"
 
-winston@^3.2.1:
+winston@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.3.3.tgz#ae6172042cafb29786afa3d09c8ff833ab7c9170"
   integrity sha512-oEXTISQnC8VlSAKf1KYSSd7J6IWuRPQqDdo8eoRNaYKLvwSb5+79Z3Yi1lrl6KDpU6/VWaxpakDAtb1oQ4n9aw==
