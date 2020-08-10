@@ -104,7 +104,9 @@ interface RenderedEvent extends Event {
 // Inject colors using type and auth status
 export const getEventsWithRenderingInfo = createSelector([getEventsForTracks], (eventsForTrack) => {
   // + add text descriptions
+  return []
   const eventsWithRenderingInfo: RenderedEvent[][] = eventsForTrack.map((trackEvents: Event[]) => {
+    console.log(trackEvents)
     return trackEvents.map((event: Event) => {
       const vesselName = event.vessel.name || 'This vessel'
       let description

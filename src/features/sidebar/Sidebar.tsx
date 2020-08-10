@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import cx from 'classnames'
 import { Generators } from '@globalfishingwatch/layer-composer'
 import { DataviewWorkspace } from '@globalfishingwatch/dataviews-client'
 import CountryFlag from '@globalfishingwatch/ui-components/dist/countryflag'
 import { updateQueryParams } from 'routes/routes.actions'
-import { selectSidebarQuery } from 'routes/routes.selectors'
+import { selectSidebarQuery, selectFishingPositionsQuery } from 'routes/routes.selectors'
 import { selectVesselsWithConfig, VesselWithConfig } from 'features/vessels/vessels.selectors'
 import { selectDataviewByGeneratorConfigType } from 'features/dataviews/dataviews.selectors'
 import { ReactComponent as IconArrow } from 'assets/icons/arrow-left.svg'
@@ -13,6 +13,12 @@ import { ReactComponent as Logo } from 'assets/images/gfw-carrier-vessels.svg'
 import { CARRIER_PORTAL_URL } from 'config'
 import { ReactComponent as IconInfo } from 'assets/icons/info.svg'
 import styles from './Sidebar.module.css'
+
+interface inputValue {
+  target: {
+    value: string
+  }
+}
 
 const Toggle = ({ backgroundColor, loading }: { backgroundColor: string; loading?: boolean }) => {
   return (
@@ -29,6 +35,9 @@ const Sidebar = () => {
   const contextLayers = useSelector(
     selectDataviewByGeneratorConfigType(Generators.Type.CartoPolygons)
   )
+
+  const fishingPositions = useSelector(selectFishingPositionsQuery)
+
   const dispatch = useDispatch()
   return (
     <Fragment>
@@ -40,6 +49,20 @@ const Sidebar = () => {
             </a>
           </header>
           <section>
+            <h1>TESTING</h1>
+            <div className={styles.property}>
+              <label>Amount of fishing positions by segment:</label>
+              <input
+                onChange={(e: inputValue) =>
+                  dispatch(
+                    updateQueryParams({
+                      fishingPositions: e?.target?.value ? e.target.value : '',
+                    })
+                  )
+                }
+                value={fishingPositions}
+              ></input>
+            </div>
             <h1>Vessels</h1>
             <ul>
               {vessels.map((vessel: VesselWithConfig) => (

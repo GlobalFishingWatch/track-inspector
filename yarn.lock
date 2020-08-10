@@ -16319,9 +16319,9 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-"tracks-cloud-function@git+https://github.com/GlobalFishingWatch/api-function-vessels.git":
+"tracks-cloud-function@https://github.com/GlobalFishingWatch/api-function-vessels":
   version "1.0.0"
-  resolved "git+https://github.com/GlobalFishingWatch/api-function-vessels.git#2edc581d37e3ea2c82aac99905dd49f9ea874f74"
+  resolved "https://github.com/GlobalFishingWatch/api-function-vessels#729b5a1bafff7804ff59b3beda01126dcb4672b7"
   dependencies:
     "@google-cloud/functions-framework" "^1.3.2"
     "@hapi/joi" "16.1.8"

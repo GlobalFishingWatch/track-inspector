@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { WorkspaceParam } from 'types'
-import { DEFAULT_WORKSPACE } from 'config'
+import { DEFAULT_WORKSPACE, TEST_WORKSPACE } from 'config'
 import { RootState } from 'store/store'
 
 const selectLocation = (state: RootState) => state.location
@@ -12,7 +12,7 @@ const selectLocationQuery = createSelector([selectLocation], (location) => {
 const selectQueryParam = (param: WorkspaceParam) =>
   createSelector([selectLocationQuery], (query: any) => {
     if (query === undefined || query[param] === undefined) {
-      return DEFAULT_WORKSPACE[param]
+      return TEST_WORKSPACE[param]
     }
     return query[param]
   })
@@ -20,6 +20,7 @@ const selectQueryParam = (param: WorkspaceParam) =>
 export const selectDataviewsQuery = selectQueryParam('dataviewsWorkspace')
 
 export const selectMapZoomQuery = selectQueryParam('zoom')
+export const selectFishingPositionsQuery = selectQueryParam('fishingPositions')
 export const selectMapLatitudeQuery = selectQueryParam('latitude')
 export const selectMapLongitudeQuery = selectQueryParam('longitude')
 export const selectStartQuery = selectQueryParam('start')

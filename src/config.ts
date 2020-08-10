@@ -14,7 +14,7 @@ export const EVENTS_COLORS: Dictionary<string> = {
 
 export const TRACK_START = new Date('2012-01-01T00:00:00.000Z')
 export const TRACK_END = new Date('2020-05-31T00:00:00.000Z')
-export const TRACK_FIELDS = [Field.lonlat, Field.timestamp, Field.speed]
+export const TRACK_FIELDS = [Field.lonlat, Field.timestamp, Field.speed, Field.fishing]
 
 export const CARRIER_PORTAL_URL = process.env.REACT_APP_CARRIER_PORTAL_URL
 
@@ -106,7 +106,7 @@ export const DEFAULT_WORKSPACE: AppState = {
       },
       datasetParams: {
         dataset: 'carriers:dev',
-        id: '46df37738-8057-e7d4-f3f3-a9b44d52fe03',
+        id: '00ba29183-3b86-9e36-cf20-ee340e409521',
       },
       dataview: {
         id: 'carrierEvents',
@@ -223,6 +223,92 @@ export const DEFAULT_WORKSPACE: AppState = {
   alwaysRequireAuth: true,
 }
 
+export const TEST_WORKSPACE: AppState = {
+  dataviewsWorkspace: [
+    {
+      id: 'background',
+      dataview: {
+        id: 'background',
+        config: {
+          type: Generators.Type.Background,
+        },
+      },
+    },
+    {
+      id: 'landmass',
+      dataview: {
+        id: 'landmass',
+        config: {
+          type: Generators.Type.Basemap,
+        },
+      },
+    },
+    {
+      id: 'ais',
+      overrides: {},
+      datasetParams: {
+        dataset: 'fishing',
+        id: '00ba29183-3b86-9e36-cf20-ee340e409521',
+        binary: true,
+        format: 'valueArray',
+      },
+      dataview: {
+        id: 'fishingEvents',
+        datasetsIds: ['carrierPortalVesselTrack'],
+        config: {
+          type: Generators.Type.Track,
+          color: '#00c1e7',
+          simplify: false,
+        },
+      },
+    },
+    {
+      id: 'fishingEvents',
+      overrides: {
+        // visible: false,
+      },
+      datasetParams: {
+        dataset: 'fishing',
+        id: '00ba29183-3b86-9e36-cf20-ee340e409521',
+        binary: true,
+        format: 'valueArray',
+      },
+      dataview: {
+        id: 'fishingEvents',
+        datasetsIds: ['carrierPortalVesselEvents'],
+        config: {
+          type: Generators.Type.VesselEvents,
+        },
+      },
+    },
+    {
+      id: 'bluefin_rfmo',
+      overrides: {
+        visible: false,
+      },
+      dataview: {
+        id: 'bluefin_rfmo',
+        name: 'Southern bluefin tuna range',
+        description:
+          'Prepared by GFW based on "The Current Status of International Fishery Stocks", 2018, Fisheries Agency and Japan Fisheries Research and Education Agency',
+        config: {
+          type: Generators.Type.CartoPolygons,
+          color: '#A758FF',
+        },
+      },
+    },
+  ],
+  zoom: 3,
+  latitude: -25.54035,
+  fishingPositions: 15,
+  longitude: -35.97144,
+  start: '2012-10-26T23:59:59.999Z',
+  end: '2020-04-27T23:59:59.999Z',
+  sidebar: true,
+  timebarMode: TimebarMode.events,
+  alwaysRequireAuth: true,
+}
+
 const datasetsEndpointMock: Dataset[] = [
   {
     id: 'carrierPortalVesselTrack',
@@ -247,10 +333,41 @@ const datasetsEndpointMock: Dataset[] = [
     ],
   },
 ]
+const datasetsEndpointMockTest: Dataset[] = [
+  {
+    id: 'carrierPortalVesselTrack',
+    endpoints: [
+      {
+        type: 'track',
+        urlTemplate: `/datasets/{{dataset}}/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
+        //urlTemplate: `/datasets/{{dataset}}/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&fields=lonlat,timestamp,speed,fishing&wrapLongitudes=false`,
+      },
+      {
+        type: 'info',
+        urlTemplate: '/datasets/{{dataset}}/vessels/{{id}}',
+      },
+    ],
+  },
+  {
+    id: 'carrierPortalVesselEvents',
+    endpoints: [
+      {
+        type: 'events',
+        urlTemplate: `/datasets/{{dataset}}/vessels/{{id}}/tracks?startDate=${TRACK_START.toISOString()}&endDate=${TRACK_END.toISOString()}&binary={{binary}}&fields=${TRACK_FIELDS}&format={{format}}&wrapLongitudes=false`,
+      },
+    ],
+  },
+]
 
 export const mockFetches: any = {
   '/datasets?ids=fishing': datasetsEndpointMock,
   '/datasets?ids=carrierPortalVesselTrack': datasetsEndpointMock,
   '/datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
   '/datasets?ids=fishing,carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMock,
+}
+export const mockTestFetches: any = {
+  '/datasets?ids=fishing': datasetsEndpointMockTest,
+  '/datasets?ids=carrierPortalVesselTrack': datasetsEndpointMockTest,
+  '/datasets?ids=carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMockTest,
+  '/datasets?ids=fishing,carrierPortalVesselTrack,carrierPortalVesselEvents': datasetsEndpointMockTest,
 }

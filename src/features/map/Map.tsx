@@ -14,6 +14,7 @@ const Map = () => {
   const { zoom, latitude, longitude, dispatchViewport } = useViewportConnect()
   const { start, end } = useTimerangeConnect()
   const generatorConfigs = useSelector(selectGeneratorConfigWithData)
+  //console.error(generatorConfigs)
 
   const globalGeneratorConfig = useMemo(
     () => ({
@@ -38,7 +39,7 @@ const Map = () => {
   const { onMapMove, hoverCenter } = useMapMove()
 
   const mapBounds = useMapBounds(mapRef)
-
+  //console.error(style)
   return (
     <Fragment>
       <ReactMapGL
