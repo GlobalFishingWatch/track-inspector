@@ -48,7 +48,7 @@ export type Event = {
   end: number
   vessel: EventVessel
   encounter?: {
-    authorizationStatus: 'authorized' | 'partially' | 'unmatched'
+    authorizationStatus: 'authorized' | 'partially' | 'unmatched' | 'pending'
     vessel: EventVessel
   }
   port?: {

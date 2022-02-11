@@ -21,7 +21,7 @@ const customColors = (style: any) => {
   const pointColor = [
     'case',
     ['==', ['get', 'authorizationStatus'], 'pending'],
-    EVENTS_COLORS.pending,
+    EVENTS_COLORS.encounterpending,
     ['get', 'color'],
   ]
   const layers = style.layers.map((layer: any) => {
